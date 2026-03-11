@@ -1,5 +1,5 @@
-#define MAX_RAND_SIZE 131072
-#define MAX_FILE_SIZE 65536
+#define MAX_RAND_SIZE 16777216
+#define MAX_FILE_SIZE 16777216
 //#define SIMPLE_MUTATIONS 1
 
 #include <vector>

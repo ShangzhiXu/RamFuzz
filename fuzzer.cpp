@@ -19,6 +19,7 @@
 #include <ctime>
 
 #include "formatfuzzer.h"
+#include "violation_postproc.h"
 
 static const char *bin_name = "formatfuzzer";
 
@@ -1313,6 +1314,10 @@ extern "C" void generate_random_file(unsigned char** file, unsigned* file_size) 
 
 	set_generator();
 	*file_size = ff_generate(rand_buffer, MAX_RAND_SIZE, file);
+
+	/* Apply violation post-processing after FormatFuzzer generates */
+	if (*file && *file_size > 0)
+		violate_mp4_buffer(*file, *file_size);
 }
 
 
@@ -1711,7 +1716,13 @@ fail:
 
 
 extern "C" int one_smart_mutation(int target_file_index, unsigned char** file, unsigned* file_size) {
-	return do_one_smart_mutation(target_file_index, file, file_size);
+	int ret = do_one_smart_mutation(target_file_index, file, file_size);
+
+	/* Apply violation post-processing after FormatFuzzer mutates */
+	if (ret >= 0 && *file && *file_size > 0)
+		violate_mp4_buffer(*file, *file_size);
+
+	return ret;
 }
 
 

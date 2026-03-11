@@ -1,0 +1,3056 @@
+// Maximum number of child boxes generated per container
+#define MAX_CHILD_BOXES 25
+#define MAX_PADDING 4
+
+//------------------------------------------------
+//--- 010 Editor v8.0 Binary Template
+//
+//      File: MP4_complete.bt
+//   Authors: Extended from Alexey Lyashko, Andrew Molyneux, Marian Denes, SweetScape, Marko Musa
+//   Version: 4.0
+//   Purpose: Comprehensive template for parsing MP4/MOV/M4V/M4A files.
+//            Covers all ISO 14496-12/14/15 box types including:
+//            fragmented MP4, HEIF, DRM/CENC, Dolby Vision, AV1, HEVC,
+//            Opus, FLAC, AC-3/EC-3, AC-4, DTS, WebVTT, TTML, and more.
+//  Category: Video
+// File Mask: *.mp4,*.mov,*.m4v,*.m4a,*.3gp,*.heic,*.heif,*.avif
+//  ID Bytes: [+4] 66 74 79 70, [+4] 6D 6F 6F 76, [+4] 6D 64 61 74
+//   History:
+//   4.0   2025-03-10 Full coverage of ISO BMFF box types from JSON spec.
+//   3.3   2019-08-08 M. Musa: Modified box logic to respect box size in header.
+//   3.2   2019-02-03 A. Lyashko: Added support for fragmented MP4 files.
+//   3.1   2018-06-17 A. Lyashko: Added support for sample table atoms.
+//   3.0   2017-10-03 A Molyneux: Total rewrite, more complete and robust.
+//------------------------------------------------
+
+BigEndian();
+
+// Forward declarations
+struct fp16;
+struct fp32;
+struct fp32uvw;
+struct matrix;
+struct fourcc;
+struct boxheader;
+struct compatible_brand;
+struct mp4box;
+struct mp4time;
+struct mp4lang;
+struct qtopcolor;
+struct elst_entry;
+struct tkhd_flags;
+struct vmhd_flags;
+
+// ============================================================
+// QuickTime language codes
+// ============================================================
+enum qtlang
+{
+    qtlEnglish            = 0,
+    qtlFrench             = 1,
+    qtlGerman             = 2,
+    qtlItalian            = 3,
+    qtlDutch              = 4,
+    qtlSwedish            = 5,
+    qtlSpanish            = 6,
+    qtlDanish             = 7,
+    qtlPortuguese         = 8,
+    qtlNorwegian          = 9,
+    qtlHebrew             = 10,
+    qtlJapanese           = 11,
+    qtlArabic             = 12,
+    qtlFinnish            = 13,
+    qtlGreek              = 14,
+    qtlIcelandic          = 15,
+    qtlMaltese            = 16,
+    qtlTurkish            = 17,
+    qtlCroatian           = 18,
+    qtlChineseTraditional = 19,
+    qtlUrdu               = 20,
+    qtlHindi              = 21,
+    qtlThai               = 22,
+    qtlKorean             = 23,
+    qtlLithuanian         = 24,
+    qtlPolish             = 25,
+    qtlHungarian          = 26,
+    qtlEstonian           = 27,
+    qtlLettish            = 28,
+    qtlLatvian            = 28,
+    qtlSaami              = 29,
+    qtlSami               = 29,
+    qtlFaroese            = 30,
+    qtlFarsi              = 31,
+    qtlRussian            = 32,
+    qtlChineseSimplified  = 33,
+    qtlFlemish            = 34,
+    qtlIrish              = 35,
+    qtlAlbanian           = 36,
+    qtlRomanian           = 37,
+    qtlCzech              = 38,
+    qtlSlovak             = 39,
+    qtlSlovenian          = 40,
+    qtlYiddish            = 41,
+    qtlSerbian            = 42,
+    qtlMacedonian         = 43,
+    qtlBulgarian          = 44,
+    qtlUkrainian          = 45,
+    qtlBelarusian         = 46,
+    qtlUzbek              = 47,
+    qtlKazakh             = 48,
+    qtlAzerbaijani        = 49,
+    qtlAzerbaijanAr       = 50,
+    qtlArmenian           = 51,
+    qtlGeorgian           = 52,
+    qtlMoldavian          = 53,
+    qtlKirghiz            = 54,
+    qtlTajiki             = 55,
+    qtlTurkmen            = 56,
+    qtlMongolian          = 57,
+    qtlMongolianCyr       = 58,
+    qtlPashto             = 59,
+    qtlKurdish            = 60,
+    qtlKashmiri           = 61,
+    qtlSindhi             = 62,
+    qtlTibetan            = 63,
+    qtlNepali             = 64,
+    qtlSanskrit           = 65,
+    qtlMarathi            = 66,
+    qtlBengali            = 67,
+    qtlAssamese           = 68,
+    qtlGujarati           = 69,
+    qtlPunjabi            = 70,
+    qtlOriya              = 71,
+    qtlMalayalam          = 72,
+    qtlKannada            = 73,
+    qtlTamil              = 74,
+    qtlTelugu             = 75,
+    qtlSinhala            = 76,
+    qtlBurmese            = 77,
+    qtlKhmer              = 78,
+    qtlLao                = 79,
+    qtlVietnamese         = 80,
+    qtlIndonesian         = 81,
+    qtlTagalog            = 82,
+    qtlMalayRoman         = 83,
+    qtlMalayArabic        = 84,
+    qtlAmharic            = 85,
+    qtlGalla              = 87,
+    qtlOromo              = 87,
+    qtlSomali             = 88,
+    qtlSwahili            = 89,
+    qtlKinyarwanda        = 90,
+    qtlRundi              = 91,
+    qtlNyanja             = 92,
+    qtlMalagasy           = 93,
+    qtlEsperanto          = 94,
+    qtlWelsh              = 128,
+    qtlBasque             = 129,
+    qtlCatalan            = 130,
+    qtlLatin              = 131,
+    qtlQuechua            = 132,
+    qtlGuarani            = 133,
+    qtlAymara             = 134,
+    qtlTatar              = 135,
+    qtlUighur             = 136,
+    qtlDzongkha           = 137,
+    qtlJavaneseRom        = 138,
+    qtlUnspecified        = 32767
+};
+
+// QuickTime graphics modes
+enum <uint16> qtgfxmode
+{
+    qtgCopy               = 0x000,
+    qtgDitherCopy         = 0x040,
+    qtgBlend              = 0x020,
+    qtgTransparent        = 0x024,
+    qtgStraightAlpha      = 0x100,
+    qtgPremulWhiteAlpha   = 0x101,
+    qtgPremulBlackAlpha   = 0x102,
+    qtgStraightAlphaBlend = 0x104,
+    qtgComposition        = 0x103
+};
+
+// ============================================================
+// Helper Functions
+// ============================================================
+
+uint64 ContentSize(boxheader& bh)
+{
+    return (exists(bh.size64) ? bh.size64 : bh.size) - sizeof(bh);
+}
+
+uint64 BoxSize(boxheader& bh)
+{
+    return (exists(bh.size64) ? bh.size64 : bh.size);
+}
+
+string ReadFP16(fp16& f)
+{
+    local string buf;
+    SPrintf(buf, "%lf", (double)f.value / (double)0x100);
+    return buf;
+}
+
+string ReadFP32(fp32& f)
+{
+    local string buf;
+    SPrintf(buf, "%lf", (double)f.value / (double)0x10000);
+    return buf;
+}
+
+string ReadFP32uvw(fp32uvw& f)
+{
+    local string buf;
+    SPrintf(buf, "%lf", (double)f.value / (double)0x40000000);
+    return buf;
+}
+
+wstring ReadBox(mp4box& box)
+{
+    return box.hdr.type.value;
+}
+
+string BoxComment(mp4box& box)
+{
+    switch (box.hdr.type.value)
+    {
+        case "dinf": return "Data Information Box";
+        case "dref": return "Data Reference Box";
+        case "edts": return "Edit Box";
+        case "elst": return "Edit List Box";
+        case "free": return "Free Space Box";
+        case "skip": return "Free Space Box";
+        case "ftyp": return "File Type Box";
+        case "styp": return "Segment Type Box";
+        case "hdlr": return "Handler Reference Box";
+        case "mdat": return "Media Data Box";
+        case "mdhd": return "Media Header Box";
+        case "mdia": return "Media Box";
+        case "minf": return "Media Information Box";
+        case "moov": return "Movie Box";
+        case "mvhd": return "Movie Header Box";
+        case "stbl": return "Sample Table Box";
+        case "tkhd": return "Track Header Box";
+        case "trak": return "Track Box";
+        case "udta": return "User Data Box";
+        case "vmhd": return "Video Media Information Header Box";
+        case "smhd": return "Sound Media Information Header Box";
+        case "nmhd": return "Null Media Header Box";
+        case "mvex": return "Movie Extends Box";
+        case "mehd": return "Movie Extends Header Box";
+        case "trex": return "Track Extends Box";
+        case "sidx": return "Segment Index Box";
+        case "ssix": return "Subsegment Index Box";
+        case "moof": return "Movie Fragment Box";
+        case "mfhd": return "Movie Fragment Header Box";
+        case "traf": return "Track Fragment Box";
+        case "tfhd": return "Track Fragment Header Box";
+        case "trun": return "Track Fragment Run Box";
+        case "tfdt": return "Track Fragment Base Media Decode Time Box";
+        case "saiz": return "Sample Auxiliary Information Sizes Box";
+        case "saio": return "Sample Auxiliary Information Offsets Box";
+        case "senc": return "Sample Encryption Box";
+        case "pssh": return "Protection System Specific Header Box";
+        case "stss": return "Sync Sample Box";
+        case "stsz": return "Sample Size Box";
+        case "stz2": return "Compact Sample Size Box";
+        case "stco": return "Chunk Offset Box";
+        case "co64": return "Chunk Large Offset Box";
+        case "stsc": return "Sample To Chunk Box";
+        case "stts": return "Time To Sample Box";
+        case "ctts": return "Composition Offset Box";
+        case "stsd": return "Sample Description Box";
+        case "sdtp": return "Sample Dependency Type Box";
+        case "stsh": return "Shadow Sync Sample Box";
+        case "sbgp": return "Sample to Group Box";
+        case "sgpd": return "Sample Group Description Box";
+        case "cslg": return "Composition to Decode Box";
+        case "sinf": return "Protection Scheme Information Box";
+        case "schi": return "Scheme Information Box";
+        case "frma": return "Original Format Box";
+        case "schm": return "Scheme Type Box";
+        case "tenc": return "Track Encryption Box";
+        case "avc1": return "AVC Sample Entry";
+        case "avc3": return "AVC Sample Entry (avc3)";
+        case "avc4": return "AVC Parameter Sample Entry";
+        case "avcC": return "AVC Configuration Box";
+        case "hvc1": return "HEVC Sample Entry";
+        case "hev1": return "HEVC Sample Entry (hev1)";
+        case "hvcC": return "HEVC Configuration Box";
+        case "av01": return "AV1 Sample Entry";
+        case "av1C": return "AV1 Configuration Box";
+        case "dvav": return "Dolby Vision AVC Sample Entry";
+        case "dvhe": return "Dolby Vision HEVC Sample Entry";
+        case "dvh1": return "Dolby Vision HEVC Sample Entry (dvh1)";
+        case "dvvc": return "Dolby Vision VVC Sample Entry";
+        case "dvcC": return "Dolby Vision Configuration Box";
+        case "mp4a": return "MPEG-4 Audio Sample Entry";
+        case "mp4v": return "MPEG-4 Video Sample Entry";
+        case "mp4s": return "MPEG-4 Systems Sample Entry";
+        case "esds": return "ES Descriptor Box";
+        case "ac-3": return "AC-3 Audio Sample Entry";
+        case "ec-3": return "Enhanced AC-3 Audio Sample Entry";
+        case "ac-4": return "AC-4 Audio Sample Entry";
+        case "dac3": return "AC-3 Specific Box";
+        case "dec3": return "EC-3 Specific Box";
+        case "dtsc": return "DTS Core Sample Entry";
+        case "dtsh": return "DTS-HD Sample Entry";
+        case "dtsl": return "DTS-HD Lossless Sample Entry";
+        case "dtse": return "DTS Express Sample Entry";
+        case "Opus": return "Opus Audio Sample Entry";
+        case "dOps": return "Opus Specific Box";
+        case "fLaC": return "FLAC Audio Sample Entry";
+        case "flac": return "FLAC Audio Sample Entry";
+        case "dfLa": return "FLAC Specific Box";
+        case "alac": return "Apple Lossless Audio Sample Entry";
+        case "alaw": return "A-law Audio Sample Entry";
+        case "ulaw": return "mu-law Audio Sample Entry";
+        case "wave": return "Sound Description Decompression Params";
+        case "enca": return "Encrypted Audio Sample Entry";
+        case "encv": return "Encrypted Video Sample Entry";
+        case "drms": return "DRM Sample Entry";
+        case "btrt": return "Bitrate Box";
+        case "pasp": return "Pixel Aspect Ratio Box";
+        case "clap": return "Clean Aperture Box";
+        case "colr": return "Colour Information Box";
+        case "fpar": return "File Partition Box";
+        case "stpp": return "Subtitle/XML Sample Entry";
+        case "tx3g": return "3GPP Timed Text Sample Entry";
+        case "wvtt": return "WebVTT Sample Entry";
+        case "stxt": return "Simple Text Sample Entry";
+        case "sbtl": return "Subtitle Sample Entry";
+        case "xml ": return "XML Box";
+        case "bxml": return "Binary XML Box";
+        case "ttml": return "TTML Box";
+        case "pitm": return "Primary Item Box";
+        case "iref": return "Item Reference Box";
+        case "iprp": return "Item Properties Box";
+        case "ipco": return "Item Property Container Box";
+        case "ipma": return "Item Property Association Box";
+        case "iinf": return "Item Information Box";
+        case "infe": return "Item Information Entry Box";
+        case "iloc": return "Item Location Box";
+        case "idat": return "Item Data Box";
+        case "ipro": return "Item Protection Box";
+        case "ipmc": return "IPMP Control Box";
+        case "ihdr": return "Image Header Box";
+        case "meta": return "Meta Box";
+        case "ilst": return "Item List Box";
+        case "uuid": return "UUID Extension Box";
+        case "emsg": return "Event Message Box";
+        case "prft": return "Producer Reference Time Box";
+        case "pdin": return "Progressive Download Information Box";
+        case "mfra": return "Movie Fragment Random Access Box";
+        case "tfra": return "Track Fragment Random Access Box";
+        case "mfro": return "Movie Fragment Random Access Offset Box";
+        case "iods": return "Object Descriptor Box";
+        case "tref": return "Track Reference Box";
+        case "cprt": return "Copyright Box";
+        case "wide": return "Wide Box";
+        case "elng": return "Extended Language Tag Box";
+        case "kind": return "Track Kind Box";
+        case "trep": return "Track Representation Box";
+        case "meco": return "Additional Metadata Container Box";
+        case "mere": return "Metabox Relation Box";
+        case "dnld": return "Download Box";
+        default: return "Unknown box type";
+    }
+}
+
+wstring ReadFourCC(fourcc& f)
+{
+    return f.value;
+}
+
+wstring ReadBoxHeader(boxheader& bh)
+{
+    local string s;
+    SPrintf(s, "[size=%Lu]", ContentSize(bh));
+    return bh.type.value + " " + s;
+}
+
+string ReadCompatibleBrand(compatible_brand& b)
+{
+    return b.brand.value;
+}
+
+string ReadTime(mp4time& t)
+{
+    local quad value = (quad)t.value - 2082844800;
+    return TimeTToString(value, "yyyy-MM-dd hh:mm:ss");
+}
+
+string ReadLang(mp4lang& lang)
+{
+    if (lang.value < 0x0400 || lang.value == qtlUnspecified)
+    {
+        local qtlang v = lang.value;
+        return EnumToString(v);
+    }
+    local char iso[4];
+    iso[0] = ((lang.value & 0x7c00) >> 10) + 0x60;
+    iso[1] = ((lang.value & 0x03e0) >> 5) + 0x60;
+    iso[2] = (lang.value & 0x001f) + 0x60;
+    iso[3] = '\0';
+    return iso;
+}
+
+string ReadOpcolor(qtopcolor& c)
+{
+    local string result;
+    SPrintf(result, "r=%d, g=%d, b=%d", c.red, c.green, c.blue);
+    return result;
+}
+
+string PipeConcat(string s1, string s2)
+{
+    if (Strlen(s1) > 0)
+        return s1 + " | " + s2;
+    return s2;
+}
+
+string ReadTkhdFlags(tkhd_flags& f)
+{
+    local string result;
+    if (f.track_enabled)
+        result = "Track enabled";
+    if (f.track_in_movie)
+        result = PipeConcat(result, "Track in movie");
+    if (f.track_in_preview)
+        result = PipeConcat(result, "Track in preview");
+    if (f.track_in_poster)
+        result = PipeConcat(result, "Track in poster");
+    return result;
+}
+
+string ReadVmhdFlags(vmhd_flags& f)
+{
+    local string result;
+    if (f.no_lean_ahead)
+        result = "No lean ahead";
+    return result;
+}
+
+// ============================================================
+// Basic Types
+// ============================================================
+
+typedef struct
+{
+    int16 value;
+} fp16 <read=ReadFP16, open=suppress>;
+
+typedef struct
+{
+    int32 value;
+} fp32 <read=ReadFP32, open=suppress>;
+
+typedef struct
+{
+    int32 value;
+} fp32uvw <read=ReadFP32uvw, open=suppress>;
+
+typedef struct
+{
+    fp32 a <name="a">;
+    fp32 b <name="b">;
+    fp32uvw u <name="u">;
+    fp32 c <name="c">;
+    fp32 d <name="d">;
+    fp32uvw v <name="v">;
+    fp32 x <name="x">;
+    fp32 y <name="y">;
+    fp32uvw w <name="w">;
+} matrix <open=suppress>;
+
+typedef struct
+{
+    char value[4];
+} fourcc <read=ReadFourCC, open=suppress>;
+
+typedef struct
+{
+    uint32 size;
+    fourcc type;
+    if (size == 1)
+    {
+        uint64 size64;
+    }
+} boxheader <read=ReadBoxHeader, open=suppress>;
+
+typedef struct
+{
+    fourcc brand;
+} compatible_brand <read=ReadCompatibleBrand, open=suppress>;
+
+typedef struct
+{
+    uint32 value;
+} mp4time <read=ReadTime, open=suppress>;
+
+typedef struct
+{
+    uint16 value;
+} mp4lang <read=ReadLang, open=suppress>;
+
+typedef struct
+{
+    uint16 red;
+    uint16 green;
+    uint16 blue;
+} qtopcolor <read=ReadOpcolor, open=suppress>;
+
+typedef struct
+{
+    uint32 duration <name="Duration">;
+    uint32 media_time <name="Media Time">;
+    fp32 media_rate <name="Media Rate">;
+} elst_entry;
+
+typedef struct
+{
+    uint64 segment_duration <name="Segment Duration">;
+    int64 media_time <name="Media Time">;
+    int16 media_rate_integer <name="Media Rate Integer">;
+    int16 media_rate_fraction <name="Media Rate Fraction">;
+} elst_entry_v1;
+
+typedef struct
+{
+    byte dummy[2] <open=suppress>;
+    byte dummy2 : 4;
+    byte track_in_poster : 1 <name="Track in poster">;
+    byte track_in_preview : 1 <name="Track in preview">;
+    byte track_in_movie : 1 <name="Track in movie">;
+    byte track_enabled : 1 <name="Track enabled">;
+} tkhd_flags <read=ReadTkhdFlags, open=suppress>;
+
+typedef struct
+{
+    byte dummy[2];
+    byte dummy2 = {1};
+} vmhd_flags <read=ReadVmhdFlags, open=suppress>;
+
+// Sample table helper structs
+typedef struct
+{
+    uint32 first_chunk;
+    uint32 samples_per_chunk;
+    uint32 sample_description_index;
+} str_stsc;
+
+typedef struct
+{
+    uint32 sample_count;
+    uint32 sample_delta;
+} str_stts;
+
+typedef struct
+{
+    uint32 sample_count;
+    uint32 sample_offset; // int32 if ctts version==1
+} str_ctts_v0;
+
+typedef struct
+{
+    uint32 sample_count;
+    int32 sample_offset;
+} str_ctts_v1;
+
+typedef struct
+{
+    uint32 shadowed_sample_number;
+    uint32 sync_sample_number;
+} str_stsh;
+
+typedef struct
+{
+    uint32 reference_size31_type1;
+    uint32 subsegment_duration;
+    uint32 SAP_delta_time28_type3_starts_with1;
+} str_sidx;
+
+// ============================================================
+// Global Variables
+// ============================================================
+
+local uint32 sharedSamplecountVar = 0;
+local uint32 mdatPosition = 0;
+local byte isVideo = false;
+
+local string ReadBytesInitValues[] = {
+    "ac-3", "ac-4", "alac", "alaw", "alst", "afra", "av01", "av1C",
+    "avc1", "avc3", "avc4", "avcC",
+    "bxml", "btrt",
+    "cdsc", "clap", "co64", "colr", "cprt", "cslg", "ctts",
+    "dac3", "data", "dec3", "dfLa", "dinf", "dnld", "dOps", "dref",
+    "drms", "dtsc", "dtse", "dtsh", "dtsl",
+    "dvcC", "dvav", "dvh1", "dvhe", "dvvc",
+    "ec-3", "edts", "elng", "elst", "emsg", "enca", "encv", "eqiv", "esds",
+    "fiin", "fire", "flac", "fLaC", "fpat", "fpar", "fprt", "free", "frma",
+    "ftab", "ftap", "ftyp",
+    "hdlr", "hev1", "hint", "hmhd", "hvc1", "hvcC",
+    "idat", "ihdr", "iinf", "iloc", "ilst", "infe", "iods",
+    "ipco", "ipma", "ipmc", "ipro", "iprp", "iref",
+    "iso2", "isom",
+    "jp2c", "kind",
+    "lhdr",
+    "mdat", "mdhd", "mdia", "meco", "mehd", "mere", "meta",
+    "mfhd", "mfra", "mfro", "minf", "mmpu", "moof", "moov",
+    "mp41", "mp42", "mp4a", "mp4s", "mp4v", "mp71", "msnv", "mvex", "mvhd",
+    "nmhd",
+    "Opus",
+    "paen", "pasp", "pdam", "pdin", "pitm", "prft", "pssh", "pvc1",
+    "saio", "saiz", "sbgp", "sbtl", "schi", "schm", "sdtp", "senc",
+    "sgpd", "sidx", "sinf", "skip", "smhd", "soun",
+    "ssix", "stbl", "stco", "stpp", "stsc", "stsd", "stsh", "stss",
+    "stsz", "stts", "stxt", "stz2", "styp",
+    "tenc", "tfdt", "tfhd", "tfra", "tkhd", "traf", "trak", "tref",
+    "trep", "trex", "trun", "ttml", "tx3g",
+    "udta", "ulaw", "url ", "urn ", "uuid",
+    "vide", "vmhd",
+    "wave", "wide", "wvtt",
+    "xml "
+};
+
+// ============================================================
+// Main Box Structure
+// ============================================================
+
+typedef struct
+{
+    local uint64 startOffset = FTell();
+
+    local int tries = 0;
+    for (tries = 0; tries < 3; ++tries) {
+        FSeek(startOffset);
+        uint32 size = {0};
+        if (!size)
+            break;
+    }
+
+    fourcc type;
+
+    local int64 endOffset = startOffset + size;
+    local uint64 contentsize = (size > 8) ? size - 8 : 0;
+
+    ChangeArrayLength();
+    switch (type.value)
+    {
+        // ============================================================
+        // CONTAINER BOXES - recurse into children
+        // ============================================================
+
+        case "moof":
+        case "traf":
+        case "mvex":
+        case "sinf":
+        case "schi":
+        case "iprp":
+        case "ipco":
+        case "mfra":
+        case "meco":
+            while (FTell() < endOffset)
+            {
+                mp4box box <name="Box">;
+                FSeek(box.endOffset);
+            }
+            break;
+
+        // ---- moov ----
+        case "moov":
+        {
+            local char chunk_type[4];
+            local string preferred_blocks[] = { "mvhd", "trak" };
+            local string possible_blocks[] = { "mvhd", "trak", "udta", "iods", "meta", "mvex" };
+            local int _blim_moov = 0;
+            while (_blim_moov++ < MAX_CHILD_BOXES && ReadBytes(chunk_type, FTell() + 4, 4, preferred_blocks, possible_blocks)) {
+                switch(chunk_type){
+                    case "mvhd":
+                        mp4box mvhd_block;
+                        preferred_blocks -= "mvhd";
+                        possible_blocks -= "mvhd";
+                        break;
+                    case "trak":
+                        mp4box trak_block;
+                        preferred_blocks -= "trak";
+                        possible_blocks -= "trak";
+                        break;
+                    case "iods":
+                        mp4box iods_block;
+                        possible_blocks -= "iods";
+                        break;
+                    case "udta":
+                        mp4box udta_block;
+                        possible_blocks -= "udta";
+                        break;
+                    case "meta":
+                        mp4box meta_block;
+                        possible_blocks -= "meta";
+                        break;
+                    case "mvex":
+                        mp4box mvex_block;
+                        possible_blocks -= "mvex";
+                        break;
+                    default:
+                        mp4box unknown_block;
+                        break;
+                }
+                if(startOffset + size == (uint64) FTell())
+                    break;
+            }
+            break;
+        }
+
+        // ---- ftyp ----
+        case "ftyp":
+        {
+            local string available_major_brands[] = {
+                "isom", "iso2", "iso3", "iso4", "iso5", "iso6",
+                "avc1", "mp41", "mp42", "mp71",
+                "M4V ", "M4A ", "M4B ", "M4P ",
+                "qt  ", "MSNV", "dash", "f4v ",
+                "hvc1", "hev1", "av01",
+                "3gp4", "3gp5", "3gp6", "3ge6", "3ge7",
+                "CAEP", "mif1", "msf1", "heic", "heif"
+            };
+            local char selected_major_brand[4];
+            ReadBytes(selected_major_brand, FTell(), 4, available_major_brands);
+            char major_brand[4];
+
+            uint32 minor_version;
+
+            local char chunk_type[4];
+            local string compatiple_brands[] = {
+                "isom", "iso2", "avc1", "mp41", "mp42",
+                "dash", "hvc1", "hev1"
+            };
+            while (ReadBytes(chunk_type, FTell(), 4, compatiple_brands, compatiple_brands, 0.99)) {
+                char compatible_brand[4];
+                compatiple_brands -= chunk_type;
+                if(startOffset + size == (uint64) FTell())
+                    break;
+            }
+            break;
+        }
+
+        // ---- styp (Segment Type Box) ----
+        case "styp":
+        {
+            local string available_brands[] = {
+                "isom", "iso2", "iso3", "iso6",
+                "avc1", "mp41", "mp42"
+            };
+            local char selected_brand[4];
+            ReadBytes(selected_brand, FTell(), 4, available_brands);
+            char major_brand[4];
+            uint32 minor_version;
+
+            local char chunk_type[4];
+            local string compat_brands[] = {"isom", "iso2", "avc1", "mp41", "mp42"};
+            while (ReadBytes(chunk_type, FTell(), 4, compat_brands, compat_brands, 0.99)) {
+                char compatible_brand[4];
+                compat_brands -= chunk_type;
+                if(startOffset + size == (uint64) FTell())
+                    break;
+            }
+            break;
+        }
+
+        // ---- mvhd ----
+        case "mvhd":
+        {
+            byte version = {0};
+            byte flag[3];
+            if (version == 0)
+            {
+                uint32 creation_time;
+                uint32 modification_time;
+                uint32 timescale;
+                uint32 duration;
+            }
+            else
+            {
+                uint64 creation_time;
+                uint64 modification_time;
+                uint32 timescale;
+                uint64 duration;
+            }
+            fp32 rate;
+            fp16 volume;
+            byte reserved_[10];
+            matrix matrix_structure;
+            uint32 pre_defined[6];
+            uint32 next_track_ID;
+            break;
+        }
+
+        // ---- mdat ----
+        case "mdat":
+        {
+            mdatPosition = FTell();
+            if(contentsize > 0)
+                byte data[contentsize];
+            break;
+        }
+
+        // ---- free / skip ----
+        case "free":
+        case "skip":
+        {
+            if(contentsize > 0)
+                byte data[contentsize];
+            break;
+        }
+
+        // ---- wide ----
+        case "wide":
+        {
+            if(contentsize > 0)
+                byte data[contentsize];
+            break;
+        }
+
+        // ---- iods ----
+        case "iods":
+        {
+            byte version = {0};
+            byte flag[3];
+            if(contentsize > 4)
+                byte OD_data[contentsize - 4];
+            break;
+        }
+
+        // ---- trak ----
+        case "trak":
+        {
+            local char chunk_type[4];
+            local string preferred_blocks[] = { "tkhd", "mdia" };
+            local string possible_blocks[] = { "tkhd", "mdia", "edts", "tref", "udta", "meta" };
+            local int _blim_trak = 0;
+            while (_blim_trak++ < MAX_CHILD_BOXES && ReadBytes(chunk_type, FTell() + 4, 4, preferred_blocks, possible_blocks)) {
+                switch(chunk_type){
+                    case "tkhd":
+                        mp4box tkhd_block;
+                        preferred_blocks -= "tkhd";
+                        possible_blocks -= "tkhd";
+                        break;
+                    case "mdia":
+                        mp4box mdia_block;
+                        preferred_blocks -= "mdia";
+                        possible_blocks -= "mdia";
+                        break;
+                    case "edts":
+                        mp4box edts_block;
+                        possible_blocks -= "edts";
+                        break;
+                    case "tref":
+                        mp4box tref_block;
+                        possible_blocks -= "tref";
+                        break;
+                    case "udta":
+                        mp4box udta_block;
+                        possible_blocks -= "udta";
+                        break;
+                    case "meta":
+                        mp4box meta_block;
+                        possible_blocks -= "meta";
+                        break;
+                    default:
+                        mp4box unknown_block;
+                        break;
+                }
+                if(startOffset + size == (uint64) FTell())
+                    break;
+            }
+            break;
+        }
+
+        // ---- tkhd ----
+        case "tkhd":
+        {
+            byte version = {0};
+            tkhd_flags tkhd_fl;
+            if (version == 0)
+            {
+                uint32 creation_time;
+                uint32 modification_time;
+                uint32 track_ID;
+                uint32 reserved_;
+                uint32 duration;
+            }
+            else
+            {
+                uint64 creation_time;
+                uint64 modification_time;
+                uint32 track_ID;
+                uint32 reserved_;
+                uint64 duration;
+            }
+            uint64 reserved_2;
+            int16 layer;
+            int16 alternate_group;
+            fp16 volume;
+            uint16 reserved_3;
+            matrix matrix_structure;
+            fp32 width;
+            fp32 height;
+            break;
+        }
+
+        // ---- mdia ----
+        case "mdia":
+        {
+            local char chunk_type[4];
+            local string preferred_blocks[] = { "mdhd", "hdlr", "minf" };
+            local string possible_blocks[] = { "mdhd", "hdlr", "minf", "elng" };
+            local int _blim_mdia = 0;
+            while (_blim_mdia++ < MAX_CHILD_BOXES && ReadBytes(chunk_type, FTell() + 4, 4, preferred_blocks, possible_blocks)) {
+                switch(chunk_type){
+                    case "mdhd":
+                        mp4box mdhd_block;
+                        preferred_blocks -= "mdhd";
+                        possible_blocks -= "mdhd";
+                        break;
+                    case "hdlr":
+                        mp4box hdlr_block;
+                        preferred_blocks -= "hdlr";
+                        possible_blocks -= "hdlr";
+                        break;
+                    case "minf":
+                        mp4box minf_block;
+                        preferred_blocks -= "minf";
+                        possible_blocks -= "minf";
+                        break;
+                    case "elng":
+                        mp4box elng_block;
+                        possible_blocks -= "elng";
+                        break;
+                    default:
+                        mp4box unknown_block;
+                        break;
+                }
+                if(startOffset + size == (uint64) FTell())
+                    break;
+            }
+            break;
+        }
+
+        // ---- mdhd ----
+        case "mdhd":
+        {
+            byte version = {0};
+            byte flag[3];
+            if (version == 0)
+            {
+                uint32 creation_time;
+                uint32 modification_time;
+                uint32 timescale;
+                uint32 duration;
+            }
+            else
+            {
+                uint64 creation_time;
+                uint64 modification_time;
+                uint32 timescale;
+                uint64 duration;
+            }
+            mp4lang language;
+            uint16 pre_defined;
+            break;
+        }
+
+        // ---- hdlr ----
+        case "hdlr":
+        {
+            byte version = {0};
+            byte flag[3];
+            uint32 pre_defined;
+            if (isVideo)
+                uint32 handler_type = {0x76696465}; // "vide"
+            else
+                uint32 handler_type = {0x736F756E}; // "soun"
+            byte reserved_[12];
+            if(contentsize > 24)
+                byte name[contentsize - 24];
+            break;
+        }
+
+        // ---- edts ----
+        case "edts":
+        {
+            local char chunk_type[4];
+            local string preferred_blocks[] = { "elst" };
+            local string possible_blocks[] = { "elst" };
+            local int _blim_edts = 0;
+            while (_blim_edts++ < MAX_CHILD_BOXES && ReadBytes(chunk_type, FTell() + 4, 4, preferred_blocks, possible_blocks)) {
+                mp4box child_block;
+                possible_blocks -= chunk_type;
+                if(startOffset + size == (uint64) FTell())
+                    break;
+            }
+            break;
+        }
+
+        // ---- elst ----
+        case "elst":
+        {
+            byte version = {0};
+            byte flag[3];
+            uint32 elst_count = {1};
+            local uint32 i;
+            if (version == 0)
+            {
+                for (i = 0; i < elst_count; i++)
+                    elst_entry entries;
+            }
+            else
+            {
+                for (i = 0; i < elst_count; i++)
+                    elst_entry_v1 entries;
+            }
+            break;
+        }
+
+        // ---- tref ----
+        case "tref":
+        {
+            if(contentsize > 0)
+                byte data[contentsize];
+            break;
+        }
+
+        // ---- udta ----
+        case "udta":
+        {
+            // Parse child boxes until end
+            while (FTell() < endOffset)
+            {
+                mp4box box <name="Box">;
+                FSeek(box.endOffset);
+            }
+            break;
+        }
+
+        // ---- cprt ----
+        case "cprt":
+        {
+            byte version = {0};
+            byte flag[3];
+            mp4lang language;
+            if(contentsize > 6)
+                char notice[contentsize - 6];
+            break;
+        }
+
+        // ---- meta ----
+        case "meta":
+        {
+            byte version = {0};
+            byte flag[3];
+            local char chunk_type[4];
+            local string preferred_blocks[] = { "hdlr" };
+            local string possible_blocks[] = {
+                "hdlr", "dinf", "iloc", "iinf", "pitm",
+                "ipro", "ipmc", "iprp", "iref", "idat",
+                "xml ", "bxml"
+            };
+            local int _blim_meta = 0;
+            while (_blim_meta++ < MAX_CHILD_BOXES && ReadBytes(chunk_type, FTell() + 4, 4, preferred_blocks, possible_blocks)) {
+                mp4box child_box;
+                if (chunk_type == "hdlr")
+                    preferred_blocks -= "hdlr";
+                possible_blocks -= chunk_type;
+                if(startOffset + size == (uint64) FTell())
+                    break;
+            }
+            break;
+        }
+
+        // ---- minf ----
+        case "minf":
+        {
+            local char chunk_type[4];
+            local string preferred_blocks[] = {"vmhd", "smhd", "dinf", "stbl"};
+            local string possible_blocks[] = {"vmhd", "smhd", "hmhd", "nmhd", "dinf", "stbl"};
+            local int _blim_minf = 0;
+            while (_blim_minf++ < MAX_CHILD_BOXES && ReadBytes(chunk_type, FTell() + 4, 4, preferred_blocks, possible_blocks)) {
+                switch(chunk_type){
+                    case "vmhd":
+                    case "smhd":
+                    case "hmhd":
+                    case "nmhd":
+                        mp4box header_block;
+                        preferred_blocks -= ("vmhd", "smhd", "hmhd", "nmhd");
+                        possible_blocks -= ("vmhd", "smhd", "hmhd", "nmhd");
+                        break;
+                    case "stbl":
+                        mp4box stbl_block;
+                        preferred_blocks -= "stbl";
+                        possible_blocks -= "stbl";
+                        break;
+                    case "dinf":
+                        mp4box dinf_block;
+                        preferred_blocks -= "dinf";
+                        possible_blocks -= "dinf";
+                        break;
+                    default:
+                        mp4box unknown_block;
+                        break;
+                }
+                if(startOffset + size == (uint64) FTell())
+                    break;
+            }
+            break;
+        }
+
+        // ---- vmhd ----
+        case "vmhd":
+        {
+            byte version = {0};
+            vmhd_flags vmhd_fl = {1};
+            qtgfxmode graphics_mode;
+            qtopcolor opcolor;
+            break;
+        }
+
+        // ---- smhd ----
+        case "smhd":
+        {
+            byte version = {0};
+            byte flag[3];
+            fp16 balance;
+            uint16 reserved_;
+            break;
+        }
+
+        // ---- nmhd (Null Media Header) ----
+        case "nmhd":
+        {
+            byte version = {0};
+            byte flag[3];
+            break;
+        }
+
+        // ---- dinf ----
+        case "dinf":
+        {
+            local char chunk_type[4];
+            local string preferred_blocks[] = {"dref", "url "};
+            local string possible_blocks[] = {"dref", "url ", "urn "};
+            local int _blim_dinf = 0;
+            while (_blim_dinf++ < MAX_CHILD_BOXES && ReadBytes(chunk_type, FTell() + 4, 4, preferred_blocks, possible_blocks)) {
+                mp4box child_box;
+                possible_blocks -= chunk_type;
+                if(startOffset + size == (uint64) FTell())
+                    break;
+            }
+            break;
+        }
+
+        // ---- dref ----
+        case "dref":
+        {
+            byte version = {0};
+            byte flag[3];
+            uint32 dref_count = {1};
+            local uint32 i;
+            for (i = 0; i < dref_count && FTell() < endOffset; i++)
+            {
+                mp4box entry_box;
+            }
+            break;
+        }
+
+        // ---- url  ----
+        case "url ":
+        {
+            byte version = {0};
+            byte flag[3];
+            if(contentsize > 4 && (flag[2] & 1) == 0)
+                string location;
+            break;
+        }
+
+        // ---- urn  ----
+        case "urn ":
+        {
+            byte version = {0};
+            byte flag[3];
+            if(contentsize > 4)
+            {
+                string name;
+                string location;
+            }
+            break;
+        }
+
+        // ============================================================
+        // SAMPLE TABLE (stbl) and children
+        // ============================================================
+
+        case "stbl":
+        {
+            local char chunk_type[4];
+            local string preferred_blocks[] = {"stsd", "stts", "stsc", "stsz", "stco"};
+            local string possible_blocks[] = {
+                "stsd", "stts", "stsc", "stsz", "stz2", "stco", "co64",
+                "stss", "ctts", "stsh", "sdtp", "sbgp", "sgpd", "cslg"
+            };
+            local int _blim_stbl = 0;
+            while (_blim_stbl++ < MAX_CHILD_BOXES && ReadBytes(chunk_type, FTell() + 4, 4, preferred_blocks, possible_blocks)) {
+                mp4box child_box;
+                // Remove mutually exclusive entries
+                if (chunk_type == "stco" || chunk_type == "co64") {
+                    preferred_blocks -= ("stco", "co64");
+                    possible_blocks -= ("stco", "co64");
+                } else if (chunk_type == "stsz" || chunk_type == "stz2") {
+                    preferred_blocks -= ("stsz", "stz2");
+                    possible_blocks -= ("stsz", "stz2");
+                } else {
+                    preferred_blocks -= chunk_type;
+                    possible_blocks -= chunk_type;
+                }
+                if(startOffset + size == (uint64) FTell())
+                    break;
+            }
+            break;
+        }
+
+        // ---- stsd ----
+        case "stsd":
+        {
+            byte version = {0};
+            byte flag[3];
+            uint32 stsd_count = {1};
+            local uint32 i;
+            for(i = 0; i < stsd_count && FTell() < endOffset; i++)
+            {
+                mp4box sample_entry;
+            }
+            break;
+        }
+
+        // ---- stts ----
+        case "stts":
+        {
+            byte version = {0};
+            byte flag[3];
+            uint32 stts_count = {1};
+            str_stts entries[stts_count];
+            break;
+        }
+
+        // ---- ctts (Composition Offset) ----
+        case "ctts":
+        {
+            byte version = {0};
+            byte flag[3];
+            uint32 ctts_count = {1};
+            if (version == 0)
+                str_ctts_v0 entries[ctts_count];
+            else
+                str_ctts_v1 entries[ctts_count];
+            break;
+        }
+
+        // ---- stsc ----
+        case "stsc":
+        {
+            byte version = {0};
+            byte flag[3];
+            uint32 stsc_count = {1};
+            str_stsc entries[stsc_count];
+            break;
+        }
+
+        // ---- stsz ----
+        case "stsz":
+        {
+            byte version = {0};
+            byte flag[3];
+            uint32 sample_size = {1};
+            uint32 sample_count = {1};
+            if (sample_size == 0 && sample_count > 0)
+            {
+                uint32 entry_size[sample_count];
+            }
+            break;
+        }
+
+        // ---- stz2 (Compact Sample Size) ----
+        case "stz2":
+        {
+            byte version = {0};
+            byte flag[3];
+            byte reserved_stz2[3]; // uint24 reserved
+            byte field_size; // 4, 8, or 16
+            uint32 sample_count = {1};
+            if (field_size == 16)
+                uint16 entry_size[sample_count];
+            else if (field_size == 8)
+                byte entry_size[sample_count];
+            else if (field_size == 4 && sample_count > 0)
+                byte entry_size[(sample_count + 1) / 2]; // packed 4-bit
+            break;
+        }
+
+        // ---- stco ----
+        case "stco":
+        {
+            byte version = {0};
+            byte flag[3];
+            uint32 stco_count = {1};
+            uint32 chunk_offset[stco_count];
+            break;
+        }
+
+        // ---- co64 ----
+        case "co64":
+        {
+            byte version = {0};
+            byte flag[3];
+            uint32 co64_count = {1};
+            uint64 chunk_offset[co64_count];
+            break;
+        }
+
+        // ---- stss (Sync Sample) ----
+        case "stss":
+        {
+            byte version = {0};
+            byte flag[3];
+            uint32 stss_count = {1};
+            uint32 sample_number[stss_count];
+            break;
+        }
+
+        // ---- stsh (Shadow Sync) ----
+        case "stsh":
+        {
+            byte version = {0};
+            byte flag[3];
+            uint32 stsh_count = {1};
+            str_stsh entries[stsh_count];
+            break;
+        }
+
+        // ---- sdtp (Sample Dependency Type) ----
+        case "sdtp":
+        {
+            byte version = {0};
+            byte flag[3];
+            // Each byte is a sample dependency entry; count = remaining bytes
+            if(contentsize > 4)
+                byte sample_dependency_table[contentsize - 4];
+            break;
+        }
+
+        // ---- sbgp (Sample to Group) ----
+        case "sbgp":
+        {
+            byte version;
+            byte flag[3];
+            uint32 grouping_type;
+            if (version == 1)
+                uint32 grouping_type_parameter;
+            uint32 sbgp_count = {1};
+            local uint32 i;
+            for (i = 0; i < sbgp_count; i++)
+            {
+                struct {
+                    uint32 sample_count;
+                    uint32 group_description_index;
+                } entry;
+            }
+            break;
+        }
+
+        // ---- sgpd (Sample Group Description) ----
+        case "sgpd":
+        {
+            byte version;
+            byte flag[3];
+            uint32 grouping_type;
+            if (version == 1)
+                uint32 default_length = {1};
+            if (version >= 2)
+                uint32 default_sample_description_index;
+            uint32 sgpd_count = {1};
+            local uint32 i;
+            for (i = 0; i < sgpd_count && FTell() < endOffset; i++)
+            {
+                if (version == 1 && default_length == 0)
+                {
+                    uint32 description_length = {1};
+                    byte description[description_length];
+                }
+                else if (version == 1)
+                {
+                    byte description[default_length];
+                }
+                else
+                {
+                    // Consume remaining
+                    local uint32 bytes_left = endOffset - FTell();
+                    local uint32 per_entry = bytes_left / (sgpd_count - i);
+                    if (per_entry > 0)
+                        byte description[per_entry];
+                }
+            }
+            break;
+        }
+
+        // ---- cslg (Composition to Decode) ----
+        case "cslg":
+        {
+            byte version;
+            byte flag[3];
+            if (version == 0)
+            {
+                int32 compositionToDTSShift;
+                int32 leastDecodeToDisplayDelta;
+                int32 greatestDecodeToDisplayDelta;
+                int32 compositionStartTime;
+                int32 compositionEndTime;
+            }
+            else
+            {
+                int64 compositionToDTSShift;
+                int64 leastDecodeToDisplayDelta;
+                int64 greatestDecodeToDisplayDelta;
+                int64 compositionStartTime;
+                int64 compositionEndTime;
+            }
+            break;
+        }
+
+        // ============================================================
+        // VIDEO SAMPLE ENTRIES
+        // ============================================================
+
+        // ---- avc1 / avc3 ----
+        case "avc1":
+        case "avc3":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            uint16 pre_defined1;
+            uint16 reserved_2;
+            uint32 pre_defined2[3];
+            uint16 width;
+            uint16 height;
+            uint32 horizresolution = {0x00480000};
+            uint32 vertresolution = {0x00480000};
+            uint32 reserved_3;
+            uint16 frame_count = {1};
+            byte compressorname[32];
+            uint16 depth = {0x0018};
+            int16 pre_defined3;
+            // Child boxes (avcC, btrt, pasp, colr, clap, etc.)
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- avcC (AVC Decoder Configuration) ----
+        case "avcC":
+        {
+            byte configurationVersion = {1};
+            byte AVCProfileIndication;
+            byte profile_compatibility;
+            byte AVCLevelIndication;
+            byte lengthSizeMinusOne; // lower 2 bits
+            byte numOfSequenceParameterSets; // lower 5 bits
+            local byte numSPS = numOfSequenceParameterSets & 0x1F;
+            local byte j;
+            for (j = 0; j < numSPS; j++) {
+                uint16 sequenceParameterSetLength = {1};
+                byte sequenceParameterSetNALUnit[sequenceParameterSetLength];
+            }
+            byte numOfPictureParameterSets;
+            for (j = 0; j < numOfPictureParameterSets; j++) {
+                uint16 pictureParameterSetLength = {1};
+                byte pictureParameterSetNALUnit[pictureParameterSetLength];
+            }
+            // Possible extension for High Profile
+            if (FTell() < endOffset)
+            {
+                byte extra_data[endOffset - FTell()];
+            }
+            break;
+        }
+
+        // ---- avc4 ----
+        case "avc4":
+        {
+            if(contentsize > 0)
+                byte data[contentsize];
+            break;
+        }
+
+        // ---- hvc1 / hev1 (HEVC Sample Entry) ----
+        case "hvc1":
+        case "hev1":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            uint16 pre_defined1;
+            uint16 reserved_2;
+            uint32 pre_defined2[3];
+            uint16 width;
+            uint16 height;
+            uint32 horizresolution = {0x00480000};
+            uint32 vertresolution = {0x00480000};
+            uint32 reserved_3;
+            uint16 frame_count = {1};
+            byte compressorname[32];
+            uint16 depth = {0x0018};
+            int16 pre_defined3;
+            // Child boxes (hvcC, btrt, pasp, colr, clap, etc.)
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- hvcC (HEVC Decoder Configuration) ----
+        case "hvcC":
+        {
+            byte configurationVersion = {1};
+            // general_profile_space(2) + general_tier_flag(1) + general_profile_idc(5)
+            byte general_profile_space_tier_idc;
+            uint32 general_profile_compatibility_flags;
+            byte general_constraint_indicator_flag[6];
+            byte general_level_idc;
+            uint16 min_spatial_segmentation_idc; // lower 12 bits
+            byte parallelismType; // lower 2 bits
+            byte chromaFormat; // lower 2 bits
+            byte bitDepthLumaMinus8; // lower 3 bits
+            byte bitDepthChromaMinus8; // lower 3 bits
+            uint16 avgFrameRate;
+            // constantFrameRate(2) + numTemporalLayers(3) + temporalIdNested(1) + lengthSizeMinusOne(2)
+            byte constFR_numTempLayers_tidNested_lenSize;
+            byte numOfArrays;
+            local byte k;
+            for (k = 0; k < numOfArrays && FTell() < endOffset; k++)
+            {
+                struct {
+                    byte array_completeness_and_NAL_unit_type;
+                    uint16 numNalus = {1};
+                    local uint16 n;
+                    for (n = 0; n < numNalus; n++)
+                    {
+                        uint16 nalUnitLength = {1};
+                        byte nalUnit[nalUnitLength];
+                    }
+                } hevc_array;
+            }
+            break;
+        }
+
+        // ---- av01 (AV1 Sample Entry) ----
+        case "av01":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            uint16 pre_defined1;
+            uint16 reserved_2;
+            uint32 pre_defined2[3];
+            uint16 width;
+            uint16 height;
+            uint32 horizresolution = {0x00480000};
+            uint32 vertresolution = {0x00480000};
+            uint32 reserved_3;
+            uint16 frame_count = {1};
+            byte compressorname[32];
+            uint16 depth = {0x0018};
+            int16 pre_defined3;
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- av1C (AV1 Codec Configuration) ----
+        case "av1C":
+        {
+            // marker(1) + version(7)
+            byte marker_version;
+            // seq_profile(3) + seq_level_idx_0(5)
+            byte seq_profile_level;
+            // seq_tier_0(1) + high_bitdepth(1) + twelve_bit(1) + monochrome(1) +
+            // chroma_subsampling_x(1) + chroma_subsampling_y(1) + chroma_sample_position(2)
+            byte chroma_flags;
+            // reserved_(3) + initial_presentation_delay_present(1) + initial_presentation_delay_minus_one(4)
+            byte delay_flags;
+            // Remaining is configOBUs
+            if (FTell() < endOffset)
+                byte configOBUs[endOffset - FTell()];
+            break;
+        }
+
+        // ---- dvav / dvhe / dvh1 / dvvc (Dolby Vision Sample Entries) ----
+        case "dvav":
+        case "dvhe":
+        case "dvh1":
+        case "dvvc":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            uint16 pre_defined1;
+            uint16 reserved_2;
+            uint32 pre_defined2[3];
+            uint16 width;
+            uint16 height;
+            uint32 horizresolution = {0x00480000};
+            uint32 vertresolution = {0x00480000};
+            uint32 reserved_3;
+            uint16 frame_count = {1};
+            byte compressorname[32];
+            uint16 depth = {0x0018};
+            int16 pre_defined3;
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- dvcC (Dolby Vision Configuration) ----
+        case "dvcC":
+        {
+            // dv_version_major(8) + dv_version_minor(8)
+            byte dv_version_major;
+            byte dv_version_minor;
+            // dv_profile(7) + dv_level(6) + rpu_present_flag(1) + el_present_flag(1) + bl_present_flag(1)
+            // Packed into 2 bytes
+            uint16 profile_level_flags;
+            // dv_bl_signal_compatibility_id(4) + reserved_(28)
+            uint32 bl_compat_and_reserved_;
+            if (FTell() < endOffset)
+                byte reserved__data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- mp4v (MPEG-4 Visual Sample Entry) ----
+        case "mp4v":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            uint16 pre_defined1;
+            uint16 reserved_2;
+            uint32 pre_defined2[3];
+            uint16 width;
+            uint16 height;
+            uint32 horizresolution = {0x00480000};
+            uint32 vertresolution = {0x00480000};
+            uint32 reserved_3;
+            uint16 frame_count = {1};
+            byte compressorname[32];
+            uint16 depth = {0x0018};
+            int16 pre_defined3;
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- encv (Encrypted Video) ----
+        case "encv":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            uint16 pre_defined1;
+            uint16 reserved_2;
+            uint32 pre_defined2[3];
+            uint16 width;
+            uint16 height;
+            uint32 horizresolution = {0x00480000};
+            uint32 vertresolution = {0x00480000};
+            uint32 reserved_3;
+            uint16 frame_count = {1};
+            byte compressorname[32];
+            uint16 depth = {0x0018};
+            int16 pre_defined3;
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- btrt (Bitrate) ----
+        case "btrt":
+        {
+            uint32 bufferSizeDB;
+            uint32 maxBitrate;
+            uint32 avgBitrate;
+            break;
+        }
+
+        // ---- pasp (Pixel Aspect Ratio) ----
+        case "pasp":
+        {
+            uint32 hSpacing;
+            uint32 vSpacing;
+            break;
+        }
+
+        // ---- clap (Clean Aperture) ----
+        case "clap":
+        {
+            uint32 cleanApertureWidthN;
+            uint32 cleanApertureWidthD;
+            uint32 cleanApertureHeightN;
+            uint32 cleanApertureHeightD;
+            int32 horizOffN;
+            uint32 horizOffD;
+            int32 vertOffN;
+            uint32 vertOffD;
+            break;
+        }
+
+        // ---- colr (Colour Information) ----
+        case "colr":
+        {
+            char colourType[4];
+            if (colourType == "nclx" || colourType == "nclc")
+            {
+                uint16 colour_primaries;
+                uint16 transfer_characteristics;
+                uint16 matrix_coefficients;
+                if (colourType == "nclx")
+                    byte full_range_flag; // top bit
+            }
+            else
+            {
+                // ICC profile data
+                if (FTell() < endOffset)
+                    byte icc_profile[endOffset - FTell()];
+            }
+            break;
+        }
+
+        // ============================================================
+        // AUDIO SAMPLE ENTRIES
+        // ============================================================
+
+        // ---- mp4a ----
+        case "mp4a":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            byte reserved_2[8];
+            uint16 channelcount;
+            uint16 samplesize;
+            uint16 pre_defined;
+            uint16 reserved_3;
+            uint32 samplerate; // 16.16 fixed point
+            // Child boxes (esds, etc.)
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- esds ----
+        case "esds":
+        {
+            byte version = {0};
+            byte flag[3];
+            if(contentsize > 4)
+                byte ES_Descriptor[contentsize - 4];
+            break;
+        }
+
+        // ---- ac-3 (AC-3 Sample Entry) ----
+        case "ac-3":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            byte reserved_2[8];
+            uint16 channelcount;
+            uint16 samplesize;
+            uint16 compression_id;
+            uint16 packet_size;
+            uint32 samplerate;
+            // Child boxes (dac3, etc.)
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- ec-3 (E-AC-3 Sample Entry) ----
+        case "ec-3":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            byte reserved_2[8];
+            uint16 channelcount;
+            uint16 samplesize;
+            uint16 compression_id;
+            uint16 packet_size;
+            uint32 samplerate;
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- dac3 (AC-3 Specific Box) ----
+        case "dac3":
+        {
+            if(contentsize > 0)
+                byte data[contentsize];
+            break;
+        }
+
+        // ---- dec3 (EC-3 Specific Box) ----
+        case "dec3":
+        {
+            if(contentsize > 0)
+                byte data[contentsize];
+            break;
+        }
+
+        // ---- ac-4 (AC-4 Sample Entry) ----
+        case "ac-4":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            byte reserved_2[8];
+            uint16 channelcount;
+            uint16 samplesize;
+            uint16 pre_defined;
+            uint16 reserved_3;
+            uint32 samplerate;
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- dtsc / dtsh / dtsl / dtse (DTS Sample Entries) ----
+        case "dtsc":
+        case "dtsh":
+        case "dtsl":
+        case "dtse":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            byte reserved_2[8];
+            uint16 channelcount;
+            uint16 samplesize;
+            uint16 compression_id;
+            uint16 packet_size;
+            uint32 samplerate;
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- Opus (Opus Audio Sample Entry) ----
+        case "Opus":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            byte reserved_2[8];
+            uint16 channelcount;
+            uint16 samplesize;
+            uint16 pre_defined;
+            uint16 reserved_3;
+            uint32 samplerate; // = 48000 << 16
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- dOps (Opus Specific Box) ----
+        case "dOps":
+        {
+            byte version;
+            byte outputChannelCount;
+            uint16 preSkip;
+            uint32 inputSampleRate;
+            int16 outputGain;
+            byte channelMappingFamily;
+            if (channelMappingFamily != 0)
+            {
+                byte streamCount;
+                byte coupledCount;
+                byte channelMapping[outputChannelCount];
+            }
+            break;
+        }
+
+        // ---- flac / fLaC (FLAC Audio Sample Entry) ----
+        case "flac":
+        case "fLaC":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            byte reserved_2[8];
+            uint16 channelcount;
+            uint16 samplesize;
+            uint16 pre_defined;
+            uint16 reserved_3;
+            uint32 samplerate;
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- dfLa (FLAC Specific Box) ----
+        case "dfLa":
+        {
+            byte version = {0};
+            byte flag[3];
+            // FLAC metadata blocks
+            if (FTell() < endOffset)
+                byte flac_metadata[endOffset - FTell()];
+            break;
+        }
+
+        // ---- alac (Apple Lossless) ----
+        case "alac":
+        {
+            // Can be sample entry or config box
+            if (contentsize > 24)
+            {
+                // Sample entry format
+                byte reserved_1[6];
+                uint16 data_reference_index = {1};
+                byte reserved_2[8];
+                uint16 channelcount;
+                uint16 samplesize;
+                uint16 pre_defined;
+                uint16 reserved_3;
+                uint32 samplerate;
+                while (FTell() < endOffset)
+                {
+                    mp4box child_box;
+                    FSeek(child_box.endOffset);
+                }
+            }
+            else
+            {
+                // Config box
+                if(contentsize > 0)
+                    byte alac_specific_config[contentsize];
+            }
+            break;
+        }
+
+        // ---- alaw / ulaw ----
+        case "alaw":
+        case "ulaw":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            byte reserved_2[8];
+            uint16 channelcount;
+            uint16 samplesize;
+            uint16 pre_defined;
+            uint16 reserved_3;
+            uint32 samplerate;
+            break;
+        }
+
+        // ---- wave ----
+        case "wave":
+        {
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- enca (Encrypted Audio) ----
+        case "enca":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            byte reserved_2[8];
+            uint16 channelcount;
+            uint16 samplesize;
+            uint16 pre_defined;
+            uint16 reserved_3;
+            uint32 samplerate;
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- drms ----
+        case "drms":
+        {
+            if(contentsize > 0)
+                byte data[contentsize];
+            break;
+        }
+
+        // ---- mp4s (MPEG-4 Systems Sample Entry) ----
+        case "mp4s":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ============================================================
+        // SUBTITLE / TEXT SAMPLE ENTRIES
+        // ============================================================
+
+        // ---- stpp (Subtitle XML) ----
+        case "stpp":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            string namespace_uri;
+            string schema_location;
+            string auxiliary_mime_types;
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- tx3g (3GPP Timed Text) ----
+        case "tx3g":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            uint32 display_flags;
+            byte horizontal_justification;
+            byte vertical_justification;
+            byte background_color_rgba[4];
+            // BoxRecord: top, left, bottom, right (each int16)
+            int16 box_top;
+            int16 box_left;
+            int16 box_bottom;
+            int16 box_right;
+            // StyleRecord
+            uint16 startChar;
+            uint16 endChar;
+            uint16 font_ID;
+            byte face_style_flags;
+            byte font_size;
+            byte text_color_rgba[4];
+            // Optional child boxes (ftab)
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- ftab (Font Table) ----
+        case "ftab":
+        {
+            uint16 ftab_count = {1};
+            local uint16 i;
+            for (i = 0; i < ftab_count && FTell() < endOffset; i++)
+            {
+                struct {
+                    uint16 font_ID;
+                    byte font_name_length;
+                    if (font_name_length > 0)
+                        char font_name[font_name_length];
+                } font_entry;
+            }
+            break;
+        }
+
+        // ---- wvtt (WebVTT) ----
+        case "wvtt":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- stxt (Simple Text) ----
+        case "stxt":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            string content_encoding;
+            string mime_format;
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- sbtl (Subtitle) ----
+        case "sbtl":
+        {
+            byte reserved_1[6];
+            uint16 data_reference_index = {1};
+            if (FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ============================================================
+        // XML / BINARY XML / TTML
+        // ============================================================
+
+        // ---- xml  ----
+        case "xml ":
+        {
+            byte version = {0};
+            byte flag[3];
+            if(contentsize > 4)
+                char xml_data[contentsize - 4];
+            break;
+        }
+
+        // ---- bxml ----
+        case "bxml":
+        {
+            byte version = {0};
+            byte flag[3];
+            if(contentsize > 4)
+                byte data[contentsize - 4];
+            break;
+        }
+
+        // ---- ttml ----
+        case "ttml":
+        {
+            if(contentsize > 0)
+                byte data[contentsize];
+            break;
+        }
+
+        // ============================================================
+        // PROTECTION / DRM
+        // ============================================================
+
+        // ---- frma (Original Format) ----
+        case "frma":
+        {
+            char data_format[4];
+            break;
+        }
+
+        // ---- schm (Scheme Type) ----
+        case "schm":
+        {
+            byte version;
+            byte flag[3];
+            char scheme_type[4];
+            uint32 scheme_version;
+            if (FTell() < endOffset)
+                char scheme_uri[endOffset - FTell()];
+            break;
+        }
+
+        // ---- tenc (Track Encryption) ----
+        case "tenc":
+        {
+            byte version;
+            byte flag[3];
+            byte reserved_1;
+            if (version < 1)
+                byte reserved_2;
+            else
+                byte default_crypt_skip_byte_block;
+            byte default_isProtected;
+            byte default_Per_Sample_IV_Size;
+            byte default_KID[16];
+            if (default_Per_Sample_IV_Size == 0)
+            {
+                byte default_constant_IV_size;
+                byte default_constant_IV[default_constant_IV_size];
+            }
+            break;
+        }
+
+        // ---- pssh (Protection System Specific Header) ----
+        case "pssh":
+        {
+            byte version;
+            byte flag[3];
+            byte systemID[16];
+            if (version > 0)
+            {
+                uint32 KID_count = {1};
+                local uint32 i;
+                for (i = 0; i < KID_count; i++)
+                    byte KID[16];
+            }
+            uint32 DataSize = {1};
+            if (DataSize > 0)
+                byte Data[DataSize];
+            break;
+        }
+
+        // ---- senc (Sample Encryption) ----
+        case "senc":
+        {
+            byte version;
+            byte flag[3];
+            uint32 sample_count = {1};
+            // Parse entries based on flags
+            // flags & 0x2 means per-sample subsample info
+            local uint32 i;
+            for (i = 0; i < sample_count && FTell() < endOffset; i++)
+            {
+                struct {
+                    byte per_sample_IV[8];
+                    if ((flag[2] & 2) != 0)
+                    {
+                        uint16 subsample_count = {1};
+                        struct {
+                            uint16 bytes_of_clear_data;
+                            uint32 bytes_of_protected_data;
+                        } subsample[subsample_count];
+                    }
+                } senc_entry;
+            }
+            break;
+        }
+
+        // ============================================================
+        // FRAGMENTED MP4
+        // ============================================================
+
+        // ---- mfhd ----
+        case "mfhd":
+        {
+            byte version;
+            byte flag[3];
+            uint32 sequence_number;
+            break;
+        }
+
+        // ---- tfhd ----
+        case "tfhd":
+        {
+            byte version;
+            byte flag[3];
+            uint32 track_ID;
+            if ((flag[2] & 0x01) != 0) uint64 base_data_offset;
+            if ((flag[2] & 0x02) != 0) uint32 sample_description_index;
+            if ((flag[2] & 0x08) != 0) uint32 default_sample_duration;
+            if ((flag[2] & 0x10) != 0) uint32 default_sample_size;
+            if ((flag[2] & 0x20) != 0) uint32 default_sample_flags;
+            break;
+        }
+
+        // ---- tfdt (Track Fragment Base Media Decode Time) ----
+        case "tfdt":
+        {
+            byte version;
+            byte flag[3];
+            if (version == 0)
+                uint32 baseMediaDecodeTime;
+            else
+                uint64 baseMediaDecodeTime;
+            break;
+        }
+
+        // ---- trun ----
+        case "trun":
+        {
+            byte version;
+            byte flag[3];
+            uint32 sample_count = {1};
+            if ((flag[2] & 0x01) != 0) int32 data_offset;
+            if ((flag[2] & 0x04) != 0) uint32 first_sample_flags;
+            local uint32 i;
+            for (i = 0; i < sample_count && FTell() < endOffset; i++)
+            {
+                struct {
+                    if ((flag[1] & 0x01) != 0) uint32 sample_duration;
+                    if ((flag[1] & 0x02) != 0) uint32 sample_size;
+                    if ((flag[1] & 0x04) != 0) uint32 sample_flags;
+                    if ((flag[1] & 0x08) != 0)
+                    {
+                        if (version < 1)
+                            uint32 sample_composition_time_offset;
+                        else
+                            int32 sample_composition_time_offset;
+                    }
+                } trun_entry;
+            }
+            break;
+        }
+
+        // ---- trex ----
+        case "trex":
+        {
+            byte version;
+            byte flag[3];
+            uint32 track_ID;
+            uint32 default_sample_description_index;
+            uint32 default_sample_duration;
+            uint32 default_sample_size;
+            uint32 default_sample_flags;
+            break;
+        }
+
+        // ---- mehd ----
+        case "mehd":
+        {
+            byte version;
+            byte flag[3];
+            if (version == 0)
+                uint32 fragment_duration;
+            else
+                uint64 fragment_duration;
+            break;
+        }
+
+        // ---- saiz ----
+        case "saiz":
+        {
+            byte version;
+            byte flag[3];
+            if ((flag[2] & 1) != 0)
+            {
+                uint32 aux_info_type;
+                uint32 aux_info_type_parameter;
+            }
+            byte default_sample_info_size;
+            uint32 sample_count = {1};
+            if (default_sample_info_size == 0 && sample_count > 0)
+                byte sample_info_size[sample_count];
+            break;
+        }
+
+        // ---- saio ----
+        case "saio":
+        {
+            byte version;
+            byte flag[3];
+            if ((flag[2] & 1) != 0)
+            {
+                uint32 aux_info_type;
+                uint32 aux_info_type_parameter;
+            }
+            uint32 saio_count = {1};
+            if (version == 0)
+                uint32 offset[saio_count];
+            else
+                uint64 offset[saio_count];
+            break;
+        }
+
+        // ---- sidx ----
+        case "sidx":
+        {
+            byte version;
+            byte flag[3];
+            uint32 reference_ID;
+            uint32 timescale;
+            if (version == 0)
+            {
+                uint32 earliest_presentation_time;
+                uint32 first_offset;
+            }
+            else
+            {
+                uint64 earliest_presentation_time;
+                uint64 first_offset;
+            }
+            uint16 reserved_;
+            uint16 reference_count = {1};
+            str_sidx references[reference_count];
+            break;
+        }
+
+        // ---- ssix (Subsegment Index) ----
+        case "ssix":
+        {
+            byte version;
+            byte flag[3];
+            uint32 subsegment_count = {1};
+            local uint32 i;
+            for (i = 0; i < subsegment_count && FTell() < endOffset; i++)
+            {
+                struct {
+                    uint32 ranges_count = {1};
+                    struct {
+                        byte level;
+                        byte range_size[3]; // actually 3 bytes (uint24)
+                    } range[ranges_count];
+                } subsegment;
+            }
+            break;
+        }
+
+        // ---- tfra (Track Fragment Random Access) ----
+        case "tfra":
+        {
+            byte version;
+            byte flag[3];
+            uint32 track_ID;
+            // reserved_(26) + length_size_of_traf_num(2) + length_size_of_trun_num(2) + length_size_of_sample_num(2)
+            uint32 reserved__and_lengths;
+            uint32 number_of_entry;
+            // Parse entries based on version and length fields
+            if (FTell() < endOffset)
+                byte entry_data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- mfro (Movie Fragment Random Access Offset) ----
+        case "mfro":
+        {
+            byte version;
+            byte flag[3];
+            uint32 mfra_size;
+            break;
+        }
+
+        // ============================================================
+        // HEIF / Image File Format boxes
+        // ============================================================
+
+        // ---- pitm (Primary Item) ----
+        case "pitm":
+        {
+            byte version;
+            byte flag[3];
+            if (version == 0)
+                uint16 item_ID;
+            else
+                uint32 item_ID;
+            break;
+        }
+
+        // ---- iinf (Item Information) ----
+        case "iinf":
+        {
+            byte version;
+            byte flag[3];
+            uint32 iinf_count = {1};
+            local uint32 i;
+            for (i = 0; i < iinf_count && FTell() < endOffset; i++)
+            {
+                mp4box infe_box;
+            }
+            break;
+        }
+
+        // ---- infe (Item Information Entry) ----
+        case "infe":
+        {
+            byte version;
+            byte flag[3];
+            if (version == 0 || version == 1)
+            {
+                uint16 item_ID;
+                uint16 item_protection_index;
+                string item_name;
+                string content_type;
+                if (FTell() < endOffset)
+                    string content_encoding;
+            }
+            if (version >= 2)
+            {
+                if (version == 2)
+                    uint16 item_ID;
+                else
+                    uint32 item_ID;
+                uint16 item_protection_index;
+                byte item_type_bytes[4];
+                string item_name;
+                local string it_str;
+                it_str = "";
+                it_str += item_type_bytes[0];
+                it_str += item_type_bytes[1];
+                it_str += item_type_bytes[2];
+                it_str += item_type_bytes[3];
+                if (it_str == "mime")
+                {
+                    string content_type;
+                    if (FTell() < endOffset)
+                        string content_encoding;
+                }
+                else if (it_str == "uri ")
+                {
+                    string item_uri_type;
+                }
+            }
+            break;
+        }
+
+        // ---- iloc (Item Location) ----
+        case "iloc":
+        {
+            byte version;
+            byte flag[3];
+            // offset_size(4) + length_size(4) + base_offset_size(4) + (index_size(4) if version>=1 else reserved_(4))
+            byte offset_length_sizes;
+            byte baseoffset_index_sizes;
+            uint32 iloc_item_count = {1};
+            // Complex parsing depends on sizes; store raw
+            if (FTell() < endOffset)
+                byte item_data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- idat (Item Data) ----
+        case "idat":
+        {
+            if(contentsize > 0)
+                byte data[contentsize];
+            break;
+        }
+
+        // ---- iref (Item Reference) ----
+        case "iref":
+        {
+            byte version;
+            byte flag[3];
+            while (FTell() < endOffset)
+            {
+                mp4box ref_box;
+                FSeek(ref_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- ipma (Item Property Association) ----
+        case "ipma":
+        {
+            byte version;
+            byte flag[3];
+            uint32 ipma_count = {1};
+            local uint32 i;
+            for (i = 0; i < ipma_count && FTell() < endOffset; i++)
+            {
+                struct {
+                    if (version < 1)
+                        uint16 item_ID;
+                    else
+                        uint32 item_ID;
+                    byte association_count;
+                    local byte j;
+                    for (j = 0; j < association_count && FTell() < endOffset; j++)
+                    {
+                        if ((flag[2] & 1) != 0)
+                            uint16 property_index; // essential(1) + property_index(15)
+                        else
+                            byte property_index; // essential(1) + property_index(7)
+                    }
+                } ipma_entry;
+            }
+            break;
+        }
+
+        // ---- ipro (Item Protection) ----
+        case "ipro":
+        {
+            byte version;
+            byte flag[3];
+            uint16 protection_count = {1};
+            local uint16 i;
+            for (i = 0; i < protection_count && FTell() < endOffset; i++)
+            {
+                mp4box sinf_box;
+            }
+            break;
+        }
+
+        // ---- ipmc ----
+        case "ipmc":
+        {
+            byte version;
+            byte flag[3];
+            if(contentsize > 4 && FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- ihdr (Image Header - JPEG 2000 / HEIF) ----
+        case "ihdr":
+        {
+            uint32 height;
+            uint32 width;
+            uint16 num_components;
+            byte bits_per_component;
+            byte compression_type;
+            byte unknownColorspace;
+            byte intellectual_property;
+            break;
+        }
+
+        // ---- jp2c ----
+        case "jp2c":
+        {
+            if(contentsize > 0)
+                byte data[contentsize];
+            break;
+        }
+
+        // ============================================================
+        // EVENT / TIMING / MISC
+        // ============================================================
+
+        // ---- emsg (Event Message) ----
+        case "emsg":
+        {
+            byte version;
+            byte flag[3];
+            if (version == 0)
+            {
+                string scheme_id_uri;
+                string value;
+                uint32 timescale;
+                uint32 presentation_time_delta;
+                uint32 event_duration;
+                uint32 id;
+            }
+            else
+            {
+                uint32 timescale;
+                uint64 presentation_time;
+                uint32 event_duration;
+                uint32 id;
+                string scheme_id_uri;
+                string value;
+            }
+            if (FTell() < endOffset)
+                byte message_data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- prft (Producer Reference Time) ----
+        case "prft":
+        {
+            byte version;
+            byte flag[3];
+            uint32 reference_track_ID;
+            uint64 ntp_timestamp;
+            if (version == 0)
+                uint32 media_time;
+            else
+                uint64 media_time;
+            break;
+        }
+
+        // ---- pdin (Progressive Download Information) ----
+        case "pdin":
+        {
+            byte version;
+            byte flag[3];
+            while (FTell() < endOffset)
+            {
+                struct {
+                    uint32 rate;
+                    uint32 initial_delay;
+                } pdin_entry;
+            }
+            break;
+        }
+
+        // ---- elng (Extended Language Tag) ----
+        case "elng":
+        {
+            byte version;
+            byte flag[3];
+            string extended_language;
+            break;
+        }
+
+        // ---- kind (Track Kind) ----
+        case "kind":
+        {
+            byte version;
+            byte flag[3];
+            string schemeURI;
+            string value;
+            break;
+        }
+
+        // ---- trep (Track Representation) ----
+        case "trep":
+        {
+            byte version;
+            byte flag[3];
+            uint32 track_ID;
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- mere (Metabox Relation) ----
+        case "mere":
+        {
+            byte version;
+            byte flag[3];
+            if(contentsize > 4 && FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- uuid ----
+        case "uuid":
+        {
+            byte usertype[16];
+            if (FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- ilst (iTunes Metadata Item List) ----
+        case "ilst":
+        {
+            while (FTell() < endOffset)
+            {
+                mp4box child_box;
+                FSeek(child_box.endOffset);
+            }
+            break;
+        }
+
+        // ---- data (iTunes Metadata Value) ----
+        case "data":
+        {
+            uint32 type_indicator;
+            uint32 locale;
+            if (FTell() < endOffset)
+                byte value[endOffset - FTell()];
+            break;
+        }
+
+        // ---- fpar (File Partition) ----
+        case "fpar":
+        {
+            byte version;
+            byte flag[3];
+            if(contentsize > 4 && FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- fiin / paen / fire ----
+        case "fiin":
+        case "paen":
+        case "fire":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- lhdr ----
+        case "lhdr":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- cdsc ----
+        case "cdsc":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- pvc1 ----
+        case "pvc1":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- dnld ----
+        case "dnld":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- alst (Alternative Startup) ----
+        case "alst":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- afra ----
+        case "afra":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- eqiv ----
+        case "eqiv":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- mmpu ----
+        case "mmpu":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- pdam ----
+        case "pdam":
+        {
+            if(contentsize > 0)
+                byte data[contentsize];
+            break;
+        }
+
+        // ---- ihra (Image Header for Referenced Assets) ----
+        case "ihra":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ---- alis (Alias Data) ----
+        case "alis":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte aliasInfo[endOffset - FTell()];
+            break;
+        }
+
+        // ---- avcn (AVC NAL Unit) ----
+        case "avcn":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte parameterSets[endOffset - FTell()];
+            break;
+        }
+
+        // ---- avss (AVC Sub-sample Information) ----
+        case "avss":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte subSampleInformation[endOffset - FTell()];
+            break;
+        }
+
+        // ---- fpat / fprt / ftap ----
+        case "fpat":
+        case "fprt":
+        case "ftap":
+        {
+            byte version;
+            byte flag[3];
+            if (FTell() < endOffset)
+                byte data[endOffset - FTell()];
+            break;
+        }
+
+        // ============================================================
+        // DEFAULT - unknown boxes
+        // ============================================================
+        default:
+        {
+            if(contentsize > 0)
+            {
+                ChangeArrayLength();
+                byte unknown[contentsize];
+                EndChangeArrayLength();
+            }
+            break;
+        }
+    }
+
+    EndChangeArrayLength();
+
+    // Fix up: seek to endOffset if we didn't consume exactly
+    // Only seek forward if the gap is small (avoids large padding from random size values)
+    if (size && FTell() != endOffset) {
+        local uint32 parsedSize = FTell() - startOffset;
+        if (endOffset > FTell() && (endOffset - FTell()) < MAX_PADDING) {
+            FSeek(endOffset);
+        }
+    }
+
+    // Write back corrected size
+    local uint64 writePosition = FTell();
+    FSeek(startOffset);
+    local uint32 newSize = writePosition - startOffset;
+    local int evil = SetEvilBit(false);
+    uint32 size = {newSize};
+    SetEvilBit(evil);
+    FSeek(writePosition);
+} mp4box;
+
+// ============================================================
+// Top-level file structure
+// ============================================================
+
+typedef struct {
+    local char chunk_type[4];
+    local string preferred_blocks[] = { "ftyp" };
+    local string possible_blocks[] = { "ftyp", "styp" };
+    local int _blim_file = 0;
+    while (_blim_file++ < MAX_CHILD_BOXES && ReadBytes(chunk_type, FTell() + 4, 4, preferred_blocks, possible_blocks)) {
+        switch(chunk_type){
+            case "ftyp":
+            case "styp":
+                mp4box ftyp_block;
+                local string preferred_blocks[] = { "mdat", "moov" };
+                local string possible_blocks[] = {
+                    "mdat", "moov", "free", "skip", "wide",
+                    "moof", "sidx", "ssix", "emsg", "pdin",
+                    "meta", "mfra", "styp", "prft", "uuid"
+                };
+                break;
+            case "mdat":
+                mp4box mdat_block;
+                preferred_blocks -= "mdat";
+                possible_blocks -= "mdat";
+                break;
+            case "moov":
+                mp4box moov_block;
+                preferred_blocks -= "moov";
+                possible_blocks -= "moov";
+                break;
+            case "moof":
+                mp4box moof_block;
+                possible_blocks -= "moof";
+                break;
+            case "sidx":
+                mp4box sidx_block;
+                possible_blocks -= "sidx";
+                break;
+            case "ssix":
+                mp4box ssix_block;
+                possible_blocks -= "ssix";
+                break;
+            case "emsg":
+                mp4box emsg_block;
+                possible_blocks -= "emsg";
+                break;
+            case "pdin":
+                mp4box pdin_block;
+                possible_blocks -= "pdin";
+                break;
+            case "meta":
+                mp4box meta_block;
+                possible_blocks -= "meta";
+                break;
+            case "mfra":
+                mp4box mfra_block;
+                possible_blocks -= "mfra";
+                break;
+            case "prft":
+                mp4box prft_block;
+                possible_blocks -= "prft";
+                break;
+            case "uuid":
+                mp4box uuid_block;
+                possible_blocks -= "uuid";
+                break;
+            case "free":
+            case "skip":
+            case "wide":
+                mp4box free_block;
+                possible_blocks -= "free";
+                possible_blocks -= "skip";
+                possible_blocks -= "wide";
+                break;
+            default:
+                mp4box unknown_block;
+                break;
+        }
+    }
+} mp4file;
+
+mp4file file;

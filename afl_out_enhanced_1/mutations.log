@@ -1,0 +1,2239 @@
+Queue entry 79 (return status 0):
+Abstracting from file 53 non-optional chunk 0 19361 mp4file file
+
+Queue entry 80 (return status 1):
+Inserting: source chunk from file 51 position 23389 24044 mp4box stbl_block
+into target file 53 position 14493 mp4box trak_block
+Warning: Consumed 618 more decision bytes than expected while generating chunk.
+
+Queue entry 81 (return status 1):
+Replacing: source optional chunk from file 75 position 41646 42946 mp4box moov_block
+into target file 53 optional chunk position 14763 16853 mp4box minf_block
+Warning: Consumed 712 more decision bytes than expected while generating chunk.
+
+Queue entry 82 (return status 0):
+Deleting from file 53 chunk 14708 14762 mp4box hdlr_block
+
+Queue entry 83 (return status 0):
+Inserting: source chunk from file 51 position 24125 24186 mp4box child_box
+into target file 53 position 17507 mp4box child_box
+
+Queue entry 84 (return status 0):
+Deleting from file 53 chunk 16876 16964 mp4box tkhd_block
+
+Queue entry 85 (return status 0):
+Deleting from file 53 chunk 15794 16324 mp4box child_box
+
+Queue entry 86 (return status 0):
+Abstracting from file 53 optional chunk 14652 16854 mp4box mdia_block
+
+Queue entry 87 (return status 0):
+Deleting from file 53 chunk 18158 18688 mp4box child_box
+
+Queue entry 88 (return status 0):
+Inserting: source chunk from file 2 position 42056 42085 mp4box header_block
+into target file 53 position 14782 mp4box header_block
+
+Queue entry 89 (return status 1):
+Inserting: source chunk from file 10 position 43 50 char_array_class compatible_brand
+into target file 53 position 17127 mp4box minf_block
+Warning: Consumed 550 more decision bytes than expected while generating chunk.
+
+Queue entry 90 (return status 1):
+Inserting: source chunk from file 31 position 0 51 mp4box ftyp_block
+into target file 53 position 17176 mp4box dinf_block
+Warning: Consumed 743 more decision bytes than expected while generating chunk.
+
+Queue entry 91 (return status 1):
+Replacing: source optional chunk from file 3 position 0 51 mp4box ftyp_block
+into target file 53 optional chunk position 17176 17235 mp4box dinf_block
+Warning: Consumed 94 more decision bytes than expected while generating chunk.
+
+Queue entry 92 (return status 1):
+Inserting: source chunk from file 23 position 272463 272504 mp4box child_box
+into target file 53 position 14512 mp4box tkhd_block
+Warning: Consumed 831 more decision bytes than expected while generating chunk.
+
+Queue entry 93 (return status -1):
+Inserting: source chunk from file 20 position 42504 42774 mp4box child_box
+into target file 53 position 17035 mp4box mdhd_block
+Warning: Consumed 233 less decision bytes than expected while generating chunk.
+
+Queue entry 94 (return status 0):
+Abstracting from file 53 optional chunk 16856 19219 mp4box trak_block
+
+Queue entry 95 (return status 0):
+Deleting from file 53 chunk 14812 14871 mp4box dinf_block
+
+Queue entry 96 (return status -1):
+Inserting: source chunk from file 55 position 271277 271365 mp4box tkhd_block
+into target file 53 position 14829 mp4box child_box
+Warning: Consumed 59 less decision bytes than expected while generating chunk.
+
+Queue entry 97 (return status 1):
+Replacing: source optional chunk from file 4 position 272463 272504 mp4box child_box
+into target file 53 optional chunk position 14371 19360 mp4box moov_block
+Warning: Consumed 1355 more decision bytes than expected while generating chunk.
+
+Queue entry 98 (return status 1):
+Inserting: source chunk from file 57 position 35 42 char_array_class compatible_brand
+into target file 53 position 17193 mp4box child_box
+Warning: Consumed 7 more decision bytes than expected while generating chunk.
+
+Queue entry 99 (return status 0):
+Deleting from file 53 chunk 17255 17451 mp4box child_box
+
+Queue entry 100 (return status -1):
+Inserting: source chunk from file 16 position 41876 41925 mp4box edts_block
+into target file 53 position 16325 mp4box child_box
+Warning: Consumed 19 less decision bytes than expected while generating chunk.
+
+Queue entry 101 (return status 0):
+Abstracting from file 53 optional chunk 78 14370 mp4box mdat_block
+
+Queue entry 102 (return status 1):
+Replacing: source optional chunk from file 43 position 271383 271414 mp4box child_block
+into target file 53 optional chunk position 14652 16854 mp4box mdia_block
+Warning: Consumed 941 more decision bytes than expected while generating chunk.
+
+Queue entry 103 (return status 0):
+Abstracting from file 53 optional chunk 18689 19215 mp4box child_box
+
+Queue entry 104 (return status -1):
+Inserting: source chunk from file 36 position 41945 41981 mp4box mdhd_block
+into target file 53 position 14891 mp4box child_box
+Warning: Consumed 7 less decision bytes than expected while generating chunk.
+
+Queue entry 105 (return status 0):
+Abstracting from file 53 non-optional chunk 15064 15085 mp4box child_box
+
+Queue entry 106 (return status 0):
+Abstracting from file 53 optional chunk 14601 14651 mp4box edts_block
+
+Queue entry 107 (return status 1):
+Inserting: source chunk from file 17 position 16 23 char_array_class major_brand
+into target file 53 position 16965 mp4box edts_block
+Warning: Consumed 819 more decision bytes than expected while generating chunk.
+
+Queue entry 108 (return status 0):
+Abstracting from file 53 optional chunk 17035 17071 mp4box mdhd_block
+
+Queue entry 109 (return status 0):
+Deleting from file 53 chunk 17035 17071 mp4box mdhd_block
+
+Queue entry 110 (return status 1):
+Replacing: source optional chunk from file 72 position 7593 7621 mp4box child_box
+into target file 53 optional chunk position 17255 17451 mp4box child_box
+Warning: Consumed 1 more decision bytes than expected while generating chunk.
+
+Queue entry 111 (return status -1):
+Replacing: source optional chunk from file 16 position 42805 42945 mp4box udta_block
+into target file 53 optional chunk position 17146 17175 mp4box header_block
+Warning: Consumed 108 less decision bytes than expected while generating chunk.
+
+Queue entry 112 (return status 1):
+Replacing: source optional chunk from file 72 position 7157 7920 mp4box minf_block
+into target file 53 optional chunk position 14371 19360 mp4box moov_block
+Warning: Consumed 556 more decision bytes than expected while generating chunk.
+
+Queue entry 113 (return status 0):
+Abstracting from file 53 optional chunk 14872 16852 mp4box stbl_block
+
+Queue entry 114 (return status 1):
+Replacing: source optional chunk from file 36 position 41665 41767 mp4box mvhd_block
+into target file 53 optional chunk position 17016 19218 mp4box mdia_block
+Warning: Consumed 718 more decision bytes than expected while generating chunk.
+
+Queue entry 115 (return status 0):
+Abstracting from file 53 optional chunk 18689 19215 mp4box child_box
+
+Queue entry 116 (return status -1):
+Replacing: source optional chunk from file 33 position 272463 272504 mp4box child_box
+into target file 53 optional chunk position 14671 14707 mp4box mdhd_block
+Warning: Consumed 13 less decision bytes than expected while generating chunk.
+
+Queue entry 117 (return status 0):
+Replacing: source optional chunk from file 37 position 17635 17676 mp4box child_box
+into target file 53 optional chunk position 14891 15087 mp4box child_box
+
+Queue entry 118 (return status 0):
+Deleting from file 53 chunk 15088 15115 mp4box child_box
+
+Queue entry 119 (return status 0):
+Abstracting from file 53 optional chunk 17236 19216 mp4box stbl_block
+
+Queue entry 120 (return status 0):
+Abstracting from file 53 non-optional chunk 0 19361 mp4file file
+
+Queue entry 121 (return status 0):
+Abstracting from file 53 optional chunk 17072 17126 mp4box hdlr_block
+
+Queue entry 122 (return status -1):
+Inserting: source chunk from file 59 position 41893 41924 mp4box child_block
+into target file 53 position 19297 mp4box child_box
+Warning: Consumed 30 less decision bytes than expected while generating chunk.
+
+Queue entry 123 (return status -1):
+Replacing: source optional chunk from file 22 position 41646 42946 mp4box moov_block
+into target file 53 optional chunk position 78 14370 mp4box mdat_block
+Warning: Consumed 270 less decision bytes than expected while generating chunk.
+
+Queue entry 124 (return status 0):
+Deleting from file 53 chunk 43 50 char_array_class compatible_brand
+
+Queue entry 125 (return status 1):
+Replacing: source optional chunk from file 16 position 42056 42085 mp4box header_block
+into target file 53 optional chunk position 14763 16853 mp4box minf_block
+Warning: Consumed 727 more decision bytes than expected while generating chunk.
+
+Queue entry 126 (return status 0):
+Deleting from file 53 chunk 16965 17015 mp4box edts_block
+
+Queue entry 127 (return status 0):
+Abstracting from file 53 optional chunk 17480 17506 mp4box child_box
+
+Queue entry 128 (return status 0):
+Abstracting from file 53 non-optional chunk 0 19361 mp4file file
+
+Queue entry 129 (return status 1):
+Replacing: source optional chunk from file 4 position 271893 271920 mp4box child_box
+into target file 53 optional chunk position 15116 15142 mp4box child_box
+Warning: Consumed 2 more decision bytes than expected while generating chunk.
+
+Queue entry 130 (return status 0):
+Abstracting from file 53 optional chunk 60 77 mp4box free_block
+
+Queue entry 131 (return status 1):
+Replacing: source optional chunk from file 43 position 43 50 char_array_class compatible_brand
+into target file 53 optional chunk position 17072 17126 mp4box hdlr_block
+Warning: Consumed 1340 more decision bytes than expected while generating chunk.
+
+Queue entry 132 (return status 0):
+Abstracting from file 53 non-optional chunk 14702 14704 mp4lang language
+
+Queue entry 133 (return status 1):
+Inserting: source chunk from file 34 position 0 51 mp4box ftyp_block
+into target file 53 position 14493 mp4box trak_block
+Warning: Consumed 912 more decision bytes than expected while generating chunk.
+
+Queue entry 134 (return status -1):
+Inserting: source chunk from file 13 position 271277 271365 mp4box tkhd_block
+into target file 53 position 35 char_array_class compatible_brand
+Warning: Consumed 81 less decision bytes than expected while generating chunk.
+
+Queue entry 135 (return status 1):
+Inserting: source chunk from file 14 position 7223 7264 mp4box child_box
+into target file 53 position 0 mp4box ftyp_block
+Warning: Consumed 7213 more decision bytes than expected while generating chunk.
+
+Queue entry 136 (return status 0):
+Abstracting from file 53 optional chunk 19297 19357 mp4box child_box
+
+Queue entry 137 (return status -1):
+Replacing: source optional chunk from file 46 position 42805 42945 mp4box udta_block
+into target file 53 optional chunk position 14891 15087 mp4box child_box
+Warning: Consumed 31 less decision bytes than expected while generating chunk.
+
+Queue entry 138 (return status 0):
+Abstracting from file 53 optional chunk 17452 17479 mp4box child_box
+
+Queue entry 139 (return status 0):
+Abstracting from file 53 optional chunk 17127 19217 mp4box minf_block
+
+Queue entry 140 (return status -1):
+Replacing: source optional chunk from file 23 position 271383 271414 mp4box child_block
+into target file 53 optional chunk position 17507 18128 mp4box child_box
+Warning: Consumed 16 less decision bytes than expected while generating chunk.
+
+Queue entry 141 (return status 1):
+Replacing: source optional chunk from file 6 position 52 69 mp4box free_block
+into target file 53 optional chunk position 14371 19360 mp4box moov_block
+Warning: Consumed 22 more decision bytes than expected while generating chunk.
+
+Queue entry 142 (return status 0):
+Replacing: source optional chunk from file 13 position 52 69 mp4box free_block
+into target file 53 optional chunk position 17016 19218 mp4box mdia_block
+
+Queue entry 143 (return status 0):
+Abstracting from file 53 optional chunk 19220 19359 mp4box udta_block
+
+Queue entry 144 (return status 0):
+Deleting from file 53 chunk 14891 15087 mp4box child_box
+
+Queue entry 145 (return status -1):
+Inserting: source chunk from file 22 position 42146 42801 mp4box stbl_block
+into target file 53 position 19255 mp4box child_box
+Warning: Consumed 53 less decision bytes than expected while generating chunk.
+
+Queue entry 146 (return status 0):
+Abstracting from file 53 non-optional chunk 14620 14622 uint32_class size
+
+Queue entry 147 (return status 0):
+Abstracting from file 53 optional chunk 16856 19219 mp4box trak_block
+
+Queue entry 148 (return status 0):
+Deleting from file 53 chunk 15765 15793 mp4box child_box
+
+Queue entry 149 (return status 1):
+Inserting: source chunk from file 47 position 9019 9543 mp4box stbl_block
+into target file 53 position 14493 mp4box trak_block
+Warning: Consumed 454 more decision bytes than expected while generating chunk.
+
+Queue entry 150 (return status -1):
+Replacing: source optional chunk from file 20 position 41926 42803 mp4box mdia_block
+into target file 53 optional chunk position 19255 19296 mp4box child_box
+Warning: Consumed 126 less decision bytes than expected while generating chunk.
+
+Queue entry 151 (return status 1):
+Replacing: source optional chunk from file 59 position 42402 42429 mp4box child_box
+into target file 53 optional chunk position 17176 17235 mp4box dinf_block
+Warning: Consumed 8 more decision bytes than expected while generating chunk.
+
+Queue entry 152 (return status 0):
+Abstracting from file 53 optional chunk 17016 19218 mp4box mdia_block
+
+Queue entry 153 (return status 1):
+Inserting: source chunk from file 9 position 20528 20557 mp4box header_block
+into target file 53 position 17127 mp4box minf_block
+Warning: Consumed 527 more decision bytes than expected while generating chunk.
+
+Queue entry 154 (return status 0):
+Deleting from file 53 chunk 14512 14600 mp4box tkhd_block
+
+Queue entry 155 (return status 1):
+Replacing: source optional chunk from file 74 position 7893 7918 mp4box child_box
+into target file 53 optional chunk position 78 14370 mp4box mdat_block
+Warning: Consumed 1112 more decision bytes than expected while generating chunk.
+
+Queue entry 156 (return status 0):
+Abstracting from file 53 optional chunk 16876 16964 mp4box tkhd_block
+
+Queue entry 157 (return status 0):
+Abstracting from file 53 optional chunk 16325 16851 mp4box child_box
+
+Queue entry 158 (return status 1):
+Replacing: source optional chunk from file 32 position 6907 6995 mp4box tkhd_block
+into target file 53 optional chunk position 14493 16855 mp4box trak_block
+Warning: Consumed 3702 more decision bytes than expected while generating chunk.
+
+Queue entry 159 (return status 1):
+Inserting: source chunk from file 64 position 27 34 char_array_class compatible_brand
+into target file 53 position 14493 mp4box trak_block
+Warning: Consumed 877 more decision bytes than expected while generating chunk.
+
+Queue entry 160 (return status 0):
+Abstracting from file 53 non-optional chunk 0 19361 mp4file file
+
+Queue entry 161 (return status 1):
+Replacing: source optional chunk from file 39 position 0 51 mp4box ftyp_block
+into target file 53 optional chunk position 60 77 mp4box free_block
+Warning: Consumed 1581 more decision bytes than expected while generating chunk.
+
+Queue entry 162 (return status 0):
+Abstracting from file 53 non-optional chunk 0 19361 mp4file file
+
+Queue entry 163 (return status -1):
+Inserting: source chunk from file 49 position 75769 75909 mp4box udta_block
+into target file 53 position 14829 mp4box child_box
+Warning: Consumed 31 less decision bytes than expected while generating chunk.
+
+Queue entry 164 (return status 0):
+Inserting: source chunk from file 25 position 7285 7519 mp4box child_box
+into target file 53 position 14891 mp4box child_box
+
+Queue entry 165 (return status 0):
+Abstracting from file 53 optional chunk 14371 19360 mp4box moov_block
+
+Queue entry 166 (return status 0):
+Abstracting from file 53 optional chunk 14371 19360 mp4box moov_block
+
+Queue entry 167 (return status -1):
+Replacing: source optional chunk from file 17 position 8660 8748 mp4box tkhd_block
+into target file 53 optional chunk position 19297 19357 mp4box child_box
+Warning: Consumed 87 less decision bytes than expected while generating chunk.
+
+Queue entry 168 (return status 0):
+Deleting from file 53 chunk 0 59 mp4box ftyp_block
+
+Queue entry 169 (return status 0):
+Abstracting from file 53 optional chunk 19297 19357 mp4box child_box
+
+Queue entry 170 (return status 0):
+Abstracting from file 53 optional chunk 14601 14651 mp4box edts_block
+
+Queue entry 171 (return status 0):
+Deleting from file 53 chunk 60 77 mp4box free_block
+
+Queue entry 172 (return status 0):
+Abstracting from file 53 non-optional chunk 0 19361 mp4file file
+
+Queue entry 173 (return status 0):
+Abstracting from file 53 optional chunk 19255 19296 mp4box child_box
+
+Queue entry 174 (return status -1):
+Inserting: source chunk from file 64 position 8749 8798 mp4box edts_block
+into target file 53 position 17452 mp4box child_box
+Warning: Consumed 21 less decision bytes than expected while generating chunk.
+
+Queue entry 175 (return status 0):
+Deleting from file 53 chunk 14601 14651 mp4box edts_block
+
+Queue entry 176 (return status -1):
+Replacing: source optional chunk from file 0 position 70 6765 mp4box mdat_block
+into target file 53 optional chunk position 17016 19218 mp4box mdia_block
+Warning: Consumed 5875 less decision bytes than expected while generating chunk.
+
+Queue entry 177 (return status 1):
+Inserting: source chunk from file 56 position 41893 41924 mp4box child_block
+into target file 53 position 60 mp4box free_block
+Warning: Consumed 1292 more decision bytes than expected while generating chunk.
+
+Queue entry 178 (return status 1):
+Replacing: source optional chunk from file 12 position 42402 42429 mp4box child_box
+into target file 53 optional chunk position 14763 16853 mp4box minf_block
+Warning: Consumed 2914 more decision bytes than expected while generating chunk.
+
+Queue entry 179 (return status -1):
+Inserting: source chunk from file 39 position 35 42 char_array_class compatible_brand
+into target file 53 position 16856 mp4box trak_block
+Warning: Consumed 6 less decision bytes than expected while generating chunk.
+
+Queue entry 180 (return status 0):
+Abstracting from file 53 non-optional chunk 15005 15009 fourcc type
+
+Queue entry 181 (return status 0):
+Abstracting from file 53 non-optional chunk 17437 17441 fourcc type
+
+Queue entry 182 (return status -1):
+Inserting: source chunk from file 60 position 271136 272569 mp4box moov_block
+into target file 53 position 14601 mp4box edts_block
+Warning: Consumed 620 less decision bytes than expected while generating chunk.
+
+Queue entry 183 (return status 1):
+Replacing: source optional chunk from file 2 position 35 42 char_array_class compatible_brand
+into target file 53 optional chunk position 14493 16855 mp4box trak_block
+Warning: Consumed 3624 more decision bytes than expected while generating chunk.
+
+Queue entry 184 (return status 0):
+Abstracting from file 53 non-optional chunk 14996 15063 mp4box child_box
+
+Queue entry 185 (return status 0):
+Abstracting from file 53 optional chunk 14782 14811 mp4box header_block
+
+Queue entry 186 (return status 0):
+Abstracting from file 53 optional chunk 14601 14651 mp4box edts_block
+
+Queue entry 187 (return status 0):
+Abstracting from file 53 optional chunk 14891 15087 mp4box child_box
+
+Queue entry 188 (return status 0):
+Replacing: source non-optional chunk from file 50 position 42270 42372 mp4box child_box
+into target file 53 non-optional chunk position 14913 15086 mp4box sample_entry
+
+Queue entry 189 (return status 0):
+Inserting: source chunk from file 63 position 42037 42802 mp4box minf_block
+into target file 53 position 17127 mp4box minf_block
+
+Queue entry 190 (return status 0):
+Inserting: source chunk from file 57 position 272505 272566 mp4box child_box
+into target file 53 position 78 mp4box mdat_block
+
+Queue entry 191 (return status 0):
+Abstracting from file 53 optional chunk 14390 14492 mp4box mvhd_block
+
+Queue entry 192 (return status 0):
+Abstracting from file 53 optional chunk 19220 19359 mp4box udta_block
+
+Queue entry 193 (return status 1):
+Replacing: source optional chunk from file 15 position 52 69 mp4box free_block
+into target file 53 optional chunk position 17255 17451 mp4box child_box
+Warning: Consumed 169 more decision bytes than expected while generating chunk.
+
+Queue entry 194 (return status 0):
+Abstracting from file 53 optional chunk 16325 16851 mp4box child_box
+
+Queue entry 195 (return status 0):
+Abstracting from file 53 optional chunk 60 77 mp4box free_block
+
+Queue entry 196 (return status 1):
+Inserting: source chunk from file 54 position 308 340 mp4box child_block
+into target file 53 position 14512 mp4box tkhd_block
+Warning: Consumed 879 more decision bytes than expected while generating chunk.
+
+Queue entry 79 (return status 1):
+Inserting: source chunk from file 51 position 23030 23118 mp4box tkhd_block
+into target file 7 position 30545 mp4box mvhd_block
+Warning: Consumed 5 more decision bytes than expected while generating chunk.
+
+Queue entry 80 (return status 0):
+Abstracting from file 7 optional chunk 31047 31281 mp4box child_box
+
+Queue entry 81 (return status 1):
+Replacing: source optional chunk from file 72 position 7893 7918 mp4box child_box
+into target file 7 optional chunk position 30667 30755 mp4box tkhd_block
+Warning: Consumed 737 more decision bytes than expected while generating chunk.
+
+Queue entry 82 (return status 0):
+Abstracting from file 7 optional chunk 30545 30647 mp4box mvhd_block
+
+Queue entry 83 (return status 0):
+Abstracting from file 7 non-optional chunk 31255 31279 mp4box child_box
+
+Queue entry 84 (return status 1):
+Replacing: source optional chunk from file 33 position 43 50 char_array_class compatible_brand
+into target file 7 optional chunk position 31282 31310 mp4box child_box
+Warning: Consumed 13 more decision bytes than expected while generating chunk.
+
+Queue entry 85 (return status 0):
+Deleting from file 7 chunk 30667 30755 mp4box tkhd_block
+
+Queue entry 86 (return status -1):
+Replacing: source optional chunk from file 69 position 6766 8064 mp4box moov_block
+into target file 7 optional chunk position 30825 30863 mp4box mdhd_block
+Warning: Consumed 1270 less decision bytes than expected while generating chunk.
+
+Queue entry 87 (return status -1):
+Replacing: source optional chunk from file 9 position 20509 21792 mp4box minf_block
+into target file 7 optional chunk position 31428 31457 mp4box child_box
+Warning: Consumed 1268 less decision bytes than expected while generating chunk.
+
+Queue entry 88 (return status -1):
+Inserting: source chunk from file 65 position 271576 271635 mp4box dinf_block
+into target file 7 position 30773 mp4box child_block
+Warning: Consumed 40 less decision bytes than expected while generating chunk.
+
+Queue entry 89 (return status -1):
+Inserting: source chunk from file 16 position 42086 42145 mp4box dinf_block
+into target file 7 position 31428 mp4box child_box
+Warning: Consumed 31 less decision bytes than expected while generating chunk.
+
+Queue entry 90 (return status 1):
+Replacing: source optional chunk from file 0 position 7520 7547 mp4box child_box
+into target file 7 optional chunk position 30968 31027 mp4box dinf_block
+Warning: Consumed 8 more decision bytes than expected while generating chunk.
+
+Queue entry 91 (return status 0):
+Abstracting from file 7 optional chunk 30968 31027 mp4box dinf_block
+
+Queue entry 92 (return status 1):
+Inserting: source chunk from file 66 position 41982 42036 mp4box hdlr_block
+into target file 7 position 30648 mp4box trak_block
+Warning: Consumed 896 more decision bytes than expected while generating chunk.
+
+Queue entry 93 (return status 0):
+Abstracting from file 7 non-optional chunk 32617 32739 mp4box box
+
+Queue entry 94 (return status 0):
+Abstracting from file 7 optional chunk 31311 31427 mp4box child_box
+
+Queue entry 95 (return status 1):
+Inserting: source chunk from file 0 position 7958 7999 mp4box child_box
+into target file 7 position 30968 mp4box dinf_block
+Warning: Consumed 990 more decision bytes than expected while generating chunk.
+
+Queue entry 96 (return status -1):
+Inserting: source chunk from file 66 position 41665 41767 mp4box mvhd_block
+into target file 7 position 32570 mp4box child_box
+Warning: Consumed 85 less decision bytes than expected while generating chunk.
+
+Queue entry 97 (return status 0):
+Abstracting from file 7 optional chunk 30864 30918 mp4box hdlr_block
+
+Queue entry 98 (return status 0):
+Abstracting from file 7 optional chunk 31282 31310 mp4box child_box
+
+Queue entry 99 (return status 1):
+Replacing: source optional chunk from file 56 position 42775 42800 mp4box child_box
+into target file 7 optional chunk position 30806 32598 mp4box mdia_block
+Warning: Consumed 815 more decision bytes than expected while generating chunk.
+
+Queue entry 100 (return status 0):
+Deleting from file 7 chunk 31311 31427 mp4box child_box
+
+Queue entry 101 (return status 1):
+Inserting: source chunk from file 2 position 0 51 mp4box ftyp_block
+into target file 7 position 30938 mp4box header_block
+Warning: Consumed 248 more decision bytes than expected while generating chunk.
+
+Queue entry 102 (return status 0):
+Deleting from file 7 chunk 30545 30647 mp4box mvhd_block
+
+Queue entry 103 (return status 0):
+Inserting: source chunk from file 33 position 52 69 mp4box free_block
+into target file 7 position 30806 mp4box mdia_block
+
+Queue entry 104 (return status 1):
+Replacing: source optional chunk from file 30 position 16 23 char_array_class major_brand
+into target file 7 optional chunk position 31311 31427 mp4box child_box
+Warning: Consumed 13 more decision bytes than expected while generating chunk.
+
+Queue entry 105 (return status 0):
+Abstracting from file 7 optional chunk 30985 31026 mp4box child_box
+
+Queue entry 106 (return status 1):
+Replacing: source optional chunk from file 69 position 6766 8064 mp4box moov_block
+into target file 7 optional chunk position 30545 30647 mp4box mvhd_block
+Warning: Consumed 638 more decision bytes than expected while generating chunk.
+
+Queue entry 107 (return status 0):
+Abstracting from file 7 optional chunk 30648 32599 mp4box trak_block
+
+Queue entry 108 (return status 1):
+Inserting: source chunk from file 75 position 41876 41925 mp4box edts_block
+into target file 7 position 30667 mp4box tkhd_block
+Warning: Consumed 807 more decision bytes than expected while generating chunk.
+
+Queue entry 109 (return status 0):
+Abstracting from file 7 optional chunk 31282 31310 mp4box child_box
+
+Queue entry 110 (return status 0):
+Replacing: source non-optional chunk from file 69 position 7940 8062 mp4box box
+into target file 7 non-optional chunk position 31007 31025 mp4box entry_box
+
+Queue entry 111 (return status 1):
+Inserting: source chunk from file 40 position 21765 21790 mp4box child_box
+into target file 7 position 30919 mp4box minf_block
+Warning: Consumed 521 more decision bytes than expected while generating chunk.
+
+Queue entry 112 (return status 0):
+Abstracting from file 7 non-optional chunk 0 32742 mp4file file
+
+Queue entry 113 (return status 1):
+Replacing: source optional chunk from file 62 position 7046 7921 mp4box mdia_block
+into target file 7 optional chunk position 30667 30755 mp4box tkhd_block
+Warning: Consumed 56 more decision bytes than expected while generating chunk.
+
+Queue entry 114 (return status 1):
+Inserting: source chunk from file 39 position 271576 271635 mp4box dinf_block
+into target file 7 position 30648 mp4box trak_block
+Warning: Consumed 958 more decision bytes than expected while generating chunk.
+
+Queue entry 115 (return status 0):
+Abstracting from file 7 optional chunk 30968 31027 mp4box dinf_block
+
+Queue entry 116 (return status 1):
+Inserting: source chunk from file 55 position 271277 271365 mp4box tkhd_block
+into target file 7 position 30526 mp4box moov_block
+Warning: Consumed 1317 more decision bytes than expected while generating chunk.
+
+Queue entry 117 (return status -1):
+Replacing: source optional chunk from file 47 position 8519 9688 mp4box moov_block
+into target file 7 optional chunk position 30545 30647 mp4box mvhd_block
+Warning: Consumed 186 less decision bytes than expected while generating chunk.
+
+Queue entry 118 (return status 0):
+Abstracting from file 7 optional chunk 30806 32598 mp4box mdia_block
+
+Queue entry 119 (return status 0):
+Abstracting from file 7 optional chunk 30526 32741 mp4box moov_block
+
+Queue entry 120 (return status 0):
+Abstracting from file 7 optional chunk 31428 31457 mp4box child_box
+
+Queue entry 121 (return status 0):
+Abstracting from file 7 optional chunk 31028 32596 mp4box stbl_block
+
+Queue entry 122 (return status 0):
+Inserting: source chunk from file 68 position 20900 20984 mp4box child_box
+into target file 7 position 31428 mp4box child_box
+
+Queue entry 123 (return status 1):
+Replacing: source optional chunk from file 5 position 42504 42774 mp4box child_box
+into target file 7 optional chunk position 30919 32597 mp4box minf_block
+Warning: Consumed 333 more decision bytes than expected while generating chunk.
+
+Queue entry 124 (return status 1):
+Inserting: source chunk from file 50 position 42475 42503 mp4box child_box
+into target file 7 position 31047 mp4box child_box
+Warning: Consumed 1 more decision bytes than expected while generating chunk.
+
+Queue entry 125 (return status 0):
+Abstracting from file 7 non-optional chunk 31069 31280 mp4box sample_entry
+
+Queue entry 126 (return status 0):
+Deleting from file 7 chunk 52 69 mp4box free_block
+
+Queue entry 127 (return status 0):
+Abstracting from file 7 optional chunk 30648 32599 mp4box trak_block
+
+Queue entry 128 (return status 0):
+Deleting from file 7 chunk 31047 31281 mp4box child_box
+
+Queue entry 129 (return status -1):
+Inserting: source chunk from file 41 position 6888 7922 mp4box trak_block
+into target file 7 position 30985 mp4box child_box
+Warning: Consumed 1021 less decision bytes than expected while generating chunk.
+
+Queue entry 130 (return status 0):
+Deleting from file 7 chunk 30648 32599 mp4box trak_block
+
+Queue entry 131 (return status 0):
+Replacing: source non-optional chunk from file 17 position 9143 9245 mp4box child_box
+into target file 7 non-optional chunk position 31069 31280 mp4box sample_entry
+
+Queue entry 132 (return status -1):
+Inserting: source chunk from file 74 position 7266 7919 mp4box stbl_block
+into target file 7 position 31311 mp4box child_box
+Warning: Consumed 638 less decision bytes than expected while generating chunk.
+
+Queue entry 133 (return status 0):
+Abstracting from file 7 non-optional chunk 0 32742 mp4file file
+
+Queue entry 134 (return status -1):
+Replacing: source optional chunk from file 24 position 20135 20237 mp4box mvhd_block
+into target file 7 optional chunk position 32677 32738 mp4box child_box
+Warning: Consumed 101 less decision bytes than expected while generating chunk.
+
+Queue entry 135 (return status 0):
+Abstracting from file 7 optional chunk 30919 32597 mp4box minf_block
+
+Queue entry 136 (return status 1):
+Inserting: source chunk from file 48 position 272428 272568 mp4box udta_block
+into target file 7 position 30648 mp4box trak_block
+Warning: Consumed 916 more decision bytes than expected while generating chunk.
+
+Queue entry 137 (return status 1):
+Replacing: source optional chunk from file 26 position 27 34 char_array_class compatible_brand
+into target file 7 optional chunk position 32635 32676 mp4box child_box
+Warning: Consumed 22 more decision bytes than expected while generating chunk.
+
+Queue entry 138 (return status 1):
+Replacing: source optional chunk from file 73 position 271416 272426 mp4box mdia_block
+into target file 7 optional chunk position 30648 32599 mp4box trak_block
+Warning: Consumed 219 more decision bytes than expected while generating chunk.
+
+Queue entry 139 (return status -1):
+Replacing: source optional chunk from file 48 position 272398 272423 mp4box child_box
+into target file 7 optional chunk position 32677 32738 mp4box child_box
+Warning: Consumed 24 less decision bytes than expected while generating chunk.
+
+Queue entry 140 (return status 0):
+Abstracting from file 7 non-optional chunk 0 32742 mp4file file
+
+Queue entry 141 (return status -1):
+Inserting: source chunk from file 21 position 30526 32741 mp4box moov_block
+into target file 7 position 30825 mp4box mdhd_block
+Warning: Consumed 2187 less decision bytes than expected while generating chunk.
+
+Queue entry 142 (return status 0):
+Deleting from file 7 chunk 32635 32676 mp4box child_box
+
+Queue entry 143 (return status 1):
+Replacing: source optional chunk from file 38 position 41893 41924 mp4box child_block
+into target file 7 optional chunk position 30526 32741 mp4box moov_block
+Warning: Consumed 893 more decision bytes than expected while generating chunk.
+
+Queue entry 144 (return status 0):
+Abstracting from file 7 non-optional chunk 0 32742 mp4file file
+
+Queue entry 145 (return status 0):
+Abstracting from file 7 non-optional chunk 31255 31279 mp4box child_box
+
+Queue entry 146 (return status 0):
+Replacing: source optional chunk from file 75 position 42882 42943 mp4box child_box
+into target file 7 optional chunk position 52 69 mp4box free_block
+
+Queue entry 147 (return status 0):
+Abstracting from file 7 non-optional chunk 0 32742 mp4file file
+
+Queue entry 148 (return status 0):
+Abstracting from file 7 optional chunk 30806 32598 mp4box mdia_block
+
+Queue entry 149 (return status 0):
+Abstracting from file 7 optional chunk 31028 32596 mp4box stbl_block
+
+Queue entry 150 (return status 0):
+Deleting from file 7 chunk 30756 30805 mp4box edts_block
+
+Queue entry 151 (return status 0):
+Inserting: source chunk from file 37 position 17635 17676 mp4box child_box
+into target file 7 position 31047 mp4box child_box
+
+Queue entry 152 (return status -1):
+Replacing: source optional chunk from file 63 position 42805 42945 mp4box udta_block
+into target file 7 optional chunk position 30864 30918 mp4box hdlr_block
+Warning: Consumed 36 less decision bytes than expected while generating chunk.
+
+Queue entry 153 (return status 0):
+Abstracting from file 7 optional chunk 32677 32738 mp4box child_box
+
+Queue entry 154 (return status -1):
+Inserting: source chunk from file 43 position 271636 272424 mp4box stbl_block
+into target file 7 position 30968 mp4box dinf_block
+Warning: Consumed 648 less decision bytes than expected while generating chunk.
+
+Queue entry 155 (return status 0):
+Abstracting from file 7 optional chunk 30968 31027 mp4box dinf_block
+
+Queue entry 156 (return status 1):
+Replacing: source optional chunk from file 23 position 271921 271977 mp4box child_box
+into target file 7 optional chunk position 31282 31310 mp4box child_box
+Warning: Consumed 32 more decision bytes than expected while generating chunk.
+
+Queue entry 157 (return status 0):
+Abstracting from file 7 optional chunk 30806 32598 mp4box mdia_block
+
+Queue entry 158 (return status 0):
+Abstracting from file 7 optional chunk 30648 32599 mp4box trak_block
+
+Queue entry 159 (return status -1):
+Replacing: source optional chunk from file 70 position 7206 7265 mp4box dinf_block
+into target file 7 optional chunk position 30985 31026 mp4box child_box
+Warning: Consumed 30 less decision bytes than expected while generating chunk.
+
+Queue entry 160 (return status 0):
+Abstracting from file 7 optional chunk 30526 32741 mp4box moov_block
+
+Queue entry 161 (return status -1):
+Inserting: source chunk from file 40 position 20454 20508 mp4box hdlr_block
+into target file 7 position 30985 mp4box child_box
+Warning: Consumed 25 less decision bytes than expected while generating chunk.
+
+Queue entry 162 (return status 0):
+Abstracting from file 7 optional chunk 30806 32598 mp4box mdia_block
+
+Queue entry 163 (return status 0):
+Abstracting from file 7 optional chunk 30806 32598 mp4box mdia_block
+
+Queue entry 164 (return status 0):
+Abstracting from file 7 optional chunk 30968 31027 mp4box dinf_block
+
+Queue entry 165 (return status 0):
+Inserting: source chunk from file 3 position 9624 9685 mp4box child_box
+into target file 7 position 30667 mp4box tkhd_block
+
+Queue entry 166 (return status 0):
+Abstracting from file 7 optional chunk 30648 32599 mp4box trak_block
+
+Queue entry 167 (return status -1):
+Replacing: source optional chunk from file 65 position 70 271135 mp4box mdat_block
+into target file 7 optional chunk position 30806 32598 mp4box mdia_block
+Warning: Consumed 270174 less decision bytes than expected while generating chunk.
+
+Queue entry 168 (return status 0):
+Abstracting from file 7 optional chunk 30648 32599 mp4box trak_block
+
+Queue entry 169 (return status -1):
+Inserting: source chunk from file 56 position 0 51 mp4box ftyp_block
+into target file 7 position 32570 mp4box child_box
+Warning: Consumed 26 less decision bytes than expected while generating chunk.
+
+Queue entry 170 (return status -1):
+Inserting: source chunk from file 23 position 271366 271415 mp4box edts_block
+into target file 7 position 32677 mp4box child_box
+Warning: Consumed 4 less decision bytes than expected while generating chunk.
+
+Queue entry 171 (return status 0):
+Inserting: source chunk from file 59 position 42882 42943 mp4box child_box
+into target file 7 position 30938 mp4box header_block
+
+Queue entry 79 (return status 0):
+Abstracting from file 11 optional chunk 8000 8061 mp4box child_box
+
+Queue entry 80 (return status 0):
+Deleting from file 11 chunk 7102 7156 mp4box hdlr_block
+
+Queue entry 81 (return status -1):
+Replacing: source optional chunk from file 11 position 6766 8064 mp4box moov_block
+into target file 11 optional chunk position 7176 7205 mp4box header_block
+Warning: Consumed 1190 less decision bytes than expected while generating chunk.
+
+Queue entry 82 (return status 0):
+Abstracting from file 11 non-optional chunk 7646 7648 uint32_class sample_size
+
+Queue entry 83 (return status 1):
+Replacing: source optional chunk from file 77 position 271277 271365 mp4box tkhd_block
+into target file 11 optional chunk position 7102 7156 mp4box hdlr_block
+Warning: Consumed 8 more decision bytes than expected while generating chunk.
+
+Queue entry 84 (return status -1):
+Inserting: source chunk from file 28 position 14385 15019 mp4box minf_block
+into target file 11 position 7176 mp4box header_block
+Warning: Consumed 510 less decision bytes than expected while generating chunk.
+
+Queue entry 85 (return status -1):
+Inserting: source chunk from file 41 position 7223 7264 mp4box child_box
+into target file 11 position 7102 mp4box hdlr_block
+Warning: Consumed 5 less decision bytes than expected while generating chunk.
+
+Queue entry 86 (return status -1):
+Inserting: source chunk from file 31 position 23136 23167 mp4box child_block
+into target file 11 position 7285 mp4box child_box
+Warning: Consumed 11 less decision bytes than expected while generating chunk.
+
+Queue entry 87 (return status 0):
+Abstracting from file 11 non-optional chunk 7096 7098 mp4lang language
+
+Queue entry 88 (return status 0):
+Deleting from file 11 chunk 70 6765 mp4box mdat_block
+
+Queue entry 89 (return status -1):
+Replacing: source optional chunk from file 21 position 30648 32599 mp4box trak_block
+into target file 11 optional chunk position 7520 7547 mp4box child_box
+Warning: Consumed 1933 less decision bytes than expected while generating chunk.
+
+Queue entry 90 (return status 0):
+Abstracting from file 11 optional chunk 6996 7045 mp4box edts_block
+
+Queue entry 91 (return status -1):
+Inserting: source chunk from file 4 position 271527 272425 mp4box minf_block
+into target file 11 position 6785 mp4box mvhd_block
+Warning: Consumed 238 less decision bytes than expected while generating chunk.
+
+Queue entry 92 (return status 0):
+Abstracting from file 11 optional chunk 6888 7922 mp4box trak_block
+
+Queue entry 93 (return status 0):
+Abstracting from file 11 optional chunk 7285 7519 mp4box child_box
+
+Queue entry 94 (return status 1):
+Inserting: source chunk from file 61 position 7893 7918 mp4box child_box
+into target file 11 position 7046 mp4box mdia_block
+Warning: Consumed 592 more decision bytes than expected while generating chunk.
+
+Queue entry 95 (return status 0):
+Abstracting from file 11 optional chunk 7046 7921 mp4box mdia_block
+
+Queue entry 96 (return status 1):
+Replacing: source optional chunk from file 29 position 271636 272424 mp4box stbl_block
+into target file 11 optional chunk position 0 51 mp4box ftyp_block
+Warning: Consumed 7319 more decision bytes than expected while generating chunk.
+
+Queue entry 97 (return status 0):
+Abstracting from file 11 optional chunk 7176 7205 mp4box header_block
+
+Queue entry 98 (return status 0):
+Abstracting from file 11 optional chunk 7285 7519 mp4box child_box
+
+Queue entry 99 (return status 1):
+Inserting: source chunk from file 26 position 52 69 mp4box free_block
+into target file 11 position 6907 mp4box tkhd_block
+Warning: Consumed 946 more decision bytes than expected while generating chunk.
+
+Queue entry 100 (return status 0):
+Deleting from file 11 chunk 6907 6995 mp4box tkhd_block
+
+Queue entry 101 (return status 0):
+Deleting from file 11 chunk 6888 7922 mp4box trak_block
+
+Queue entry 102 (return status -1):
+Replacing: source optional chunk from file 62 position 7923 8063 mp4box udta_block
+into target file 11 optional chunk position 6907 6995 mp4box tkhd_block
+Warning: Consumed 63 less decision bytes than expected while generating chunk.
+
+Queue entry 103 (return status -1):
+Inserting: source chunk from file 27 position 8660 8748 mp4box tkhd_block
+into target file 11 position 7923 mp4box udta_block
+Warning: Consumed 87 less decision bytes than expected while generating chunk.
+
+Queue entry 104 (return status 0):
+Inserting: source chunk from file 18 position 11303 11362 mp4box dinf_block
+into target file 11 position 7206 mp4box dinf_block
+
+Queue entry 105 (return status 0):
+Abstracting from file 11 optional chunk 7223 7264 mp4box child_box
+
+Queue entry 106 (return status -1):
+Inserting: source chunk from file 53 position 14671 14707 mp4box mdhd_block
+into target file 11 position 7520 mp4box child_box
+Warning: Consumed 10 less decision bytes than expected while generating chunk.
+
+Queue entry 107 (return status 1):
+Replacing: source optional chunk from file 67 position 271383 271414 mp4box child_block
+into target file 11 optional chunk position 6766 8064 mp4box moov_block
+Warning: Consumed 982 more decision bytes than expected while generating chunk.
+
+Queue entry 108 (return status 1):
+Inserting: source chunk from file 13 position 35 42 char_array_class compatible_brand
+into target file 11 position 7223 mp4box child_box
+Warning: Consumed 7 more decision bytes than expected while generating chunk.
+
+Queue entry 109 (return status 1):
+Replacing: source optional chunk from file 6 position 23408 23644 mp4box child_box
+into target file 11 optional chunk position 6888 7922 mp4box trak_block
+Warning: Consumed 666 more decision bytes than expected while generating chunk.
+
+Queue entry 110 (return status 0):
+Deleting from file 11 chunk 7593 7621 mp4box child_box
+
+Queue entry 111 (return status 0):
+Abstracting from file 11 optional chunk 6888 7922 mp4box trak_block
+
+Queue entry 112 (return status 1):
+Replacing: source optional chunk from file 37 position 17697 17931 mp4box child_box
+into target file 11 optional chunk position 6996 7045 mp4box edts_block
+Warning: Consumed 670 more decision bytes than expected while generating chunk.
+
+Queue entry 113 (return status 0):
+Abstracting from file 11 non-optional chunk 7408 7491 byte_array_class ES_Descriptor
+
+Queue entry 114 (return status 1):
+Inserting: source chunk from file 61 position 52 69 mp4box free_block
+into target file 11 position 6888 mp4box trak_block
+Warning: Consumed 4 more decision bytes than expected while generating chunk.
+
+Queue entry 115 (return status 0):
+Inserting: source chunk from file 1 position 52 69 mp4box free_block
+into target file 11 position 52 mp4box free_block
+
+Queue entry 116 (return status 0):
+Deleting from file 11 chunk 7285 7519 mp4box child_box
+
+Queue entry 117 (return status 0):
+Abstracting from file 11 non-optional chunk 7307 7518 mp4box sample_entry
+
+Queue entry 118 (return status 0):
+Abstracting from file 11 optional chunk 7285 7519 mp4box child_box
+
+Queue entry 119 (return status 0):
+Abstracting from file 11 optional chunk 7893 7918 mp4box child_box
+
+Queue entry 120 (return status 0):
+Replacing: source optional chunk from file 22 position 42882 42943 mp4box child_box
+into target file 11 optional chunk position 7958 7999 mp4box child_box
+
+Queue entry 79 (return status 0):
+Abstracting from file 52 optional chunk 2115 14433 mp4box mdat_block
+
+Queue entry 80 (return status 0):
+Abstracting from file 52 optional chunk 472 501 mp4box header_block
+
+Queue entry 81 (return status 1):
+Inserting: source chunk from file 27 position 9275 9302 mp4box child_box
+into target file 52 position 202 mp4box tkhd_block
+Warning: Consumed 46 more decision bytes than expected while generating chunk.
+
+Queue entry 82 (return status -1):
+Inserting: source chunk from file 76 position 491806 491908 mp4box mvhd_block
+into target file 52 position 35 char_array_class compatible_brand
+Warning: Consumed 95 less decision bytes than expected while generating chunk.
+
+Queue entry 83 (return status 0):
+Abstracting from file 52 optional chunk 562 1952 mp4box stbl_block
+
+Queue entry 84 (return status 0):
+Abstracting from file 52 optional chunk 60 2096 mp4box moov_block
+
+Queue entry 85 (return status -1):
+Inserting: source chunk from file 8 position 271277 271365 mp4box tkhd_block
+into target file 52 position 1415 mp4box child_box
+Warning: Consumed 65 less decision bytes than expected while generating chunk.
+
+Queue entry 86 (return status 0):
+Deleting from file 52 chunk 27 34 char_array_class compatible_brand
+
+Queue entry 87 (return status 1):
+Replacing: source optional chunk from file 36 position 0 51 mp4box ftyp_block
+into target file 52 optional chunk position 562 1952 mp4box stbl_block
+Warning: Consumed 268 more decision bytes than expected while generating chunk.
+
+Queue entry 88 (return status 0):
+Abstracting from file 52 optional chunk 562 1952 mp4box stbl_block
+
+Queue entry 89 (return status -1):
+Replacing: source optional chunk from file 19 position 271258 272427 mp4box trak_block
+into target file 52 optional chunk position 833 1385 mp4box child_box
+Warning: Consumed 1154 less decision bytes than expected while generating chunk.
+
+Queue entry 90 (return status 0):
+Abstracting from file 52 optional chunk 183 1955 mp4box trak_block
+
+Queue entry 91 (return status 1):
+Replacing: source optional chunk from file 59 position 27 34 char_array_class compatible_brand
+into target file 52 optional chunk position 519 560 mp4box child_box
+Warning: Consumed 9 more decision bytes than expected while generating chunk.
+
+Queue entry 92 (return status 0):
+Abstracting from file 52 optional chunk 342 1954 mp4box mdia_block
+
+Queue entry 93 (return status 0):
+Abstracting from file 52 optional chunk 806 832 mp4box child_box
+
+Queue entry 94 (return status -1):
+Replacing: source optional chunk from file 3 position 8538 8640 mp4box mvhd_block
+into target file 52 optional chunk position 1991 2032 mp4box child_box
+Warning: Consumed 75 less decision bytes than expected while generating chunk.
+
+Queue entry 95 (return status 0):
+Deleting from file 52 chunk 2097 2114 mp4box free_block
+
+Queue entry 96 (return status 0):
+Abstracting from file 52 optional chunk 342 1954 mp4box mdia_block
+
+Queue entry 97 (return status 0):
+Abstracting from file 52 optional chunk 361 397 mp4box mdhd_block
+
+Queue entry 98 (return status 1):
+Inserting: source chunk from file 14 position 7176 7205 mp4box header_block
+into target file 52 position 342 mp4box mdia_block
+Warning: Consumed 619 more decision bytes than expected while generating chunk.
+
+Queue entry 99 (return status -1):
+Inserting: source chunk from file 25 position 6907 6995 mp4box tkhd_block
+into target file 52 position 2097 mp4box free_block
+Warning: Consumed 80 less decision bytes than expected while generating chunk.
+
+Queue entry 100 (return status -1):
+Replacing: source optional chunk from file 76 position 492017 492066 mp4box edts_block
+into target file 52 optional chunk position 1991 2032 mp4box child_box
+Warning: Consumed 3 less decision bytes than expected while generating chunk.
+
+Queue entry 101 (return status -1):
+Inserting: source chunk from file 63 position 41787 41875 mp4box tkhd_block
+into target file 52 position 308 mp4box child_block
+Warning: Consumed 69 less decision bytes than expected while generating chunk.
+
+Queue entry 102 (return status 0):
+Abstracting from file 52 optional chunk 472 501 mp4box header_block
+
+Queue entry 103 (return status 1):
+Inserting: source chunk from file 64 position 9582 9623 mp4box child_box
+into target file 52 position 342 mp4box mdia_block
+Warning: Consumed 790 more decision bytes than expected while generating chunk.
+
+Queue entry 104 (return status 0):
+Replacing: source non-optional chunk from file 78 position 85 89 fourcc type
+into target file 52 non-optional chunk position 550 554 fourcc type
+
+Queue entry 105 (return status 0):
+Deleting from file 52 chunk 806 832 mp4box child_box
+
+Queue entry 106 (return status 1):
+Replacing: source optional chunk from file 19 position 35 42 char_array_class compatible_brand
+into target file 52 optional chunk position 581 777 mp4box child_box
+Warning: Consumed 7 more decision bytes than expected while generating chunk.
+
+Queue entry 107 (return status 1):
+Inserting: source chunk from file 40 position 35 42 char_array_class compatible_brand
+into target file 52 position 398 mp4box hdlr_block
+Warning: Consumed 21 more decision bytes than expected while generating chunk.
+
+Queue entry 108 (return status 0):
+Deleting from file 52 chunk 1991 2032 mp4box child_box
+
+Queue entry 109 (return status 0):
+Abstracting from file 52 optional chunk 519 560 mp4box child_box
+
+Queue entry 110 (return status 0):
+Abstracting from file 52 optional chunk 453 1953 mp4box minf_block
+
+Queue entry 111 (return status 0):
+Abstracting from file 52 optional chunk 0 59 mp4box ftyp_block
+
+Queue entry 112 (return status 0):
+Abstracting from file 52 optional chunk 202 290 mp4box tkhd_block
+
+Queue entry 113 (return status 0):
+Inserting: source chunk from file 11 position 8000 8061 mp4box child_box
+into target file 52 position 806 mp4box child_box
+
+Queue entry 114 (return status -1):
+Replacing: source optional chunk from file 2 position 41926 42803 mp4box mdia_block
+into target file 52 optional chunk position 581 777 mp4box child_box
+Warning: Consumed 857 less decision bytes than expected while generating chunk.
+
+Queue entry 115 (return status 0):
+Deleting from file 52 chunk 581 777 mp4box child_box
+
+Queue entry 116 (return status 0):
+Abstracting from file 52 non-optional chunk 2059 2063 fourcc type
+
+Queue entry 117 (return status 0):
+Abstracting from file 52 optional chunk 1386 1414 mp4box child_box
+
+Queue entry 118 (return status 0):
+Abstracting from file 52 optional chunk 502 561 mp4box dinf_block
+
+Queue entry 119 (return status 0):
+Abstracting from file 52 optional chunk 453 1953 mp4box minf_block
+
+Queue entry 120 (return status 0):
+Inserting: source chunk from file 74 position 52 69 mp4box free_block
+into target file 52 position 80 mp4box mvhd_block
+
+Queue entry 121 (return status 1):
+Inserting: source chunk from file 55 position 27 34 char_array_class compatible_brand
+into target file 52 position 0 mp4box ftyp_block
+Warning: Consumed 1209 more decision bytes than expected while generating chunk.
+
+Queue entry 122 (return status 0):
+Deleting from file 52 chunk 1386 1414 mp4box child_box
+
+Queue entry 123 (return status -1):
+Replacing: source optional chunk from file 64 position 8641 9546 mp4box trak_block
+into target file 52 optional chunk position 202 290 mp4box tkhd_block
+Warning: Consumed 59 less decision bytes than expected while generating chunk.
+
+Queue entry 124 (return status 0):
+Deleting from file 52 chunk 183 1955 mp4box trak_block
+
+Queue entry 125 (return status 0):
+Inserting: source chunk from file 37 position 17960 18036 mp4box child_box
+into target file 52 position 581 mp4box child_box
+
+Queue entry 126 (return status -1):
+Replacing: source optional chunk from file 5 position 42165 42401 mp4box child_box
+into target file 52 optional chunk position 60 2096 mp4box moov_block
+Warning: Consumed 9 less decision bytes than expected while generating chunk.
+
+Queue entry 127 (return status 1):
+Replacing: source non-optional chunk from file 43 position 271294 271294 byte_class version
+into target file 52 non-optional chunk position 701 702 byte_class AVCProfileIndication
+Warning: Consumed 1 more decision bytes than expected while generating chunk.
+
+Queue entry 128 (return status 1):
+Inserting: source chunk from file 42 position 43 50 char_array_class compatible_brand
+into target file 52 position 581 mp4box child_box
+Warning: Consumed 11 more decision bytes than expected while generating chunk.
+
+Queue entry 129 (return status 0):
+Replacing: source optional chunk from file 11 position 52 69 mp4box free_block
+into target file 52 optional chunk position 60 2096 mp4box moov_block
+
+Queue entry 130 (return status 0):
+Deleting from file 52 chunk 0 59 mp4box ftyp_block
+
+Queue entry 131 (return status 0):
+Abstracting from file 52 non-optional chunk 740 742 uint16_class pictureParameterSetLength
+
+Queue entry 132 (return status 1):
+Replacing: source optional chunk from file 59 position 42775 42800 mp4box child_box
+into target file 52 optional chunk position 398 452 mp4box hdlr_block
+Warning: Consumed 547 more decision bytes than expected while generating chunk.
+
+Queue entry 133 (return status 0):
+Deleting from file 52 chunk 60 2096 mp4box moov_block
+
+Queue entry 134 (return status 0):
+Abstracting from file 52 optional chunk 581 777 mp4box child_box
+
+Queue entry 79 (return status 0):
+Deleting from file 11 chunk 7285 7519 mp4box child_box
+
+Queue entry 80 (return status -1):
+Inserting: source chunk from file 36 position 41982 42036 mp4box hdlr_block
+into target file 11 position 7548 mp4box child_box
+Warning: Consumed 23 less decision bytes than expected while generating chunk.
+
+Queue entry 81 (return status 0):
+Deleting from file 11 chunk 52 69 mp4box free_block
+
+Queue entry 82 (return status 0):
+Abstracting from file 11 non-optional chunk 7307 7518 mp4box sample_entry
+
+Queue entry 83 (return status 1):
+Replacing: source optional chunk from file 77 position 272398 272423 mp4box child_box
+into target file 11 optional chunk position 7266 7919 mp4box stbl_block
+Warning: Consumed 153 more decision bytes than expected while generating chunk.
+
+Queue entry 84 (return status 0):
+Abstracting from file 11 optional chunk 7223 7264 mp4box child_box
+
+Queue entry 85 (return status 1):
+Inserting: source chunk from file 51 position 23645 23672 mp4box child_box
+into target file 11 position 6907 mp4box tkhd_block
+Warning: Consumed 46 more decision bytes than expected while generating chunk.
+
+Queue entry 86 (return status 0):
+Abstracting from file 11 non-optional chunk 7056 7059 uint32_class size
+
+Queue entry 87 (return status 0):
+Abstracting from file 11 optional chunk 6766 8064 mp4box moov_block
+
+Queue entry 88 (return status -1):
+Replacing: source optional chunk from file 40 position 20116 21936 mp4box moov_block
+into target file 11 optional chunk position 7206 7265 mp4box dinf_block
+Warning: Consumed 1712 less decision bytes than expected while generating chunk.
+
+Queue entry 89 (return status 0):
+Abstracting from file 11 optional chunk 7266 7919 mp4box stbl_block
+
+Queue entry 90 (return status 0):
+Abstracting from file 11 non-optional chunk 7526 7528 uint32_class size
+
+Queue entry 91 (return status 0):
+Abstracting from file 11 optional chunk 6785 6887 mp4box mvhd_block
+
+Queue entry 92 (return status 1):
+Inserting: source chunk from file 76 position 493049 493074 mp4box child_box
+into target file 11 position 6907 mp4box tkhd_block
+Warning: Consumed 882 more decision bytes than expected while generating chunk.
+
+Queue entry 93 (return status 0):
+Deleting from file 11 chunk 7622 7892 mp4box child_box
+
+Queue entry 94 (return status -1):
+Replacing: source optional chunk from file 75 position 41926 42803 mp4box mdia_block
+into target file 11 optional chunk position 6888 7922 mp4box trak_block
+Warning: Consumed 164 less decision bytes than expected while generating chunk.
+
+Queue entry 95 (return status 0):
+Abstracting from file 11 optional chunk 8000 8061 mp4box child_box
+
+Queue entry 96 (return status 1):
+Inserting: source chunk from file 0 position 7548 7592 mp4box child_box
+into target file 11 position 7046 mp4box mdia_block
+Warning: Consumed 1 more decision bytes than expected while generating chunk.
+
+Queue entry 97 (return status 0):
+Inserting: source chunk from file 50 position 42056 42085 mp4box header_block
+into target file 11 position 7223 mp4box child_box
+
+Queue entry 98 (return status 1):
+Inserting: source chunk from file 52 position 1926 1951 mp4box child_box
+into target file 11 position 7102 mp4box hdlr_block
+Warning: Consumed 529 more decision bytes than expected while generating chunk.
+
+Queue entry 99 (return status 0):
+Abstracting from file 11 optional chunk 7206 7265 mp4box dinf_block
+
+Queue entry 100 (return status 0):
+Abstracting from file 11 optional chunk 6785 6887 mp4box mvhd_block
+
+Queue entry 101 (return status 0):
+Abstracting from file 11 optional chunk 7046 7921 mp4box mdia_block
+
+Queue entry 102 (return status 1):
+Inserting: source chunk from file 43 position 43 50 char_array_class compatible_brand
+into target file 11 position 7065 mp4box mdhd_block
+Warning: Consumed 21 more decision bytes than expected while generating chunk.
+
+Queue entry 103 (return status -1):
+Replacing: source optional chunk from file 29 position 271527 272425 mp4box minf_block
+into target file 11 optional chunk position 6766 8064 mp4box moov_block
+Warning: Consumed 118 less decision bytes than expected while generating chunk.
+
+Queue entry 104 (return status 1):
+Inserting: source chunk from file 30 position 43 50 char_array_class compatible_brand
+into target file 11 position 7102 mp4box hdlr_block
+Warning: Consumed 684 more decision bytes than expected while generating chunk.
+
+Queue entry 105 (return status -1):
+Inserting: source chunk from file 32 position 7223 7264 mp4box child_box
+into target file 11 position 7013 mp4box child_block
+Warning: Consumed 22 less decision bytes than expected while generating chunk.
+
+Queue entry 106 (return status -1):
+Inserting: source chunk from file 46 position 42165 42401 mp4box child_box
+into target file 11 position 7893 mp4box child_box
+Warning: Consumed 219 less decision bytes than expected while generating chunk.
+
+Queue entry 107 (return status 1):
+Replacing: source optional chunk from file 6 position 0 51 mp4box ftyp_block
+into target file 11 optional chunk position 70 6765 mp4box mdat_block
+Warning: Consumed 1038 more decision bytes than expected while generating chunk.
+
+Queue entry 108 (return status 0):
+Abstracting from file 11 non-optional chunk 0 8065 mp4file file
+
+Queue entry 109 (return status 0):
+Deleting from file 11 chunk 7958 7999 mp4box child_box
+
+Queue entry 110 (return status 1):
+Inserting: source chunk from file 47 position 9624 9685 mp4box child_box
+into target file 11 position 0 mp4box ftyp_block
+Warning: Consumed 8066 more decision bytes than expected while generating chunk.
+
+Queue entry 111 (return status 0):
+Abstracting from file 11 non-optional chunk 0 8065 mp4file file
+
+Queue entry 112 (return status 0):
+Abstracting from file 11 optional chunk 7065 7101 mp4box mdhd_block
+
+Queue entry 113 (return status 1):
+Replacing: source optional chunk from file 28 position 27 34 char_array_class compatible_brand
+into target file 11 optional chunk position 0 51 mp4box ftyp_block
+Warning: Consumed 8089 more decision bytes than expected while generating chunk.
+
+Queue entry 114 (return status 0):
+Abstracting from file 11 non-optional chunk 0 8065 mp4file file
+
+Queue entry 115 (return status 1):
+Replacing: source optional chunk from file 25 position 0 51 mp4box ftyp_block
+into target file 11 optional chunk position 7102 7156 mp4box hdlr_block
+Warning: Consumed 596 more decision bytes than expected while generating chunk.
+
+Queue entry 116 (return status 0):
+Abstracting from file 11 optional chunk 6907 6995 mp4box tkhd_block
+
+Queue entry 117 (return status -1):
+Replacing: source optional chunk from file 78 position 42146 42801 mp4box stbl_block
+into target file 11 optional chunk position 70 6765 mp4box mdat_block
+Warning: Consumed 243 less decision bytes than expected while generating chunk.
+
+Queue entry 118 (return status 0):
+Inserting: source chunk from file 65 position 272505 272566 mp4box child_box
+into target file 11 position 7046 mp4box mdia_block
+
+Queue entry 119 (return status 1):
+Inserting: source chunk from file 17 position 8749 8798 mp4box edts_block
+into target file 11 position 6907 mp4box tkhd_block
+Warning: Consumed 807 more decision bytes than expected while generating chunk.
+
+Queue entry 120 (return status 0):
+Abstracting from file 11 optional chunk 6888 7922 mp4box trak_block
+
+Queue entry 121 (return status 1):
+Inserting: source chunk from file 69 position 6766 8064 mp4box moov_block
+into target file 11 position 6785 mp4box mvhd_block
+Warning: Consumed 571 more decision bytes than expected while generating chunk.
+
+Queue entry 122 (return status 0):
+Abstracting from file 11 optional chunk 6996 7045 mp4box edts_block
+
+Queue entry 123 (return status 0):
+Abstracting from file 11 optional chunk 8000 8061 mp4box child_box
+
+Queue entry 124 (return status -1):
+Replacing: source optional chunk from file 3 position 8976 9017 mp4box child_box
+into target file 11 optional chunk position 7548 7592 mp4box child_box
+Warning: Consumed 13 less decision bytes than expected while generating chunk.
+
+Queue entry 125 (return status 1):
+Inserting: source chunk from file 24 position 21765 21790 mp4box child_box
+into target file 11 position 7206 mp4box dinf_block
+Warning: Consumed 1805 more decision bytes than expected while generating chunk.
+
+Queue entry 126 (return status 0):
+Abstracting from file 11 optional chunk 7176 7205 mp4box header_block
+
+Queue entry 127 (return status 0):
+Deleting from file 11 chunk 6888 7922 mp4box trak_block
+
+Queue entry 128 (return status -1):
+Replacing: source optional chunk from file 39 position 271136 272569 mp4box moov_block
+into target file 11 optional chunk position 7046 7921 mp4box mdia_block
+Warning: Consumed 620 less decision bytes than expected while generating chunk.
+
+Queue entry 129 (return status 0):
+Abstracting from file 11 non-optional chunk 0 8065 mp4file file
+
+Queue entry 130 (return status 0):
+Abstracting from file 11 optional chunk 6766 8064 mp4box moov_block
+
+Queue entry 131 (return status 1):
+Inserting: source chunk from file 10 position 27 34 char_array_class compatible_brand
+into target file 11 position 7157 mp4box minf_block
+Warning: Consumed 542 more decision bytes than expected while generating chunk.
+
+Queue entry 132 (return status 0):
+Abstracting from file 11 optional chunk 7593 7621 mp4box child_box
+
+Queue entry 133 (return status 1):
+Inserting: source chunk from file 59 position 41665 41767 mp4box mvhd_block
+into target file 11 position 6888 mp4box trak_block
+Warning: Consumed 828 more decision bytes than expected while generating chunk.
+
+Queue entry 134 (return status 0):
+Abstracting from file 11 optional chunk 7548 7592 mp4box child_box
+
+Queue entry 135 (return status 1):
+Inserting: source chunk from file 57 position 271155 271257 mp4box mvhd_block
+into target file 11 position 7157 mp4box minf_block
+Warning: Consumed 500 more decision bytes than expected while generating chunk.
+
+Queue entry 136 (return status 0):
+Abstracting from file 11 optional chunk 7285 7519 mp4box child_box
+
+Queue entry 137 (return status 0):
+Abstracting from file 11 optional chunk 70 6765 mp4box mdat_block
+
+Queue entry 138 (return status 0):
+Abstracting from file 11 non-optional chunk 7316 7320 fourcc type
+
+Queue entry 139 (return status -1):
+Replacing: source optional chunk from file 46 position 35 42 char_array_class compatible_brand
+into target file 11 optional chunk position 8000 8061 mp4box child_box
+Warning: Consumed 6 less decision bytes than expected while generating chunk.
+
+Queue entry 140 (return status 1):
+Replacing: source optional chunk from file 78 position 41665 41767 mp4box mvhd_block
+into target file 11 optional chunk position 6996 7045 mp4box edts_block
+Warning: Consumed 699 more decision bytes than expected while generating chunk.
+
+Queue entry 141 (return status 0):
+Abstracting from file 11 optional chunk 6766 8064 mp4box moov_block
+
+Queue entry 142 (return status 0):
+Abstracting from file 11 non-optional chunk 0 8065 mp4file file
+
+Queue entry 143 (return status 0):
+Deleting from file 11 chunk 6996 7045 mp4box edts_block
+
+Queue entry 144 (return status 1):
+Inserting: source chunk from file 44 position 7923 8063 mp4box udta_block
+into target file 11 position 7520 mp4box child_box
+Warning: Consumed 252 more decision bytes than expected while generating chunk.
+
+Queue entry 145 (return status -1):
+Inserting: source chunk from file 60 position 271277 271365 mp4box tkhd_block
+into target file 11 position 7285 mp4box child_box
+Warning: Consumed 59 less decision bytes than expected while generating chunk.
+
+Queue entry 146 (return status 0):
+Abstracting from file 11 optional chunk 7622 7892 mp4box child_box
+
+Queue entry 147 (return status 0):
+Abstracting from file 11 optional chunk 52 69 mp4box free_block
+
+Queue entry 148 (return status 1):
+Replacing: source optional chunk from file 11 position 0 51 mp4box ftyp_block
+into target file 11 optional chunk position 7266 7919 mp4box stbl_block
+Warning: Consumed 258 more decision bytes than expected while generating chunk.
+
+Queue entry 149 (return status 0):
+Abstracting from file 11 non-optional chunk 0 8065 mp4file file
+
+Queue entry 150 (return status 0):
+Abstracting from file 11 optional chunk 7046 7921 mp4box mdia_block
+
+Queue entry 151 (return status 1):
+Inserting: source chunk from file 70 position 6996 7045 mp4box edts_block
+into target file 11 position 7266 mp4box stbl_block
+Warning: Consumed 923 more decision bytes than expected while generating chunk.
+
+Queue entry 205 (return status 0):
+Abstracting from file 14 optional chunk 7893 7918 mp4box child_box
+
+Queue entry 206 (return status 1):
+Inserting: source chunk from file 31 position 23280 24045 mp4box minf_block
+into target file 14 position 6766 mp4box moov_block
+Warning: Consumed 40 more decision bytes than expected while generating chunk.
+
+Queue entry 207 (return status 1):
+Replacing: source optional chunk from file 77 position 271366 271415 mp4box edts_block
+into target file 14 optional chunk position 7102 7156 mp4box hdlr_block
+Warning: Consumed 586 more decision bytes than expected while generating chunk.
+
+Queue entry 208 (return status 1):
+Replacing: source optional chunk from file 65 position 271978 272006 mp4box child_box
+into target file 14 optional chunk position 7266 7919 mp4box stbl_block
+Warning: Consumed 435 more decision bytes than expected while generating chunk.
+
+Queue entry 209 (return status 0):
+Abstracting from file 14 non-optional chunk 0 8065 mp4file file
+
+Queue entry 210 (return status 0):
+Abstracting from file 14 optional chunk 7266 7919 mp4box stbl_block
+
+Queue entry 211 (return status -1):
+Replacing: source optional chunk from file 6 position 23169 24046 mp4box mdia_block
+into target file 14 optional chunk position 7266 7919 mp4box stbl_block
+Warning: Consumed 483 less decision bytes than expected while generating chunk.
+
+Queue entry 212 (return status 0):
+Abstracting from file 14 optional chunk 6766 8064 mp4box moov_block
+
+Queue entry 213 (return status 0):
+Replacing: source optional chunk from file 69 position 8000 8061 mp4box child_box
+into target file 14 optional chunk position 6888 7922 mp4box trak_block
+
+Queue entry 214 (return status 0):
+Abstracting from file 14 optional chunk 6888 7922 mp4box trak_block
+
+Queue entry 215 (return status 0):
+Abstracting from file 14 non-optional chunk 0 8065 mp4file file
+
+Queue entry 216 (return status 1):
+Inserting: source chunk from file 24 position 20528 20557 mp4box header_block
+into target file 14 position 7046 mp4box mdia_block
+Warning: Consumed 627 more decision bytes than expected while generating chunk.
+
+Queue entry 217 (return status 1):
+Replacing: source optional chunk from file 7 position 30667 30755 mp4box tkhd_block
+into target file 14 optional chunk position 7206 7265 mp4box dinf_block
+Warning: Consumed 307 more decision bytes than expected while generating chunk.
+
+Queue entry 218 (return status -1):
+Replacing: source optional chunk from file 8 position 272007 272397 mp4box child_box
+into target file 14 optional chunk position 7285 7519 mp4box child_box
+Warning: Consumed 363 less decision bytes than expected while generating chunk.
+
+Queue entry 219 (return status 1):
+Replacing: source optional chunk from file 74 position 7622 7892 mp4box child_box
+into target file 14 optional chunk position 6888 7922 mp4box trak_block
+Warning: Consumed 3335 more decision bytes than expected while generating chunk.
+
+Queue entry 220 (return status -1):
+Replacing: source optional chunk from file 36 position 70 41645 mp4box mdat_block
+into target file 14 optional chunk position 6766 8064 mp4box moov_block
+Warning: Consumed 39058 less decision bytes than expected while generating chunk.
+
+Queue entry 221 (return status -1):
+Inserting: source chunk from file 76 position 492287 493075 mp4box stbl_block
+into target file 14 position 7176 mp4box header_block
+Warning: Consumed 648 less decision bytes than expected while generating chunk.
+
+Queue entry 222 (return status -1):
+Inserting: source chunk from file 17 position 8538 8640 mp4box mvhd_block
+into target file 14 position 7893 mp4box child_box
+Warning: Consumed 85 less decision bytes than expected while generating chunk.
+
+Queue entry 223 (return status 1):
+Inserting: source chunk from file 10 position 7923 8063 mp4box udta_block
+into target file 14 position 6766 mp4box moov_block
+Warning: Consumed 722 more decision bytes than expected while generating chunk.
+
+Queue entry 224 (return status 1):
+Replacing: source optional chunk from file 74 position 7520 7547 mp4box child_box
+into target file 14 optional chunk position 6888 7922 mp4box trak_block
+Warning: Consumed 3810 more decision bytes than expected while generating chunk.
+
+Queue entry 225 (return status 1):
+Replacing: source optional chunk from file 1 position 7893 7918 mp4box child_box
+into target file 14 optional chunk position 0 51 mp4box ftyp_block
+Warning: Consumed 8023 more decision bytes than expected while generating chunk.
+
+Queue entry 226 (return status 1):
+Replacing: source optional chunk from file 19 position 271546 271575 mp4box header_block
+into target file 14 optional chunk position 7266 7919 mp4box stbl_block
+Warning: Consumed 271 more decision bytes than expected while generating chunk.
+
+Queue entry 227 (return status 1):
+Inserting: source chunk from file 75 position 42037 42802 mp4box minf_block
+into target file 14 position 70 mp4box mdat_block
+Warning: Consumed 1545 more decision bytes than expected while generating chunk.
+
+Queue entry 228 (return status 0):
+Inserting: source chunk from file 35 position 7223 7264 mp4box child_box
+into target file 14 position 7285 mp4box child_box
+
+Queue entry 229 (return status 0):
+Abstracting from file 14 optional chunk 6907 6995 mp4box tkhd_block
+
+Queue entry 261 (return status -1):
+Replacing: source optional chunk from file 65 position 271136 272569 mp4box moov_block
+into target file 28 optional chunk position 14135 14223 mp4box tkhd_block
+Warning: Consumed 763 less decision bytes than expected while generating chunk.
+
+Queue entry 262 (return status 0):
+Replacing: source non-optional chunk from file 26 position 7390 7492 mp4box child_box
+into target file 28 non-optional chunk position 14721 14747 mp4box child_box
+
+Queue entry 263 (return status 0):
+Deleting from file 28 chunk 0 51 mp4box ftyp_block
+
+Queue entry 264 (return status 0):
+Abstracting from file 28 optional chunk 52 69 mp4box free_block
+
+Queue entry 265 (return status 0):
+Abstracting from file 28 optional chunk 13994 15163 mp4box moov_block
+
+Queue entry 266 (return status 0):
+Abstracting from file 28 optional chunk 52 69 mp4box free_block
+
+Queue entry 267 (return status 1):
+Replacing: source optional chunk from file 38 position 43 50 char_array_class compatible_brand
+into target file 28 optional chunk position 14330 14384 mp4box hdlr_block
+Warning: Consumed 1390 more decision bytes than expected while generating chunk.
+
+Queue entry 268 (return status 0):
+Abstracting from file 28 optional chunk 14513 14749 mp4box child_box
+
+Queue entry 79 (return status 0):
+Abstracting from file 32 optional chunk 7223 7264 mp4box child_box
+
+Queue entry 80 (return status 1):
+Inserting: source chunk from file 78 position 42775 42800 mp4box child_box
+into target file 32 position 7013 mp4box child_block
+Warning: Consumed 2 more decision bytes than expected while generating chunk.
+
+Queue entry 81 (return status -1):
+Inserting: source chunk from file 14 position 6785 6887 mp4box mvhd_block
+into target file 32 position 7223 mp4box child_box
+Warning: Consumed 73 less decision bytes than expected while generating chunk.
+
+Queue entry 82 (return status 0):
+Abstracting from file 32 optional chunk 7548 7592 mp4box child_box
+
+Queue entry 83 (return status -1):
+Inserting: source chunk from file 24 position 21014 21764 mp4box child_box
+into target file 32 position 6996 mp4box edts_block
+Warning: Consumed 169 less decision bytes than expected while generating chunk.
+
+Queue entry 84 (return status 1):
+Replacing: source optional chunk from file 78 position 16 23 char_array_class major_brand
+into target file 32 optional chunk position 7157 7920 mp4box minf_block
+Warning: Consumed 532 more decision bytes than expected while generating chunk.
+
+Queue entry 85 (return status -1):
+Replacing: source optional chunk from file 13 position 272007 272397 mp4box child_box
+into target file 32 optional chunk position 7285 7519 mp4box child_box
+Warning: Consumed 363 less decision bytes than expected while generating chunk.
+
+Queue entry 86 (return status 0):
+Abstracting from file 32 non-optional chunk 7354 7385 byte_array_class compressorname
+
+Queue entry 87 (return status 1):
+Inserting: source chunk from file 13 position 271893 271920 mp4box child_box
+into target file 32 position 7285 mp4box child_box
+Warning: Consumed 2 more decision bytes than expected while generating chunk.
+
+Queue entry 88 (return status 1):
+Inserting: source chunk from file 52 position 43 50 char_array_class compatible_brand
+into target file 32 position 7065 mp4box mdhd_block
+Warning: Consumed 18 more decision bytes than expected while generating chunk.
+
+Queue entry 89 (return status 1):
+Inserting: source chunk from file 59 position 35 42 char_array_class compatible_brand
+into target file 32 position 7520 mp4box child_box
+Warning: Consumed 11 more decision bytes than expected while generating chunk.
+
+Queue entry 90 (return status -1):
+Inserting: source chunk from file 10 position 6766 8064 mp4box moov_block
+into target file 32 position 7046 mp4box mdia_block
+Warning: Consumed 619 less decision bytes than expected while generating chunk.
+
+Queue entry 91 (return status 0):
+Abstracting from file 32 optional chunk 70 6765 mp4box mdat_block
+
+Queue entry 92 (return status -1):
+Replacing: source optional chunk from file 71 position 42146 42801 mp4box stbl_block
+into target file 32 optional chunk position 52 69 mp4box free_block
+Warning: Consumed 243 less decision bytes than expected while generating chunk.
+
+Queue entry 93 (return status -1):
+Inserting: source chunk from file 49 position 73905 73959 mp4box hdlr_block
+into target file 32 position 7285 mp4box child_box
+Warning: Consumed 25 less decision bytes than expected while generating chunk.
+
+Queue entry 94 (return status 1):
+Replacing: source optional chunk from file 31 position 23645 23672 mp4box child_box
+into target file 32 optional chunk position 7157 7920 mp4box minf_block
+Warning: Consumed 512 more decision bytes than expected while generating chunk.
+
+Queue entry 95 (return status 0):
+Abstracting from file 32 optional chunk 7958 7999 mp4box child_box
+
+Queue entry 96 (return status 0):
+Replacing: source optional chunk from file 46 position 42882 42943 mp4box child_box
+into target file 32 optional chunk position 7223 7264 mp4box child_box
+
+Queue entry 97 (return status 0):
+Abstracting from file 32 optional chunk 7520 7547 mp4box child_box
+
+Queue entry 98 (return status -1):
+Replacing: source optional chunk from file 58 position 7046 7921 mp4box mdia_block
+into target file 32 optional chunk position 7266 7919 mp4box stbl_block
+Warning: Consumed 481 less decision bytes than expected while generating chunk.
+
+Queue entry 99 (return status -1):
+Inserting: source chunk from file 35 position 7157 7920 mp4box minf_block
+into target file 32 position 7923 mp4box udta_block
+Warning: Consumed 762 less decision bytes than expected while generating chunk.
+
+Queue entry 100 (return status 1):
+Replacing: source optional chunk from file 28 position 14992 15017 mp4box child_box
+into target file 32 optional chunk position 6996 7045 mp4box edts_block
+Warning: Consumed 592 more decision bytes than expected while generating chunk.
+
+Queue entry 101 (return status 0):
+Abstracting from file 32 optional chunk 7520 7547 mp4box child_box
+
+Queue entry 102 (return status 0):
+Abstracting from file 32 optional chunk 7102 7156 mp4box hdlr_block
+
+Queue entry 103 (return status 0):
+Abstracting from file 32 optional chunk 6996 7045 mp4box edts_block
+
+Queue entry 104 (return status 1):
+Replacing: source optional chunk from file 28 position 14293 14329 mp4box mdhd_block
+into target file 32 optional chunk position 6996 7045 mp4box edts_block
+Warning: Consumed 615 more decision bytes than expected while generating chunk.
+
+Queue entry 105 (return status 0):
+Abstracting from file 32 optional chunk 7548 7592 mp4box child_box
+
+Queue entry 106 (return status 0):
+Abstracting from file 32 optional chunk 7285 7519 mp4box child_box
+
+Queue entry 107 (return status 0):
+Abstracting from file 32 optional chunk 7065 7101 mp4box mdhd_block
+
+Queue entry 108 (return status 0):
+Abstracting from file 32 optional chunk 7923 8063 mp4box udta_block
+
+Queue entry 109 (return status 1):
+Replacing: source optional chunk from file 37 position 17588 17617 mp4box header_block
+into target file 32 optional chunk position 6996 7045 mp4box edts_block
+Warning: Consumed 627 more decision bytes than expected while generating chunk.
+
+Queue entry 110 (return status 1):
+Replacing: source optional chunk from file 59 position 52 69 mp4box free_block
+into target file 32 optional chunk position 0 51 mp4box ftyp_block
+Warning: Consumed 8088 more decision bytes than expected while generating chunk.
+
+Queue entry 111 (return status 1):
+Inserting: source chunk from file 3 position 8976 9017 mp4box child_box
+into target file 32 position 7046 mp4box mdia_block
+Warning: Consumed 784 more decision bytes than expected while generating chunk.
+
+Queue entry 112 (return status 0):
+Deleting from file 32 chunk 7958 7999 mp4box child_box
+
+Queue entry 113 (return status 0):
+Abstracting from file 32 optional chunk 7593 7621 mp4box child_box
+
+Queue entry 114 (return status 0):
+Abstracting from file 32 non-optional chunk 0 8065 mp4file file
+
+Queue entry 115 (return status 1):
+Inserting: source chunk from file 70 position 7285 7519 mp4box child_box
+into target file 32 position 6888 mp4box trak_block
+Warning: Consumed 791 more decision bytes than expected while generating chunk.
+
+Queue entry 116 (return status 0):
+Deleting from file 32 chunk 6996 7045 mp4box edts_block
+
+Queue entry 117 (return status 1):
+Replacing: source optional chunk from file 30 position 42430 42474 mp4box child_box
+into target file 32 optional chunk position 6888 7922 mp4box trak_block
+Warning: Consumed 918 more decision bytes than expected while generating chunk.
+
+Queue entry 118 (return status 0):
+Deleting from file 32 chunk 6907 6995 mp4box tkhd_block
+
+Queue entry 119 (return status 1):
+Inserting: source chunk from file 51 position 52 69 mp4box free_block
+into target file 32 position 7923 mp4box udta_block
+Warning: Consumed 70 more decision bytes than expected while generating chunk.
+
+Queue entry 120 (return status 1):
+Replacing: source optional chunk from file 14 position 7923 8063 mp4box udta_block
+into target file 32 optional chunk position 7046 7921 mp4box mdia_block
+Warning: Consumed 526 more decision bytes than expected while generating chunk.
+
+Queue entry 121 (return status 1):
+Replacing: source optional chunk from file 25 position 7958 7999 mp4box child_box
+into target file 32 optional chunk position 7046 7921 mp4box mdia_block
+Warning: Consumed 668 more decision bytes than expected while generating chunk.
+
+Queue entry 122 (return status 0):
+Abstracting from file 32 optional chunk 7157 7920 mp4box minf_block
+
+Queue entry 123 (return status -1):
+Inserting: source chunk from file 48 position 271636 272424 mp4box stbl_block
+into target file 32 position 7206 mp4box dinf_block
+Warning: Consumed 648 less decision bytes than expected while generating chunk.
+
+Queue entry 124 (return status 1):
+Inserting: source chunk from file 76 position 492227 492286 mp4box dinf_block
+into target file 32 position 6766 mp4box moov_block
+Warning: Consumed 1033 more decision bytes than expected while generating chunk.
+
+Queue entry 125 (return status 0):
+Abstracting from file 32 non-optional chunk 7108 7110 uint32_class size
+
+Queue entry 126 (return status 0):
+Abstracting from file 32 optional chunk 7046 7921 mp4box mdia_block
+
+Queue entry 127 (return status 0):
+Inserting: source chunk from file 12 position 42882 42943 mp4box child_box
+into target file 32 position 7266 mp4box stbl_block
+
+Queue entry 128 (return status 0):
+Deleting from file 32 chunk 7285 7519 mp4box child_box
+
+Queue entry 129 (return status -1):
+Replacing: source optional chunk from file 75 position 42146 42801 mp4box stbl_block
+into target file 32 optional chunk position 7206 7265 mp4box dinf_block
+Warning: Consumed 505 less decision bytes than expected while generating chunk.
+
+Queue entry 130 (return status 0):
+Abstracting from file 32 optional chunk 7176 7205 mp4box header_block
+
+Queue entry 131 (return status -1):
+Replacing: source optional chunk from file 45 position 7266 7919 mp4box stbl_block
+into target file 32 optional chunk position 7958 7999 mp4box child_box
+Warning: Consumed 51 less decision bytes than expected while generating chunk.
+
+Queue entry 132 (return status 0):
+Deleting from file 32 chunk 6785 6887 mp4box mvhd_block
+
+Queue entry 133 (return status 0):
+Abstracting from file 32 non-optional chunk 8017 8060 mp4box child_box
+
+Queue entry 134 (return status -1):
+Replacing: source optional chunk from file 58 position 7622 7892 mp4box child_box
+into target file 32 optional chunk position 7520 7547 mp4box child_box
+Warning: Consumed 243 less decision bytes than expected while generating chunk.
+
+Queue entry 135 (return status 1):
+Inserting: source chunk from file 71 position 43 50 char_array_class compatible_brand
+into target file 32 position 7157 mp4box minf_block
+Warning: Consumed 542 more decision bytes than expected while generating chunk.
+
+Queue entry 136 (return status 0):
+Replacing: source non-optional chunk from file 13 position 271863 271863 uint32_class size
+into target file 32 non-optional chunk position 6772 6775 uint32_class size
+
+Queue entry 137 (return status 0):
+Inserting: source chunk from file 44 position 6907 6995 mp4box tkhd_block
+into target file 32 position 6907 mp4box tkhd_block
+
+Queue entry 138 (return status 1):
+Inserting: source chunk from file 70 position 7923 8063 mp4box udta_block
+into target file 32 position 7520 mp4box child_box
+Warning: Consumed 252 more decision bytes than expected while generating chunk.
+
+Queue entry 139 (return status 1):
+Inserting: source chunk from file 9 position 0 51 mp4box ftyp_block
+into target file 32 position 7206 mp4box dinf_block
+Warning: Consumed 924 more decision bytes than expected while generating chunk.
+
+Queue entry 140 (return status 0):
+Abstracting from file 32 optional chunk 7958 7999 mp4box child_box
+
+Queue entry 141 (return status 0):
+Abstracting from file 32 non-optional chunk 0 8065 mp4file file
+
+Queue entry 142 (return status 0):
+Abstracting from file 32 optional chunk 7157 7920 mp4box minf_block
+
+Queue entry 143 (return status 0):
+Deleting from file 32 chunk 6888 7922 mp4box trak_block
+
+Queue entry 144 (return status 0):
+Abstracting from file 32 optional chunk 6907 6995 mp4box tkhd_block
+
+Queue entry 145 (return status 0):
+Abstracting from file 32 optional chunk 52 69 mp4box free_block
+
+Queue entry 146 (return status 1):
+Replacing: source optional chunk from file 57 position 272398 272423 mp4box child_box
+into target file 32 optional chunk position 7206 7265 mp4box dinf_block
+Warning: Consumed 108 more decision bytes than expected while generating chunk.
+
+Queue entry 147 (return status 0):
+Abstracting from file 32 optional chunk 6785 6887 mp4box mvhd_block
+
+Queue entry 148 (return status 0):
+Deleting from file 32 chunk 52 69 mp4box free_block
+
+Queue entry 149 (return status 0):
+Abstracting from file 32 optional chunk 6766 8064 mp4box moov_block
+
+Queue entry 150 (return status 0):
+Inserting: source chunk from file 3 position 8959 9018 mp4box dinf_block
+into target file 32 position 7206 mp4box dinf_block
+
+Queue entry 151 (return status 0):
+Abstracting from file 32 optional chunk 7176 7205 mp4box header_block
+
+Queue entry 152 (return status 0):
+Abstracting from file 32 optional chunk 7046 7921 mp4box mdia_block
+
+Queue entry 153 (return status -1):
+Replacing: source optional chunk from file 21 position 30919 32597 mp4box minf_block
+into target file 32 optional chunk position 8000 8061 mp4box child_box
+Warning: Consumed 1677 less decision bytes than expected while generating chunk.
+
+Queue entry 154 (return status 0):
+Replacing: source optional chunk from file 24 position 21872 21933 mp4box child_box
+into target file 32 optional chunk position 52 69 mp4box free_block
+
+Queue entry 155 (return status 0):
+Abstracting from file 32 optional chunk 6766 8064 mp4box moov_block
+
+Queue entry 156 (return status 1):
+Replacing: source optional chunk from file 44 position 7065 7101 mp4box mdhd_block
+into target file 32 optional chunk position 7046 7921 mp4box mdia_block
+Warning: Consumed 1572 more decision bytes than expected while generating chunk.
+
+Queue entry 157 (return status 0):
+Abstracting from file 32 optional chunk 7157 7920 mp4box minf_block
+
+Queue entry 158 (return status -1):
+Inserting: source chunk from file 78 position 41876 41925 mp4box edts_block
+into target file 32 position 7206 mp4box dinf_block
+Warning: Consumed 11 less decision bytes than expected while generating chunk.
+
+Queue entry 159 (return status -1):
+Replacing: source optional chunk from file 20 position 0 51 mp4box ftyp_block
+into target file 32 optional chunk position 7157 7920 mp4box minf_block
+Warning: Consumed 13 less decision bytes than expected while generating chunk.
+
+Queue entry 160 (return status 1):
+Inserting: source chunk from file 34 position 7622 7892 mp4box child_box
+into target file 32 position 7157 mp4box minf_block
+Warning: Consumed 398 more decision bytes than expected while generating chunk.
+
+Queue entry 161 (return status 0):
+Abstracting from file 32 optional chunk 7065 7101 mp4box mdhd_block
+
+Queue entry 162 (return status 0):
+Abstracting from file 32 optional chunk 7157 7920 mp4box minf_block
+
+Queue entry 163 (return status -1):
+Inserting: source chunk from file 52 position 202 290 mp4box tkhd_block
+into target file 32 position 7893 mp4box child_box
+Warning: Consumed 71 less decision bytes than expected while generating chunk.
+
+Queue entry 164 (return status -1):
+Inserting: source chunk from file 56 position 42056 42085 mp4box header_block
+into target file 32 position 7893 mp4box child_box
+Warning: Consumed 12 less decision bytes than expected while generating chunk.
+
+Queue entry 165 (return status 0):
+Abstracting from file 32 optional chunk 7157 7920 mp4box minf_block
+
+Queue entry 166 (return status 0):
+Abstracting from file 32 optional chunk 7157 7920 mp4box minf_block
+
+Queue entry 167 (return status -1):
+Replacing: source optional chunk from file 37 position 17176 18868 mp4box moov_block
+into target file 32 optional chunk position 6996 7045 mp4box edts_block
+Warning: Consumed 880 less decision bytes than expected while generating chunk.
+
+Queue entry 168 (return status 0):
+Abstracting from file 32 optional chunk 7548 7592 mp4box child_box
+
+Queue entry 169 (return status 0):
+Abstracting from file 32 non-optional chunk 7245 7263 mp4box entry_box
+
+Queue entry 170 (return status 1):
+Replacing: source optional chunk from file 77 position 35 42 char_array_class compatible_brand
+into target file 32 optional chunk position 6888 7922 mp4box trak_block
+Warning: Consumed 1590 more decision bytes than expected while generating chunk.
+
+Queue entry 171 (return status 1):
+Replacing: source optional chunk from file 17 position 16 23 char_array_class major_brand
+into target file 32 optional chunk position 6996 7045 mp4box edts_block
+Warning: Consumed 592 more decision bytes than expected while generating chunk.
+
+Queue entry 172 (return status 0):
+Abstracting from file 32 optional chunk 6888 7922 mp4box trak_block
+
+Queue entry 173 (return status 0):
+Abstracting from file 32 optional chunk 7046 7921 mp4box mdia_block
+
+Queue entry 174 (return status 0):
+Replacing: source optional chunk from file 27 position 9624 9685 mp4box child_box
+into target file 32 optional chunk position 7046 7921 mp4box mdia_block
+
+Queue entry 175 (return status 0):
+Abstracting from file 32 non-optional chunk 0 8065 mp4file file
+
+Queue entry 176 (return status 1):
+Replacing: source optional chunk from file 5 position 41876 41925 mp4box edts_block
+into target file 32 optional chunk position 7102 7156 mp4box hdlr_block
+Warning: Consumed 586 more decision bytes than expected while generating chunk.
+
+Queue entry 177 (return status 0):
+Abstracting from file 32 optional chunk 7622 7892 mp4box child_box
+
+Queue entry 178 (return status -1):
+Inserting: source chunk from file 28 position 70 13993 mp4box mdat_block
+into target file 32 position 7266 mp4box stbl_block
+Warning: Consumed 13574 less decision bytes than expected while generating chunk.
+
+Queue entry 179 (return status 1):
+Inserting: source chunk from file 14 position 7548 7592 mp4box child_box
+into target file 32 position 52 mp4box free_block
+Warning: Consumed 6715 more decision bytes than expected while generating chunk.
+
+Queue entry 180 (return status 0):
+Abstracting from file 32 non-optional chunk 0 8065 mp4file file
+
+Queue entry 181 (return status 0):
+Abstracting from file 32 optional chunk 0 51 mp4box ftyp_block
+
+Queue entry 182 (return status 0):
+Abstracting from file 32 optional chunk 8000 8061 mp4box child_box
+
+Queue entry 183 (return status 0):
+Abstracting from file 32 optional chunk 7046 7921 mp4box mdia_block
+
+Queue entry 184 (return status 0):
+Abstracting from file 32 optional chunk 7046 7921 mp4box mdia_block
+
+Queue entry 185 (return status 0):
+Abstracting from file 32 optional chunk 7206 7265 mp4box dinf_block
+
+Queue entry 186 (return status -1):
+Replacing: source optional chunk from file 38 position 41646 42946 mp4box moov_block
+into target file 32 optional chunk position 7102 7156 mp4box hdlr_block
+Warning: Consumed 585 less decision bytes than expected while generating chunk.
+
+Queue entry 187 (return status 0):
+Abstracting from file 32 non-optional chunk 0 8065 mp4file file
+
+Queue entry 188 (return status 0):
+Abstracting from file 32 non-optional chunk 0 8065 mp4file file
+
+Queue entry 189 (return status 1):
+Replacing: source optional chunk from file 31 position 23299 23328 mp4box header_block
+into target file 32 optional chunk position 7157 7920 mp4box minf_block
+Warning: Consumed 876 more decision bytes than expected while generating chunk.
+
+Queue entry 190 (return status 0):
+Abstracting from file 32 non-optional chunk 0 8065 mp4file file
+
+Queue entry 191 (return status 0):
+Abstracting from file 32 optional chunk 7893 7918 mp4box child_box
+
+Queue entry 192 (return status 1):
+Inserting: source chunk from file 41 position 7046 7921 mp4box mdia_block
+into target file 32 position 6766 mp4box moov_block
+Warning: Consumed 610 more decision bytes than expected while generating chunk.
+
+Queue entry 193 (return status 0):
+Abstracting from file 32 optional chunk 7157 7920 mp4box minf_block
+
+Queue entry 194 (return status 0):
+Abstracting from file 32 optional chunk 7548 7592 mp4box child_box
+
+Queue entry 195 (return status 1):
+Replacing: source optional chunk from file 53 position 60 77 mp4box free_block
+into target file 32 optional chunk position 7157 7920 mp4box minf_block
+Warning: Consumed 700 more decision bytes than expected while generating chunk.
+
+Queue entry 196 (return status 1):
+Inserting: source chunk from file 71 position 42840 42881 mp4box child_box
+into target file 32 position 7266 mp4box stbl_block
+Warning: Consumed 2468 more decision bytes than expected while generating chunk.
+
+Queue entry 197 (return status -1):
+Inserting: source chunk from file 21 position 30806 32598 mp4box mdia_block
+into target file 32 position 7102 mp4box hdlr_block
+Warning: Consumed 1011 less decision bytes than expected while generating chunk.
+
+Queue entry 198 (return status 0):
+Abstracting from file 32 non-optional chunk 0 8065 mp4file file
+
+Queue entry 199 (return status 1):
+Inserting: source chunk from file 23 position 271921 271977 mp4box child_box
+into target file 32 position 7266 mp4box stbl_block
+Warning: Consumed 1951 more decision bytes than expected while generating chunk.
+
+Queue entry 200 (return status 1):
+Inserting: source chunk from file 61 position 16 23 char_array_class major_brand
+into target file 32 position 7046 mp4box mdia_block
+Warning: Consumed 592 more decision bytes than expected while generating chunk.
+
+Queue entry 201 (return status 0):
+Abstracting from file 32 optional chunk 6888 7922 mp4box trak_block
+
+Queue entry 202 (return status 0):
+Inserting: source chunk from file 54 position 2033 2093 mp4box child_box
+into target file 32 position 6996 mp4box edts_block
+
+Queue entry 203 (return status 0):
+Abstracting from file 32 optional chunk 6996 7045 mp4box edts_block
+
+Queue entry 204 (return status 0):
+Inserting: source chunk from file 49 position 73847 75767 mp4box mdia_block
+into target file 32 position 6996 mp4box edts_block
+
+Queue entry 205 (return status 1):
+Replacing: source optional chunk from file 62 position 6907 6995 mp4box tkhd_block
+into target file 32 optional chunk position 7206 7265 mp4box dinf_block
+Warning: Consumed 307 more decision bytes than expected while generating chunk.
+
+Queue entry 206 (return status 0):
+Inserting: source chunk from file 26 position 8000 8061 mp4box child_box
+into target file 32 position 6907 mp4box tkhd_block
+
+Queue entry 207 (return status -1):
+Inserting: source chunk from file 40 position 20135 20237 mp4box mvhd_block
+into target file 32 position 7893 mp4box child_box
+Warning: Consumed 85 less decision bytes than expected while generating chunk.
+
+Queue entry 208 (return status 1):
+Inserting: source chunk from file 78 position 16 23 char_array_class major_brand
+into target file 32 position 6766 mp4box moov_block
+Warning: Consumed 1918 more decision bytes than expected while generating chunk.
+
+Queue entry 209 (return status 0):
+Abstracting from file 32 optional chunk 7266 7919 mp4box stbl_block
+
+Queue entry 210 (return status 0):
+Abstracting from file 32 non-optional chunk 7502 7506 char_array_class value
+
+Queue entry 211 (return status -1):
+Inserting: source chunk from file 36 position 41876 41925 mp4box edts_block
+into target file 32 position 7923 mp4box udta_block
+Warning: Consumed 4 less decision bytes than expected while generating chunk.
+
+Queue entry 212 (return status 1):
+Replacing: source optional chunk from file 26 position 27 34 char_array_class compatible_brand
+into target file 32 optional chunk position 6888 7922 mp4box trak_block
+Warning: Consumed 2039 more decision bytes than expected while generating chunk.
+
+Queue entry 213 (return status 0):
+Abstracting from file 32 non-optional chunk 0 8065 mp4file file
+
+Queue entry 214 (return status 0):
+Abstracting from file 32 optional chunk 6996 7045 mp4box edts_block
+
+Queue entry 215 (return status 0):
+Replacing: source optional chunk from file 17 position 9624 9685 mp4box child_box
+into target file 32 optional chunk position 7013 7044 mp4box child_block
+
+Queue entry 216 (return status 0):
+Abstracting from file 32 optional chunk 6888 7922 mp4box trak_block
+
+Queue entry 217 (return status 0):
+Abstracting from file 32 optional chunk 7266 7919 mp4box stbl_block
+
+Queue entry 218 (return status 0):
+Abstracting from file 32 optional chunk 6888 7922 mp4box trak_block
+
+Queue entry 219 (return status 0):
+Abstracting from file 32 optional chunk 6888 7922 mp4box trak_block
+
+Queue entry 220 (return status 1):
+Inserting: source chunk from file 63 position 42805 42945 mp4box udta_block
+into target file 32 position 7157 mp4box minf_block
+Warning: Consumed 647 more decision bytes than expected while generating chunk.
+
+Queue entry 221 (return status 0):
+Abstracting from file 32 optional chunk 6888 7922 mp4box trak_block
+
+Queue entry 222 (return status 1):
+Inserting: source chunk from file 67 position 52 69 mp4box free_block
+into target file 32 position 7065 mp4box mdhd_block
+Warning: Consumed 802 more decision bytes than expected while generating chunk.
+
+Queue entry 223 (return status 0):
+Replacing: source non-optional chunk from file 21 position 31042 31046 fourcc type
+into target file 32 non-optional chunk position 7316 7320 fourcc type
+
+Queue entry 224 (return status 0):
+Abstracting from file 32 optional chunk 8000 8061 mp4box child_box
+
+Queue entry 225 (return status 0):
+Abstracting from file 32 optional chunk 7206 7265 mp4box dinf_block
+
+Queue entry 226 (return status 1):
+Replacing: source optional chunk from file 77 position 271258 272427 mp4box trak_block
+into target file 32 optional chunk position 0 51 mp4box ftyp_block
+Warning: Consumed 6946 more decision bytes than expected while generating chunk.
+
+Queue entry 227 (return status 0):
+Replacing: source optional chunk from file 53 position 16856 19219 mp4box trak_block
+into target file 32 optional chunk position 6888 7922 mp4box trak_block
+
+Queue entry 328 (return status 0):
+Abstracting from file 52 optional chunk 472 501 mp4box header_block
+
+Queue entry 329 (return status 0):
+Abstracting from file 52 non-optional chunk 740 742 uint16_class pictureParameterSetLength
+
+Queue entry 330 (return status 1):
+Replacing: source optional chunk from file 78 position 42430 42474 mp4box child_box
+into target file 52 optional chunk position 0 59 mp4box ftyp_block
+Warning: Consumed 14397 more decision bytes than expected while generating chunk.
+
+Queue entry 331 (return status 0):
+Abstracting from file 52 optional chunk 2115 14433 mp4box mdat_block
+
+Queue entry 332 (return status 0):
+Abstracting from file 52 optional chunk 1415 1925 mp4box child_box
+
+Queue entry 333 (return status 0):
+Abstracting from file 52 optional chunk 291 341 mp4box edts_block
+
+Queue entry 334 (return status 0):
+Abstracting from file 52 non-optional chunk 709 710 byte_class numOfSequenceParameterSets
+
