@@ -1,6 +1,6 @@
 /*
- * violation_postproc.c — Format-agnostic violation post-processor
- *                        WITHOUT coverage feedback (random selection).
+ * violation_postproc_cov.c — Format-agnostic violation post-processor
+ *                            with coverage feedback (paper method).
  *
  * Field offsets come from FormatFuzzer's parse tree (via field_collector).
  * Valid-value domains come from 04_type_values.json (via json_reader).
@@ -20,6 +20,8 @@
 #include <stdio.h>
 #include <math.h>
 #include <unistd.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
 #include <ctype.h>
 
 /* ================================================================
@@ -27,8 +29,17 @@
  * ================================================================ */
 
 #define VIOLATION_PROB      0.5
+#define EPSILON             0.1
 #define GEO_BASE            0.6
+#define COLD_START          50
 #define MAX_FOUND           512
+#define MAP_SIZE            65536
+#define MAX_LAST_VIOLATED   16
+#define ALPHA               0.5
+#define LAMBDA              1.0
+#define COV_WINDOW          100
+#define FREQ_WINDOW         200
+#define HIST_SIZE           200
 #define MAX_JSON_FIELDS     2048
 
 /* ================================================================
@@ -54,12 +65,19 @@ static void check_verbose(void) {
  * ================================================================ */
 
 collected_field_t g_collected_fields[MAX_COLLECTED_FIELDS];
-int               g_num_collected = -1;
+int               g_num_collected = -1;  /* -1 = collection disabled */
 
-void collector_start(void) { g_num_collected = 0; }
-void collector_stop(void)  { }
+void collector_start(void) {
+    g_num_collected = 0;
+}
+
+void collector_stop(void) {
+    /* leave g_num_collected as-is so violation code can read it */
+}
+
 void collector_record(unsigned min_off, unsigned max_off, const char *path) {
-    if (g_num_collected < 0 || g_num_collected >= MAX_COLLECTED_FIELDS) return;
+    if (g_num_collected < 0 || g_num_collected >= MAX_COLLECTED_FIELDS)
+        return;
     collected_field_t *f = &g_collected_fields[g_num_collected];
     f->min_offset = min_off;
     f->max_offset = max_off;
@@ -75,23 +93,54 @@ void collector_record(unsigned min_off, unsigned max_off, const char *path) {
 static json_field_t json_fields[MAX_JSON_FIELDS];
 static int          json_nfields = 0;
 static int          json_loaded = 0;
-static int          initialized = 0;
 
 /* ================================================================
  * Matched field: collected position + JSON domain info
  * ================================================================ */
 
 typedef struct {
-    unsigned    buf_offset;
-    unsigned    field_size;
-    int         json_idx;
+    unsigned    buf_offset;  /* start byte in file buffer */
+    unsigned    field_size;  /* bytes */
+    int         json_idx;    /* index into json_fields[]  */
 } matched_field_t;
 
 /* ================================================================
- * Path → JSON key matching (same as cov version)
+ * Coverage feedback state (same as before)
  * ================================================================ */
 
+typedef struct {
+    int  fields[MAX_LAST_VIOLATED];
+    int  nfields;
+    int  new_edges;
+} round_record_t;
+
+static round_record_t history[HIST_SIZE];
+static int      hist_head = 0;
+static int      hist_count = 0;
+static int      global_step = 0;
+static int      initialized = 0;
+
+static uint8_t *afl_area_ptr = NULL;
+static uint8_t  virgin_bits[MAP_SIZE];
+
+static int      pending_fields[MAX_LAST_VIOLATED];
+static int      pending_nfields = 0;
+static int      has_pending = 0;
+
+/* ================================================================
+ * Path → JSON key matching
+ * ================================================================ */
+
+/*
+ * Extract "box.field" from parse tree path.
+ * Path format: "file~mp4file~moov_block~mvhd_block~version"
+ * Returns: "mvhd.version" (normalized)
+ *
+ * Strategy: find the last component ending with "_block" as the box,
+ * use the component(s) after it as the field name.
+ */
 static int path_to_json_key(const char *path, char *out, int maxlen) {
+    /* Split path by '~' */
     const char *parts[32];
     int nparts = 0;
     const char *p = path;
@@ -104,22 +153,27 @@ static int path_to_json_key(const char *path, char *out, int maxlen) {
 
     if (nparts < 2) return -1;
 
+    /* Find the last "_block" or "_box" parent */
     int box_idx = -1;
     for (int i = nparts - 2; i >= 0; i--) {
         const char *part = parts[i];
+        /* Compute length of this part */
         const char *end = (i + 1 < nparts) ? parts[i + 1] - 1 : path + strlen(path);
         int plen = (int)(end - part);
 
         if (plen > 6 && memcmp(part + plen - 6, "_block", 6) == 0) {
-            box_idx = i; break;
+            box_idx = i;
+            break;
         }
         if (plen > 4 && memcmp(part + plen - 4, "_box", 4) == 0) {
-            box_idx = i; break;
+            box_idx = i;
+            break;
         }
     }
 
     if (box_idx < 0 || box_idx >= nparts - 1) return -1;
 
+    /* Extract box name (strip _block / _box suffix) */
     const char *box_part = parts[box_idx];
     const char *box_end = (box_idx + 1 < nparts) ? parts[box_idx + 1] - 1 : path + strlen(path);
     int box_len = (int)(box_end - box_part);
@@ -133,9 +187,16 @@ static int path_to_json_key(const char *path, char *out, int maxlen) {
     memcpy(box_name, box_part, box_len);
     box_name[box_len] = '\0';
 
+    /* Extract field name (last component) */
     const char *field_part = parts[nparts - 1];
+    int field_len = (int)strlen(field_part);
+    /* Remove trailing instance count like "_2" added by FormatFuzzer */
+    /* Actually these are part of the name, skip for now */
+
     char raw_key[128];
     snprintf(raw_key, sizeof(raw_key), "%s.%s", box_name, field_part);
+
+    /* Normalize */
     json_normalize_key(raw_key, out, maxlen);
     return 0;
 }
@@ -155,7 +216,7 @@ static void get_type_range(const char *type_str, int64_t *lo, int64_t *hi) {
     if (strcmp(type_str, "int16") == 0)  { *lo = -32768; *hi = 32767; return; }
     if (strcmp(type_str, "int32") == 0)  { *lo = -2147483648LL; *hi = 2147483647LL; return; }
     if (strcmp(type_str, "int64") == 0)  { *lo = (int64_t)0x8000000000000000LL; *hi = (int64_t)0x7FFFFFFFFFFFFFFFLL; return; }
-    if (strcmp(type_str, "string") == 0) { *lo = 0; *hi = 4294967295LL; return; }
+    if (strcmp(type_str, "string") == 0) { *lo = 0; *hi = 4294967295LL; return; } /* FourCC */
     *lo = 0; *hi = 255;
 }
 
@@ -166,7 +227,7 @@ static int type_byte_size(const char *type_str) {
     if (strcmp(type_str, "uint32") == 0 || strcmp(type_str, "int32") == 0) return 4;
     if (strcmp(type_str, "uint48") == 0)  return 6;
     if (strcmp(type_str, "uint64") == 0 || strcmp(type_str, "int64") == 0) return 8;
-    if (strcmp(type_str, "string") == 0)  return 4;
+    if (strcmp(type_str, "string") == 0)  return 4; /* FourCC */
     return 0;
 }
 
@@ -199,10 +260,12 @@ static int64_t gen_violation_numeric(const json_field_t *jf) {
         int64_t total = below + above;
         if (total > 0) {
             int64_t pick = rand_range(0, total - 1);
-            if (pick < below) return t_lo + pick;
-            else return d_hi + 1 + (pick - below);
+            if (pick < below)
+                return t_lo + pick;
+            else
+                return d_hi + 1 + (pick - below);
         }
-        return t_lo;
+        return t_lo; /* fallback */
     }
 
     if (jf->domain_type == JSON_DT_DISCRETE && jf->dcnt > 0) {
@@ -251,6 +314,148 @@ static void write_val(uint8_t *buf, uint32_t off, uint8_t sz, int64_t val) {
 }
 
 /* ================================================================
+ * Coverage feedback
+ * ================================================================ */
+
+static int check_new_coverage(void) {
+    if (!afl_area_ptr) return 0;
+    int new_edges = 0;
+    for (int i = 0; i < MAP_SIZE; i++) {
+        uint8_t novel = afl_area_ptr[i] & virgin_bits[i];
+        if (novel) {
+            virgin_bits[i] &= ~afl_area_ptr[i];
+            new_edges++;
+        }
+    }
+    return new_edges;
+}
+
+static void record_round(void) {
+    if (!has_pending) return;
+    int new_edges = check_new_coverage();
+
+    round_record_t *rec = &history[hist_head];
+    rec->nfields = pending_nfields;
+    memcpy(rec->fields, pending_fields, pending_nfields * sizeof(int));
+    rec->new_edges = new_edges;
+
+    hist_head = (hist_head + 1) % HIST_SIZE;
+    if (hist_count < HIST_SIZE) hist_count++;
+
+    if (verbose && new_edges > 0) {
+        fprintf(VLOG, "[violation-cov] round recorded: %d new edges, %d fields\n",
+                new_edges, pending_nfields);
+        fflush(VLOG);
+    }
+
+    has_pending = 0;
+    pending_nfields = 0;
+}
+
+/* ================================================================
+ * Score computation (paper equations)
+ * ================================================================ */
+
+static void compute_scores(matched_field_t *found, int nfound, double *scores) {
+    double cov_sum[MAX_JSON_FIELDS];
+    int    cov_cnt[MAX_JSON_FIELDS];
+    int    freq_cnt[MAX_JSON_FIELDS];
+    int limit = json_nfields < MAX_JSON_FIELDS ? json_nfields : MAX_JSON_FIELDS;
+    memset(cov_sum, 0, limit * sizeof(double));
+    memset(cov_cnt, 0, limit * sizeof(int));
+    memset(freq_cnt, 0, limit * sizeof(int));
+
+    for (int step = 0; step < hist_count; step++) {
+        int idx = (hist_head - 1 - step + HIST_SIZE * 2) % HIST_SIZE;
+        round_record_t *rec = &history[idx];
+        int in_cov  = (step < COV_WINDOW);
+        int in_freq = (step < FREQ_WINDOW);
+        if (!in_cov && !in_freq) break;
+
+        for (int j = 0; j < rec->nfields; j++) {
+            int fi = rec->fields[j];
+            if (fi < 0 || fi >= json_nfields) continue;
+            if (in_freq) freq_cnt[fi]++;
+            if (in_cov && cov_cnt[fi] < COV_WINDOW) {
+                double credit = (rec->nfields > 0)
+                    ? (double)rec->new_edges / (double)rec->nfields : 0.0;
+                cov_sum[fi] += credit;
+                cov_cnt[fi]++;
+            }
+        }
+    }
+
+    for (int i = 0; i < nfound; i++) {
+        int fi = found[i].json_idx;
+        double cov_raw = (cov_cnt[fi] > 0) ? cov_sum[fi] / (double)cov_cnt[fi] : 0.0;
+        double cov = 1.0 - exp(-LAMBDA * cov_raw);
+        double freq = 1.0 / (double)(freq_cnt[fi] + 1);
+        scores[i] = ALPHA * cov + (1.0 - ALPHA) * freq;
+    }
+}
+
+/* ================================================================
+ * Field selection (epsilon-greedy with coverage scores)
+ * ================================================================ */
+
+static int sample_cardinality(int n) {
+    if (n <= 0) return 0;
+    double u = randf();
+    int k = (int)ceil(log(1.0 - u) / log(GEO_BASE));
+    if (k < 1) k = 1;
+    if (k > n) k = n;
+    return k;
+}
+
+static int select_fields(matched_field_t *found, int nfound,
+                         int *selected, int max_sel) {
+    if (nfound <= 0) return 0;
+    int k = sample_cardinality(nfound);
+    if (k > max_sel) k = max_sel;
+    global_step++;
+
+    if (global_step <= COLD_START || randf() < EPSILON) {
+        /* Random selection */
+        int *perm = (int*)malloc(nfound * sizeof(int));
+        for (int i = 0; i < nfound; i++) perm[i] = i;
+        for (int i = 0; i < k && i < nfound; i++) {
+            int j = i + (rand() % (nfound - i));
+            int tmp = perm[i]; perm[i] = perm[j]; perm[j] = tmp;
+            selected[i] = perm[i];
+        }
+        free(perm);
+    } else {
+        /* Exploit: rank by score */
+        int *order = (int*)malloc(nfound * sizeof(int));
+        double *scores = (double*)malloc(nfound * sizeof(double));
+        compute_scores(found, nfound, scores);
+
+        for (int i = 0; i < nfound; i++) order[i] = i;
+        for (int i = 1; i < nfound; i++) {
+            int key = order[i];
+            double key_sc = scores[key];
+            int j = i - 1;
+            while (j >= 0 && scores[order[j]] < key_sc) {
+                order[j+1] = order[j];
+                j--;
+            }
+            order[j+1] = key;
+        }
+        for (int i = 0; i < k; i++)
+            selected[i] = order[i];
+
+        if (verbose && k > 0) {
+            fprintf(VLOG, "[violation-cov] top score=%.4f (json_idx=%d)\n",
+                    scores[order[0]], found[order[0]].json_idx);
+        }
+
+        free(order);
+        free(scores);
+    }
+    return k;
+}
+
+/* ================================================================
  * Match collected fields against JSON
  * ================================================================ */
 
@@ -259,15 +464,20 @@ static int match_fields(matched_field_t *matched, int max_matched) {
     for (int i = 0; i < g_num_collected && nm < max_matched; i++) {
         collected_field_t *cf = &g_collected_fields[i];
         int field_bytes = (int)(cf->max_offset - cf->min_offset + 1);
+
+        /* Skip large entries (containers/boxes, not leaf fields) */
         if (field_bytes > 8 || field_bytes < 1) continue;
 
+        /* Build JSON key from path */
         char norm_key[JSON_MAX_KEY_LEN];
         if (path_to_json_key(cf->path, norm_key, JSON_MAX_KEY_LEN) < 0)
             continue;
 
+        /* Look up in JSON */
         json_field_t *jf = json_find_field(json_fields, json_nfields, norm_key);
         if (!jf) continue;
 
+        /* Verify byte size matches type */
         int expected_sz = type_byte_size(jf->type_str);
         if (expected_sz > 0 && expected_sz != field_bytes) continue;
 
@@ -280,58 +490,49 @@ static int match_fields(matched_field_t *matched, int max_matched) {
 }
 
 /* ================================================================
- * Random field selection (geometric cardinality, uniform random)
- * ================================================================ */
-
-static int sample_cardinality(int n) {
-    if (n <= 0) return 0;
-    double u = randf();
-    int k = (int)ceil(log(1.0 - u) / log(GEO_BASE));
-    if (k < 1) k = 1;
-    if (k > n) k = n;
-    return k;
-}
-
-static int select_fields_random(int nfound, int *selected, int max_sel) {
-    if (nfound <= 0) return 0;
-    int k = sample_cardinality(nfound);
-    if (k > max_sel) k = max_sel;
-
-    int *perm = (int*)malloc(nfound * sizeof(int));
-    for (int i = 0; i < nfound; i++) perm[i] = i;
-    for (int i = 0; i < k && i < nfound; i++) {
-        int j = i + (rand() % (nfound - i));
-        int tmp = perm[i]; perm[i] = perm[j]; perm[j] = tmp;
-        selected[i] = perm[i];
-    }
-    free(perm);
-    return k;
-}
-
-/* ================================================================
  * Public API
  * ================================================================ */
 
 void violation_init(void) {
     if (initialized) return;
     srand((unsigned)time(NULL) ^ (unsigned)getpid());
+    memset(history, 0, sizeof(history));
+    memset(virgin_bits, 0xFF, sizeof(virgin_bits));
+    hist_head = 0;
+    hist_count = 0;
+    pending_nfields = 0;
+    has_pending = 0;
+    global_step = 0;
 
     check_verbose();
 
+    /* Load JSON */
     const char *json_path = getenv("VIOLATION_JSON");
     if (json_path) {
         json_nfields = json_read_fields(json_path, json_fields, MAX_JSON_FIELDS);
         if (json_nfields < 0) {
-            fprintf(VLOG, "[violation] ERROR: failed to read %s\n", json_path);
+            fprintf(VLOG, "[violation-cov] ERROR: failed to read %s\n", json_path);
             json_nfields = 0;
         } else {
             json_loaded = 1;
             if (verbose)
-                fprintf(VLOG, "[violation] loaded %d violable fields from %s\n",
+                fprintf(VLOG, "[violation-cov] loaded %d violable fields from %s\n",
                         json_nfields, json_path);
         }
     } else {
-        fprintf(VLOG, "[violation] WARNING: VIOLATION_JSON not set, no violations\n");
+        fprintf(VLOG, "[violation-cov] WARNING: VIOLATION_JSON not set, no violations\n");
+    }
+
+    /* Attach AFL++ SHM */
+    char *shm_str = getenv("__AFL_SHM_ID");
+    if (shm_str) {
+        int shm_id = atoi(shm_str);
+        void *ptr = shmat(shm_id, NULL, SHM_RDONLY);
+        if (ptr != (void*)-1) {
+            afl_area_ptr = (uint8_t*)ptr;
+            if (verbose)
+                fprintf(VLOG, "[violation-cov] attached to AFL++ SHM id=%d\n", shm_id);
+        }
     }
 
     initialized = 1;
@@ -343,31 +544,42 @@ int violate_mp4_buffer(uint8_t *buf, uint32_t size) {
     if (!buf || size < 8) return 0;
     if (!json_loaded || json_nfields <= 0) return 0;
 
+    /* Record previous round */
+    record_round();
+
+    /* Probabilistic skip */
     if (randf() >= VIOLATION_PROB) {
-        if (verbose) fprintf(VLOG, "[violation] skipped (prob)\n");
+        check_new_coverage();
+        if (verbose) fprintf(VLOG, "[violation-cov] skipped (prob)\n");
         return 0;
     }
 
+    /* Check we have collected field data */
     if (g_num_collected <= 0) {
-        if (verbose) fprintf(VLOG, "[violation] no collected fields\n");
+        if (verbose) fprintf(VLOG, "[violation-cov] no collected fields\n");
         return 0;
     }
 
+    /* Match collected fields against JSON */
     matched_field_t matched[MAX_FOUND];
     int nmatched = match_fields(matched, MAX_FOUND);
     if (nmatched == 0) {
-        if (verbose) fprintf(VLOG, "[violation] no JSON matches\n");
+        if (verbose) fprintf(VLOG, "[violation-cov] no JSON matches\n");
         return 0;
     }
 
     if (verbose)
-        fprintf(VLOG, "[violation] matched %d fields (from %d collected)\n",
+        fprintf(VLOG, "[violation-cov] matched %d fields (from %d collected)\n",
                 nmatched, g_num_collected);
 
+    /* Select fields */
     int selected[16];
-    int k = select_fields_random(nmatched, selected, 16);
+    int k = select_fields(matched, nmatched, selected, 16);
 
+    /* Apply violations */
     int applied = 0;
+    pending_nfields = 0;
+
     for (int i = 0; i < k; i++) {
         matched_field_t *mf = &matched[selected[i]];
         json_field_t *jf = &json_fields[mf->json_idx];
@@ -380,21 +592,27 @@ int violate_mp4_buffer(uint8_t *buf, uint32_t size) {
         if (is_fourcc && mf->field_size == 4) {
             uint32_t v = gen_violation_fourcc(jf);
             if (verbose)
-                fprintf(VLOG, "[violation] %s @%u: fourcc -> 0x%08x\n",
+                fprintf(VLOG, "[violation-cov] %s @%u: fourcc -> 0x%08x\n",
                         jf->key, mf->buf_offset, v);
             write_val(buf, mf->buf_offset, 4, (int64_t)v);
         } else {
             int64_t v = gen_violation_numeric(jf);
             if (verbose)
-                fprintf(VLOG, "[violation] %s @%u: %d-byte -> %lld\n",
+                fprintf(VLOG, "[violation-cov] %s @%u: %d-byte -> %lld\n",
                         jf->key, mf->buf_offset, mf->field_size, (long long)v);
             write_val(buf, mf->buf_offset, mf->field_size, v);
         }
+
+        if (pending_nfields < MAX_LAST_VIOLATED)
+            pending_fields[pending_nfields++] = mf->json_idx;
+
         applied++;
     }
 
+    has_pending = (applied > 0);
+
     if (verbose) {
-        fprintf(VLOG, "[violation] applied %d violations\n", applied);
+        fprintf(VLOG, "[violation-cov] applied %d violations\n", applied);
         fflush(VLOG);
     }
     return applied;

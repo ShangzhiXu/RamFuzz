@@ -19,14 +19,11 @@
 #include <ctime>
 
 #include "formatfuzzer.h"
-#include "violation_postproc.h"
-#include "field_collector.h"
 
 static const char *bin_name = "formatfuzzer";
 
 extern bool get_parse_tree;
 extern bool debug_print;
-extern bool get_all_chunks;
 
 extern bool aflsmart_output;
 
@@ -1315,21 +1312,7 @@ extern "C" void generate_random_file(unsigned char** file, unsigned* file_size) 
 	close(rand_fd);
 
 	set_generator();
-
-	/* Enable field collection for violation post-processing */
-	get_parse_tree = true;
-	collector_start();
-
 	*file_size = ff_generate(rand_buffer, MAX_RAND_SIZE, file);
-
-	get_parse_tree = false;
-
-	/* Apply violation using collected field positions */
-	if (*file && *file_size > 0)
-		violate_mp4_buffer(*file, *file_size);
-
-	/* Disable collection for next round */
-	g_num_collected = -1;
 }
 
 
@@ -1728,29 +1711,7 @@ fail:
 
 
 extern "C" int one_smart_mutation(int target_file_index, unsigned char** file, unsigned* file_size) {
-	int ret = do_one_smart_mutation(target_file_index, file, file_size);
-
-	/* Parse output to collect field positions, then apply violation */
-	if (ret >= 0 && *file && *file_size > 0) {
-		bool old_tree = get_parse_tree;
-		bool old_chunks = get_all_chunks;
-		get_parse_tree = true;
-		get_all_chunks = false;
-		collector_start();
-
-		unsigned char *dummy_rand;
-		size_t dummy_size;
-		int parsed = ff_parse(*file, *file_size, &dummy_rand, &dummy_size);
-
-		get_parse_tree = old_tree;
-		get_all_chunks = old_chunks;
-
-		if (parsed)
-			violate_mp4_buffer(*file, *file_size);
-		g_num_collected = -1;
-	}
-
-	return ret;
+	return do_one_smart_mutation(target_file_index, file, file_size);
 }
 
 
