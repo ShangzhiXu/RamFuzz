@@ -30,7 +30,7 @@
 
 #define VIOLATION_PROB      0.5
 #define EPSILON             0.1
-#define GEO_BASE            0.6
+#define GEO_BASE            (5.0/3.0)
 #define COLD_START          50
 #define MAX_FOUND           512
 #define MAP_SIZE            65536
@@ -401,7 +401,7 @@ static void compute_scores(matched_field_t *found, int nfound, double *scores) {
 static int sample_cardinality(int n) {
     if (n <= 0) return 0;
     double u = randf();
-    int k = (int)ceil(log(1.0 - u) / log(GEO_BASE));
+    int k = (int)ceil(-log(1.0 - u) / log(GEO_BASE));
     if (k < 1) k = 1;
     if (k > n) k = n;
     return k;

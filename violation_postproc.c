@@ -27,7 +27,7 @@
  * ================================================================ */
 
 #define VIOLATION_PROB      0.5
-#define GEO_BASE            0.6
+#define GEO_BASE            (5.0/3.0)
 #define MAX_FOUND           512
 #define MAX_JSON_FIELDS     2048
 
@@ -286,7 +286,7 @@ static int match_fields(matched_field_t *matched, int max_matched) {
 static int sample_cardinality(int n) {
     if (n <= 0) return 0;
     double u = randf();
-    int k = (int)ceil(log(1.0 - u) / log(GEO_BASE));
+    int k = (int)ceil(-log(1.0 - u) / log(GEO_BASE));
     if (k < 1) k = 1;
     if (k > n) k = n;
     return k;
