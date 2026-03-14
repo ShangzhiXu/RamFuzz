@@ -29,15 +29,17 @@ __pycache__
 *.o
 *.so
 *.dSYM
-midi*.cpp
-pcap*.cpp
-zip*.cpp
-avi*.cpp
+*.cpp
 *-generator
 *-parser
 *-fuzzer
 lextab.py
 yacctab.py
+
+# Whitelist: keep all enhanced artifacts
+!*_enhanced*.so
+!*_enhanced*.cpp
+!*_enhanced*-fuzzer
 
 # Automake etc.
 # Note: While "*.in" files ARE derived,

@@ -1,0 +1,72 @@
+//------------------------------------------------
+//--- 010 Editor Binary Template
+//
+//      File: pdf_enhanced.bt
+//   Version: 1.0
+//   Purpose: Generate minimal valid PDF files for fuzzing
+//  Category: Document
+// File Mask: *.pdf
+//  ID Bytes: 25 50 44 46
+//------------------------------------------------
+
+LittleEndian();
+
+local string ReadBytesInitValues[] = {
+    "%PDF", "xref", "%%EO"
+};
+
+typedef struct {
+    // === PDF Header (15 bytes, offset 0) ===
+    ubyte h00 = { 0x25 };
+    ubyte h01 = { 0x50 };
+    ubyte h02 = { 0x44 };
+    ubyte h03 = { 0x46 };
+    ubyte h04 = { 0x2D };
+    ubyte h05 = { 0x31 };
+    ubyte h06 = { 0x2E };
+    ubyte h07 = { 0x34, 0x35, 0x36, 0x37 };
+    ubyte h08 = { 0x0A };
+    ubyte h09 = { 0x25 };
+    ubyte h10 = { 0xE2 };
+    ubyte h11 = { 0xE3 };
+    ubyte h12 = { 0xCF };
+    ubyte h13 = { 0xD3 };
+    ubyte h14 = { 0x0A };
+
+    // === Object 1: Catalog (49 bytes, offset 15) ===
+    char obj1[49] = { "1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n" };
+
+    // === Object 2: Pages (81 bytes, offset 64) ===
+    char obj2[81] = { "2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 /MediaBox [0 0 612 792] >>\nendobj\n" };
+
+    // === Object 3: Page (102 bytes, offset 145) ===
+    char obj3[102] = { "3 0 obj\n<< /Type /Page /Parent 2 0 R /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>\nendobj\n" };
+
+    // === Object 4: Font (97 bytes, offset 247) ===
+    char obj4[97] = { "4 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>\nendobj\n" };
+
+    // === Object 5: Content stream (offset 344) ===
+    // Header: 32 bytes
+    char obj5h[32] = { "5 0 obj\n<< /Length 43 >>\nstream\n" };
+    // Data: 43 bytes
+    char obj5d[43] = { "BT /F1 12 Tf 100 700 Td (Hello World) Tj ET" };
+    // End: 18 bytes
+    char obj5e[18] = { "\nendstream\nendobj\n" };
+
+    // === Xref table (offset 437) ===
+    char xhdr[9] = { "xref\n0 6\n" };
+    char xe0[20] = { "0000000000 65535 f \n" };
+    char xe1[20] = { "0000000015 00000 n \n" };
+    char xe2[20] = { "0000000064 00000 n \n" };
+    char xe3[20] = { "0000000145 00000 n \n" };
+    char xe4[20] = { "0000000247 00000 n \n" };
+    char xe5[20] = { "0000000344 00000 n \n" };
+
+    // === Trailer ===
+    char trail[44] = { "trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n" };
+    char xoff[4] = { "437\n" };
+    char eofm[6] = { "%%EOF\n" };
+
+} pdf_file;
+
+pdf_file file;

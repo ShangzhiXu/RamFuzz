@@ -1,0 +1,350 @@
+//------------------------------------------------
+//--- 010 Editor Binary Template
+//
+//      File: png_enhanced.bt
+//   Version: 2.0
+//   Purpose: Comprehensive PNG template covering all elements from 04_type_values.json
+//  Category: Image
+// File Mask: *.png,*.apng
+//  ID Bytes: 89 50 4E 47 0D 0A 1A 0A
+//------------------------------------------------
+
+BigEndian();
+
+local string ReadBytesInitValues[] = {
+    "\x89PNG", "IHDR", "PLTE", "IDAT", "IEND",
+    "tRNS", "cHRM", "gAMA", "iCCP", "sBIT", "sRGB", "cICP",
+    "tEXt", "zTXt", "iTXt",
+    "bKGD", "hIST", "pHYs", "sPLT", "eXIf", "tIME",
+    "acTL", "fcTL", "fdAT",
+    "oFFs", "pCAL", "sCAL", "sTER", "dSIG"
+};
+
+// ============================================================
+// PNG Signature
+// ============================================================
+struct PNG_SIGNATURE {
+    ubyte s0 = { 0x89 };
+    ubyte s1 = { 0x50 };
+    ubyte s2 = { 0x4E };
+    ubyte s3 = { 0x47 };
+    ubyte s4 = { 0x0D };
+    ubyte s5 = { 0x0A };
+    ubyte s6 = { 0x1A };
+    ubyte s7 = { 0x0A };
+};
+
+// ============================================================
+// Generic PNG chunk wrapper
+// ============================================================
+
+struct CHUNK_IHDR {
+    uint32 length = { 13 };
+    char chunk_type[4] = { "IHDR" };
+    uint32 width <min=1, max=1024>;
+    uint32 height <min=1, max=1024>;
+    ubyte bit_depth = { 8 };
+    ubyte color_type = { 0, 2, 3, 4, 6 };
+    ubyte compression_method = { 0 };
+    ubyte filter_method = { 0 };
+    ubyte interlace_method = { 0, 1 };
+    uint32 crc;
+};
+
+struct CHUNK_PLTE {
+    uint32 length <min=3, max=768>;
+    char chunk_type[4] = { "PLTE" };
+    // RGB triplets
+    local uint32 num_entries = length / 3;
+    if (num_entries > 256) num_entries = 256;
+    local uint32 data_size = num_entries * 3;
+    if (data_size > 0) {
+        ubyte palette_data[data_size];
+    }
+    uint32 crc;
+};
+
+struct CHUNK_IDAT {
+    uint32 length <min=8, max=1024>;
+    char chunk_type[4] = { "IDAT" };
+    ubyte compressed_data[length];
+    uint32 crc;
+};
+
+struct CHUNK_IEND {
+    uint32 length = { 0 };
+    char chunk_type[4] = { "IEND" };
+    uint32 crc;
+};
+
+struct CHUNK_tRNS {
+    uint32 length <min=1, max=256>;
+    char chunk_type[4] = { "tRNS" };
+    ubyte alpha_data[length];
+    uint32 crc;
+};
+
+struct CHUNK_cHRM {
+    uint32 length = { 32 };
+    char chunk_type[4] = { "cHRM" };
+    uint32 white_point_x;
+    uint32 white_point_y;
+    uint32 red_x;
+    uint32 red_y;
+    uint32 green_x;
+    uint32 green_y;
+    uint32 blue_x;
+    uint32 blue_y;
+    uint32 crc;
+};
+
+struct CHUNK_gAMA {
+    uint32 length = { 4 };
+    char chunk_type[4] = { "gAMA" };
+    uint32 gamma;
+    uint32 crc;
+};
+
+struct CHUNK_iCCP {
+    uint32 length <min=5, max=512>;
+    char chunk_type[4] = { "iCCP" };
+    // profile name (variable) + null + compression method + data
+    ubyte iccp_data[length];
+    uint32 crc;
+};
+
+struct CHUNK_sBIT {
+    uint32 length <min=1, max=4>;
+    char chunk_type[4] = { "sBIT" };
+    ubyte significant_bits[length];
+    uint32 crc;
+};
+
+struct CHUNK_sRGB {
+    uint32 length = { 1 };
+    char chunk_type[4] = { "sRGB" };
+    ubyte rendering_intent <min=0, max=3>;
+    uint32 crc;
+};
+
+struct CHUNK_cICP {
+    uint32 length = { 4 };
+    char chunk_type[4] = { "cICP" };
+    ubyte color_primaries;
+    ubyte transfer_function;
+    ubyte matrix_coefficients = { 0 };
+    ubyte video_full_range_flag = { 1 };
+    uint32 crc;
+};
+
+struct CHUNK_tEXt {
+    uint32 length <min=2, max=256>;
+    char chunk_type[4] = { "tEXt" };
+    ubyte text_data[length];
+    uint32 crc;
+};
+
+struct CHUNK_zTXt {
+    uint32 length <min=3, max=512>;
+    char chunk_type[4] = { "zTXt" };
+    ubyte ztxt_data[length];
+    uint32 crc;
+};
+
+struct CHUNK_iTXt {
+    uint32 length <min=6, max=512>;
+    char chunk_type[4] = { "iTXt" };
+    ubyte itxt_data[length];
+    uint32 crc;
+};
+
+struct CHUNK_bKGD {
+    uint32 length <min=1, max=6>;
+    char chunk_type[4] = { "bKGD" };
+    ubyte bkgd_data[length];
+    uint32 crc;
+};
+
+struct CHUNK_hIST {
+    uint32 length <min=2, max=512>;
+    char chunk_type[4] = { "hIST" };
+    ubyte hist_data[length];
+    uint32 crc;
+};
+
+struct CHUNK_pHYs {
+    uint32 length = { 9 };
+    char chunk_type[4] = { "pHYs" };
+    uint32 pixels_per_unit_x;
+    uint32 pixels_per_unit_y;
+    ubyte unit_specifier <min=0, max=1>;
+    uint32 crc;
+};
+
+struct CHUNK_sPLT {
+    uint32 length <min=3, max=512>;
+    char chunk_type[4] = { "sPLT" };
+    ubyte splt_data[length];
+    uint32 crc;
+};
+
+struct CHUNK_eXIf {
+    uint32 length <min=8, max=1024>;
+    char chunk_type[4] = { "eXIf" };
+    ubyte exif_data[length];
+    uint32 crc;
+};
+
+struct CHUNK_tIME {
+    uint32 length = { 7 };
+    char chunk_type[4] = { "tIME" };
+    uint16 year;
+    ubyte month <min=1, max=12>;
+    ubyte day <min=1, max=31>;
+    ubyte hour <min=0, max=23>;
+    ubyte minute <min=0, max=59>;
+    ubyte second <min=0, max=60>;
+    uint32 crc;
+};
+
+struct CHUNK_acTL {
+    uint32 length = { 8 };
+    char chunk_type[4] = { "acTL" };
+    uint32 num_frames <min=1, max=100>;
+    uint32 num_plays;
+    uint32 crc;
+};
+
+struct CHUNK_fcTL {
+    uint32 length = { 26 };
+    char chunk_type[4] = { "fcTL" };
+    uint32 sequence_number;
+    uint32 fc_width <min=1, max=1024>;
+    uint32 fc_height <min=1, max=1024>;
+    uint32 x_offset;
+    uint32 y_offset;
+    uint16 delay_num;
+    uint16 delay_den;
+    ubyte dispose_op <min=0, max=2>;
+    ubyte blend_op <min=0, max=1>;
+    uint32 crc;
+};
+
+struct CHUNK_fdAT {
+    uint32 length <min=5, max=512>;
+    char chunk_type[4] = { "fdAT" };
+    uint32 sequence_number;
+    local uint32 fd_size = length - 4;
+    if (fd_size > 0) {
+        ubyte frame_data[fd_size];
+    }
+    uint32 crc;
+};
+
+struct CHUNK_oFFs {
+    uint32 length = { 9 };
+    char chunk_type[4] = { "oFFs" };
+    int32 x_position;
+    int32 y_position;
+    ubyte unit_specifier <min=0, max=1>;
+    uint32 crc;
+};
+
+struct CHUNK_pCAL {
+    uint32 length <min=12, max=256>;
+    char chunk_type[4] = { "pCAL" };
+    ubyte pcal_data[length];
+    uint32 crc;
+};
+
+struct CHUNK_sCAL {
+    uint32 length <min=4, max=64>;
+    char chunk_type[4] = { "sCAL" };
+    ubyte scal_data[length];
+    uint32 crc;
+};
+
+struct CHUNK_sTER {
+    uint32 length = { 1 };
+    char chunk_type[4] = { "sTER" };
+    ubyte mode <min=0, max=1>;
+    uint32 crc;
+};
+
+struct CHUNK_dSIG {
+    uint32 length <min=1, max=512>;
+    char chunk_type[4] = { "dSIG" };
+    ubyte sig_data[length];
+    uint32 crc;
+};
+
+struct CHUNK_COM {
+    uint32 length <min=2, max=256>;
+    char chunk_type[4] = { "tEXt" };
+    ubyte comment_data[length];
+    uint32 crc;
+};
+
+// ============================================================
+// Top-Level PNG File Structure
+// ============================================================
+
+typedef struct {
+    // PNG signature
+    PNG_SIGNATURE signature;
+
+    // IHDR must be first chunk
+    CHUNK_IHDR ihdr;
+
+    // Optional chunks before IDAT
+    local char tag[4];
+    local string all_choices[] = {
+        "sRGB", "gAMA", "cHRM", "cICP", "iCCP", "sBIT",
+        "PLTE", "tRNS", "bKGD", "hIST",
+        "pHYs", "oFFs", "sTER",
+        "tEXt", "zTXt", "iTXt",
+        "tIME", "eXIf", "sPLT",
+        "acTL", "fcTL",
+        "pCAL", "sCAL", "dSIG"
+    };
+    local string preferred[] = { "sRGB", "gAMA", "PLTE", "pHYs", "tEXt" };
+
+    while (ReadBytes(tag, FTell() + 4, 4, preferred, all_choices)) {
+        switch (tag) {
+            case "sRGB": CHUNK_sRGB srgb;   all_choices -= "sRGB"; preferred -= "sRGB"; break;
+            case "gAMA": CHUNK_gAMA gama;   all_choices -= "gAMA"; preferred -= "gAMA"; break;
+            case "cHRM": CHUNK_cHRM chrm;   all_choices -= "cHRM"; break;
+            case "cICP": CHUNK_cICP cicp;   all_choices -= "cICP"; break;
+            case "iCCP": CHUNK_iCCP iccp;   all_choices -= "iCCP"; break;
+            case "sBIT": CHUNK_sBIT sbit;   all_choices -= "sBIT"; break;
+            case "PLTE": CHUNK_PLTE plte;   all_choices -= "PLTE"; preferred -= "PLTE"; break;
+            case "tRNS": CHUNK_tRNS trns;   all_choices -= "tRNS"; break;
+            case "bKGD": CHUNK_bKGD bkgd;   all_choices -= "bKGD"; break;
+            case "hIST": CHUNK_hIST hist;   all_choices -= "hIST"; break;
+            case "pHYs": CHUNK_pHYs phys;   all_choices -= "pHYs"; preferred -= "pHYs"; break;
+            case "oFFs": CHUNK_oFFs offs;   all_choices -= "oFFs"; break;
+            case "sTER": CHUNK_sTER ster;   all_choices -= "sTER"; break;
+            case "tEXt": CHUNK_tEXt text;   all_choices -= "tEXt"; preferred -= "tEXt"; break;
+            case "zTXt": CHUNK_zTXt ztxt;   all_choices -= "zTXt"; break;
+            case "iTXt": CHUNK_iTXt itxt;   all_choices -= "iTXt"; break;
+            case "tIME": CHUNK_tIME time;   all_choices -= "tIME"; break;
+            case "eXIf": CHUNK_eXIf exif;   all_choices -= "eXIf"; break;
+            case "sPLT": CHUNK_sPLT splt;   all_choices -= "sPLT"; break;
+            case "acTL": CHUNK_acTL actl;   all_choices -= "acTL"; break;
+            case "fcTL": CHUNK_fcTL fctl;   all_choices -= "fcTL"; break;
+            case "pCAL": CHUNK_pCAL pcal;   all_choices -= "pCAL"; break;
+            case "sCAL": CHUNK_sCAL scal;   all_choices -= "sCAL"; break;
+            case "dSIG": CHUNK_dSIG dsig;   all_choices -= "dSIG"; break;
+            default: break;
+        }
+    }
+
+    // IDAT (image data)
+    CHUNK_IDAT idat;
+
+    // IEND
+    CHUNK_IEND iend;
+
+} png_file;
+
+png_file file;

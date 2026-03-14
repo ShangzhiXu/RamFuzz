@@ -1,0 +1,119 @@
+// tiff_enhanced.bt - Comprehensive TIFF template
+LittleEndian();
+local string ReadBytesInitValues[] = { "II", "MM" };
+
+struct TIFF_IFD_ENTRY {
+    uint16 tag;
+    uint16 field_type <min=1, max=12>;
+    uint32 count <min=1, max=256>;
+    uint32 value_offset;
+};
+
+typedef struct {
+    // TIFF Header
+    char byte_order[2] = { "II" }; // Little-endian
+    uint16 magic = { 42 };
+    uint32 ifd_offset = { 8 };     // IFD right after header
+
+    // IFD0
+    uint16 entry_count <min=4, max=16>;
+
+    local int i;
+    local int real_count = entry_count;
+    if (real_count > 16) real_count = 16;
+
+    // Mandatory entries
+    // ImageWidth (tag 256)
+    uint16 t_width_tag = { 256 };
+    uint16 t_width_type = { 3 }; // SHORT
+    uint32 t_width_count = { 1 };
+    uint32 t_width_value <min=1, max=1024>;
+
+    // ImageLength (tag 257)
+    uint16 t_height_tag = { 257 };
+    uint16 t_height_type = { 3 };
+    uint32 t_height_count = { 1 };
+    uint32 t_height_value <min=1, max=1024>;
+
+    // BitsPerSample (tag 258)
+    uint16 t_bps_tag = { 258 };
+    uint16 t_bps_type = { 3 };
+    uint32 t_bps_count = { 1 };
+    uint32 t_bps_value = { 1, 4, 8, 16 };
+
+    // Compression (tag 259)
+    uint16 t_comp_tag = { 259 };
+    uint16 t_comp_type = { 3 };
+    uint32 t_comp_count = { 1 };
+    uint32 t_comp_value = { 1, 5, 6, 7, 8, 32773 };
+    // 1=None, 5=LZW, 6=OJPEG, 7=JPEG, 8=Deflate, 32773=PackBits
+
+    // PhotometricInterpretation (tag 262)
+    uint16 t_photo_tag = { 262 };
+    uint16 t_photo_type = { 3 };
+    uint32 t_photo_count = { 1 };
+    uint32 t_photo_value = { 0, 1, 2, 3, 5, 6, 8 };
+    // 0=WhiteIsZero, 1=BlackIsZero, 2=RGB, 3=Palette, 5=CMYK, 6=YCbCr, 8=CIELab
+
+    // StripOffsets (tag 273)
+    uint16 t_soff_tag = { 273 };
+    uint16 t_soff_type = { 4 }; // LONG
+    uint32 t_soff_count = { 1 };
+    uint32 t_soff_value;
+
+    // SamplesPerPixel (tag 277)
+    uint16 t_spp_tag = { 277 };
+    uint16 t_spp_type = { 3 };
+    uint32 t_spp_count = { 1 };
+    uint32 t_spp_value = { 1, 3, 4 };
+
+    // RowsPerStrip (tag 278)
+    uint16 t_rps_tag = { 278 };
+    uint16 t_rps_type = { 3 };
+    uint32 t_rps_count = { 1 };
+    uint32 t_rps_value;
+
+    // StripByteCounts (tag 279)
+    uint16 t_sbc_tag = { 279 };
+    uint16 t_sbc_type = { 4 };
+    uint32 t_sbc_count = { 1 };
+    uint32 t_sbc_value;
+
+    // XResolution (tag 282)
+    uint16 t_xres_tag = { 282 };
+    uint16 t_xres_type = { 5 }; // RATIONAL
+    uint32 t_xres_count = { 1 };
+    uint32 t_xres_offset;
+
+    // YResolution (tag 283)
+    uint16 t_yres_tag = { 283 };
+    uint16 t_yres_type = { 5 };
+    uint32 t_yres_count = { 1 };
+    uint32 t_yres_offset;
+
+    // ResolutionUnit (tag 296)
+    uint16 t_ru_tag = { 296 };
+    uint16 t_ru_type = { 3 };
+    uint32 t_ru_count = { 1 };
+    uint32 t_ru_value = { 1, 2, 3 };
+
+    // Additional optional entries
+    for (i = 0; i < real_count - 12; i++) {
+        TIFF_IFD_ENTRY extra_entry;
+    }
+
+    // Next IFD offset (0 = none)
+    uint32 next_ifd = { 0 };
+
+    // Resolution rational values (XRes=72/1, YRes=72/1)
+    uint32 xres_num = { 72 };
+    uint32 xres_den = { 1 };
+    uint32 yres_num = { 72 };
+    uint32 yres_den = { 1 };
+
+    // Strip data (image pixels)
+    ubyte strip_data[64];
+
+} tiff_file;
+
+tiff_file file;
