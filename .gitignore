@@ -25,21 +25,19 @@ __pycache__
 .cache
 .coverage
 
-# compilation
-*.o
-*.so
-*.dSYM
-*.cpp
-*-generator
-*-parser
-*-fuzzer
+# compilation (root level)
+/*.o
+/*.so
+/*.dSYM
+/*-generator
+/*-parser
+/*-fuzzer
 lextab.py
 yacctab.py
 
-# Whitelist: keep all enhanced artifacts
-!*_enhanced*.so
-!*_enhanced*.cpp
-!*_enhanced*-fuzzer
+# build/ directory: track enhanced, ignore the rest
+build/*
+!build/*_enhanced*
 
 # Automake etc.
 # Note: While "*.in" files ARE derived,
