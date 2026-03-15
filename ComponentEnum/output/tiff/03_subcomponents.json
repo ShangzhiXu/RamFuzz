@@ -1,0 +1,21 @@
+{
+  "TIFF_header": {"byte_order":"","magic_number":"","ifd_offset":""},
+  "IFD": {"entry_count":"","entries":"","next_ifd_offset":""},
+  "IFD_entry": {"tag":"","field_type":"","count":"","value_offset":""},
+  "strip_offsets": {"offsets":""},
+  "strip_byte_counts": {"counts":""},
+  "strip_data": {"data":""},
+  "tile_offsets": {"offsets":""},
+  "tile_byte_counts": {"counts":""},
+  "tile_data": {"data":""},
+  "color_map": {"red":"","green":"","blue":""},
+  "sub_IFD": {"entry_count":"","entries":"","next_ifd_offset":""},
+  "EXIF_IFD": {"entry_count":"","entries":""},
+  "GPS_IFD": {"entry_count":"","entries":""},
+  "ICC_profile": {"profile_data":""},
+  "XMP_data": {"xmp_xml":""},
+  "IPTC_data": {"iptc_datasets":""},
+  "GeoTIFF_keys": {"key_directory_version":"","key_revision":"","minor_revision":"","number_of_keys":"","key_entries":""},
+  "GeoTIFF_doubles": {"values":""},
+  "GeoTIFF_ascii": {"strings":""}
+}

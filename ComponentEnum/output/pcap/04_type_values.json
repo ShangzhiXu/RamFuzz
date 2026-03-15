@@ -1,0 +1,1020 @@
+{
+  "global_header.magic_number": {
+    "type": "uint32",
+    "values": {
+      "enum": [2712847316, 3569595041, 2712920141],
+      "labels": {
+        "2712847316": "0xA1B2C3D4 little-endian",
+        "3569595041": "0xD4C3B2A1 big-endian",
+        "2712920141": "0xA1B23C4D nanosecond resolution"
+      }
+    },
+    "immutable": true,
+    "description": "PCAP magic number identifying byte order and timestamp resolution"
+  },
+  "global_header.version_major": {
+    "type": "uint16",
+    "values": {
+      "discrete": [2]
+    },
+    "immutable": true,
+    "description": "PCAP major version, always 2"
+  },
+  "global_header.version_minor": {
+    "type": "uint16",
+    "values": {
+      "discrete": [4]
+    },
+    "immutable": true,
+    "description": "PCAP minor version, always 4"
+  },
+  "global_header.thiszone": {
+    "type": "int32",
+    "values": {
+      "discrete": [0]
+    },
+    "description": "GMT to local correction; typically 0"
+  },
+  "global_header.sigfigs": {
+    "type": "uint32",
+    "values": {
+      "discrete": [0]
+    },
+    "description": "Accuracy of timestamps; typically 0"
+  },
+  "global_header.snaplen": {
+    "type": "uint32",
+    "values": {
+      "discrete": [65535, 262144, 524288],
+      "labels": {
+        "65535": "Classic max snapshot length",
+        "262144": "Default tcpdump snaplen",
+        "524288": "Extended snaplen"
+      }
+    },
+    "description": "Max length of captured packets in octets"
+  },
+  "global_header.network": {
+    "type": "uint32",
+    "values": {
+      "enum": [1, 101, 113, 105, 127, 189, 195, 228, 229, 276],
+      "labels": {
+        "1": "LINKTYPE_ETHERNET",
+        "101": "LINKTYPE_RAW",
+        "113": "LINKTYPE_LINUX_SLL",
+        "105": "LINKTYPE_IEEE802_11",
+        "127": "LINKTYPE_IEEE802_11_RADIOTAP",
+        "189": "LINKTYPE_USB_LINUX",
+        "195": "LINKTYPE_IEEE802_15_4",
+        "228": "LINKTYPE_IPV4",
+        "229": "LINKTYPE_IPV6",
+        "276": "LINKTYPE_USB_LINUX_MMAPPED"
+      }
+    },
+    "description": "Link-layer header type"
+  },
+  "packet_header.ts_sec": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 4294967295]
+    },
+    "description": "Timestamp seconds since Unix epoch"
+  },
+  "packet_header.ts_usec": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 999999]
+    },
+    "description": "Timestamp microseconds (or nanoseconds if magic = 0xA1B23C4D)"
+  },
+  "packet_header.incl_len": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 262144]
+    },
+    "description": "Number of octets of packet saved in file; must be <= snaplen"
+  },
+  "packet_header.orig_len": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 262144]
+    },
+    "description": "Actual length of packet on the wire; >= incl_len"
+  },
+  "packet_data.raw_data": {
+    "type": "bytes",
+    "values": {
+      "range_length": [1, 65535]
+    },
+    "description": "Raw captured packet data, length equals packet_header.incl_len"
+  },
+  "ethernet_header.dst_mac": {
+    "type": "bytes",
+    "values": {
+      "fixed_length": 6,
+      "discrete": [
+        [255, 255, 255, 255, 255, 255],
+        [0, 0, 0, 0, 0, 0]
+      ],
+      "labels": {
+        "ff:ff:ff:ff:ff:ff": "Broadcast",
+        "00:00:00:00:00:00": "Zero/unspecified"
+      }
+    },
+    "description": "Destination MAC address (6 bytes)"
+  },
+  "ethernet_header.src_mac": {
+    "type": "bytes",
+    "values": {
+      "fixed_length": 6
+    },
+    "description": "Source MAC address (6 bytes)"
+  },
+  "ethernet_header.ether_type": {
+    "type": "uint16",
+    "values": {
+      "enum": [2048, 2054, 34525, 33024, 34958, 33079, 34915],
+      "labels": {
+        "2048": "0x0800 IPv4",
+        "2054": "0x0806 ARP",
+        "34525": "0x86DD IPv6",
+        "33024": "0x8100 VLAN (802.1Q)",
+        "34958": "0x886E EtherCAT",
+        "33079": "0x8137 IPX",
+        "34915": "0x8863 PPPoE Discovery"
+      }
+    },
+    "description": "EtherType field indicating encapsulated protocol"
+  },
+  "ipv4_header.version": {
+    "type": "uint4",
+    "values": {
+      "discrete": [4]
+    },
+    "immutable": true,
+    "description": "IP version, always 4 for IPv4"
+  },
+  "ipv4_header.ihl": {
+    "type": "uint4",
+    "values": {
+      "range": [5, 15],
+      "labels": {
+        "5": "20 bytes (no options)",
+        "15": "60 bytes (max options)"
+      }
+    },
+    "description": "Internet Header Length in 32-bit words"
+  },
+  "ipv4_header.dscp": {
+    "type": "uint6",
+    "values": {
+      "range": [0, 63],
+      "labels": {
+        "0": "Default/Best Effort",
+        "46": "Expedited Forwarding (EF)",
+        "34": "Assured Forwarding AF41",
+        "26": "Assured Forwarding AF31",
+        "18": "Assured Forwarding AF21",
+        "10": "Assured Forwarding AF11"
+      }
+    },
+    "description": "Differentiated Services Code Point"
+  },
+  "ipv4_header.ecn": {
+    "type": "uint2",
+    "values": {
+      "enum": [0, 1, 2, 3],
+      "labels": {
+        "0": "Not ECN-Capable",
+        "1": "ECT(1)",
+        "2": "ECT(0)",
+        "3": "Congestion Experienced (CE)"
+      }
+    },
+    "description": "Explicit Congestion Notification"
+  },
+  "ipv4_header.total_length": {
+    "type": "uint16",
+    "values": {
+      "range": [20, 65535]
+    },
+    "description": "Total packet length in bytes including header and data"
+  },
+  "ipv4_header.identification": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "Identification field for fragment reassembly"
+  },
+  "ipv4_header.flags": {
+    "type": "uint3",
+    "values": {
+      "enum": [0, 2, 4],
+      "labels": {
+        "0": "No flags set",
+        "2": "Don't Fragment (DF)",
+        "4": "More Fragments (MF)"
+      }
+    },
+    "description": "Fragmentation flags: bit0=Reserved, bit1=DF, bit2=MF"
+  },
+  "ipv4_header.fragment_offset": {
+    "type": "uint13",
+    "values": {
+      "range": [0, 8191]
+    },
+    "description": "Fragment offset in units of 8 bytes"
+  },
+  "ipv4_header.ttl": {
+    "type": "uint8",
+    "values": {
+      "range": [1, 255],
+      "common": [64, 128, 255],
+      "labels": {
+        "64": "Linux/macOS default",
+        "128": "Windows default",
+        "255": "Maximum TTL"
+      }
+    },
+    "description": "Time to Live"
+  },
+  "ipv4_header.protocol": {
+    "type": "uint8",
+    "values": {
+      "enum": [1, 2, 6, 17, 41, 47, 50, 51, 58, 89, 132],
+      "labels": {
+        "1": "ICMP",
+        "2": "IGMP",
+        "6": "TCP",
+        "17": "UDP",
+        "41": "IPv6 encapsulation",
+        "47": "GRE",
+        "50": "ESP",
+        "51": "AH",
+        "58": "ICMPv6",
+        "89": "OSPF",
+        "132": "SCTP"
+      }
+    },
+    "description": "Protocol of encapsulated payload"
+  },
+  "ipv4_header.header_checksum": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "One's complement checksum of the IP header"
+  },
+  "ipv4_header.src_ip": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 4294967295],
+      "examples": ["192.168.1.1", "10.0.0.1", "172.16.0.1", "127.0.0.1"]
+    },
+    "description": "Source IPv4 address (4 bytes, network byte order)"
+  },
+  "ipv4_header.dst_ip": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 4294967295],
+      "examples": ["192.168.1.1", "10.0.0.1", "255.255.255.255", "8.8.8.8"]
+    },
+    "description": "Destination IPv4 address (4 bytes, network byte order)"
+  },
+  "ipv4_header.options": {
+    "type": "bytes",
+    "values": {
+      "range_length": [0, 40],
+      "description": "Variable-length options; present when IHL > 5; padded to 32-bit boundary"
+    },
+    "description": "IP options field, variable length"
+  },
+  "ipv6_header.version": {
+    "type": "uint4",
+    "values": {
+      "discrete": [6]
+    },
+    "immutable": true,
+    "description": "IP version, always 6 for IPv6"
+  },
+  "ipv6_header.traffic_class": {
+    "type": "uint8",
+    "values": {
+      "range": [0, 255]
+    },
+    "description": "Traffic class (DSCP + ECN)"
+  },
+  "ipv6_header.flow_label": {
+    "type": "uint20",
+    "values": {
+      "range": [0, 1048575]
+    },
+    "description": "Flow label for QoS handling"
+  },
+  "ipv6_header.payload_length": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "Length of payload in bytes (excluding the 40-byte header)"
+  },
+  "ipv6_header.next_header": {
+    "type": "uint8",
+    "values": {
+      "enum": [6, 17, 58, 43, 44, 50, 51, 59, 0],
+      "labels": {
+        "6": "TCP",
+        "17": "UDP",
+        "58": "ICMPv6",
+        "43": "Routing Header",
+        "44": "Fragment Header",
+        "50": "ESP",
+        "51": "AH",
+        "59": "No Next Header",
+        "0": "Hop-by-Hop Options"
+      }
+    },
+    "description": "Identifies the next header type"
+  },
+  "ipv6_header.hop_limit": {
+    "type": "uint8",
+    "values": {
+      "range": [1, 255],
+      "common": [64, 128, 255]
+    },
+    "description": "Hop limit (analogous to IPv4 TTL)"
+  },
+  "ipv6_header.src_ip": {
+    "type": "bytes",
+    "values": {
+      "fixed_length": 16,
+      "examples": ["::1", "fe80::1", "2001:db8::1"]
+    },
+    "description": "Source IPv6 address (16 bytes)"
+  },
+  "ipv6_header.dst_ip": {
+    "type": "bytes",
+    "values": {
+      "fixed_length": 16,
+      "examples": ["::1", "ff02::1", "2001:db8::1"]
+    },
+    "description": "Destination IPv6 address (16 bytes)"
+  },
+  "tcp_header.src_port": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535],
+      "common": [80, 443, 8080, 22, 21, 25, 53, 3306, 5432]
+    },
+    "description": "Source port number"
+  },
+  "tcp_header.dst_port": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535],
+      "common": [80, 443, 8080, 22, 21, 25, 53, 3306, 5432]
+    },
+    "description": "Destination port number"
+  },
+  "tcp_header.sequence_number": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 4294967295]
+    },
+    "description": "Sequence number"
+  },
+  "tcp_header.ack_number": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 4294967295]
+    },
+    "description": "Acknowledgment number (valid if ACK flag set)"
+  },
+  "tcp_header.data_offset": {
+    "type": "uint4",
+    "values": {
+      "range": [5, 15],
+      "labels": {
+        "5": "20 bytes (no options)",
+        "15": "60 bytes (max options)"
+      }
+    },
+    "description": "Data offset in 32-bit words; specifies TCP header size"
+  },
+  "tcp_header.reserved": {
+    "type": "uint3",
+    "values": {
+      "discrete": [0]
+    },
+    "description": "Reserved bits, must be zero"
+  },
+  "tcp_header.flags": {
+    "type": "uint9",
+    "values": {
+      "bitmask": true,
+      "bits": {
+        "0": "FIN",
+        "1": "SYN",
+        "2": "RST",
+        "3": "PSH",
+        "4": "ACK",
+        "5": "URG",
+        "6": "ECE",
+        "7": "CWR",
+        "8": "NS"
+      },
+      "common_combinations": {
+        "2": "SYN",
+        "18": "SYN+ACK",
+        "16": "ACK",
+        "24": "PSH+ACK",
+        "17": "FIN+ACK",
+        "4": "RST",
+        "20": "RST+ACK"
+      }
+    },
+    "description": "TCP flags (9 bits: NS, CWR, ECE, URG, ACK, PSH, RST, SYN, FIN)"
+  },
+  "tcp_header.window_size": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535],
+      "common": [8192, 16384, 29200, 65535]
+    },
+    "description": "Receive window size"
+  },
+  "tcp_header.checksum": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "TCP checksum over pseudo-header + TCP header + data"
+  },
+  "tcp_header.urgent_pointer": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "Urgent pointer (valid if URG flag set)"
+  },
+  "tcp_header.options": {
+    "type": "bytes",
+    "values": {
+      "range_length": [0, 40],
+      "common_options": {
+        "0": "End of Option List",
+        "1": "No-Operation (NOP)",
+        "2": "Maximum Segment Size (MSS)",
+        "3": "Window Scale",
+        "4": "SACK Permitted",
+        "5": "SACK",
+        "8": "Timestamps"
+      }
+    },
+    "description": "TCP options; present when data_offset > 5; padded to 32-bit boundary"
+  },
+  "udp_header.src_port": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535],
+      "common": [53, 67, 68, 123, 161, 500, 514, 5353]
+    },
+    "description": "Source port number"
+  },
+  "udp_header.dst_port": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535],
+      "common": [53, 67, 68, 123, 161, 500, 514, 5353]
+    },
+    "description": "Destination port number"
+  },
+  "udp_header.length": {
+    "type": "uint16",
+    "values": {
+      "range": [8, 65535]
+    },
+    "description": "Length of UDP header + data in bytes; minimum 8"
+  },
+  "udp_header.checksum": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "UDP checksum; 0 means no checksum computed"
+  },
+  "icmp_header.type": {
+    "type": "uint8",
+    "values": {
+      "enum": [0, 3, 4, 5, 8, 9, 10, 11, 12, 13, 14, 17, 18],
+      "labels": {
+        "0": "Echo Reply",
+        "3": "Destination Unreachable",
+        "4": "Source Quench",
+        "5": "Redirect",
+        "8": "Echo Request",
+        "9": "Router Advertisement",
+        "10": "Router Solicitation",
+        "11": "Time Exceeded",
+        "12": "Parameter Problem",
+        "13": "Timestamp Request",
+        "14": "Timestamp Reply",
+        "17": "Address Mask Request",
+        "18": "Address Mask Reply"
+      }
+    },
+    "description": "ICMP message type"
+  },
+  "icmp_header.code": {
+    "type": "uint8",
+    "values": {
+      "range": [0, 15],
+      "labels_type3": {
+        "0": "Net Unreachable",
+        "1": "Host Unreachable",
+        "2": "Protocol Unreachable",
+        "3": "Port Unreachable",
+        "4": "Fragmentation Needed and DF Set",
+        "5": "Source Route Failed",
+        "13": "Communication Administratively Prohibited"
+      },
+      "labels_type11": {
+        "0": "TTL Exceeded in Transit",
+        "1": "Fragment Reassembly Time Exceeded"
+      }
+    },
+    "description": "ICMP subtype code; meaning depends on type field"
+  },
+  "icmp_header.checksum": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "ICMP checksum over entire ICMP message"
+  },
+  "icmp_header.rest_of_header": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 4294967295],
+      "context": {
+        "echo": "identifier(16 bits) + sequence_number(16 bits)",
+        "dest_unreachable": "unused (must be 0) or next-hop MTU",
+        "redirect": "gateway IP address"
+      }
+    },
+    "description": "Remaining 4 bytes; interpretation depends on ICMP type"
+  },
+  "arp_header.hardware_type": {
+    "type": "uint16",
+    "values": {
+      "enum": [1, 6, 15, 20],
+      "labels": {
+        "1": "Ethernet (10Mb)",
+        "6": "IEEE 802 Networks",
+        "15": "Frame Relay",
+        "20": "Serial Line"
+      }
+    },
+    "description": "Hardware address type"
+  },
+  "arp_header.protocol_type": {
+    "type": "uint16",
+    "values": {
+      "enum": [2048],
+      "labels": {
+        "2048": "0x0800 IPv4"
+      }
+    },
+    "description": "Protocol address type (typically IPv4 = 0x0800)"
+  },
+  "arp_header.hardware_size": {
+    "type": "uint8",
+    "values": {
+      "discrete": [6],
+      "labels": {
+        "6": "Ethernet MAC address length"
+      }
+    },
+    "description": "Length of hardware address in bytes"
+  },
+  "arp_header.protocol_size": {
+    "type": "uint8",
+    "values": {
+      "discrete": [4],
+      "labels": {
+        "4": "IPv4 address length"
+      }
+    },
+    "description": "Length of protocol address in bytes"
+  },
+  "arp_header.opcode": {
+    "type": "uint16",
+    "values": {
+      "enum": [1, 2, 3, 4],
+      "labels": {
+        "1": "ARP Request",
+        "2": "ARP Reply",
+        "3": "RARP Request",
+        "4": "RARP Reply"
+      }
+    },
+    "description": "ARP operation code"
+  },
+  "arp_header.sender_mac": {
+    "type": "bytes",
+    "values": {
+      "fixed_length": 6
+    },
+    "description": "Sender hardware (MAC) address (6 bytes)"
+  },
+  "arp_header.sender_ip": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 4294967295],
+      "examples": ["192.168.1.1", "10.0.0.1"]
+    },
+    "description": "Sender protocol (IPv4) address"
+  },
+  "arp_header.target_mac": {
+    "type": "bytes",
+    "values": {
+      "fixed_length": 6,
+      "discrete": [
+        [0, 0, 0, 0, 0, 0],
+        [255, 255, 255, 255, 255, 255]
+      ],
+      "labels": {
+        "00:00:00:00:00:00": "Unknown target (ARP Request)",
+        "ff:ff:ff:ff:ff:ff": "Broadcast"
+      }
+    },
+    "description": "Target hardware (MAC) address (6 bytes)"
+  },
+  "arp_header.target_ip": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 4294967295],
+      "examples": ["192.168.1.2", "10.0.0.2"]
+    },
+    "description": "Target protocol (IPv4) address"
+  },
+  "dns_header.transaction_id": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "Identifier for matching requests/responses"
+  },
+  "dns_header.flags": {
+    "type": "uint16",
+    "values": {
+      "bitmask": true,
+      "bits": {
+        "15": "QR (0=Query, 1=Response)",
+        "11-14": "Opcode (0=Standard, 1=Inverse, 2=Status)",
+        "10": "AA (Authoritative Answer)",
+        "9": "TC (Truncated)",
+        "8": "RD (Recursion Desired)",
+        "7": "RA (Recursion Available)",
+        "4-6": "Z (Reserved)",
+        "0-3": "RCODE (0=No error, 2=SERVFAIL, 3=NXDOMAIN, 5=REFUSED)"
+      },
+      "common_combinations": {
+        "256": "0x0100 Standard query with RD",
+        "33152": "0x8180 Standard response, no error, RD+RA",
+        "33155": "0x8183 Standard response, NXDOMAIN"
+      }
+    },
+    "description": "DNS flags and codes"
+  },
+  "dns_header.questions": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535],
+      "common": [1]
+    },
+    "description": "Number of entries in the question section"
+  },
+  "dns_header.answer_rrs": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "Number of resource records in the answer section"
+  },
+  "dns_header.authority_rrs": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "Number of resource records in the authority section"
+  },
+  "dns_header.additional_rrs": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "Number of resource records in the additional section"
+  },
+  "dns_question.qname": {
+    "type": "bytes",
+    "values": {
+      "range_length": [2, 255],
+      "encoding": "DNS label encoding (length-prefixed labels terminated by 0x00)"
+    },
+    "description": "Query domain name in DNS label format"
+  },
+  "dns_question.qtype": {
+    "type": "uint16",
+    "values": {
+      "enum": [1, 2, 5, 6, 12, 15, 16, 28, 33, 255, 257],
+      "labels": {
+        "1": "A (IPv4 address)",
+        "2": "NS (name server)",
+        "5": "CNAME (canonical name)",
+        "6": "SOA (start of authority)",
+        "12": "PTR (pointer)",
+        "15": "MX (mail exchange)",
+        "16": "TXT (text)",
+        "28": "AAAA (IPv6 address)",
+        "33": "SRV (service locator)",
+        "255": "ANY (all records)",
+        "257": "CAA (certification authority authorization)"
+      }
+    },
+    "description": "DNS query type"
+  },
+  "dns_question.qclass": {
+    "type": "uint16",
+    "values": {
+      "enum": [1, 3, 4, 254, 255],
+      "labels": {
+        "1": "IN (Internet)",
+        "3": "CH (Chaos)",
+        "4": "HS (Hesiod)",
+        "254": "NONE",
+        "255": "ANY"
+      }
+    },
+    "description": "DNS query class"
+  },
+  "dns_answer.name": {
+    "type": "bytes",
+    "values": {
+      "range_length": [2, 255],
+      "encoding": "DNS label encoding or compression pointer (0xC0xx)"
+    },
+    "description": "Resource record name in DNS label format or compressed"
+  },
+  "dns_answer.type": {
+    "type": "uint16",
+    "values": {
+      "enum": [1, 2, 5, 6, 12, 15, 16, 28, 33],
+      "labels": {
+        "1": "A (IPv4 address)",
+        "2": "NS (name server)",
+        "5": "CNAME (canonical name)",
+        "6": "SOA (start of authority)",
+        "12": "PTR (pointer)",
+        "15": "MX (mail exchange)",
+        "16": "TXT (text)",
+        "28": "AAAA (IPv6 address)",
+        "33": "SRV (service locator)"
+      }
+    },
+    "description": "DNS resource record type"
+  },
+  "dns_answer.class": {
+    "type": "uint16",
+    "values": {
+      "enum": [1],
+      "labels": {
+        "1": "IN (Internet)"
+      }
+    },
+    "description": "DNS resource record class"
+  },
+  "dns_answer.ttl": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 2147483647],
+      "common": [300, 3600, 86400]
+    },
+    "description": "Time to live in seconds"
+  },
+  "dns_answer.data_length": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "Length of the RDATA field in bytes"
+  },
+  "dns_answer.rdata": {
+    "type": "bytes",
+    "values": {
+      "range_length": [0, 65535],
+      "context": {
+        "A": "4 bytes (IPv4 address)",
+        "AAAA": "16 bytes (IPv6 address)",
+        "CNAME": "DNS-encoded domain name",
+        "MX": "2-byte preference + DNS-encoded domain name",
+        "NS": "DNS-encoded domain name",
+        "TXT": "length-prefixed text strings",
+        "SRV": "priority(2) + weight(2) + port(2) + target domain"
+      }
+    },
+    "description": "Resource record data; format depends on record type"
+  },
+  "pcapng_section_header.block_type": {
+    "type": "uint32",
+    "values": {
+      "discrete": [168627466],
+      "labels": {
+        "168627466": "0x0A0D0D0A Section Header Block"
+      }
+    },
+    "immutable": true,
+    "description": "Section Header Block type identifier"
+  },
+  "pcapng_section_header.block_total_length": {
+    "type": "uint32",
+    "values": {
+      "range": [28, 4294967295]
+    },
+    "description": "Total length of this block in bytes"
+  },
+  "pcapng_section_header.byte_order_magic": {
+    "type": "uint32",
+    "values": {
+      "discrete": [439041101],
+      "labels": {
+        "439041101": "0x1A2B3C4D byte order magic"
+      }
+    },
+    "immutable": true,
+    "description": "Byte order magic for determining endianness"
+  },
+  "pcapng_section_header.major_version": {
+    "type": "uint16",
+    "values": {
+      "discrete": [1]
+    },
+    "immutable": true,
+    "description": "pcapng major version, currently 1"
+  },
+  "pcapng_section_header.minor_version": {
+    "type": "uint16",
+    "values": {
+      "discrete": [0]
+    },
+    "immutable": true,
+    "description": "pcapng minor version, currently 0"
+  },
+  "pcapng_section_header.section_length": {
+    "type": "int64",
+    "values": {
+      "discrete": [-1],
+      "labels": {
+        "-1": "Unspecified section length"
+      }
+    },
+    "description": "Section length; -1 means unspecified"
+  },
+  "pcapng_interface_desc.block_type": {
+    "type": "uint32",
+    "values": {
+      "discrete": [1],
+      "labels": {
+        "1": "0x00000001 Interface Description Block"
+      }
+    },
+    "immutable": true,
+    "description": "Interface Description Block type identifier"
+  },
+  "pcapng_interface_desc.block_total_length": {
+    "type": "uint32",
+    "values": {
+      "range": [20, 4294967295]
+    },
+    "description": "Total length of this block in bytes"
+  },
+  "pcapng_interface_desc.link_type": {
+    "type": "uint16",
+    "values": {
+      "enum": [1, 101, 113, 105, 127],
+      "labels": {
+        "1": "LINKTYPE_ETHERNET",
+        "101": "LINKTYPE_RAW",
+        "113": "LINKTYPE_LINUX_SLL",
+        "105": "LINKTYPE_IEEE802_11",
+        "127": "LINKTYPE_IEEE802_11_RADIOTAP"
+      }
+    },
+    "description": "Link-layer header type for this interface"
+  },
+  "pcapng_interface_desc.snap_len": {
+    "type": "uint32",
+    "values": {
+      "discrete": [0, 65535, 262144],
+      "labels": {
+        "0": "Unlimited/unspecified",
+        "65535": "Classic max snapshot length",
+        "262144": "Default tcpdump snaplen"
+      }
+    },
+    "description": "Maximum number of octets captured from each packet"
+  },
+  "pcapng_enhanced_packet.block_type": {
+    "type": "uint32",
+    "values": {
+      "discrete": [6],
+      "labels": {
+        "6": "0x00000006 Enhanced Packet Block"
+      }
+    },
+    "immutable": true,
+    "description": "Enhanced Packet Block type identifier"
+  },
+  "pcapng_enhanced_packet.block_total_length": {
+    "type": "uint32",
+    "values": {
+      "range": [32, 4294967295]
+    },
+    "description": "Total length of this block in bytes"
+  },
+  "pcapng_enhanced_packet.interface_id": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 4294967295]
+    },
+    "description": "Interface index this packet was captured on"
+  },
+  "pcapng_enhanced_packet.timestamp_high": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 4294967295]
+    },
+    "description": "Upper 32 bits of 64-bit timestamp"
+  },
+  "pcapng_enhanced_packet.timestamp_low": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 4294967295]
+    },
+    "description": "Lower 32 bits of 64-bit timestamp"
+  },
+  "pcapng_enhanced_packet.captured_len": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 262144]
+    },
+    "description": "Number of octets captured from the packet"
+  },
+  "pcapng_enhanced_packet.original_len": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 262144]
+    },
+    "description": "Actual length of the packet on the wire"
+  },
+  "pcapng_enhanced_packet.packet_data": {
+    "type": "bytes",
+    "values": {
+      "range_length": [0, 262144]
+    },
+    "description": "Captured packet data; length equals captured_len, padded to 32-bit boundary"
+  },
+  "pcapng_option.option_code": {
+    "type": "uint16",
+    "values": {
+      "enum": [0, 1, 2, 3, 4, 9, 11, 12, 13],
+      "labels": {
+        "0": "opt_endofopt (end of options)",
+        "1": "opt_comment",
+        "2": "shb_hardware (SHB only)",
+        "3": "shb_os (SHB only)",
+        "4": "shb_userappl (SHB only)",
+        "9": "if_tsresol (IDB only)",
+        "11": "if_filter (IDB only)",
+        "12": "if_os (IDB only)",
+        "13": "if_fcslen (IDB only)"
+      }
+    },
+    "description": "Option type code"
+  },
+  "pcapng_option.option_length": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "Length of option value in bytes"
+  },
+  "pcapng_option.option_value": {
+    "type": "bytes",
+    "values": {
+      "range_length": [0, 65535]
+    },
+    "description": "Option value; padded to 32-bit boundary in the file"
+  }
+}

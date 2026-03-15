@@ -1,0 +1,19 @@
+{
+  "global_header": "",
+  "packet_header": "",
+  "packet_data": "",
+  "ethernet_header": "",
+  "ipv4_header": "",
+  "ipv6_header": "",
+  "tcp_header": "",
+  "udp_header": "",
+  "icmp_header": "",
+  "arp_header": "",
+  "dns_header": "",
+  "dns_question": "",
+  "dns_answer": "",
+  "pcapng_section_header": "",
+  "pcapng_interface_desc": "",
+  "pcapng_enhanced_packet": "",
+  "pcapng_option": ""
+}

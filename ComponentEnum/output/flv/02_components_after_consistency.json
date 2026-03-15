@@ -1,0 +1,18 @@
+{
+  "FLV_header": "",
+  "previous_tag_size": "",
+  "audio_tag": "",
+  "video_tag": "",
+  "script_tag": "",
+  "audio_tag_header": "",
+  "video_tag_header": "",
+  "AAC_audio_data": "",
+  "AVC_video_data": "",
+  "script_data_object": "",
+  "script_data_value": "",
+  "script_data_string": "",
+  "script_data_ecma_array": "",
+  "script_data_date": "",
+  "onMetaData": "",
+  "FLV_tag": ""
+}

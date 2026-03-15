@@ -1,0 +1,1035 @@
+{
+  "PNG_signature.signature": {
+    "type": "bytes",
+    "values": {
+      "discrete": [137, 80, 78, 71, 13, 10, 26, 10]
+    },
+    "immutable": true,
+    "description": "8-byte PNG signature: 0x89504E470D0A1A0A"
+  },
+  "IHDR.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [13]
+    },
+    "immutable": true
+  },
+  "IHDR.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": ["IHDR"],
+      "constraints": { "max_length": 4 }
+    },
+    "immutable": true
+  },
+  "IHDR.width": {
+    "type": "uint32",
+    "values": {
+      "range": [1, 2147483647]
+    }
+  },
+  "IHDR.height": {
+    "type": "uint32",
+    "values": {
+      "range": [1, 2147483647]
+    }
+  },
+  "IHDR.bit_depth": {
+    "type": "uint8",
+    "values": {
+      "discrete": [1, 2, 4, 8, 16],
+      "constraints": {
+        "color_type_0": [1, 2, 4, 8, 16],
+        "color_type_2": [8, 16],
+        "color_type_3": [1, 2, 4, 8],
+        "color_type_4": [8, 16],
+        "color_type_6": [8, 16]
+      }
+    }
+  },
+  "IHDR.color_type": {
+    "type": "uint8",
+    "values": {
+      "enum": [0, 2, 3, 4, 6],
+      "labels": {
+        "0": "Grayscale",
+        "2": "Truecolor (RGB)",
+        "3": "Indexed-color (palette)",
+        "4": "Grayscale with alpha",
+        "6": "Truecolor with alpha (RGBA)"
+      }
+    }
+  },
+  "IHDR.compression_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [0]
+    },
+    "immutable": true,
+    "description": "Only deflate/inflate (method 0) is defined"
+  },
+  "IHDR.filter_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [0]
+    },
+    "immutable": true,
+    "description": "Only adaptive filtering (method 0) is defined"
+  },
+  "IHDR.interlace_method": {
+    "type": "uint8",
+    "values": {
+      "enum": [0, 1],
+      "labels": {
+        "0": "No interlace",
+        "1": "Adam7 interlace"
+      }
+    }
+  },
+  "IHDR.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 4294967295]
+    },
+    "description": "CRC-32 over chunk_type + chunk_data"
+  },
+  "PLTE.length": {
+    "type": "uint32",
+    "values": {
+      "range": [3, 768]
+    },
+    "description": "Must be divisible by 3, max 256 entries"
+  },
+  "PLTE.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["PLTE"] },
+    "immutable": true
+  },
+  "PLTE.entries": {
+    "type": "array",
+    "values": {
+      "constraints": {
+        "min_entries": 1,
+        "max_entries": 256
+      }
+    },
+    "description": "Array of RGB triplets"
+  },
+  "PLTE.red": {
+    "type": "uint8",
+    "values": { "range": [0, 255] }
+  },
+  "PLTE.green": {
+    "type": "uint8",
+    "values": { "range": [0, 255] }
+  },
+  "PLTE.blue": {
+    "type": "uint8",
+    "values": { "range": [0, 255] }
+  },
+  "PLTE.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "IDAT.length": {
+    "type": "uint32",
+    "values": {
+      "range": [1, 2147483647]
+    }
+  },
+  "IDAT.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["IDAT"] },
+    "immutable": true
+  },
+  "IDAT.compressed_data": {
+    "type": "bytes",
+    "values": {
+      "description": "Deflate-compressed filtered image data"
+    }
+  },
+  "IDAT.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "IEND.length": {
+    "type": "uint32",
+    "values": { "discrete": [0] },
+    "immutable": true
+  },
+  "IEND.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["IEND"] },
+    "immutable": true
+  },
+  "IEND.crc": {
+    "type": "uint32",
+    "values": {
+      "discrete": [2923585666]
+    },
+    "immutable": true,
+    "description": "CRC of 'IEND' = 0xAE426082"
+  },
+  "tRNS.length": {
+    "type": "uint32",
+    "values": { "range": [1, 256] }
+  },
+  "tRNS.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["tRNS"] },
+    "immutable": true
+  },
+  "tRNS.gray_sample_value": {
+    "type": "uint16",
+    "values": { "range": [0, 65535] },
+    "description": "For color type 0 (grayscale)"
+  },
+  "tRNS.red_sample_value": {
+    "type": "uint16",
+    "values": { "range": [0, 65535] },
+    "description": "For color type 2 (truecolor)"
+  },
+  "tRNS.green_sample_value": {
+    "type": "uint16",
+    "values": { "range": [0, 65535] }
+  },
+  "tRNS.blue_sample_value": {
+    "type": "uint16",
+    "values": { "range": [0, 65535] }
+  },
+  "tRNS.alpha_entries": {
+    "type": "array",
+    "values": {
+      "range": [0, 255],
+      "constraints": { "max_entries": 256 }
+    },
+    "description": "For color type 3 (indexed), one alpha per palette entry"
+  },
+  "tRNS.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "cHRM.length": {
+    "type": "uint32",
+    "values": { "discrete": [32] },
+    "immutable": true
+  },
+  "cHRM.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["cHRM"] },
+    "immutable": true
+  },
+  "cHRM.white_point_x": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] },
+    "description": "Fixed-point, divide by 100000 to get value"
+  },
+  "cHRM.white_point_y": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "cHRM.red_x": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "cHRM.red_y": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "cHRM.green_x": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "cHRM.green_y": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "cHRM.blue_x": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "cHRM.blue_y": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "cHRM.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "gAMA.length": {
+    "type": "uint32",
+    "values": { "discrete": [4] },
+    "immutable": true
+  },
+  "gAMA.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["gAMA"] },
+    "immutable": true
+  },
+  "gAMA.gamma": {
+    "type": "uint32",
+    "values": {
+      "range": [1, 4294967295],
+      "discrete": [45455, 100000, 220000]
+    },
+    "description": "Gamma * 100000; 45455 = 1/2.2 (sRGB), 100000 = 1.0"
+  },
+  "gAMA.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "iCCP.length": {
+    "type": "uint32",
+    "values": { "range": [3, 2147483647] }
+  },
+  "iCCP.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["iCCP"] },
+    "immutable": true
+  },
+  "iCCP.profile_name": {
+    "type": "string",
+    "values": {
+      "constraints": { "min_length": 1, "max_length": 79 }
+    },
+    "description": "Latin-1 string, 1-79 bytes"
+  },
+  "iCCP.null_separator": {
+    "type": "uint8",
+    "values": { "discrete": [0] },
+    "immutable": true
+  },
+  "iCCP.compression_method": {
+    "type": "uint8",
+    "values": { "discrete": [0] },
+    "immutable": true,
+    "description": "Only deflate (0) is defined"
+  },
+  "iCCP.compressed_profile": {
+    "type": "bytes",
+    "values": { "description": "Deflate-compressed ICC profile" }
+  },
+  "iCCP.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "sBIT.length": {
+    "type": "uint32",
+    "values": { "range": [1, 4] }
+  },
+  "sBIT.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["sBIT"] },
+    "immutable": true
+  },
+  "sBIT.significant_bits": {
+    "type": "array",
+    "values": {
+      "range": [1, 16],
+      "constraints": {
+        "length_grayscale": 1,
+        "length_rgb": 3,
+        "length_palette": 3,
+        "length_grayscale_alpha": 2,
+        "length_rgba": 4
+      }
+    }
+  },
+  "sBIT.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "sRGB.length": {
+    "type": "uint32",
+    "values": { "discrete": [1] },
+    "immutable": true
+  },
+  "sRGB.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["sRGB"] },
+    "immutable": true
+  },
+  "sRGB.rendering_intent": {
+    "type": "uint8",
+    "values": {
+      "enum": [0, 1, 2, 3],
+      "labels": {
+        "0": "Perceptual",
+        "1": "Relative colorimetric",
+        "2": "Saturation",
+        "3": "Absolute colorimetric"
+      }
+    }
+  },
+  "sRGB.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "cICP.length": {
+    "type": "uint32",
+    "values": { "discrete": [4] },
+    "immutable": true
+  },
+  "cICP.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["cICP"] },
+    "immutable": true
+  },
+  "cICP.color_primaries": {
+    "type": "uint8",
+    "values": {
+      "discrete": [1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 22],
+      "labels": {
+        "1": "BT.709 / sRGB",
+        "4": "BT.470M",
+        "5": "BT.601 (625)",
+        "6": "BT.601 (525)",
+        "7": "SMPTE 240M",
+        "8": "Generic film",
+        "9": "BT.2020",
+        "10": "XYZ",
+        "11": "SMPTE RP 431-2",
+        "12": "SMPTE EG 432-1 (P3)",
+        "22": "EBU Tech. 3213-E"
+      }
+    }
+  },
+  "cICP.transfer_function": {
+    "type": "uint8",
+    "values": {
+      "discrete": [1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+      "labels": {
+        "1": "BT.709",
+        "4": "BT.470M gamma 2.2",
+        "5": "BT.470BG gamma 2.8",
+        "6": "BT.601",
+        "7": "SMPTE 240M",
+        "8": "Linear",
+        "9": "Logarithmic (100:1)",
+        "10": "Logarithmic (316.2:1)",
+        "11": "IEC 61966-2-4",
+        "12": "BT.1361",
+        "13": "sRGB / IEC 61966-2-1",
+        "14": "BT.2020 (10-bit)",
+        "15": "BT.2020 (12-bit)",
+        "16": "SMPTE ST 2084 (PQ)",
+        "17": "SMPTE ST 428-1",
+        "18": "ARIB STD-B67 (HLG)"
+      }
+    }
+  },
+  "cICP.matrix_coefficients": {
+    "type": "uint8",
+    "values": {
+      "discrete": [0],
+      "description": "Must be 0 for PNG (identity matrix, RGB)"
+    }
+  },
+  "cICP.video_full_range_flag": {
+    "type": "uint8",
+    "values": {
+      "discrete": [1],
+      "description": "Must be 1 for PNG (full range)"
+    }
+  },
+  "cICP.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "tEXt.length": {
+    "type": "uint32",
+    "values": { "range": [2, 2147483647] }
+  },
+  "tEXt.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["tEXt"] },
+    "immutable": true
+  },
+  "tEXt.keyword": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Title", "Author", "Description", "Copyright", "Creation Time",
+        "Software", "Disclaimer", "Warning", "Source", "Comment"
+      ],
+      "constraints": { "min_length": 1, "max_length": 79 }
+    }
+  },
+  "tEXt.null_separator": {
+    "type": "uint8",
+    "values": { "discrete": [0] },
+    "immutable": true
+  },
+  "tEXt.text_string": {
+    "type": "string",
+    "values": {
+      "constraints": { "max_length": 2147483647 }
+    },
+    "description": "Latin-1 text"
+  },
+  "tEXt.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "zTXt.length": {
+    "type": "uint32",
+    "values": { "range": [3, 2147483647] }
+  },
+  "zTXt.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["zTXt"] },
+    "immutable": true
+  },
+  "zTXt.keyword": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Title", "Author", "Description", "Copyright", "Creation Time",
+        "Software", "Disclaimer", "Warning", "Source", "Comment"
+      ],
+      "constraints": { "min_length": 1, "max_length": 79 }
+    }
+  },
+  "zTXt.null_separator": {
+    "type": "uint8",
+    "values": { "discrete": [0] },
+    "immutable": true
+  },
+  "zTXt.compression_method": {
+    "type": "uint8",
+    "values": { "discrete": [0] },
+    "immutable": true
+  },
+  "zTXt.compressed_text": {
+    "type": "bytes",
+    "values": { "description": "Deflate-compressed Latin-1 text" }
+  },
+  "zTXt.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "iTXt.length": {
+    "type": "uint32",
+    "values": { "range": [6, 2147483647] }
+  },
+  "iTXt.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["iTXt"] },
+    "immutable": true
+  },
+  "iTXt.keyword": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Title", "Author", "Description", "Copyright", "Creation Time",
+        "Software", "Disclaimer", "Warning", "Source", "Comment",
+        "XML:com.adobe.xmp"
+      ],
+      "constraints": { "min_length": 1, "max_length": 79 }
+    }
+  },
+  "iTXt.null_separator": {
+    "type": "uint8",
+    "values": { "discrete": [0] },
+    "immutable": true
+  },
+  "iTXt.compression_flag": {
+    "type": "uint8",
+    "values": {
+      "enum": [0, 1],
+      "labels": { "0": "Uncompressed", "1": "Compressed" }
+    }
+  },
+  "iTXt.compression_method": {
+    "type": "uint8",
+    "values": { "discrete": [0] }
+  },
+  "iTXt.language_tag": {
+    "type": "string",
+    "values": {
+      "constraints": { "max_length": 255 }
+    },
+    "description": "RFC 3066 language tag, e.g. 'en', 'zh-Hans'"
+  },
+  "iTXt.null_separator2": {
+    "type": "uint8",
+    "values": { "discrete": [0] },
+    "immutable": true
+  },
+  "iTXt.translated_keyword": {
+    "type": "string",
+    "values": { "constraints": { "max_length": 255 } }
+  },
+  "iTXt.null_separator3": {
+    "type": "uint8",
+    "values": { "discrete": [0] },
+    "immutable": true
+  },
+  "iTXt.text": {
+    "type": "string",
+    "values": {
+      "constraints": { "max_length": 2147483647 }
+    },
+    "description": "UTF-8 text (or compressed UTF-8)"
+  },
+  "iTXt.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "bKGD.length": {
+    "type": "uint32",
+    "values": { "range": [1, 6] }
+  },
+  "bKGD.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["bKGD"] },
+    "immutable": true
+  },
+  "bKGD.gray_value": {
+    "type": "uint16",
+    "values": { "range": [0, 65535] },
+    "description": "For color type 0, 4"
+  },
+  "bKGD.red_value": {
+    "type": "uint16",
+    "values": { "range": [0, 65535] },
+    "description": "For color type 2, 6"
+  },
+  "bKGD.green_value": {
+    "type": "uint16",
+    "values": { "range": [0, 65535] }
+  },
+  "bKGD.blue_value": {
+    "type": "uint16",
+    "values": { "range": [0, 65535] }
+  },
+  "bKGD.palette_index": {
+    "type": "uint8",
+    "values": { "range": [0, 255] },
+    "description": "For color type 3"
+  },
+  "bKGD.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "hIST.length": {
+    "type": "uint32",
+    "values": { "range": [2, 512] }
+  },
+  "hIST.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["hIST"] },
+    "immutable": true
+  },
+  "hIST.frequencies": {
+    "type": "array",
+    "values": {
+      "range": [0, 65535],
+      "constraints": { "max_entries": 256 }
+    },
+    "description": "One uint16 per PLTE entry"
+  },
+  "hIST.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "pHYs.length": {
+    "type": "uint32",
+    "values": { "discrete": [9] },
+    "immutable": true
+  },
+  "pHYs.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["pHYs"] },
+    "immutable": true
+  },
+  "pHYs.pixels_per_unit_x": {
+    "type": "uint32",
+    "values": {
+      "range": [1, 4294967295],
+      "discrete": [2835, 3780, 7087, 11811]
+    },
+    "description": "Common: 2835=72dpi, 3780=96dpi, 7087=180dpi, 11811=300dpi"
+  },
+  "pHYs.pixels_per_unit_y": {
+    "type": "uint32",
+    "values": {
+      "range": [1, 4294967295],
+      "discrete": [2835, 3780, 7087, 11811]
+    }
+  },
+  "pHYs.unit_specifier": {
+    "type": "uint8",
+    "values": {
+      "enum": [0, 1],
+      "labels": {
+        "0": "Unit is unknown (aspect ratio only)",
+        "1": "Unit is metre"
+      }
+    }
+  },
+  "pHYs.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "sPLT.length": {
+    "type": "uint32",
+    "values": { "range": [3, 2147483647] }
+  },
+  "sPLT.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["sPLT"] },
+    "immutable": true
+  },
+  "sPLT.palette_name": {
+    "type": "string",
+    "values": { "constraints": { "min_length": 1, "max_length": 79 } }
+  },
+  "sPLT.null_separator": {
+    "type": "uint8",
+    "values": { "discrete": [0] },
+    "immutable": true
+  },
+  "sPLT.sample_depth": {
+    "type": "uint8",
+    "values": {
+      "enum": [8, 16]
+    }
+  },
+  "sPLT.entries": {
+    "type": "array",
+    "values": {
+      "description": "Each entry: 4 or 8 bytes RGBA + 2 bytes frequency"
+    }
+  },
+  "sPLT.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "eXIf.length": {
+    "type": "uint32",
+    "values": { "range": [2, 65535] }
+  },
+  "eXIf.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["eXIf"] },
+    "immutable": true
+  },
+  "eXIf.exif_data": {
+    "type": "bytes",
+    "values": { "description": "Raw Exif data (TIFF structure, same as JPEG APP1 Exif without the 'Exif\\0\\0' prefix)" }
+  },
+  "eXIf.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "tIME.length": {
+    "type": "uint32",
+    "values": { "discrete": [7] },
+    "immutable": true
+  },
+  "tIME.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["tIME"] },
+    "immutable": true
+  },
+  "tIME.year": {
+    "type": "uint16",
+    "values": { "range": [0, 65535] }
+  },
+  "tIME.month": {
+    "type": "uint8",
+    "values": { "range": [1, 12] }
+  },
+  "tIME.day": {
+    "type": "uint8",
+    "values": { "range": [1, 31] }
+  },
+  "tIME.hour": {
+    "type": "uint8",
+    "values": { "range": [0, 23] }
+  },
+  "tIME.minute": {
+    "type": "uint8",
+    "values": { "range": [0, 59] }
+  },
+  "tIME.second": {
+    "type": "uint8",
+    "values": { "range": [0, 60] },
+    "description": "60 for leap second"
+  },
+  "tIME.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "acTL.length": {
+    "type": "uint32",
+    "values": { "discrete": [8] },
+    "immutable": true
+  },
+  "acTL.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["acTL"] },
+    "immutable": true
+  },
+  "acTL.num_frames": {
+    "type": "uint32",
+    "values": { "range": [1, 4294967295] }
+  },
+  "acTL.num_plays": {
+    "type": "uint32",
+    "values": {
+      "range": [0, 4294967295]
+    },
+    "description": "0 = infinite loop"
+  },
+  "acTL.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "fcTL.length": {
+    "type": "uint32",
+    "values": { "discrete": [26] },
+    "immutable": true
+  },
+  "fcTL.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["fcTL"] },
+    "immutable": true
+  },
+  "fcTL.sequence_number": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "fcTL.width": {
+    "type": "uint32",
+    "values": { "range": [1, 2147483647] }
+  },
+  "fcTL.height": {
+    "type": "uint32",
+    "values": { "range": [1, 2147483647] }
+  },
+  "fcTL.x_offset": {
+    "type": "uint32",
+    "values": { "range": [0, 2147483647] }
+  },
+  "fcTL.y_offset": {
+    "type": "uint32",
+    "values": { "range": [0, 2147483647] }
+  },
+  "fcTL.delay_num": {
+    "type": "uint16",
+    "values": { "range": [0, 65535] },
+    "description": "Frame delay fraction numerator"
+  },
+  "fcTL.delay_den": {
+    "type": "uint16",
+    "values": {
+      "range": [0, 65535]
+    },
+    "description": "Frame delay fraction denominator; 0 = 100"
+  },
+  "fcTL.dispose_op": {
+    "type": "uint8",
+    "values": {
+      "enum": [0, 1, 2],
+      "labels": {
+        "0": "APNG_DISPOSE_OP_NONE",
+        "1": "APNG_DISPOSE_OP_BACKGROUND",
+        "2": "APNG_DISPOSE_OP_PREVIOUS"
+      }
+    }
+  },
+  "fcTL.blend_op": {
+    "type": "uint8",
+    "values": {
+      "enum": [0, 1],
+      "labels": {
+        "0": "APNG_BLEND_OP_SOURCE",
+        "1": "APNG_BLEND_OP_OVER"
+      }
+    }
+  },
+  "fcTL.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "fdAT.length": {
+    "type": "uint32",
+    "values": { "range": [5, 2147483647] }
+  },
+  "fdAT.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["fdAT"] },
+    "immutable": true
+  },
+  "fdAT.sequence_number": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "fdAT.frame_data": {
+    "type": "bytes",
+    "values": { "description": "Deflate-compressed frame image data" }
+  },
+  "fdAT.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "oFFs.length": {
+    "type": "uint32",
+    "values": { "discrete": [9] },
+    "immutable": true
+  },
+  "oFFs.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["oFFs"] },
+    "immutable": true
+  },
+  "oFFs.x_position": {
+    "type": "int32",
+    "values": { "range": [-2147483648, 2147483647] }
+  },
+  "oFFs.y_position": {
+    "type": "int32",
+    "values": { "range": [-2147483648, 2147483647] }
+  },
+  "oFFs.unit_specifier": {
+    "type": "uint8",
+    "values": {
+      "enum": [0, 1],
+      "labels": { "0": "Pixel", "1": "Micrometer" }
+    }
+  },
+  "oFFs.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "pCAL.length": {
+    "type": "uint32",
+    "values": { "range": [12, 2147483647] }
+  },
+  "pCAL.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["pCAL"] },
+    "immutable": true
+  },
+  "pCAL.calibration_name": {
+    "type": "string",
+    "values": { "constraints": { "min_length": 1, "max_length": 79 } }
+  },
+  "pCAL.null_separator": {
+    "type": "uint8",
+    "values": { "discrete": [0] },
+    "immutable": true
+  },
+  "pCAL.original_zero": {
+    "type": "int32",
+    "values": { "range": [-2147483648, 2147483647] }
+  },
+  "pCAL.original_max": {
+    "type": "int32",
+    "values": { "range": [-2147483648, 2147483647] }
+  },
+  "pCAL.equation_type": {
+    "type": "uint8",
+    "values": {
+      "enum": [0, 1, 2, 3],
+      "labels": {
+        "0": "Linear mapping",
+        "1": "Base-e exponential mapping",
+        "2": "Arbitrary-base exponential mapping",
+        "3": "Hyperbolic mapping"
+      }
+    }
+  },
+  "pCAL.num_parameters": {
+    "type": "uint8",
+    "values": { "range": [1, 255] }
+  },
+  "pCAL.unit_name": {
+    "type": "string",
+    "values": { "constraints": { "max_length": 79 } }
+  },
+  "pCAL.parameters": {
+    "type": "array",
+    "values": { "description": "Null-separated ASCII float strings" }
+  },
+  "pCAL.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "sCAL.length": {
+    "type": "uint32",
+    "values": { "range": [4, 2147483647] }
+  },
+  "sCAL.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["sCAL"] },
+    "immutable": true
+  },
+  "sCAL.unit_specifier": {
+    "type": "uint8",
+    "values": {
+      "enum": [1, 2],
+      "labels": { "1": "Metre", "2": "Radian" }
+    }
+  },
+  "sCAL.pixel_width": {
+    "type": "string",
+    "values": { "description": "ASCII float, pixel width in physical units" }
+  },
+  "sCAL.null_separator": {
+    "type": "uint8",
+    "values": { "discrete": [0] },
+    "immutable": true
+  },
+  "sCAL.pixel_height": {
+    "type": "string",
+    "values": { "description": "ASCII float, pixel height in physical units" }
+  },
+  "sCAL.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "sTER.length": {
+    "type": "uint32",
+    "values": { "discrete": [1] },
+    "immutable": true
+  },
+  "sTER.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["sTER"] },
+    "immutable": true
+  },
+  "sTER.mode": {
+    "type": "uint8",
+    "values": {
+      "enum": [0, 1],
+      "labels": {
+        "0": "Cross-fuse layout",
+        "1": "Diverging-fuse layout"
+      }
+    }
+  },
+  "sTER.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  },
+  "dSIG.length": {
+    "type": "uint32",
+    "values": { "range": [1, 2147483647] }
+  },
+  "dSIG.chunk_type": {
+    "type": "string",
+    "values": { "enum": ["dSIG"] },
+    "immutable": true
+  },
+  "dSIG.signature_data": {
+    "type": "bytes",
+    "values": { "description": "Digital signature data" }
+  },
+  "dSIG.crc": {
+    "type": "uint32",
+    "values": { "range": [0, 4294967295] }
+  }
+}

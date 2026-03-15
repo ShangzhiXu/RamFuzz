@@ -1,0 +1,247 @@
+{
+  "PNG_signature": {
+    "signature": ""
+  },
+  "IHDR": {
+    "length": "",
+    "chunk_type": "",
+    "width": "",
+    "height": "",
+    "bit_depth": "",
+    "color_type": "",
+    "compression_method": "",
+    "filter_method": "",
+    "interlace_method": "",
+    "crc": ""
+  },
+  "PLTE": {
+    "length": "",
+    "chunk_type": "",
+    "entries": "",
+    "red": "",
+    "green": "",
+    "blue": "",
+    "crc": ""
+  },
+  "IDAT": {
+    "length": "",
+    "chunk_type": "",
+    "compressed_data": "",
+    "crc": ""
+  },
+  "IEND": {
+    "length": "",
+    "chunk_type": "",
+    "crc": ""
+  },
+  "tRNS": {
+    "length": "",
+    "chunk_type": "",
+    "gray_sample_value": "",
+    "red_sample_value": "",
+    "green_sample_value": "",
+    "blue_sample_value": "",
+    "alpha_entries": "",
+    "crc": ""
+  },
+  "cHRM": {
+    "length": "",
+    "chunk_type": "",
+    "white_point_x": "",
+    "white_point_y": "",
+    "red_x": "",
+    "red_y": "",
+    "green_x": "",
+    "green_y": "",
+    "blue_x": "",
+    "blue_y": "",
+    "crc": ""
+  },
+  "gAMA": {
+    "length": "",
+    "chunk_type": "",
+    "gamma": "",
+    "crc": ""
+  },
+  "iCCP": {
+    "length": "",
+    "chunk_type": "",
+    "profile_name": "",
+    "null_separator": "",
+    "compression_method": "",
+    "compressed_profile": "",
+    "crc": ""
+  },
+  "sBIT": {
+    "length": "",
+    "chunk_type": "",
+    "significant_bits": "",
+    "crc": ""
+  },
+  "sRGB": {
+    "length": "",
+    "chunk_type": "",
+    "rendering_intent": "",
+    "crc": ""
+  },
+  "cICP": {
+    "length": "",
+    "chunk_type": "",
+    "color_primaries": "",
+    "transfer_function": "",
+    "matrix_coefficients": "",
+    "video_full_range_flag": "",
+    "crc": ""
+  },
+  "tEXt": {
+    "length": "",
+    "chunk_type": "",
+    "keyword": "",
+    "null_separator": "",
+    "text_string": "",
+    "crc": ""
+  },
+  "zTXt": {
+    "length": "",
+    "chunk_type": "",
+    "keyword": "",
+    "null_separator": "",
+    "compression_method": "",
+    "compressed_text": "",
+    "crc": ""
+  },
+  "iTXt": {
+    "length": "",
+    "chunk_type": "",
+    "keyword": "",
+    "null_separator": "",
+    "compression_flag": "",
+    "compression_method": "",
+    "language_tag": "",
+    "null_separator2": "",
+    "translated_keyword": "",
+    "null_separator3": "",
+    "text": "",
+    "crc": ""
+  },
+  "bKGD": {
+    "length": "",
+    "chunk_type": "",
+    "gray_value": "",
+    "red_value": "",
+    "green_value": "",
+    "blue_value": "",
+    "palette_index": "",
+    "crc": ""
+  },
+  "hIST": {
+    "length": "",
+    "chunk_type": "",
+    "frequencies": "",
+    "crc": ""
+  },
+  "pHYs": {
+    "length": "",
+    "chunk_type": "",
+    "pixels_per_unit_x": "",
+    "pixels_per_unit_y": "",
+    "unit_specifier": "",
+    "crc": ""
+  },
+  "sPLT": {
+    "length": "",
+    "chunk_type": "",
+    "palette_name": "",
+    "null_separator": "",
+    "sample_depth": "",
+    "entries": "",
+    "crc": ""
+  },
+  "eXIf": {
+    "length": "",
+    "chunk_type": "",
+    "exif_data": "",
+    "crc": ""
+  },
+  "tIME": {
+    "length": "",
+    "chunk_type": "",
+    "year": "",
+    "month": "",
+    "day": "",
+    "hour": "",
+    "minute": "",
+    "second": "",
+    "crc": ""
+  },
+  "acTL": {
+    "length": "",
+    "chunk_type": "",
+    "num_frames": "",
+    "num_plays": "",
+    "crc": ""
+  },
+  "fcTL": {
+    "length": "",
+    "chunk_type": "",
+    "sequence_number": "",
+    "width": "",
+    "height": "",
+    "x_offset": "",
+    "y_offset": "",
+    "delay_num": "",
+    "delay_den": "",
+    "dispose_op": "",
+    "blend_op": "",
+    "crc": ""
+  },
+  "fdAT": {
+    "length": "",
+    "chunk_type": "",
+    "sequence_number": "",
+    "frame_data": "",
+    "crc": ""
+  },
+  "oFFs": {
+    "length": "",
+    "chunk_type": "",
+    "x_position": "",
+    "y_position": "",
+    "unit_specifier": "",
+    "crc": ""
+  },
+  "pCAL": {
+    "length": "",
+    "chunk_type": "",
+    "calibration_name": "",
+    "null_separator": "",
+    "original_zero": "",
+    "original_max": "",
+    "equation_type": "",
+    "num_parameters": "",
+    "unit_name": "",
+    "parameters": "",
+    "crc": ""
+  },
+  "sCAL": {
+    "length": "",
+    "chunk_type": "",
+    "unit_specifier": "",
+    "pixel_width": "",
+    "null_separator": "",
+    "pixel_height": "",
+    "crc": ""
+  },
+  "sTER": {
+    "length": "",
+    "chunk_type": "",
+    "mode": "",
+    "crc": ""
+  },
+  "dSIG": {
+    "length": "",
+    "chunk_type": "",
+    "signature_data": "",
+    "crc": ""
+  }
+}

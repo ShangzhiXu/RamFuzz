@@ -1,0 +1,20 @@
+{
+  "elf_header": "",
+  "program_header": "",
+  "section_header": "",
+  "symbol_table_entry": "",
+  "relocation_entry": "",
+  "dynamic_entry": "",
+  "note_header": "",
+  "string_table": "",
+  "hash_section": "",
+  "gnu_hash_section": "",
+  "interp_section": "",
+  "got_section": "",
+  "plt_section": "",
+  "init_array": "",
+  "fini_array": "",
+  "eh_frame": "",
+  "gnu_version": "",
+  "gnu_version_r": ""
+}
