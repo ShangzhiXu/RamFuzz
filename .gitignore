@@ -4,6 +4,9 @@ output.*
 
 # AFL
 afl_out*
+
+# ComponentEnum editors (auto-generated)
+ComponentEnum/output/*/editors/
 *.queue
 *.cur_input
 
