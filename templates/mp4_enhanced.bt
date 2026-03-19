@@ -1,5 +1,6 @@
 // Maximum number of child boxes generated per container
 #define MAX_CHILD_BOXES 25
+#define MAX_CHILD_BOXES_SMALL 8
 #define MAX_PADDING 4
 
 //------------------------------------------------
@@ -651,7 +652,8 @@ typedef struct
         case "ipco":
         case "mfra":
         case "meco":
-            while (FTell() < endOffset)
+            local int _clim1 = 0;
+            while (_clim1++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box box <name="Box">;
                 FSeek(box.endOffset);
@@ -1025,7 +1027,8 @@ typedef struct
         case "udta":
         {
             // Parse child boxes until end
-            while (FTell() < endOffset)
+            local int _clim2 = 0;
+            while (_clim2++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box box <name="Box">;
                 FSeek(box.endOffset);
@@ -1449,7 +1452,8 @@ typedef struct
             uint16 depth = {0x0018};
             int16 pre_defined3;
             // Child boxes (avcC, btrt, pasp, colr, clap, etc.)
-            while (FTell() < endOffset)
+            local int _clim3 = 0;
+            while (_clim3++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -1512,7 +1516,8 @@ typedef struct
             uint16 depth = {0x0018};
             int16 pre_defined3;
             // Child boxes (hvcC, btrt, pasp, colr, clap, etc.)
-            while (FTell() < endOffset)
+            local int _clim4 = 0;
+            while (_clim4++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -1572,7 +1577,8 @@ typedef struct
             byte compressorname[32];
             uint16 depth = {0x0018};
             int16 pre_defined3;
-            while (FTell() < endOffset)
+            local int _clim5 = 0;
+            while (_clim5++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -1618,7 +1624,8 @@ typedef struct
             byte compressorname[32];
             uint16 depth = {0x0018};
             int16 pre_defined3;
-            while (FTell() < endOffset)
+            local int _clim6 = 0;
+            while (_clim6++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -1659,7 +1666,8 @@ typedef struct
             byte compressorname[32];
             uint16 depth = {0x0018};
             int16 pre_defined3;
-            while (FTell() < endOffset)
+            local int _clim7 = 0;
+            while (_clim7++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -1684,7 +1692,8 @@ typedef struct
             byte compressorname[32];
             uint16 depth = {0x0018};
             int16 pre_defined3;
-            while (FTell() < endOffset)
+            local int _clim8 = 0;
+            while (_clim8++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -1760,7 +1769,8 @@ typedef struct
             uint16 reserved_3;
             uint32 samplerate; // 16.16 fixed point
             // Child boxes (esds, etc.)
-            while (FTell() < endOffset)
+            local int _clim9 = 0;
+            while (_clim9++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -1790,7 +1800,8 @@ typedef struct
             uint16 packet_size;
             uint32 samplerate;
             // Child boxes (dac3, etc.)
-            while (FTell() < endOffset)
+            local int _clim10 = 0;
+            while (_clim10++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -1809,7 +1820,8 @@ typedef struct
             uint16 compression_id;
             uint16 packet_size;
             uint32 samplerate;
-            while (FTell() < endOffset)
+            local int _clim11 = 0;
+            while (_clim11++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -1844,7 +1856,8 @@ typedef struct
             uint16 pre_defined;
             uint16 reserved_3;
             uint32 samplerate;
-            while (FTell() < endOffset)
+            local int _clim12 = 0;
+            while (_clim12++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -1866,7 +1879,8 @@ typedef struct
             uint16 compression_id;
             uint16 packet_size;
             uint32 samplerate;
-            while (FTell() < endOffset)
+            local int _clim13 = 0;
+            while (_clim13++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -1885,7 +1899,8 @@ typedef struct
             uint16 pre_defined;
             uint16 reserved_3;
             uint32 samplerate; // = 48000 << 16
-            while (FTell() < endOffset)
+            local int _clim14 = 0;
+            while (_clim14++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -1923,7 +1938,8 @@ typedef struct
             uint16 pre_defined;
             uint16 reserved_3;
             uint32 samplerate;
-            while (FTell() < endOffset)
+            local int _clim15 = 0;
+            while (_clim15++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -1957,7 +1973,8 @@ typedef struct
                 uint16 pre_defined;
                 uint16 reserved_3;
                 uint32 samplerate;
-                while (FTell() < endOffset)
+                local int _clim16 = 0;
+                while (_clim16++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
                 {
                     mp4box child_box;
                     FSeek(child_box.endOffset);
@@ -1990,7 +2007,8 @@ typedef struct
         // ---- wave ----
         case "wave":
         {
-            while (FTell() < endOffset)
+            local int _clim17 = 0;
+            while (_clim17++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -2009,7 +2027,8 @@ typedef struct
             uint16 pre_defined;
             uint16 reserved_3;
             uint32 samplerate;
-            while (FTell() < endOffset)
+            local int _clim18 = 0;
+            while (_clim18++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -2030,7 +2049,8 @@ typedef struct
         {
             byte reserved_1[6];
             uint16 data_reference_index = {1};
-            while (FTell() < endOffset)
+            local int _clim19 = 0;
+            while (_clim19++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -2050,7 +2070,8 @@ typedef struct
             string namespace_uri;
             string schema_location;
             string auxiliary_mime_types;
-            while (FTell() < endOffset)
+            local int _clim20 = 0;
+            while (_clim20++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -2080,7 +2101,8 @@ typedef struct
             byte font_size;
             byte text_color_rgba[4];
             // Optional child boxes (ftab)
-            while (FTell() < endOffset)
+            local int _clim21 = 0;
+            while (_clim21++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -2110,7 +2132,8 @@ typedef struct
         {
             byte reserved_1[6];
             uint16 data_reference_index = {1};
-            while (FTell() < endOffset)
+            local int _clim22 = 0;
+            while (_clim22++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -2125,7 +2148,8 @@ typedef struct
             uint16 data_reference_index = {1};
             string content_encoding;
             string mime_format;
-            while (FTell() < endOffset)
+            local int _clim23 = 0;
+            while (_clim23++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -2558,7 +2582,8 @@ typedef struct
         {
             byte version;
             byte flag[3];
-            while (FTell() < endOffset)
+            local int _clim24 = 0;
+            while (_clim24++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box ref_box;
                 FSeek(ref_box.endOffset);
@@ -2690,7 +2715,8 @@ typedef struct
         {
             byte version;
             byte flag[3];
-            while (FTell() < endOffset)
+            local int _clim25 = 0;
+            while (_clim25++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 struct {
                     uint32 rate;
@@ -2725,7 +2751,8 @@ typedef struct
             byte version;
             byte flag[3];
             uint32 track_ID;
-            while (FTell() < endOffset)
+            local int _clim26 = 0;
+            while (_clim26++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
@@ -2755,7 +2782,8 @@ typedef struct
         // ---- ilst (iTunes Metadata Item List) ----
         case "ilst":
         {
-            while (FTell() < endOffset)
+            local int _clim27 = 0;
+            while (_clim27++ < MAX_CHILD_BOXES_SMALL && FTell() < endOffset)
             {
                 mp4box child_box;
                 FSeek(child_box.endOffset);
