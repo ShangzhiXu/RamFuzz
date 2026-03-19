@@ -379,6 +379,12 @@ void violation_init(void) {
     initialized = 1;
 }
 
+int violation_should_collect(void) {
+    if (!initialized) violation_init();
+    if (!json_loaded || json_nfields <= 0) return 0;
+    return (randf() < VIOLATION_PROB) ? 1 : 0;
+}
+
 int violate_mp4_buffer(uint8_t *buf, uint32_t size) {
     if (!initialized) violation_init();
     check_verbose();
