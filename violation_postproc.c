@@ -133,9 +133,51 @@ static int path_to_json_key(const char *path, char *out, int maxlen) {
     memcpy(box_name, box_part, box_len);
     box_name[box_len] = '\0';
 
-    const char *field_part = parts[nparts - 1];
+    /* Pick the field name component after the box.
+       Path examples:
+         ...~mvhd_block~uint32_class~timescale   -> want "timescale"
+         ...~mvhd_block~fp32_class~rate           -> want "rate"
+         ...~mvhd_block~matrix~matrix_structure~fp32_class~a -> want "matrix_structure"
+       Strategy: scan from box_idx+1 forward. Skip components ending in _class
+       (type wrappers). The first non-_class component after the box is the field
+       name we want. If it's a struct type name (no _class, no _block), take the
+       NEXT component as the instance name (like matrix -> matrix_structure). */
+    int field_idx = nparts - 1; /* fallback */
+    for (int fi = box_idx + 1; fi < nparts; fi++) {
+        const char *fp = parts[fi];
+        const char *fe = (fi + 1 < nparts) ? parts[fi + 1] - 1 : path + strlen(path);
+        int flen = (int)(fe - fp);
+        int is_class = (flen > 6 && memcmp(fp + flen - 6, "_class", 6) == 0);
+        if (!is_class) {
+            /* This is either a direct field name (like "rate", "timescale")
+               or a struct type name (like "matrix"). If the next component
+               exists and is also not _class, use it (instance name). */
+            if (fi + 1 < nparts) {
+                const char *np = parts[fi + 1];
+                const char *ne = (fi + 2 < nparts) ? parts[fi + 2] - 1 : path + strlen(path);
+                int nlen = (int)(ne - np);
+                int next_is_class = (nlen > 6 && memcmp(np + nlen - 6, "_class", 6) == 0);
+                if (!next_is_class && fi + 2 < nparts) {
+                    /* struct type + instance name pattern: use instance name */
+                    field_idx = fi + 1;
+                } else {
+                    field_idx = fi;
+                }
+            } else {
+                field_idx = fi;
+            }
+            break;
+        } else if (fi + 1 < nparts) {
+            /* _class wrapper: take the next component */
+            field_idx = fi + 1;
+            break;
+        }
+    }
+    const char *field_part = parts[field_idx];
+    const char *field_end = (field_idx + 1 < nparts) ? parts[field_idx + 1] - 1 : path + strlen(path);
+    int field_len = (int)(field_end - field_part);
     char raw_key[128];
-    snprintf(raw_key, sizeof(raw_key), "%s.%s", box_name, field_part);
+    snprintf(raw_key, sizeof(raw_key), "%s.%.*s", box_name, field_len, field_part);
     json_normalize_key(raw_key, out, maxlen);
     return 0;
 }
