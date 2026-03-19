@@ -4,7 +4,6 @@ output.*
 
 # AFL
 afl_out*
-out*
 *.queue
 *.cur_input
 
