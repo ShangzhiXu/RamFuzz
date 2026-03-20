@@ -295,9 +295,21 @@ int json_read_fields(const char *path, json_field_t *fields, int max_fields) {
 }
 
 json_field_t *json_find_field(json_field_t *fields, int nfields, const char *norm_key) {
+    /* Exact match first */
     for (int i = 0; i < nfields; i++) {
         if (strcmp(fields[i].norm_key, norm_key) == 0)
             return &fields[i];
+    }
+    /* Fallback: match just the field part (after '.') of both keys.
+     * E.g. "file.entrycount" matches "ifd.entrycount" */
+    const char *query_dot = strchr(norm_key, '.');
+    if (query_dot) {
+        const char *query_field = query_dot + 1;
+        for (int i = 0; i < nfields; i++) {
+            const char *jdot = strchr(fields[i].norm_key, '.');
+            if (jdot && strcmp(jdot + 1, query_field) == 0)
+                return &fields[i];
+        }
     }
     return NULL;
 }

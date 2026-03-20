@@ -1,29 +1,100 @@
 {
   "GIF_header.signature": {
     "type": "string",
-    "values": { "enum": ["GIF"] },
+    "values": {
+      "enum": [
+        "GIF"
+      ]
+    },
+    "immutable": true,
+    "description": "Always 'GIF'"
+  },
+  "GIF_HEADER.signature": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "GIF"
+      ]
+    },
     "immutable": true,
     "description": "Always 'GIF'"
   },
   "GIF_header.version": {
     "type": "string",
     "values": {
-      "enum": ["87a", "89a"],
-      "labels": { "87a": "GIF87a", "89a": "GIF89a" }
+      "enum": [
+        "87a",
+        "89a"
+      ]
+    }
+  },
+  "GIF_HEADER.version": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "87a",
+        "89a"
+      ]
     }
   },
   "logical_screen_descriptor.width": {
     "type": "uint16",
-    "values": { "range": [1, 65535] }
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "LOGICAL_SCREEN_DESCRIPTOR.width": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
   },
   "logical_screen_descriptor.height": {
     "type": "uint16",
-    "values": { "range": [1, 65535] }
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "LOGICAL_SCREEN_DESCRIPTOR.height": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
   },
   "logical_screen_descriptor.packed_fields": {
     "type": "uint8",
     "values": {
-      "range": [0, 255],
+      "range": [
+        0,
+        255
+      ],
+      "bit_flags": {
+        "7": "global_color_table_flag",
+        "6-4": "color_resolution (0-7, actual = value+1)",
+        "3": "sort_flag",
+        "2-0": "global_color_table_size (0-7, entries = 2^(value+1))"
+      }
+    }
+  },
+  "LOGICAL_SCREEN_DESCRIPTOR.packed_fields": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ],
       "bit_flags": {
         "7": "global_color_table_flag",
         "6-4": "color_resolution (0-7, actual = value+1)",
@@ -34,79 +105,272 @@
   },
   "logical_screen_descriptor.global_color_table_flag": {
     "type": "uint1",
-    "values": { "discrete": [0, 1] }
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "LOGICAL_SCREEN_DESCRIPTOR.global_color_table_flag": {
+    "type": "uint1",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
   },
   "logical_screen_descriptor.color_resolution": {
     "type": "uint3",
-    "values": { "range": [0, 7] },
+    "values": {
+      "range": [
+        0,
+        7
+      ]
+    },
+    "description": "Number of bits per primary color minus 1"
+  },
+  "LOGICAL_SCREEN_DESCRIPTOR.color_resolution": {
+    "type": "uint3",
+    "values": {
+      "range": [
+        0,
+        7
+      ]
+    },
     "description": "Number of bits per primary color minus 1"
   },
   "logical_screen_descriptor.sort_flag": {
     "type": "uint1",
-    "values": { "discrete": [0, 1] },
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    },
+    "description": "If set, global color table is sorted by importance"
+  },
+  "LOGICAL_SCREEN_DESCRIPTOR.sort_flag": {
+    "type": "uint1",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    },
     "description": "If set, global color table is sorted by importance"
   },
   "logical_screen_descriptor.global_color_table_size": {
     "type": "uint3",
-    "values": { "range": [0, 7] },
+    "values": {
+      "range": [
+        0,
+        7
+      ]
+    },
+    "description": "Number of entries = 2^(value+1)"
+  },
+  "LOGICAL_SCREEN_DESCRIPTOR.global_color_table_size": {
+    "type": "uint3",
+    "values": {
+      "range": [
+        0,
+        7
+      ]
+    },
     "description": "Number of entries = 2^(value+1)"
   },
   "logical_screen_descriptor.background_color_index": {
     "type": "uint8",
-    "values": { "range": [0, 255] }
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "LOGICAL_SCREEN_DESCRIPTOR.background_color_index": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
   },
   "logical_screen_descriptor.pixel_aspect_ratio": {
     "type": "uint8",
     "values": {
-      "range": [0, 255]
+      "range": [
+        0,
+        255
+      ]
+    },
+    "description": "If non-zero, ratio = (value + 15) / 64"
+  },
+  "LOGICAL_SCREEN_DESCRIPTOR.pixel_aspect_ratio": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
     },
     "description": "If non-zero, ratio = (value + 15) / 64"
   },
   "global_color_table.entries": {
     "type": "array",
     "values": {
-      "constraints": { "min_entries": 2, "max_entries": 256 }
+      "constraints": {
+        "min_entries": 2,
+        "max_entries": 256
+      }
     },
     "description": "2^(global_color_table_size+1) RGB triplets"
   },
   "global_color_table.red": {
     "type": "uint8",
-    "values": { "range": [0, 255] }
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
   },
   "global_color_table.green": {
     "type": "uint8",
-    "values": { "range": [0, 255] }
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
   },
   "global_color_table.blue": {
     "type": "uint8",
-    "values": { "range": [0, 255] }
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
   },
   "image_descriptor.separator": {
     "type": "uint8",
-    "values": { "discrete": [44] },
+    "values": {
+      "discrete": [
+        44
+      ]
+    },
+    "immutable": true,
+    "description": "0x2C - Image separator"
+  },
+  "IMAGE_DESCRIPTOR.separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        44
+      ]
+    },
     "immutable": true,
     "description": "0x2C - Image separator"
   },
   "image_descriptor.left_position": {
     "type": "uint16",
-    "values": { "range": [0, 65535] }
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "IMAGE_DESCRIPTOR.left_position": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
   },
   "image_descriptor.top_position": {
     "type": "uint16",
-    "values": { "range": [0, 65535] }
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "IMAGE_DESCRIPTOR.top_position": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
   },
   "image_descriptor.width": {
     "type": "uint16",
-    "values": { "range": [1, 65535] }
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "IMAGE_DESCRIPTOR.width": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
   },
   "image_descriptor.height": {
     "type": "uint16",
-    "values": { "range": [1, 65535] }
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "IMAGE_DESCRIPTOR.height": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
   },
   "image_descriptor.packed_fields": {
     "type": "uint8",
     "values": {
-      "range": [0, 255],
+      "range": [
+        0,
+        255
+      ],
+      "bit_flags": {
+        "7": "local_color_table_flag",
+        "6": "interlace_flag",
+        "5": "sort_flag",
+        "4-3": "reserved",
+        "2-0": "local_color_table_size"
+      }
+    }
+  },
+  "IMAGE_DESCRIPTOR.packed_fields": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ],
       "bit_flags": {
         "7": "local_color_table_flag",
         "6": "interlace_flag",
@@ -118,68 +382,224 @@
   },
   "image_descriptor.local_color_table_flag": {
     "type": "uint1",
-    "values": { "discrete": [0, 1] }
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "IMAGE_DESCRIPTOR.local_color_table_flag": {
+    "type": "uint1",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
   },
   "image_descriptor.interlace_flag": {
     "type": "uint1",
-    "values": { "discrete": [0, 1] }
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "IMAGE_DESCRIPTOR.interlace_flag": {
+    "type": "uint1",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
   },
   "image_descriptor.sort_flag": {
     "type": "uint1",
-    "values": { "discrete": [0, 1] }
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "IMAGE_DESCRIPTOR.sort_flag": {
+    "type": "uint1",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
   },
   "image_descriptor.local_color_table_size": {
     "type": "uint3",
-    "values": { "range": [0, 7] }
+    "values": {
+      "range": [
+        0,
+        7
+      ]
+    }
+  },
+  "IMAGE_DESCRIPTOR.local_color_table_size": {
+    "type": "uint3",
+    "values": {
+      "range": [
+        0,
+        7
+      ]
+    }
   },
   "local_color_table.entries": {
     "type": "array",
-    "values": { "constraints": { "min_entries": 2, "max_entries": 256 } }
+    "values": {
+      "constraints": {
+        "min_entries": 2,
+        "max_entries": 256
+      }
+    }
   },
   "local_color_table.red": {
     "type": "uint8",
-    "values": { "range": [0, 255] }
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
   },
   "local_color_table.green": {
     "type": "uint8",
-    "values": { "range": [0, 255] }
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
   },
   "local_color_table.blue": {
     "type": "uint8",
-    "values": { "range": [0, 255] }
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
   },
   "image_data.lzw_minimum_code_size": {
     "type": "uint8",
     "values": {
-      "range": [2, 12]
+      "range": [
+        2,
+        12
+      ]
+    },
+    "description": "Minimum code size for LZW compression; typically equals color depth, min 2"
+  },
+  "IMAGE_DATA.lzw_minimum_code_size": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        2,
+        12
+      ]
     },
     "description": "Minimum code size for LZW compression; typically equals color depth, min 2"
   },
   "image_data.sub_blocks": {
     "type": "array",
-    "values": { "description": "Sequence of data sub-blocks containing LZW-compressed data" }
+    "values": {
+      "description": "Sequence of data sub-blocks containing LZW-compressed data"
+    }
+  },
+  "IMAGE_DATA.sub_blocks": {
+    "type": "array",
+    "values": {
+      "description": "Sequence of data sub-blocks containing LZW-compressed data"
+    }
   },
   "graphic_control_extension.introducer": {
     "type": "uint8",
-    "values": { "discrete": [33] },
+    "values": {
+      "discrete": [
+        33
+      ]
+    },
+    "immutable": true,
+    "description": "0x21 - Extension introducer"
+  },
+  "GRAPHIC_CONTROL_EXT.introducer": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        33
+      ]
+    },
     "immutable": true,
     "description": "0x21 - Extension introducer"
   },
   "graphic_control_extension.label": {
     "type": "uint8",
-    "values": { "discrete": [249] },
+    "values": {
+      "discrete": [
+        249
+      ]
+    },
+    "immutable": true,
+    "description": "0xF9 - Graphic control label"
+  },
+  "GRAPHIC_CONTROL_EXT.label": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        249
+      ]
+    },
     "immutable": true,
     "description": "0xF9 - Graphic control label"
   },
   "graphic_control_extension.block_size": {
     "type": "uint8",
-    "values": { "discrete": [4] },
+    "values": {
+      "discrete": [
+        4
+      ]
+    },
+    "immutable": true
+  },
+  "GRAPHIC_CONTROL_EXT.block_size": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        4
+      ]
+    },
     "immutable": true
   },
   "graphic_control_extension.packed_fields": {
     "type": "uint8",
     "values": {
-      "range": [0, 255],
+      "range": [
+        0,
+        255
+      ],
+      "bit_flags": {
+        "7-5": "reserved",
+        "4-2": "disposal_method",
+        "1": "user_input_flag",
+        "0": "transparent_color_flag"
+      }
+    }
+  },
+  "GRAPHIC_CONTROL_EXT.packed_fields": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ],
       "bit_flags": {
         "7-5": "reserved",
         "4-2": "disposal_method",
@@ -191,321 +611,798 @@
   "graphic_control_extension.disposal_method": {
     "type": "uint3",
     "values": {
-      "enum": [0, 1, 2, 3],
-      "labels": {
-        "0": "Not specified",
-        "1": "Do not dispose",
-        "2": "Restore to background",
-        "3": "Restore to previous"
-      }
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "GRAPHIC_CONTROL_EXT.disposal_method": {
+    "type": "uint3",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
     }
   },
   "graphic_control_extension.user_input_flag": {
     "type": "uint1",
-    "values": { "discrete": [0, 1] }
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "GRAPHIC_CONTROL_EXT.user_input_flag": {
+    "type": "uint1",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
   },
   "graphic_control_extension.transparent_color_flag": {
     "type": "uint1",
-    "values": { "discrete": [0, 1] }
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "GRAPHIC_CONTROL_EXT.transparent_color_flag": {
+    "type": "uint1",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
   },
   "graphic_control_extension.delay_time": {
     "type": "uint16",
     "values": {
-      "range": [0, 65535]
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "Delay in hundredths of a second"
+  },
+  "GRAPHIC_CONTROL_EXT.delay_time": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
     },
     "description": "Delay in hundredths of a second"
   },
   "graphic_control_extension.transparent_color_index": {
     "type": "uint8",
-    "values": { "range": [0, 255] }
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "GRAPHIC_CONTROL_EXT.transparent_color_index": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
   },
   "graphic_control_extension.block_terminator": {
     "type": "uint8",
-    "values": { "discrete": [0] },
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "GRAPHIC_CONTROL_EXT.block_terminator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
     "immutable": true
   },
   "comment_extension.introducer": {
     "type": "uint8",
-    "values": { "discrete": [33] },
+    "values": {
+      "discrete": [
+        33
+      ]
+    },
+    "immutable": true,
+    "description": "0x21"
+  },
+  "COMMENT_EXT.introducer": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        33
+      ]
+    },
     "immutable": true,
     "description": "0x21"
   },
   "comment_extension.label": {
     "type": "uint8",
-    "values": { "discrete": [254] },
+    "values": {
+      "discrete": [
+        254
+      ]
+    },
+    "immutable": true,
+    "description": "0xFE - Comment label"
+  },
+  "COMMENT_EXT.label": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        254
+      ]
+    },
     "immutable": true,
     "description": "0xFE - Comment label"
   },
   "comment_extension.comment_data": {
     "type": "string",
-    "values": { "constraints": { "max_length": 65535 } }
+    "values": {
+      "constraints": {
+        "max_length": 65535
+      }
+    }
+  },
+  "COMMENT_EXT.comment_data": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 65535
+      }
+    }
   },
   "comment_extension.block_terminator": {
     "type": "uint8",
-    "values": { "discrete": [0] },
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "COMMENT_EXT.block_terminator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
     "immutable": true
   },
   "plain_text_extension.introducer": {
     "type": "uint8",
-    "values": { "discrete": [33] },
+    "values": {
+      "discrete": [
+        33
+      ]
+    },
     "immutable": true
   },
   "plain_text_extension.label": {
     "type": "uint8",
-    "values": { "discrete": [1] },
+    "values": {
+      "discrete": [
+        1
+      ]
+    },
     "immutable": true,
     "description": "0x01 - Plain text label"
   },
   "plain_text_extension.block_size": {
     "type": "uint8",
-    "values": { "discrete": [12] },
+    "values": {
+      "discrete": [
+        12
+      ]
+    },
     "immutable": true
   },
   "plain_text_extension.text_grid_left": {
     "type": "uint16",
-    "values": { "range": [0, 65535] }
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
   },
   "plain_text_extension.text_grid_top": {
     "type": "uint16",
-    "values": { "range": [0, 65535] }
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
   },
   "plain_text_extension.text_grid_width": {
     "type": "uint16",
-    "values": { "range": [1, 65535] }
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
   },
   "plain_text_extension.text_grid_height": {
     "type": "uint16",
-    "values": { "range": [1, 65535] }
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
   },
   "plain_text_extension.cell_width": {
     "type": "uint8",
-    "values": { "range": [1, 255] }
+    "values": {
+      "range": [
+        1,
+        255
+      ]
+    }
   },
   "plain_text_extension.cell_height": {
     "type": "uint8",
-    "values": { "range": [1, 255] }
+    "values": {
+      "range": [
+        1,
+        255
+      ]
+    }
   },
   "plain_text_extension.foreground_color_index": {
     "type": "uint8",
-    "values": { "range": [0, 255] }
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
   },
   "plain_text_extension.background_color_index": {
     "type": "uint8",
-    "values": { "range": [0, 255] }
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
   },
   "plain_text_extension.plain_text_data": {
     "type": "string",
-    "values": { "description": "Sub-blocks of plain text data" }
+    "values": {
+      "description": "Sub-blocks of plain text data"
+    }
   },
   "plain_text_extension.block_terminator": {
     "type": "uint8",
-    "values": { "discrete": [0] },
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
     "immutable": true
   },
   "application_extension.introducer": {
     "type": "uint8",
-    "values": { "discrete": [33] },
+    "values": {
+      "discrete": [
+        33
+      ]
+    },
     "immutable": true
   },
   "application_extension.label": {
     "type": "uint8",
-    "values": { "discrete": [255] },
+    "values": {
+      "discrete": [
+        255
+      ]
+    },
     "immutable": true,
     "description": "0xFF - Application extension label"
   },
   "application_extension.block_size": {
     "type": "uint8",
-    "values": { "discrete": [11] },
+    "values": {
+      "discrete": [
+        11
+      ]
+    },
     "immutable": true
   },
   "application_extension.application_identifier": {
     "type": "string",
     "values": {
-      "constraints": { "max_length": 8 }
+      "constraints": {
+        "max_length": 8
+      }
     }
   },
   "application_extension.authentication_code": {
     "type": "string",
     "values": {
-      "constraints": { "max_length": 3 }
+      "constraints": {
+        "max_length": 3
+      }
     }
   },
   "application_extension.application_data": {
     "type": "bytes",
-    "values": { "description": "Application-specific data sub-blocks" }
+    "values": {
+      "description": "Application-specific data sub-blocks"
+    }
   },
   "application_extension.block_terminator": {
     "type": "uint8",
-    "values": { "discrete": [0] },
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
     "immutable": true
   },
   "application_extension_NETSCAPE.introducer": {
     "type": "uint8",
-    "values": { "discrete": [33] },
+    "values": {
+      "discrete": [
+        33
+      ]
+    },
     "immutable": true
   },
   "application_extension_NETSCAPE.label": {
     "type": "uint8",
-    "values": { "discrete": [255] },
+    "values": {
+      "discrete": [
+        255
+      ]
+    },
     "immutable": true
   },
   "application_extension_NETSCAPE.block_size": {
     "type": "uint8",
-    "values": { "discrete": [11] },
+    "values": {
+      "discrete": [
+        11
+      ]
+    },
     "immutable": true
   },
   "application_extension_NETSCAPE.application_identifier": {
     "type": "string",
-    "values": { "enum": ["NETSCAPE"] },
+    "values": {
+      "enum": [
+        "NETSCAPE"
+      ]
+    },
     "immutable": true
   },
   "application_extension_NETSCAPE.authentication_code": {
     "type": "string",
-    "values": { "enum": ["2.0"] },
+    "values": {
+      "enum": [
+        "2.0"
+      ]
+    },
     "immutable": true
   },
   "application_extension_NETSCAPE.sub_block_size": {
     "type": "uint8",
-    "values": { "discrete": [3] },
+    "values": {
+      "discrete": [
+        3
+      ]
+    },
     "immutable": true
   },
   "application_extension_NETSCAPE.sub_block_id": {
     "type": "uint8",
-    "values": { "discrete": [1] },
+    "values": {
+      "discrete": [
+        1
+      ]
+    },
     "immutable": true,
     "description": "1 = looping extension"
   },
   "application_extension_NETSCAPE.loop_count": {
     "type": "uint16",
     "values": {
-      "range": [0, 65535]
+      "range": [
+        0,
+        65535
+      ]
     },
     "description": "0 = infinite loop"
   },
   "application_extension_NETSCAPE.block_terminator": {
     "type": "uint8",
-    "values": { "discrete": [0] },
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
     "immutable": true
   },
   "application_extension_XMP.introducer": {
     "type": "uint8",
-    "values": { "discrete": [33] },
+    "values": {
+      "discrete": [
+        33
+      ]
+    },
     "immutable": true
   },
   "application_extension_XMP.label": {
     "type": "uint8",
-    "values": { "discrete": [255] },
+    "values": {
+      "discrete": [
+        255
+      ]
+    },
     "immutable": true
   },
   "application_extension_XMP.block_size": {
     "type": "uint8",
-    "values": { "discrete": [11] },
+    "values": {
+      "discrete": [
+        11
+      ]
+    },
     "immutable": true
   },
   "application_extension_XMP.application_identifier": {
     "type": "string",
-    "values": { "enum": ["XMP Data"] },
+    "values": {
+      "enum": [
+        "XMP Data"
+      ]
+    },
     "immutable": true
   },
   "application_extension_XMP.authentication_code": {
     "type": "string",
-    "values": { "enum": ["XMP"] },
+    "values": {
+      "enum": [
+        "XMP"
+      ]
+    },
     "immutable": true
   },
   "application_extension_XMP.xmp_data": {
     "type": "bytes",
-    "values": { "description": "XMP metadata in sub-blocks" }
+    "values": {
+      "description": "XMP metadata in sub-blocks"
+    }
   },
   "application_extension_XMP.block_terminator": {
     "type": "uint8",
-    "values": { "discrete": [0] },
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
     "immutable": true
   },
   "application_extension_ICCRGBG1012.introducer": {
     "type": "uint8",
-    "values": { "discrete": [33] },
+    "values": {
+      "discrete": [
+        33
+      ]
+    },
     "immutable": true
   },
   "application_extension_ICCRGBG1012.label": {
     "type": "uint8",
-    "values": { "discrete": [255] },
+    "values": {
+      "discrete": [
+        255
+      ]
+    },
     "immutable": true
   },
   "application_extension_ICCRGBG1012.block_size": {
     "type": "uint8",
-    "values": { "discrete": [11] },
+    "values": {
+      "discrete": [
+        11
+      ]
+    },
     "immutable": true
   },
   "application_extension_ICCRGBG1012.application_identifier": {
     "type": "string",
-    "values": { "enum": ["ICCRGBG1"] },
+    "values": {
+      "enum": [
+        "ICCRGBG1"
+      ]
+    },
     "immutable": true
   },
   "application_extension_ICCRGBG1012.authentication_code": {
     "type": "string",
-    "values": { "enum": ["012"] },
+    "values": {
+      "enum": [
+        "012"
+      ]
+    },
     "immutable": true
   },
   "application_extension_ICCRGBG1012.icc_profile_data": {
     "type": "bytes",
-    "values": { "description": "ICC color profile data in sub-blocks" }
+    "values": {
+      "description": "ICC color profile data in sub-blocks"
+    }
   },
   "application_extension_ICCRGBG1012.block_terminator": {
     "type": "uint8",
-    "values": { "discrete": [0] },
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
     "immutable": true
   },
   "application_extension_ANIMEXTS.introducer": {
     "type": "uint8",
-    "values": { "discrete": [33] },
+    "values": {
+      "discrete": [
+        33
+      ]
+    },
     "immutable": true
   },
   "application_extension_ANIMEXTS.label": {
     "type": "uint8",
-    "values": { "discrete": [255] },
+    "values": {
+      "discrete": [
+        255
+      ]
+    },
     "immutable": true
   },
   "application_extension_ANIMEXTS.block_size": {
     "type": "uint8",
-    "values": { "discrete": [11] },
+    "values": {
+      "discrete": [
+        11
+      ]
+    },
     "immutable": true
   },
   "application_extension_ANIMEXTS.application_identifier": {
     "type": "string",
-    "values": { "enum": ["ANIMEXTS"] },
+    "values": {
+      "enum": [
+        "ANIMEXTS"
+      ]
+    },
     "immutable": true
   },
   "application_extension_ANIMEXTS.authentication_code": {
     "type": "string",
-    "values": { "enum": ["1.0"] },
+    "values": {
+      "enum": [
+        "1.0"
+      ]
+    },
     "immutable": true
   },
   "application_extension_ANIMEXTS.animation_data": {
     "type": "bytes",
-    "values": { "description": "Animation extension data in sub-blocks" }
+    "values": {
+      "description": "Animation extension data in sub-blocks"
+    }
   },
   "application_extension_ANIMEXTS.block_terminator": {
     "type": "uint8",
-    "values": { "discrete": [0] },
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
     "immutable": true
   },
   "data_sub_block.size": {
     "type": "uint8",
     "values": {
-      "range": [1, 255]
+      "range": [
+        1,
+        255
+      ]
     },
     "description": "0 = block terminator"
   },
   "data_sub_block.data": {
     "type": "bytes",
     "values": {
-      "constraints": { "max_length": 255 }
+      "constraints": {
+        "max_length": 255
+      }
     }
   },
   "trailer.trailer_byte": {
     "type": "uint8",
-    "values": { "discrete": [59] },
+    "values": {
+      "discrete": [
+        59
+      ]
+    },
     "immutable": true,
     "description": "0x3B - GIF trailer"
+  },
+  "file.header": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "lsd.packed": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        15
+      ]
+    }
+  },
+  "file.lsd": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "gce.packed": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        15
+      ]
+    }
+  },
+  "file.gce": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.comment": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "netscape.app_id": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "netscape.auth_code": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "img_desc.img_width": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        4096
+      ]
+    }
+  },
+  "img_desc.img_height": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        4096
+      ]
+    }
+  },
+  "img_desc.packed": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        15
+      ]
+    }
+  },
+  "img_data.lzw_min_code_size": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        64
+      ]
+    }
+  },
+  "img_data.sub_block_data": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.img_data": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "trailer.trailer": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.trailer": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
   }
 }

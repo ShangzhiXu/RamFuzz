@@ -1326,7 +1326,7 @@ extern "C" void generate_random_file(unsigned char** file, unsigned* file_size) 
 
 	/* Apply violation using collected field positions */
 	if (*file && *file_size > 0)
-		violate_mp4_buffer(*file, *file_size);
+		violate_buffer(*file, *file_size);
 
 	/* Disable collection for next round */
 	g_num_collected = -1;
@@ -1732,7 +1732,7 @@ extern "C" int one_smart_mutation(int target_file_index, unsigned char** file, u
 
 	/* Parse output to collect field positions, then apply violation.
 	 * Only do the expensive ff_parse if violation_should_collect() says yes.
-	 * Always call violate_mp4_buffer so it can record coverage even on skipped rounds. */
+	 * Always call violate_buffer so it can record coverage even on skipped rounds. */
 	if (ret >= 0 && *file && *file_size > 0) {
 		if (violation_should_collect()) {
 			bool old_tree = get_parse_tree;
@@ -1749,11 +1749,11 @@ extern "C" int one_smart_mutation(int target_file_index, unsigned char** file, u
 			get_all_chunks = old_chunks;
 
 			if (parsed)
-				violate_mp4_buffer(*file, *file_size);
+				violate_buffer(*file, *file_size);
 			g_num_collected = -1;
 		} else {
 			/* Still call violate so it records coverage for this round */
-			violate_mp4_buffer(*file, *file_size);
+			violate_buffer(*file, *file_size);
 		}
 	}
 

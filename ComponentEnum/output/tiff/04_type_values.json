@@ -1,38 +1,486 @@
 {
-  "TIFF_header.byte_order": {"type":"string","values":{"enum":["II","MM"],"labels":{"II":"Little-endian (Intel)","MM":"Big-endian (Motorola)"}}},
-  "TIFF_header.magic_number": {"type":"uint16","values":{"discrete":[42]},"immutable":true},
-  "TIFF_header.ifd_offset": {"type":"uint32","values":{"range":[8,4294967295]}},
-  "IFD.entry_count": {"type":"uint16","values":{"range":[1,65535]}},
-  "IFD.entries": {"type":"array","values":{"description":"Array of IFD entries"}},
-  "IFD.next_ifd_offset": {"type":"uint32","values":{"range":[0,4294967295]},"description":"0 = no more IFDs"},
-  "IFD_entry.tag": {"type":"uint16","values":{"discrete":[254,255,256,257,258,259,262,263,264,265,266,269,270,271,272,273,274,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,296,297,300,301,305,306,315,316,317,318,319,320,321,322,323,324,325,326,327,330,332,333,334,336,337,338,339,340,341,342,343,347,512,513,514,515,529,530,531,532,559,700,33421,33422,33432,33434,33437,33550,33723,33920,33922,34377,34665,34675,34735,34736,34737,34850,34853,34855,34856,36864,36867,36868,37121,37122,37377,37378,37379,37380,37381,37383,37384,37385,37386,37396,37500,37510,40960,40961,40962,40963,41483,41484,41486,41487,41488,41492,41493,41495,41728,41729,41730,41985,41986,41987,41988,41989,41990,41991,41992,41993,41994,41995,41996,42016,42032,42033,42034,42035,42036,42037,42240,50706,50707,50708,50709,50710,50711,50712,50713,50714,50715,50716,50717,50718,50719,50720,50721,50727,50728,50729,50730,50731,50732,50733,50734,50735,50736,50737,50738,50739,50740,50741],"labels":{"254":"NewSubfileType","255":"SubfileType","256":"ImageWidth","257":"ImageLength","258":"BitsPerSample","259":"Compression","262":"PhotometricInterpretation","270":"ImageDescription","271":"Make","272":"Model","273":"StripOffsets","274":"Orientation","277":"SamplesPerPixel","278":"RowsPerStrip","279":"StripByteCounts","282":"XResolution","283":"YResolution","284":"PlanarConfiguration","296":"ResolutionUnit","305":"Software","306":"DateTime","315":"Artist","316":"HostComputer","317":"Predictor","318":"WhitePoint","319":"PrimaryChromaticities","320":"ColorMap","322":"TileWidth","323":"TileLength","324":"TileOffsets","325":"TileByteCounts","330":"SubIFDs","332":"InkSet","333":"InkNames","334":"NumberOfInks","338":"ExtraSamples","339":"SampleFormat","340":"SMinSampleValue","341":"SMaxSampleValue","347":"JPEGTables","529":"YCbCrCoefficients","530":"YCbCrSubSampling","531":"YCbCrPositioning","532":"ReferenceBlackWhite","700":"XMP","33421":"CFARepeatPatternDim","33422":"CFAPattern","33432":"Copyright","33550":"ModelPixelScaleTag","33723":"IPTC","33922":"ModelTiepointTag","34377":"Photoshop","34665":"ExifIFD","34675":"ICCProfile","34735":"GeoKeyDirectoryTag","34736":"GeoDoubleParamsTag","34737":"GeoAsciiParamsTag","34853":"GPSIFD"}}},
-  "IFD_entry.field_type": {"type":"uint16","values":{"enum":[1,2,3,4,5,6,7,8,9,10,11,12,13,16,17],"labels":{"1":"BYTE","2":"ASCII","3":"SHORT","4":"LONG","5":"RATIONAL","6":"SBYTE","7":"UNDEFINED","8":"SSHORT","9":"SLONG","10":"SRATIONAL","11":"FLOAT","12":"DOUBLE","13":"IFD","16":"LONG8 (BigTIFF)","17":"SLONG8 (BigTIFF)"}}},
-  "IFD_entry.count": {"type":"uint32","values":{"range":[1,4294967295]}},
-  "IFD_entry.value_offset": {"type":"uint32","values":{"range":[0,4294967295]},"description":"Value if <=4 bytes, else offset to value"},
-  "strip_offsets.offsets": {"type":"array","values":{"range":[0,4294967295]}},
-  "strip_byte_counts.counts": {"type":"array","values":{"range":[0,4294967295]}},
-  "strip_data.data": {"type":"bytes","values":{"description":"Uncompressed or compressed image strip data"}},
-  "tile_offsets.offsets": {"type":"array","values":{"range":[0,4294967295]}},
-  "tile_byte_counts.counts": {"type":"array","values":{"range":[0,4294967295]}},
-  "tile_data.data": {"type":"bytes","values":{"description":"Tile image data"}},
-  "color_map.red": {"type":"array","values":{"range":[0,65535]}},
-  "color_map.green": {"type":"array","values":{"range":[0,65535]}},
-  "color_map.blue": {"type":"array","values":{"range":[0,65535]}},
-  "sub_IFD.entry_count": {"type":"uint16","values":{"range":[1,65535]}},
-  "sub_IFD.entries": {"type":"array","values":{"description":"Sub-IFD entries"}},
-  "sub_IFD.next_ifd_offset": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "EXIF_IFD.entry_count": {"type":"uint16","values":{"range":[1,65535]}},
-  "EXIF_IFD.entries": {"type":"array","values":{"description":"Exif IFD entries"}},
-  "GPS_IFD.entry_count": {"type":"uint16","values":{"range":[1,65535]}},
-  "GPS_IFD.entries": {"type":"array","values":{"description":"GPS IFD entries"}},
-  "ICC_profile.profile_data": {"type":"bytes","values":{"description":"ICC color profile"}},
-  "XMP_data.xmp_xml": {"type":"string","values":{"constraints":{"max_length":65535}}},
-  "IPTC_data.iptc_datasets": {"type":"bytes","values":{"description":"IPTC-NAA datasets"}},
-  "GeoTIFF_keys.key_directory_version": {"type":"uint16","values":{"discrete":[1]}},
-  "GeoTIFF_keys.key_revision": {"type":"uint16","values":{"discrete":[1]}},
-  "GeoTIFF_keys.minor_revision": {"type":"uint16","values":{"discrete":[0,1]}},
-  "GeoTIFF_keys.number_of_keys": {"type":"uint16","values":{"range":[0,65535]}},
-  "GeoTIFF_keys.key_entries": {"type":"array","values":{"description":"GeoKey entries: KeyID(2)+TIFFTagLocation(2)+Count(2)+Value_Offset(2)"}},
-  "GeoTIFF_doubles.values": {"type":"array","values":{"description":"Double-precision GeoTIFF parameters"}},
-  "GeoTIFF_ascii.strings": {"type":"string","values":{"constraints":{"max_length":65535}}}
+  "file.byte_order": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "II",
+        "MM"
+      ]
+    }
+  },
+  "file.magic": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        42
+      ]
+    }
+  },
+  "file.ifd_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        8,
+        8
+      ]
+    }
+  },
+  "file.entry_count": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        4,
+        16
+      ]
+    }
+  },
+  "file.next_ifd": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        0
+      ]
+    }
+  },
+  "file.t_width_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        256
+      ]
+    }
+  },
+  "file.t_width_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_width_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_width_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        1024
+      ]
+    }
+  },
+  "file.t_height_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        257
+      ]
+    }
+  },
+  "file.t_height_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_height_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_height_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        1024
+      ]
+    }
+  },
+  "file.t_bps_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        258
+      ]
+    }
+  },
+  "file.t_bps_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_bps_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_bps_value": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1,
+        4,
+        8,
+        16
+      ]
+    }
+  },
+  "file.t_comp_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        259
+      ]
+    }
+  },
+  "file.t_comp_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_comp_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_comp_value": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1,
+        5,
+        6,
+        7,
+        8,
+        32773
+      ]
+    }
+  },
+  "file.t_photo_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        262
+      ]
+    }
+  },
+  "file.t_photo_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_photo_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_photo_value": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        8
+      ]
+    }
+  },
+  "file.t_soff_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        273
+      ]
+    }
+  },
+  "file.t_soff_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        4
+      ]
+    }
+  },
+  "file.t_soff_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_spp_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        277
+      ]
+    }
+  },
+  "file.t_spp_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_spp_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_spp_value": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1,
+        3,
+        4
+      ]
+    }
+  },
+  "file.t_rps_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        278
+      ]
+    }
+  },
+  "file.t_rps_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_rps_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_sbc_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        279
+      ]
+    }
+  },
+  "file.t_sbc_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        4
+      ]
+    }
+  },
+  "file.t_sbc_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_xres_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        282
+      ]
+    }
+  },
+  "file.t_xres_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        5
+      ]
+    }
+  },
+  "file.t_xres_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_yres_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        283
+      ]
+    }
+  },
+  "file.t_yres_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        5
+      ]
+    }
+  },
+  "file.t_yres_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_ru_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        296
+      ]
+    }
+  },
+  "file.t_ru_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_ru_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_ru_value": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "file.xres_num": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        72
+      ]
+    }
+  },
+  "file.xres_den": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.yres_num": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        72
+      ]
+    }
+  },
+  "file.yres_den": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_soff_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.t_rps_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.t_sbc_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.t_xres_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.t_yres_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  }
 }

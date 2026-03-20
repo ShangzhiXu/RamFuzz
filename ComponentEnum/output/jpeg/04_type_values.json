@@ -29,7 +29,26 @@
     "immutable": true,
     "description": "0xFFE0"
   },
+  "JPEG_APP0_JFIF.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65504
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFE0"
+  },
   "APP0_JFIF.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        16,
+        65535
+      ]
+    }
+  },
+  "JPEG_APP0_JFIF.length": {
     "type": "uint16",
     "values": {
       "range": [
@@ -50,7 +69,27 @@
     },
     "immutable": true
   },
+  "JPEG_APP0_JFIF.identifier": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "JFIF\u0000"
+      ],
+      "constraints": {
+        "max_length": 5
+      }
+    },
+    "immutable": true
+  },
   "APP0_JFIF.version_major": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "JPEG_APP0_JFIF.version_major": {
     "type": "uint8",
     "values": {
       "discrete": [
@@ -68,22 +107,46 @@
       ]
     }
   },
-  "APP0_JFIF.density_units": {
+  "JPEG_APP0_JFIF.version_minor": {
     "type": "uint8",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2
-      ],
-      "labels": {
-        "0": "No units (aspect ratio only)",
-        "1": "Dots per inch",
-        "2": "Dots per centimeter"
-      }
+      ]
+    }
+  },
+  "APP0_JFIF.density_units": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "JPEG_APP0_JFIF.density_units": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
     }
   },
   "APP0_JFIF.x_density": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "JPEG_APP0_JFIF.x_density": {
     "type": "uint16",
     "values": {
       "range": [
@@ -101,6 +164,15 @@
       ]
     }
   },
+  "JPEG_APP0_JFIF.y_density": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
   "APP0_JFIF.x_thumbnail": {
     "type": "uint8",
     "values": {
@@ -110,7 +182,25 @@
       ]
     }
   },
+  "JPEG_APP0_JFIF.x_thumbnail": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
   "APP0_JFIF.y_thumbnail": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "JPEG_APP0_JFIF.y_thumbnail": {
     "type": "uint8",
     "values": {
       "range": [
@@ -153,16 +243,11 @@
   "APP0_JFXX.thumbnail_format": {
     "type": "uint8",
     "values": {
-      "enum": [
+      "discrete": [
         16,
         17,
         19
-      ],
-      "labels": {
-        "16": "JPEG thumbnail",
-        "17": "1 byte per pixel palette thumbnail",
-        "19": "3 bytes per pixel RGB thumbnail"
-      }
+      ]
     }
   },
   "APP1_Exif.marker": {
@@ -175,7 +260,26 @@
     "immutable": true,
     "description": "0xFFE1"
   },
+  "JPEG_APP1_EXIF.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65505
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFE1"
+  },
   "APP1_Exif.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        8,
+        65535
+      ]
+    }
+  },
+  "JPEG_APP1_EXIF.length": {
     "type": "uint16",
     "values": {
       "range": [
@@ -196,6 +300,18 @@
     },
     "immutable": true
   },
+  "JPEG_APP1_EXIF.identifier": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Exif\u0000\u0000"
+      ],
+      "constraints": {
+        "max_length": 6
+      }
+    },
+    "immutable": true
+  },
   "APP1_Exif.byte_order": {
     "type": "string",
     "values": {
@@ -203,10 +319,18 @@
         "MM",
         "II"
       ],
-      "labels": {
-        "MM": "Big-endian (Motorola)",
-        "II": "Little-endian (Intel)"
-      },
+      "constraints": {
+        "max_length": 2
+      }
+    }
+  },
+  "JPEG_APP1_EXIF.byte_order": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "MM",
+        "II"
+      ],
       "constraints": {
         "max_length": 2
       }
@@ -222,7 +346,27 @@
     "immutable": true,
     "description": "TIFF magic number 0x002A"
   },
+  "JPEG_APP1_EXIF.magic_number": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        42
+      ]
+    },
+    "immutable": true,
+    "description": "TIFF magic number 0x002A"
+  },
   "APP1_Exif.ifd0_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        8,
+        65535
+      ]
+    },
+    "description": "Offset to first IFD, typically 8"
+  },
+  "JPEG_APP1_EXIF.ifd0_offset": {
     "type": "uint32",
     "values": {
       "range": [
@@ -499,16 +643,11 @@
   "APP14_Adobe.color_transform": {
     "type": "uint8",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2
-      ],
-      "labels": {
-        "0": "Unknown (RGB or CMYK)",
-        "1": "YCbCr",
-        "2": "YCCK"
-      }
+      ]
     }
   },
   "DQT.marker": {
@@ -534,14 +673,10 @@
   "DQT.precision": {
     "type": "uint4",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1
-      ],
-      "labels": {
-        "0": "8-bit precision",
-        "1": "16-bit precision"
-      }
+      ]
     }
   },
   "DQT.table_id": {
@@ -589,14 +724,10 @@
   "DHT.table_class": {
     "type": "uint4",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1
-      ],
-      "labels": {
-        "0": "DC table",
-        "1": "AC table"
-      }
+      ]
     }
   },
   "DHT.table_id": {
@@ -653,14 +784,10 @@
   "DAC.table_class": {
     "type": "uint4",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1
-      ],
-      "labels": {
-        "0": "DC table",
-        "1": "AC table"
-      }
+      ]
     }
   },
   "DAC.table_id": {
@@ -736,12 +863,7 @@
         1,
         3,
         4
-      ],
-      "labels": {
-        "1": "Grayscale",
-        "3": "YCbCr or RGB",
-        "4": "CMYK or YCCK"
-      }
+      ]
     }
   },
   "SOF0.component_id": {
@@ -756,17 +878,7 @@
         77,
         89,
         75
-      ],
-      "labels": {
-        "1": "Y",
-        "2": "Cb",
-        "3": "Cr",
-        "4": "K (or I/Q)",
-        "67": "C",
-        "77": "M",
-        "89": "Y",
-        "75": "K"
-      }
+      ]
     }
   },
   "SOF0.h_sampling_factor": {
@@ -1195,51 +1307,13 @@
         34665,
         34853,
         40965
-      ],
-      "labels": {
-        "256": "ImageWidth",
-        "257": "ImageLength",
-        "258": "BitsPerSample",
-        "259": "Compression",
-        "262": "PhotometricInterpretation",
-        "270": "ImageDescription",
-        "271": "Make",
-        "272": "Model",
-        "273": "StripOffsets",
-        "274": "Orientation",
-        "277": "SamplesPerPixel",
-        "278": "RowsPerStrip",
-        "279": "StripByteCounts",
-        "282": "XResolution",
-        "283": "YResolution",
-        "284": "PlanarConfiguration",
-        "296": "ResolutionUnit",
-        "301": "TransferFunction",
-        "305": "Software",
-        "306": "DateTime",
-        "315": "Artist",
-        "316": "HostComputer",
-        "318": "WhitePoint",
-        "319": "PrimaryChromaticities",
-        "320": "ColorMap",
-        "330": "SubIFDs",
-        "338": "ExtraSamples",
-        "513": "JPEGInterchangeFormat",
-        "514": "JPEGInterchangeFormatLength",
-        "529": "YCbCrCoefficients",
-        "530": "YCbCrSubSampling",
-        "531": "YCbCrPositioning",
-        "532": "ReferenceBlackWhite",
-        "34665": "ExifIFDPointer",
-        "34853": "GPSInfoIFDPointer",
-        "40965": "InteroperabilityIFDPointer"
-      }
+      ]
     }
   },
   "Exif_IFD0.data_format": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         1,
         2,
         3,
@@ -1252,21 +1326,7 @@
         10,
         11,
         12
-      ],
-      "labels": {
-        "1": "BYTE (uint8)",
-        "2": "ASCII",
-        "3": "SHORT (uint16)",
-        "4": "LONG (uint32)",
-        "5": "RATIONAL (2x uint32)",
-        "6": "SBYTE (int8)",
-        "7": "UNDEFINED (byte)",
-        "8": "SSHORT (int16)",
-        "9": "SLONG (int32)",
-        "10": "SRATIONAL (2x int32)",
-        "11": "FLOAT (float32)",
-        "12": "DOUBLE (float64)"
-      }
+      ]
     }
   },
   "Exif_IFD0.num_components": {
@@ -1301,7 +1361,7 @@
   "Exif_IFD0.Orientation": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         1,
         2,
         3,
@@ -1310,45 +1370,26 @@
         6,
         7,
         8
-      ],
-      "labels": {
-        "1": "Top-left",
-        "2": "Top-right (mirrored)",
-        "3": "Bottom-right (rotated 180)",
-        "4": "Bottom-left (mirrored)",
-        "5": "Left-top (mirrored + rotated 90 CW)",
-        "6": "Right-top (rotated 90 CW)",
-        "7": "Right-bottom (mirrored + rotated 90 CCW)",
-        "8": "Left-bottom (rotated 90 CCW)"
-      }
+      ]
     }
   },
   "Exif_IFD0.ResolutionUnit": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         1,
         2,
         3
-      ],
-      "labels": {
-        "1": "No absolute unit",
-        "2": "Inch",
-        "3": "Centimeter"
-      }
+      ]
     }
   },
   "Exif_IFD0.YCbCrPositioning": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         1,
         2
-      ],
-      "labels": {
-        "1": "Centered",
-        "2": "Co-sited"
-      }
+      ]
     }
   },
   "Exif_IFD0.Compression": {
@@ -1358,12 +1399,7 @@
         1,
         6,
         7
-      ],
-      "labels": {
-        "1": "Uncompressed",
-        "6": "JPEG compression (for thumbnail)",
-        "7": "JPEG"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.tag_id": {
@@ -1433,78 +1469,13 @@
         42036,
         42037,
         42240
-      ],
-      "labels": {
-        "33434": "ExposureTime",
-        "33437": "FNumber",
-        "34850": "ExposureProgram",
-        "34852": "SpectralSensitivity",
-        "34855": "ISOSpeedRatings",
-        "34856": "OECF",
-        "34864": "SensitivityType",
-        "34866": "RecommendedExposureIndex",
-        "36864": "ExifVersion",
-        "36867": "DateTimeOriginal",
-        "36868": "DateTimeDigitized",
-        "37121": "ComponentsConfiguration",
-        "37122": "CompressedBitsPerPixel",
-        "37377": "ShutterSpeedValue",
-        "37378": "ApertureValue",
-        "37379": "BrightnessValue",
-        "37380": "ExposureBiasValue",
-        "37381": "MaxApertureValue",
-        "37383": "MeteringMode",
-        "37384": "LightSource",
-        "37385": "Flash",
-        "37386": "FocalLength",
-        "37396": "SubjectArea",
-        "37500": "MakerNote",
-        "37510": "UserComment",
-        "37520": "SubSecTime",
-        "37521": "SubSecTimeOriginal",
-        "37522": "SubSecTimeDigitized",
-        "40960": "FlashpixVersion",
-        "40961": "ColorSpace",
-        "40962": "PixelXDimension",
-        "40963": "PixelYDimension",
-        "41483": "FlashEnergy",
-        "41484": "SpatialFrequencyResponse",
-        "41486": "FocalPlaneXResolution",
-        "41487": "FocalPlaneYResolution",
-        "41488": "FocalPlaneResolutionUnit",
-        "41492": "SubjectLocation",
-        "41493": "ExposureIndex",
-        "41495": "SensingMethod",
-        "41728": "FileSource",
-        "41729": "SceneType",
-        "41730": "CFAPattern",
-        "41985": "CustomRendered",
-        "41986": "ExposureMode",
-        "41987": "WhiteBalance",
-        "41988": "DigitalZoomRatio",
-        "41989": "FocalLengthIn35mmFilm",
-        "41990": "SceneCaptureType",
-        "41991": "GainControl",
-        "41992": "Contrast",
-        "41993": "Saturation",
-        "41994": "Sharpness",
-        "41995": "DeviceSettingDescription",
-        "41996": "SubjectDistanceRange",
-        "42016": "ImageUniqueID",
-        "42032": "CameraOwnerName",
-        "42033": "BodySerialNumber",
-        "42034": "LensSpecification",
-        "42035": "LensMake",
-        "42036": "LensModel",
-        "42037": "LensSerialNumber",
-        "42240": "Gamma"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.ExposureProgram": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2,
@@ -1514,24 +1485,13 @@
         6,
         7,
         8
-      ],
-      "labels": {
-        "0": "Not defined",
-        "1": "Manual",
-        "2": "Normal program",
-        "3": "Aperture priority",
-        "4": "Shutter priority",
-        "5": "Creative program",
-        "6": "Action program",
-        "7": "Portrait mode",
-        "8": "Landscape mode"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.MeteringMode": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2,
@@ -1540,23 +1500,13 @@
         5,
         6,
         255
-      ],
-      "labels": {
-        "0": "Unknown",
-        "1": "Average",
-        "2": "CenterWeightedAverage",
-        "3": "Spot",
-        "4": "MultiSpot",
-        "5": "Pattern",
-        "6": "Partial",
-        "255": "Other"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.LightSource": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2,
@@ -1578,30 +1528,7 @@
         23,
         24,
         255
-      ],
-      "labels": {
-        "0": "Unknown",
-        "1": "Daylight",
-        "2": "Fluorescent",
-        "3": "Tungsten",
-        "4": "Flash",
-        "9": "Fine weather",
-        "10": "Cloudy weather",
-        "11": "Shade",
-        "12": "Daylight fluorescent (D 5700-7100K)",
-        "13": "Day white fluorescent (N 4600-5500K)",
-        "14": "Cool white fluorescent (W 3800-4500K)",
-        "15": "White fluorescent (WW 3250-3800K)",
-        "17": "Standard light A",
-        "18": "Standard light B",
-        "19": "Standard light C",
-        "20": "D55",
-        "21": "D65",
-        "22": "D75",
-        "23": "D50",
-        "24": "ISO studio tungsten",
-        "255": "Other"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.Flash": {
@@ -1637,20 +1564,16 @@
   "Exif_ExifIFD.ColorSpace": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         1,
         65535
-      ],
-      "labels": {
-        "1": "sRGB",
-        "65535": "Uncalibrated"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.SensingMethod": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         1,
         2,
         3,
@@ -1658,183 +1581,118 @@
         5,
         7,
         8
-      ],
-      "labels": {
-        "1": "Not defined",
-        "2": "One-chip color area sensor",
-        "3": "Two-chip color area sensor",
-        "4": "Three-chip color area sensor",
-        "5": "Color sequential area sensor",
-        "7": "Trilinear sensor",
-        "8": "Color sequential linear sensor"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.FileSource": {
     "type": "uint8",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2,
         3
-      ],
-      "labels": {
-        "0": "Other",
-        "1": "Scanner of transparent type",
-        "2": "Scanner of reflex type",
-        "3": "DSC"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.SceneType": {
     "type": "uint8",
     "values": {
-      "enum": [
+      "discrete": [
         1
-      ],
-      "labels": {
-        "1": "Directly photographed"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.CustomRendered": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1
-      ],
-      "labels": {
-        "0": "Normal process",
-        "1": "Custom process"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.ExposureMode": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2
-      ],
-      "labels": {
-        "0": "Auto exposure",
-        "1": "Manual exposure",
-        "2": "Auto bracket"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.WhiteBalance": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1
-      ],
-      "labels": {
-        "0": "Auto white balance",
-        "1": "Manual white balance"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.SceneCaptureType": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2,
         3
-      ],
-      "labels": {
-        "0": "Standard",
-        "1": "Landscape",
-        "2": "Portrait",
-        "3": "Night scene"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.GainControl": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2,
         3,
         4
-      ],
-      "labels": {
-        "0": "None",
-        "1": "Low gain up",
-        "2": "High gain up",
-        "3": "Low gain down",
-        "4": "High gain down"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.Contrast": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2
-      ],
-      "labels": {
-        "0": "Normal",
-        "1": "Soft",
-        "2": "Hard"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.Saturation": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2
-      ],
-      "labels": {
-        "0": "Normal",
-        "1": "Low saturation",
-        "2": "High saturation"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.Sharpness": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2
-      ],
-      "labels": {
-        "0": "Normal",
-        "1": "Soft",
-        "2": "Hard"
-      }
+      ]
     }
   },
   "Exif_ExifIFD.SubjectDistanceRange": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2,
         3
-      ],
-      "labels": {
-        "0": "Unknown",
-        "1": "Macro",
-        "2": "Close view",
-        "3": "Distant view"
-      }
+      ]
     }
   },
   "Exif_GPSIFD.tag_id": {
@@ -1868,36 +1726,7 @@
         29,
         30,
         31
-      ],
-      "labels": {
-        "0": "GPSVersionID",
-        "1": "GPSLatitudeRef",
-        "2": "GPSLatitude",
-        "3": "GPSLongitudeRef",
-        "4": "GPSLongitude",
-        "5": "GPSAltitudeRef",
-        "6": "GPSAltitude",
-        "7": "GPSTimeStamp",
-        "8": "GPSSatellites",
-        "9": "GPSStatus",
-        "10": "GPSMeasureMode",
-        "11": "GPSDOP",
-        "12": "GPSSpeedRef",
-        "13": "GPSSpeed",
-        "14": "GPSTrackRef",
-        "15": "GPSTrack",
-        "16": "GPSImgDirectionRef",
-        "17": "GPSImgDirection",
-        "18": "GPSMapDatum",
-        "23": "GPSDestBearingRef",
-        "24": "GPSDestBearing",
-        "25": "GPSDestDistanceRef",
-        "26": "GPSDestDistance",
-        "27": "GPSProcessingMethod",
-        "29": "GPSDateStamp",
-        "30": "GPSDifferential",
-        "31": "GPSHPositioningError"
-      }
+      ]
     }
   },
   "Exif_GPSIFD.GPSLatitudeRef": {
@@ -1927,14 +1756,10 @@
   "Exif_GPSIFD.GPSAltitudeRef": {
     "type": "uint8",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1
-      ],
-      "labels": {
-        "0": "Above sea level",
-        "1": "Below sea level"
-      }
+      ]
     }
   },
   "Exif_GPSIFD.GPSStatus": {
@@ -1944,10 +1769,6 @@
         "A",
         "V"
       ],
-      "labels": {
-        "A": "Measurement in progress",
-        "V": "Measurement interoperability"
-      },
       "constraints": {
         "max_length": 2
       }
@@ -1960,10 +1781,6 @@
         "2",
         "3"
       ],
-      "labels": {
-        "2": "2-dimensional",
-        "3": "3-dimensional"
-      },
       "constraints": {
         "max_length": 2
       }
@@ -1977,11 +1794,6 @@
         "M",
         "N"
       ],
-      "labels": {
-        "K": "Kilometers per hour",
-        "M": "Miles per hour",
-        "N": "Knots"
-      },
       "constraints": {
         "max_length": 2
       }
@@ -1990,14 +1802,10 @@
   "Exif_GPSIFD.GPSDifferential": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1
-      ],
-      "labels": {
-        "0": "No correction",
-        "1": "Differential corrected"
-      }
+      ]
     }
   },
   "Exif_InteropIFD.tag_id": {
@@ -2008,13 +1816,7 @@
         2,
         4096,
         4097
-      ],
-      "labels": {
-        "1": "InteroperabilityIndex",
-        "2": "InteroperabilityVersion",
-        "4096": "RelatedImageFileFormat",
-        "4097": "RelatedImageWidth"
-      }
+      ]
     }
   },
   "Exif_InteropIFD.InteroperabilityIndex": {
@@ -2025,11 +1827,6 @@
         "THM",
         "R03"
       ],
-      "labels": {
-        "R98": "DCF basic file (sRGB)",
-        "THM": "DCF thumbnail file",
-        "R03": "DCF option file (Adobe RGB)"
-      },
       "constraints": {
         "max_length": 4
       }
@@ -2052,12 +1849,7 @@
         1,
         2,
         7
-      ],
-      "labels": {
-        "1": "Envelope Record",
-        "2": "Application Record",
-        "7": "Pre-ObjectData Record"
-      }
+      ]
     }
   },
   "IPTC_record.dataset_number": {
@@ -2116,45 +1908,7 @@
         199,
         200,
         201
-      ],
-      "labels": {
-        "0": "Record Version",
-        "5": "Object Name",
-        "7": "Edit Status",
-        "10": "Urgency",
-        "15": "Category",
-        "20": "Supplemental Category",
-        "25": "Keywords",
-        "30": "Release Date",
-        "35": "Release Time",
-        "37": "Expiration Date",
-        "40": "Special Instructions",
-        "55": "Date Created",
-        "60": "Time Created",
-        "62": "Digital Creation Date",
-        "63": "Digital Creation Time",
-        "65": "Originating Program",
-        "70": "Program Version",
-        "80": "By-line",
-        "85": "By-line Title",
-        "90": "City",
-        "92": "Sub-location",
-        "95": "Province/State",
-        "100": "Country Code",
-        "101": "Country Name",
-        "103": "Original Transmission Reference",
-        "105": "Headline",
-        "110": "Credit",
-        "115": "Source",
-        "116": "Copyright Notice",
-        "118": "Contact",
-        "120": "Caption/Abstract",
-        "121": "Local Caption",
-        "122": "Writer/Editor",
-        "199": "Application RecordVersion",
-        "200": "ObjectData Preview File Format",
-        "201": "ObjectData Preview Data"
-      }
+      ]
     }
   },
   "IPTC_record.data_size": {
@@ -2200,12 +1954,7 @@
         33554432,
         50331648,
         67108864
-      ],
-      "labels": {
-        "33554432": "v2.0",
-        "50331648": "v3.0",
-        "67108864": "v4.0"
-      }
+      ]
     },
     "description": "Major.Minor.Bugfix packed in 4 bytes"
   },
@@ -2221,15 +1970,6 @@
         "abst",
         "nmcl"
       ],
-      "labels": {
-        "scnr": "Input (Scanner)",
-        "mntr": "Display (Monitor)",
-        "prtr": "Output (Printer)",
-        "link": "DeviceLink",
-        "spac": "ColorSpace Conversion",
-        "abst": "Abstract",
-        "nmcl": "Named Color"
-      },
       "constraints": {
         "max_length": 4
       }
@@ -2299,18 +2039,12 @@
   "ICC_header.rendering_intent": {
     "type": "uint32",
     "values": {
-      "enum": [
+      "discrete": [
         0,
         1,
         2,
         3
-      ],
-      "labels": {
-        "0": "Perceptual",
-        "1": "Media-Relative Colorimetric",
-        "2": "Saturation",
-        "3": "ICC-Absolute Colorimetric"
-      }
+      ]
     }
   },
   "ICC_header.pcs_illuminant": {
@@ -2457,6 +2191,14 @@
       }
     }
   },
+  "JPEG_APP0_JFIF.thumbnail_data": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 65519
+      }
+    }
+  },
   "APP0_JFXX.thumbnail_data": {
     "type": "bytes",
     "values": {
@@ -2547,7 +2289,19 @@
       "description": "IFD0 directory entries"
     }
   },
+  "JPEG_APP1_EXIF.ifd0": {
+    "type": "bytes",
+    "values": {
+      "description": "IFD0 directory entries"
+    }
+  },
   "APP1_Exif.ifd1": {
+    "type": "bytes",
+    "values": {
+      "description": "IFD1 (thumbnail) directory entries"
+    }
+  },
+  "JPEG_APP1_EXIF.ifd1": {
     "type": "bytes",
     "values": {
       "description": "IFD1 (thumbnail) directory entries"
@@ -2559,7 +2313,19 @@
       "description": "Exif sub-IFD entries"
     }
   },
+  "JPEG_APP1_EXIF.exif_ifd": {
+    "type": "bytes",
+    "values": {
+      "description": "Exif sub-IFD entries"
+    }
+  },
   "APP1_Exif.gps_ifd": {
+    "type": "bytes",
+    "values": {
+      "description": "GPS sub-IFD entries"
+    }
+  },
+  "JPEG_APP1_EXIF.gps_ifd": {
     "type": "bytes",
     "values": {
       "description": "GPS sub-IFD entries"
@@ -2571,7 +2337,21 @@
       "description": "Interoperability sub-IFD entries"
     }
   },
+  "JPEG_APP1_EXIF.interop_ifd": {
+    "type": "bytes",
+    "values": {
+      "description": "Interoperability sub-IFD entries"
+    }
+  },
   "APP1_Exif.thumbnail_data": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 65535
+      }
+    }
+  },
+  "JPEG_APP1_EXIF.thumbnail_data": {
     "type": "bytes",
     "values": {
       "constraints": {
@@ -2634,7 +2414,7 @@
   "Exif_IFD1.data_format": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         1,
         2,
         3,
@@ -2689,7 +2469,7 @@
   "Exif_ExifIFD.data_format": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         1,
         2,
         3,
@@ -2735,7 +2515,7 @@
   "Exif_GPSIFD.data_format": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         1,
         2,
         3,
@@ -2781,7 +2561,7 @@
   "Exif_InteropIFD.data_format": {
     "type": "uint16",
     "values": {
-      "enum": [
+      "discrete": [
         1,
         2,
         3,
@@ -3161,6 +2941,172 @@
       "constraints": {
         "max_length": 65535
       }
+    }
+  },
+  "dqt.prec_and_id": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        31
+      ]
+    }
+  },
+  "comp.sampling_factors": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        63
+      ]
+    }
+  },
+  "sof0.comp": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        63
+      ]
+    }
+  },
+  "comp.table_selectors": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        63
+      ]
+    }
+  },
+  "sos.comp": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        1024
+      ]
+    }
+  },
+  "sos.approx_bits": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        63
+      ]
+    }
+  },
+  "soi.marker1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        255
+      ]
+    }
+  },
+  "soi.marker2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        216
+      ]
+    }
+  },
+  "file.soi": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65496
+      ]
+    }
+  },
+  "app0.marker1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        255
+      ]
+    }
+  },
+  "app0.marker2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        224
+      ]
+    }
+  },
+  "dqt.marker1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        255
+      ]
+    }
+  },
+  "dqt.marker2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        219
+      ]
+    }
+  },
+  "sof0.marker1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        255
+      ]
+    }
+  },
+  "sof0.marker2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        192
+      ]
+    }
+  },
+  "sos.marker1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        255
+      ]
+    }
+  },
+  "sos.marker2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        218
+      ]
+    }
+  },
+  "eoi.marker1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        255
+      ]
+    }
+  },
+  "eoi.marker2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        217
+      ]
+    }
+  },
+  "file.eoi": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65497
+      ]
     }
   }
 }

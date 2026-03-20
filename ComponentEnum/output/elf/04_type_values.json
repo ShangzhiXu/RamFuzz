@@ -1,725 +1,1392 @@
 {
-  "elf_header.ei_mag": {
-    "type": "bytes",
-    "values": {
-      "discrete": [127, 69, 76, 70]
-    },
-    "immutable": true,
-    "description": "ELF magic: 0x7F, 'E', 'L', 'F'"
-  },
-  "elf_header.ei_class": {
+  "ELF_HEADER.ei_class": {
     "type": "uint8",
     "values": {
-      "enum": [1, 2],
-      "labels": {
-        "1": "ELFCLASS32 (32-bit)",
-        "2": "ELFCLASS64 (64-bit)"
-      }
+      "discrete": [
+        2
+      ]
     }
   },
-  "elf_header.ei_data": {
+  "ELF_HEADER.ei_data": {
     "type": "uint8",
     "values": {
-      "enum": [1, 2],
-      "labels": {
-        "1": "ELFDATA2LSB (little-endian)",
-        "2": "ELFDATA2MSB (big-endian)"
-      }
+      "discrete": [
+        1
+      ]
     }
   },
-  "elf_header.ei_version": {
+  "ELF_HEADER.ei_version": {
     "type": "uint8",
     "values": {
-      "discrete": [1]
-    },
-    "immutable": true,
-    "description": "EV_CURRENT = 1"
+      "discrete": [
+        1
+      ]
+    }
   },
-  "elf_header.ei_osabi": {
+  "ELF_HEADER.ei_osabi": {
     "type": "uint8",
     "values": {
-      "enum": [0, 3, 6, 9],
-      "labels": {
-        "0": "ELFOSABI_NONE / System V",
-        "3": "ELFOSABI_LINUX",
-        "6": "ELFOSABI_SOLARIS",
-        "9": "ELFOSABI_FREEBSD"
-      }
+      "discrete": [
+        0,
+        3
+      ]
     }
   },
-  "elf_header.ei_abiversion": {
+  "ELF_HEADER.e_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "ELF_HEADER.e_machine": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3,
+        40,
+        62,
+        183,
+        243
+      ]
+    }
+  },
+  "ELF_HEADER.e_version": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "ELF_HEADER.e_ehsize": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        64
+      ]
+    }
+  },
+  "ELF_HEADER.e_phentsize": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        56
+      ]
+    }
+  },
+  "ELF_HEADER.e_shentsize": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        64
+      ]
+    }
+  },
+  "PROGRAM_HEADER_PHDR.p_type": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        6
+      ]
+    }
+  },
+  "PROGRAM_HEADER_PHDR.p_flags": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        4
+      ]
+    }
+  },
+  "PROGRAM_HEADER_LOAD.p_type": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "PROGRAM_HEADER_LOAD.p_flags": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        5
+      ]
+    }
+  },
+  "PROGRAM_HEADER_NOTE.p_type": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        4
+      ]
+    }
+  },
+  "PROGRAM_HEADER_NOTE.p_flags": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        4
+      ]
+    }
+  },
+  "SECTION_HEADER_TEXT.sh_type": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "SECTION_HEADER_NOTE.sh_type": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        7
+      ]
+    }
+  },
+  "SECTION_HEADER_SHSTRTAB.sh_type": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "NOTE_SECTION.n_namesz": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        4
+      ]
+    }
+  },
+  "NOTE_SECTION.n_descsz": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        16
+      ]
+    }
+  },
+  "NOTE_SECTION.n_type": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "ehdr.ei_abiversion": {
     "type": "uint8",
     "values": {
-      "range": [0, 255]
-    },
-    "description": "ABI version, typically 0"
-  },
-  "elf_header.ei_pad": {
-    "type": "bytes",
-    "values": {
-      "discrete": [0, 0, 0, 0, 0, 0, 0]
-    },
-    "immutable": true,
-    "description": "7 bytes of padding, must be zero"
-  },
-  "elf_header.e_type": {
-    "type": "uint16",
-    "values": {
-      "enum": [0, 1, 2, 3, 4],
-      "labels": {
-        "0": "ET_NONE",
-        "1": "ET_REL (relocatable)",
-        "2": "ET_EXEC (executable)",
-        "3": "ET_DYN (shared object)",
-        "4": "ET_CORE (core file)"
-      }
+      "discrete": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
     }
   },
-  "elf_header.e_machine": {
-    "type": "uint16",
-    "values": {
-      "enum": [3, 40, 62, 183, 243],
-      "labels": {
-        "3": "EM_386 (x86)",
-        "40": "EM_ARM",
-        "62": "EM_X86_64",
-        "183": "EM_AARCH64",
-        "243": "EM_RISCV"
-      }
-    }
-  },
-  "elf_header.e_version": {
-    "type": "uint32",
-    "values": {
-      "discrete": [1]
-    },
-    "immutable": true,
-    "description": "EV_CURRENT = 1"
-  },
-  "elf_header.e_entry": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615],
-      "discrete": [0, 4194304, 4198400]
-    },
-    "description": "Entry point virtual address; 0 for non-executable, typical 0x400000 region"
-  },
-  "elf_header.e_phoff": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615],
-      "discrete": [64]
-    },
-    "description": "Program header table offset; typically 64 for ELF64"
-  },
-  "elf_header.e_shoff": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Section header table offset"
-  },
-  "elf_header.e_flags": {
-    "type": "uint32",
-    "values": {
-      "range": [0, 4294967295]
-    },
-    "description": "Processor-specific flags, typically 0 for x86_64"
-  },
-  "elf_header.e_ehsize": {
-    "type": "uint16",
-    "values": {
-      "discrete": [52, 64],
-      "labels": {
-        "52": "ELF32 header size",
-        "64": "ELF64 header size"
-      }
-    }
-  },
-  "elf_header.e_phentsize": {
-    "type": "uint16",
-    "values": {
-      "discrete": [32, 56],
-      "labels": {
-        "32": "ELF32 program header entry size",
-        "56": "ELF64 program header entry size"
-      }
-    }
-  },
-  "elf_header.e_phnum": {
-    "type": "uint16",
-    "values": {
-      "range": [0, 65535]
-    },
-    "description": "Number of program header entries"
-  },
-  "elf_header.e_shentsize": {
-    "type": "uint16",
-    "values": {
-      "discrete": [40, 64],
-      "labels": {
-        "40": "ELF32 section header entry size",
-        "64": "ELF64 section header entry size"
-      }
-    }
-  },
-  "elf_header.e_shnum": {
-    "type": "uint16",
-    "values": {
-      "range": [0, 65535]
-    },
-    "description": "Number of section header entries"
-  },
-  "elf_header.e_shstrndx": {
-    "type": "uint16",
-    "values": {
-      "range": [0, 65535]
-    },
-    "description": "Section header string table index"
-  },
-  "program_header.p_type": {
-    "type": "uint32",
-    "values": {
-      "enum": [0, 1, 2, 3, 4, 6, 7, 1685382480, 1685382481, 1685382482, 1685382483],
-      "labels": {
-        "0": "PT_NULL",
-        "1": "PT_LOAD",
-        "2": "PT_DYNAMIC",
-        "3": "PT_INTERP",
-        "4": "PT_NOTE",
-        "6": "PT_PHDR",
-        "7": "PT_TLS",
-        "1685382480": "PT_GNU_EH_FRAME (0x6474E550)",
-        "1685382481": "PT_GNU_STACK (0x6474E551)",
-        "1685382482": "PT_GNU_RELRO (0x6474E552)",
-        "1685382483": "PT_GNU_PROPERTY (0x6474E553)"
-      }
-    }
-  },
-  "program_header.p_flags": {
-    "type": "uint32",
-    "values": {
-      "enum": [0, 1, 2, 4, 5, 6, 7],
-      "labels": {
-        "0": "none",
-        "1": "PF_X (execute)",
-        "2": "PF_W (write)",
-        "4": "PF_R (read)",
-        "5": "PF_R|PF_X (read+execute)",
-        "6": "PF_R|PF_W (read+write)",
-        "7": "PF_R|PF_W|PF_X (read+write+execute)"
-      }
-    }
-  },
-  "program_header.p_offset": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Offset from beginning of file"
-  },
-  "program_header.p_vaddr": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Virtual address in memory"
-  },
-  "program_header.p_paddr": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Physical address (usually same as p_vaddr)"
-  },
-  "program_header.p_filesz": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Size of segment in file"
-  },
-  "program_header.p_memsz": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Size of segment in memory (>= p_filesz)"
-  },
-  "program_header.p_align": {
-    "type": "uint64",
-    "values": {
-      "discrete": [0, 1, 4, 8, 16, 4096, 2097152],
-      "description": "Alignment; 0 or 1 means no alignment, must be power of 2"
-    }
-  },
-  "section_header.sh_name": {
-    "type": "uint32",
-    "values": {
-      "range": [0, 4294967295]
-    },
-    "description": "Index into .shstrtab string table"
-  },
-  "section_header.sh_type": {
-    "type": "uint32",
-    "values": {
-      "enum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 14, 15],
-      "labels": {
-        "0": "SHT_NULL",
-        "1": "SHT_PROGBITS",
-        "2": "SHT_SYMTAB",
-        "3": "SHT_STRTAB",
-        "4": "SHT_RELA",
-        "5": "SHT_HASH",
-        "6": "SHT_DYNAMIC",
-        "7": "SHT_NOTE",
-        "8": "SHT_NOBITS",
-        "9": "SHT_REL",
-        "11": "SHT_DYNSYM",
-        "14": "SHT_INIT_ARRAY",
-        "15": "SHT_FINI_ARRAY"
-      }
-    }
-  },
-  "section_header.sh_flags": {
-    "type": "uint64",
-    "values": {
-      "enum": [0, 1, 2, 3, 4, 6, 16, 32, 48, 64],
-      "labels": {
-        "0": "none",
-        "1": "SHF_WRITE",
-        "2": "SHF_ALLOC",
-        "3": "SHF_WRITE|SHF_ALLOC",
-        "4": "SHF_EXECINSTR",
-        "6": "SHF_ALLOC|SHF_EXECINSTR",
-        "16": "SHF_MERGE",
-        "32": "SHF_STRINGS",
-        "48": "SHF_MERGE|SHF_STRINGS",
-        "64": "SHF_INFO_LINK"
-      }
-    }
-  },
-  "section_header.sh_addr": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Virtual address of section in memory (0 if not loaded)"
-  },
-  "section_header.sh_offset": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Offset of section in file"
-  },
-  "section_header.sh_size": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Size of section in bytes"
-  },
-  "section_header.sh_link": {
-    "type": "uint32",
-    "values": {
-      "range": [0, 4294967295]
-    },
-    "description": "Section header table index link (interpretation depends on sh_type)"
-  },
-  "section_header.sh_info": {
-    "type": "uint32",
-    "values": {
-      "range": [0, 4294967295]
-    },
-    "description": "Extra information (interpretation depends on sh_type)"
-  },
-  "section_header.sh_addralign": {
-    "type": "uint64",
-    "values": {
-      "discrete": [0, 1, 2, 4, 8, 16, 32, 4096],
-      "description": "Address alignment constraint; 0 or 1 means no alignment"
-    }
-  },
-  "section_header.sh_entsize": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615],
-      "discrete": [0, 16, 24],
-      "description": "Size of entries if section holds fixed-size table; 0 otherwise. 24=Elf64_Sym, 16=Elf64_Dyn"
-    }
-  },
-  "symbol_table_entry.st_name": {
-    "type": "uint32",
-    "values": {
-      "range": [0, 4294967295]
-    },
-    "description": "Index into string table (.strtab or .dynstr)"
-  },
-  "symbol_table_entry.st_value": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Symbol value (address or offset)"
-  },
-  "symbol_table_entry.st_size": {
-    "type": "uint64",
-    "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Size of the symbol (0 if unknown)"
-  },
-  "symbol_table_entry.st_info": {
+  "ehdr.ei_pad0": {
     "type": "uint8",
     "values": {
-      "range": [0, 255],
-      "description": "Encodes ST_BIND (high nibble) and ST_TYPE (low nibble). ST_BIND: 0=LOCAL,1=GLOBAL,2=WEAK. ST_TYPE: 0=NOTYPE,1=OBJECT,2=FUNC,3=SECTION,4=FILE,10=GNU_IFUNC",
-      "labels": {
-        "0": "LOCAL|NOTYPE",
-        "1": "LOCAL|OBJECT",
-        "2": "LOCAL|FUNC",
-        "3": "LOCAL|SECTION",
-        "4": "LOCAL|FILE",
-        "16": "GLOBAL|NOTYPE",
-        "17": "GLOBAL|OBJECT",
-        "18": "GLOBAL|FUNC",
-        "32": "WEAK|NOTYPE",
-        "34": "WEAK|FUNC"
-      }
+      "range": [
+        0,
+        127
+      ]
     }
   },
-  "symbol_table_entry.st_other": {
+  "ehdr.ei_pad1": {
     "type": "uint8",
     "values": {
-      "enum": [0, 1, 2, 3],
-      "labels": {
-        "0": "STV_DEFAULT",
-        "1": "STV_INTERNAL",
-        "2": "STV_HIDDEN",
-        "3": "STV_PROTECTED"
-      }
+      "range": [
+        0,
+        127
+      ]
     }
   },
-  "symbol_table_entry.st_shndx": {
-    "type": "uint16",
+  "ehdr.ei_pad2": {
+    "type": "uint8",
     "values": {
-      "range": [0, 65535],
-      "labels": {
-        "0": "SHN_UNDEF",
-        "65521": "SHN_ABS (0xFFF1)",
-        "65522": "SHN_COMMON (0xFFF2)"
-      }
+      "range": [
+        0,
+        127
+      ]
     }
   },
-  "relocation_entry.r_offset": {
+  "ehdr.ei_pad3": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "ehdr.ei_pad4": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "ehdr.ei_pad5": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "ehdr.ei_pad6": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "ehdr.e_entry": {
     "type": "uint64",
     "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Location to apply the relocation"
+      "range": [
+        0,
+        65536
+      ]
+    }
   },
-  "relocation_entry.r_info": {
+  "ehdr.e_phoff": {
     "type": "uint64",
     "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Encodes symbol index (upper 32 bits) and relocation type (lower 32 bits)"
-  },
-  "relocation_entry.r_addend": {
-    "type": "int64",
-    "values": {
-      "range": [-9223372036854775808, 9223372036854775807]
-    },
-    "description": "Constant addend for relocation computation"
-  },
-  "dynamic_entry.d_tag": {
-    "type": "int64",
-    "values": {
-      "enum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 29, 30, 1879047925, 1879048176, 1879048190, 1879048191],
-      "labels": {
-        "0": "DT_NULL",
-        "1": "DT_NEEDED",
-        "2": "DT_PLTRELSZ",
-        "3": "DT_PLTGOT",
-        "4": "DT_HASH",
-        "5": "DT_STRTAB",
-        "6": "DT_SYMTAB",
-        "7": "DT_RELA",
-        "8": "DT_RELASZ",
-        "9": "DT_RELAENT",
-        "10": "DT_STRSZ",
-        "11": "DT_SYMENT",
-        "12": "DT_INIT",
-        "13": "DT_FINI",
-        "14": "DT_SONAME",
-        "15": "DT_RPATH",
-        "16": "DT_SYMBOLIC",
-        "17": "DT_REL",
-        "18": "DT_RELSZ",
-        "19": "DT_RELENT",
-        "20": "DT_PLTREL",
-        "21": "DT_DEBUG",
-        "22": "DT_TEXTREL",
-        "23": "DT_JMPREL",
-        "24": "DT_BIND_NOW",
-        "25": "DT_INIT_ARRAY",
-        "26": "DT_FINI_ARRAY",
-        "29": "DT_RUNPATH",
-        "30": "DT_FLAGS",
-        "1879047925": "DT_GNU_HASH (0x6FFFFEF5)",
-        "1879048176": "DT_VERSYM (0x6FFFFFF0)",
-        "1879048190": "DT_VERNEED (0x6FFFFFFE)",
-        "1879048191": "DT_VERNEEDNUM (0x6FFFFFFF)"
-      }
+      "range": [
+        0,
+        65536
+      ]
     }
   },
-  "dynamic_entry.d_val": {
+  "ehdr.e_shoff": {
     "type": "uint64",
     "values": {
-      "range": [0, 18446744073709551615]
-    },
-    "description": "Integer value or address depending on d_tag (d_val / d_ptr union)"
+      "range": [
+        0,
+        65536
+      ]
+    }
   },
-  "note_header.n_namesz": {
+  "ehdr.e_flags": {
     "type": "uint32",
     "values": {
-      "range": [0, 4294967295]
-    },
-    "description": "Length of name field (including null terminator)"
-  },
-  "note_header.n_descsz": {
-    "type": "uint32",
-    "values": {
-      "range": [0, 4294967295]
-    },
-    "description": "Length of descriptor data"
-  },
-  "note_header.n_type": {
-    "type": "uint32",
-    "values": {
-      "enum": [1, 3, 4, 5],
-      "labels": {
-        "1": "NT_GNU_ABI_TAG",
-        "3": "NT_GNU_BUILD_ID",
-        "4": "NT_GNU_GOLD_VERSION",
-        "5": "NT_GNU_PROPERTY_TYPE_0"
-      }
+      "range": [
+        0,
+        255
+      ]
     }
   },
-  "note_header.name": {
-    "type": "string",
-    "values": {
-      "enum": ["GNU", "Linux"],
-      "description": "Null-terminated owner name, padded to 4-byte alignment"
-    }
-  },
-  "note_header.desc": {
-    "type": "bytes",
-    "values": {
-      "description": "Descriptor data, padded to 4-byte alignment; content depends on n_type"
-    }
-  },
-  "string_table.strings": {
-    "type": "bytes",
-    "values": {
-      "description": "Concatenated null-terminated strings; first byte must be 0x00"
-    }
-  },
-  "hash_section.nbucket": {
-    "type": "uint32",
-    "values": {
-      "range": [1, 4294967295]
-    },
-    "description": "Number of hash buckets"
-  },
-  "hash_section.nchain": {
-    "type": "uint32",
-    "values": {
-      "range": [1, 4294967295]
-    },
-    "description": "Number of chain entries (= number of symbols)"
-  },
-  "hash_section.bucket": {
-    "type": "array",
-    "values": {
-      "range": [0, 4294967295],
-      "description": "Array of uint32, length = nbucket; each entry is symbol table index"
-    }
-  },
-  "hash_section.chain": {
-    "type": "array",
-    "values": {
-      "range": [0, 4294967295],
-      "description": "Array of uint32, length = nchain; chain[i] is next symbol index or STN_UNDEF"
-    }
-  },
-  "gnu_hash_section.nbuckets": {
-    "type": "uint32",
-    "values": {
-      "range": [1, 4294967295]
-    },
-    "description": "Number of hash buckets"
-  },
-  "gnu_hash_section.symoffset": {
-    "type": "uint32",
-    "values": {
-      "range": [0, 4294967295]
-    },
-    "description": "Index of first symbol in GNU hash"
-  },
-  "gnu_hash_section.bloom_size": {
-    "type": "uint32",
-    "values": {
-      "range": [1, 4294967295]
-    },
-    "description": "Number of Bloom filter words"
-  },
-  "gnu_hash_section.bloom_shift": {
-    "type": "uint32",
-    "values": {
-      "range": [0, 63],
-      "discrete": [5, 6]
-    },
-    "description": "Bloom filter shift count"
-  },
-  "gnu_hash_section.bloom": {
-    "type": "array",
-    "values": {
-      "range": [0, 18446744073709551615],
-      "description": "Array of uint64 Bloom filter words, length = bloom_size"
-    }
-  },
-  "gnu_hash_section.buckets": {
-    "type": "array",
-    "values": {
-      "range": [0, 4294967295],
-      "description": "Array of uint32, length = nbuckets"
-    }
-  },
-  "gnu_hash_section.chain": {
-    "type": "array",
-    "values": {
-      "range": [0, 4294967295],
-      "description": "Array of uint32 hash values; low bit 0 indicates last in chain"
-    }
-  },
-  "interp_section.path": {
-    "type": "string",
-    "values": {
-      "enum": ["/lib64/ld-linux-x86-64.so.2", "/lib/ld-linux.so.2", "/lib/ld-linux-aarch64.so.1", "/lib/ld-musl-x86_64.so.1"],
-      "description": "Null-terminated path to dynamic linker"
-    }
-  },
-  "got_section.entries": {
-    "type": "array",
-    "values": {
-      "range": [0, 18446744073709551615],
-      "description": "Array of uint64 addresses; GOT[0] = address of .dynamic, GOT[1] = link_map, GOT[2] = _dl_runtime_resolve"
-    }
-  },
-  "plt_section.entries": {
-    "type": "array",
-    "values": {
-      "description": "Array of PLT stub code entries; each entry is typically 16 bytes on x86_64"
-    }
-  },
-  "init_array.function_pointers": {
-    "type": "array",
-    "values": {
-      "range": [0, 18446744073709551615],
-      "description": "Array of uint64 function pointers called at init time"
-    }
-  },
-  "fini_array.function_pointers": {
-    "type": "array",
-    "values": {
-      "range": [0, 18446744073709551615],
-      "description": "Array of uint64 function pointers called at fini time"
-    }
-  },
-  "eh_frame.version": {
-    "type": "uint8",
-    "values": {
-      "discrete": [1],
-      "description": "CIE version, must be 1 for .eh_frame"
-    }
-  },
-  "eh_frame.augmentation": {
-    "type": "string",
-    "values": {
-      "enum": ["", "zR", "zPLR", "zPR", "zL", "zRL"],
-      "description": "Null-terminated augmentation string"
-    }
-  },
-  "eh_frame.code_alignment": {
-    "type": "uint8",
-    "values": {
-      "discrete": [1, 2, 4],
-      "description": "ULEB128-encoded code alignment factor"
-    }
-  },
-  "eh_frame.data_alignment": {
-    "type": "int8",
-    "values": {
-      "discrete": [-4, -8],
-      "labels": {
-        "-4": "32-bit (SLEB128)",
-        "-8": "64-bit (SLEB128)"
-      },
-      "description": "SLEB128-encoded data alignment factor"
-    }
-  },
-  "eh_frame.return_address_register": {
-    "type": "uint8",
-    "values": {
-      "discrete": [16],
-      "description": "ULEB128-encoded return address register; 16 = x86_64 RA"
-    }
-  },
-  "eh_frame.augmentation_data": {
-    "type": "bytes",
-    "values": {
-      "description": "Augmentation data; length prefixed by ULEB128 when 'z' augmentation is present"
-    }
-  },
-  "gnu_version.entries": {
-    "type": "array",
-    "values": {
-      "range": [0, 65535],
-      "labels": {
-        "0": "VER_NDX_LOCAL",
-        "1": "VER_NDX_GLOBAL"
-      },
-      "description": "Array of uint16 version indices, one per dynamic symbol"
-    }
-  },
-  "gnu_version_r.version": {
+  "ehdr.e_phnum": {
     "type": "uint16",
     "values": {
-      "discrete": [1],
-      "description": "Version of Verneed structure, must be 1"
+      "range": [
+        0,
+        4096
+      ]
     }
   },
-  "gnu_version_r.cnt": {
+  "ehdr.e_shnum": {
     "type": "uint16",
     "values": {
-      "range": [1, 65535]
-    },
-    "description": "Number of associated Vernaux entries"
+      "range": [
+        0,
+        4096
+      ]
+    }
   },
-  "gnu_version_r.filename": {
+  "ehdr.e_shstrndx": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        4096
+      ]
+    }
+  },
+  "phdr_phdr.p_offset": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_phdr.p_vaddr": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_phdr.p_paddr": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_phdr.p_filesz": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_phdr.p_memsz": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_phdr.p_align": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_load.p_offset": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_load.p_vaddr": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_load.p_paddr": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_load.p_filesz": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_load.p_memsz": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_load.p_align": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_note.p_offset": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_note.p_vaddr": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_note.p_paddr": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_note.p_filesz": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_note.p_memsz": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "phdr_note.p_align": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "text_section.insn0": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "text_section.insn1": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "text_section.insn2": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "text_section.insn3": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "text_section.insn4": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "text_section.insn5": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "text_section.insn6": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "text_section.insn7": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "text_section.insn8": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "text_section.insn9": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.name0": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.name1": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.name2": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.name3": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc0": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc1": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc2": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc3": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc4": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc5": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc6": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc7": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc8": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc9": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc10": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc11": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc12": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc13": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc14": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "note_section.desc15": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s0": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s1": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s2": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s3": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s4": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s5": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s6": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s7": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s8": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s9": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s10": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s11": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s12": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s13": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s14": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s15": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s16": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s17": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s18": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s19": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s20": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s21": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shstrtab_section.s22": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "align_pad.pad0": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "align_pad.pad1": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "align_pad.pad2": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "align_pad.pad3": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "align_pad.pad4": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "align_pad.pad5": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "align_pad.pad6": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.align_pad": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "shdr_null.sh_name": {
     "type": "uint32",
     "values": {
-      "range": [0, 4294967295]
-    },
-    "description": "Offset into .dynstr for the dependency filename"
+      "range": [
+        0,
+        65536
+      ]
+    }
   },
-  "gnu_version_r.aux": {
+  "shdr_null.sh_flags": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "shdr_null.sh_addr": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_null.sh_offset": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_null.sh_size": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_null.sh_link": {
     "type": "uint32",
     "values": {
-      "range": [0, 4294967295]
-    },
-    "description": "Offset in bytes to first Vernaux entry"
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_null.sh_info": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_null.sh_addralign": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_null.sh_entsize": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_text.sh_name": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_text.sh_flags": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "shdr_text.sh_addr": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_text.sh_offset": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_text.sh_size": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_text.sh_link": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_text.sh_info": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_text.sh_addralign": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_text.sh_entsize": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_note.sh_name": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_note.sh_flags": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "shdr_note.sh_addr": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_note.sh_offset": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_note.sh_size": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_note.sh_link": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_note.sh_info": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_note.sh_addralign": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_note.sh_entsize": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_shstrtab.sh_name": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_shstrtab.sh_flags": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "shdr_shstrtab.sh_addr": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_shstrtab.sh_offset": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_shstrtab.sh_size": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_shstrtab.sh_link": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_shstrtab.sh_info": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_shstrtab.sh_addralign": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "shdr_shstrtab.sh_entsize": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "ehdr.ei_mag0": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        127
+      ]
+    }
+  },
+  "ehdr.ei_mag1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        69
+      ]
+    }
+  },
+  "ehdr.ei_mag2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        76
+      ]
+    }
+  },
+  "ehdr.ei_mag3": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        70
+      ]
+    }
   }
 }

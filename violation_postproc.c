@@ -118,7 +118,20 @@ static int path_to_json_key(const char *path, char *out, int maxlen) {
         }
     }
 
-    if (box_idx < 0 || box_idx >= nparts - 1) return -1;
+    if (box_idx < 0 || box_idx >= nparts - 1) {
+        /* Fallback for formats without _block/_box naming (no _block/_box naming).
+         * Use the last path component as field name, second-to-last as parent.
+         * e.g. "file~file~t_width_tag" -> "file.t_width_tag" */
+        const char *field = parts[nparts - 1];
+        const char *parent = (nparts >= 2) ? parts[nparts - 2] : parts[0];
+        const char *parent_end = parts[nparts - 1] - 1;
+        int parent_len = (int)(parent_end - parent);
+        if (parent_len >= 64) parent_len = 63;
+        char raw_key[128];
+        snprintf(raw_key, sizeof(raw_key), "%.*s.%s", parent_len, parent, field);
+        json_normalize_key(raw_key, out, maxlen);
+        return 0;
+    }
 
     const char *box_part = parts[box_idx];
     const char *box_end = (box_idx + 1 < nparts) ? parts[box_idx + 1] - 1 : path + strlen(path);
@@ -284,11 +297,16 @@ static uint32_t gen_violation_fourcc(const json_field_t *jf) {
  * Write value into buffer (big-endian)
  * ================================================================ */
 
-static void write_val(uint8_t *buf, uint32_t off, uint8_t sz, int64_t val) {
-    uint64_t uval = (uint64_t)val;
-    for (int i = sz - 1; i >= 0; i--) {
-        buf[off + i] = (uint8_t)(uval & 0xFF);
-        uval >>= 8;
+static void write_val(uint8_t *buf, uint32_t off, unsigned sz, int64_t val) {
+    if (sz <= 8) {
+        uint64_t uval = (uint64_t)val;
+        for (int i = (int)sz - 1; i >= 0; i--) {
+            buf[off + i] = (uint8_t)(uval & 0xFF);
+            uval >>= 8;
+        }
+    } else {
+        for (unsigned i = 0; i < sz; i++)
+            buf[off + i] = (uint8_t)(rand() & 0xFF);
     }
 }
 
@@ -301,7 +319,7 @@ static int match_fields(matched_field_t *matched, int max_matched) {
     for (int i = 0; i < g_num_collected && nm < max_matched; i++) {
         collected_field_t *cf = &g_collected_fields[i];
         int field_bytes = (int)(cf->max_offset - cf->min_offset + 1);
-        if (field_bytes > 8 || field_bytes < 1) continue;
+        if (field_bytes < 1) continue;
 
         char norm_key[JSON_MAX_KEY_LEN];
         if (path_to_json_key(cf->path, norm_key, JSON_MAX_KEY_LEN) < 0)
@@ -385,7 +403,7 @@ int violation_should_collect(void) {
     return (randf() < VIOLATION_PROB) ? 1 : 0;
 }
 
-int violate_mp4_buffer(uint8_t *buf, uint32_t size) {
+int violate_buffer(uint8_t *buf, uint32_t size) {
     if (!initialized) violation_init();
     check_verbose();
     if (!buf || size < 8) return 0;

@@ -1,143 +1,1416 @@
 {
-  "RIFF_header.chunk_id": {"type":"string","values":{"enum":["RIFF"]},"immutable":true},
-  "RIFF_header.chunk_size": {"type":"uint32","values":{"range":[4,4294967295]}},
-  "RIFF_header.form_type": {"type":"string","values":{"enum":["WAVE"]},"immutable":true},
-  "fmt_chunk.chunk_id": {"type":"string","values":{"enum":["fmt "]},"immutable":true},
-  "fmt_chunk.chunk_size": {"type":"uint32","values":{"discrete":[16,18,40]}},
-  "fmt_chunk.audio_format": {"type":"uint16","values":{"enum":[1,2,3,6,7,17,85,254,255,65534],"labels":{"1":"PCM","2":"ADPCM","3":"IEEE Float","6":"A-law","7":"mu-law","17":"IMA ADPCM","85":"MP3","254":"Unknown","255":"AAC","65534":"Extensible"}}},
-  "fmt_chunk.num_channels": {"type":"uint16","values":{"discrete":[1,2,4,6,8],"labels":{"1":"Mono","2":"Stereo","4":"Quad","6":"5.1","8":"7.1"}}},
-  "fmt_chunk.sample_rate": {"type":"uint32","values":{"discrete":[8000,11025,16000,22050,32000,44100,48000,88200,96000,176400,192000]}},
-  "fmt_chunk.byte_rate": {"type":"uint32","values":{"range":[1,4294967295]},"description":"sample_rate * num_channels * bits_per_sample/8"},
-  "fmt_chunk.block_align": {"type":"uint16","values":{"range":[1,65535]},"description":"num_channels * bits_per_sample/8"},
-  "fmt_chunk.bits_per_sample": {"type":"uint16","values":{"discrete":[8,16,24,32,64]}},
-  "fmt_extension.cb_size": {"type":"uint16","values":{"discrete":[0,22]}},
-  "fmt_extension.valid_bits_per_sample": {"type":"uint16","values":{"discrete":[8,16,20,24,32]}},
-  "fmt_extension.channel_mask": {"type":"uint32","values":{"range":[0,262143],"discrete":[0,4,3,63,1551,1599]},"description":"Bitmask: FL=1,FR=2,FC=4,LFE=8,BL=16,BR=32,FLC=64,FRC=128,BC=256,SL=512,SR=1024"},
-  "fmt_extension.sub_format": {"type":"bytes","values":{"discrete":[1,0,0,0,0,0,16,0,128,0,0,170,0,56,155,113]},"description":"16-byte GUID; PCM={00000001-0000-0010-8000-00AA00389B71}"},
-  "data_chunk.chunk_id": {"type":"string","values":{"enum":["data"]},"immutable":true},
-  "data_chunk.chunk_size": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "data_chunk.audio_data": {"type":"bytes","values":{"description":"PCM or compressed audio samples"}},
-  "fact_chunk.chunk_id": {"type":"string","values":{"enum":["fact"]},"immutable":true},
-  "fact_chunk.chunk_size": {"type":"uint32","values":{"discrete":[4]}},
-  "fact_chunk.num_samples": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "cue_chunk.chunk_id": {"type":"string","values":{"enum":["cue "]},"immutable":true},
-  "cue_chunk.chunk_size": {"type":"uint32","values":{"range":[4,4294967295]}},
-  "cue_chunk.num_cue_points": {"type":"uint32","values":{"range":[0,65535]}},
-  "cue_point.id": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "cue_point.position": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "cue_point.data_chunk_id": {"type":"string","values":{"enum":["data"]}},
-  "cue_point.chunk_start": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "cue_point.block_start": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "cue_point.sample_offset": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "plst_chunk.chunk_id": {"type":"string","values":{"enum":["plst"]},"immutable":true},
-  "plst_chunk.chunk_size": {"type":"uint32","values":{"range":[4,4294967295]}},
-  "plst_chunk.num_segments": {"type":"uint32","values":{"range":[0,65535]}},
-  "plst_segment.cue_point_id": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "plst_segment.length": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "plst_segment.repeats": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "list_adtl.list_id": {"type":"string","values":{"enum":["LIST"]},"immutable":true},
-  "list_adtl.list_size": {"type":"uint32","values":{"range":[4,4294967295]}},
-  "list_adtl.list_type": {"type":"string","values":{"enum":["adtl"]},"immutable":true},
-  "labl_chunk.chunk_id": {"type":"string","values":{"enum":["labl"]},"immutable":true},
-  "labl_chunk.chunk_size": {"type":"uint32","values":{"range":[4,4294967295]}},
-  "labl_chunk.cue_point_id": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "labl_chunk.text": {"type":"string","values":{"constraints":{"max_length":256}}},
-  "note_chunk.chunk_id": {"type":"string","values":{"enum":["note"]},"immutable":true},
-  "note_chunk.chunk_size": {"type":"uint32","values":{"range":[4,4294967295]}},
-  "note_chunk.cue_point_id": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "note_chunk.text": {"type":"string","values":{"constraints":{"max_length":256}}},
-  "ltxt_chunk.chunk_id": {"type":"string","values":{"enum":["ltxt"]},"immutable":true},
-  "ltxt_chunk.chunk_size": {"type":"uint32","values":{"range":[20,4294967295]}},
-  "ltxt_chunk.cue_point_id": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "ltxt_chunk.sample_length": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "ltxt_chunk.purpose": {"type":"string","values":{"enum":["scrp","capt","mark"],"constraints":{"max_length":4}}},
-  "ltxt_chunk.country": {"type":"uint16","values":{"range":[0,65535]}},
-  "ltxt_chunk.language": {"type":"uint16","values":{"range":[0,65535]}},
-  "ltxt_chunk.dialect": {"type":"uint16","values":{"range":[0,65535]}},
-  "ltxt_chunk.code_page": {"type":"uint16","values":{"range":[0,65535]}},
-  "ltxt_chunk.text": {"type":"string","values":{"constraints":{"max_length":65535}}},
-  "list_INFO.list_id": {"type":"string","values":{"enum":["LIST"]},"immutable":true},
-  "list_INFO.list_size": {"type":"uint32","values":{"range":[4,4294967295]}},
-  "list_INFO.list_type": {"type":"string","values":{"enum":["INFO"]},"immutable":true},
-  "INAM.chunk_id": {"type":"string","values":{"enum":["INAM"]},"immutable":true},
-  "INAM.chunk_size": {"type":"uint32","values":{"range":[1,256]}},
-  "INAM.data": {"type":"string","values":{"constraints":{"max_length":256}},"description":"Title"},
-  "IART.chunk_id": {"type":"string","values":{"enum":["IART"]},"immutable":true},
-  "IART.chunk_size": {"type":"uint32","values":{"range":[1,256]}},
-  "IART.data": {"type":"string","values":{"constraints":{"max_length":256}},"description":"Artist"},
-  "ICMT.chunk_id": {"type":"string","values":{"enum":["ICMT"]},"immutable":true},
-  "ICMT.chunk_size": {"type":"uint32","values":{"range":[1,256]}},
-  "ICMT.data": {"type":"string","values":{"constraints":{"max_length":256}},"description":"Comment"},
-  "ICOP.chunk_id": {"type":"string","values":{"enum":["ICOP"]},"immutable":true},
-  "ICOP.chunk_size": {"type":"uint32","values":{"range":[1,256]}},
-  "ICOP.data": {"type":"string","values":{"constraints":{"max_length":256}},"description":"Copyright"},
-  "ICRD.chunk_id": {"type":"string","values":{"enum":["ICRD"]},"immutable":true},
-  "ICRD.chunk_size": {"type":"uint32","values":{"range":[1,256]}},
-  "ICRD.data": {"type":"string","values":{"constraints":{"max_length":256}},"description":"Creation date"},
-  "IGNR.chunk_id": {"type":"string","values":{"enum":["IGNR"]},"immutable":true},
-  "IGNR.chunk_size": {"type":"uint32","values":{"range":[1,256]}},
-  "IGNR.data": {"type":"string","values":{"constraints":{"max_length":256}},"description":"Genre"},
-  "ISFT.chunk_id": {"type":"string","values":{"enum":["ISFT"]},"immutable":true},
-  "ISFT.chunk_size": {"type":"uint32","values":{"range":[1,256]}},
-  "ISFT.data": {"type":"string","values":{"constraints":{"max_length":256}},"description":"Software"},
-  "smpl_chunk.chunk_id": {"type":"string","values":{"enum":["smpl"]},"immutable":true},
-  "smpl_chunk.chunk_size": {"type":"uint32","values":{"range":[36,4294967295]}},
-  "smpl_chunk.manufacturer": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "smpl_chunk.product": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "smpl_chunk.sample_period": {"type":"uint32","values":{"range":[1,4294967295]},"description":"Nanoseconds per sample (1/sample_rate * 1e9)"},
-  "smpl_chunk.midi_unity_note": {"type":"uint32","values":{"range":[0,127]}},
-  "smpl_chunk.midi_pitch_fraction": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "smpl_chunk.smpte_format": {"type":"uint32","values":{"enum":[0,24,25,29,30],"labels":{"0":"No SMPTE offset","24":"24fps","25":"25fps","29":"29.97fps (drop)","30":"30fps"}}},
-  "smpl_chunk.smpte_offset": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "smpl_chunk.num_sample_loops": {"type":"uint32","values":{"range":[0,16]}},
-  "smpl_chunk.sampler_data_size": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "smpl_loop.id": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "smpl_loop.type": {"type":"uint32","values":{"enum":[0,1,2],"labels":{"0":"Forward","1":"Alternating (ping-pong)","2":"Reverse"}}},
-  "smpl_loop.start": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "smpl_loop.end": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "smpl_loop.fraction": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "smpl_loop.play_count": {"type":"uint32","values":{"range":[0,4294967295]},"description":"0 = infinite"},
-  "inst_chunk.chunk_id": {"type":"string","values":{"enum":["inst"]},"immutable":true},
-  "inst_chunk.chunk_size": {"type":"uint32","values":{"discrete":[7]}},
-  "inst_chunk.unshifted_note": {"type":"uint8","values":{"range":[0,127]}},
-  "inst_chunk.fine_tune": {"type":"int8","values":{"range":[-50,50]}},
-  "inst_chunk.gain": {"type":"int8","values":{"range":[-64,64]}},
-  "inst_chunk.low_note": {"type":"uint8","values":{"range":[0,127]}},
-  "inst_chunk.high_note": {"type":"uint8","values":{"range":[0,127]}},
-  "inst_chunk.low_velocity": {"type":"uint8","values":{"range":[0,127]}},
-  "inst_chunk.high_velocity": {"type":"uint8","values":{"range":[0,127]}},
-  "bext_chunk.chunk_id": {"type":"string","values":{"enum":["bext"]},"immutable":true},
-  "bext_chunk.chunk_size": {"type":"uint32","values":{"range":[602,65535]}},
-  "bext_chunk.description": {"type":"string","values":{"constraints":{"max_length":256}}},
-  "bext_chunk.originator": {"type":"string","values":{"constraints":{"max_length":32}}},
-  "bext_chunk.originator_reference": {"type":"string","values":{"constraints":{"max_length":32}}},
-  "bext_chunk.origination_date": {"type":"string","values":{"constraints":{"max_length":10}},"description":"yyyy-mm-dd"},
-  "bext_chunk.origination_time": {"type":"string","values":{"constraints":{"max_length":8}},"description":"hh:mm:ss"},
-  "bext_chunk.time_reference_low": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "bext_chunk.time_reference_high": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "bext_chunk.version": {"type":"uint16","values":{"discrete":[0,1,2]}},
-  "bext_chunk.umid": {"type":"bytes","values":{"constraints":{"length":64}}},
-  "bext_chunk.loudness_value": {"type":"int16","values":{"range":[-32768,32767]}},
-  "bext_chunk.loudness_range": {"type":"int16","values":{"range":[-32768,32767]}},
-  "bext_chunk.max_true_peak_level": {"type":"int16","values":{"range":[-32768,32767]}},
-  "bext_chunk.max_momentary_loudness": {"type":"int16","values":{"range":[-32768,32767]}},
-  "bext_chunk.max_short_term_loudness": {"type":"int16","values":{"range":[-32768,32767]}},
-  "bext_chunk.reserved": {"type":"bytes","values":{"discrete":[0],"constraints":{"length":180}}},
-  "bext_chunk.coding_history": {"type":"string","values":{"constraints":{"max_length":65535}}},
-  "iXML_chunk.chunk_id": {"type":"string","values":{"enum":["iXML"]},"immutable":true},
-  "iXML_chunk.chunk_size": {"type":"uint32","values":{"range":[1,65535]}},
-  "iXML_chunk.xml_data": {"type":"string","values":{"constraints":{"max_length":65535}},"description":"iXML metadata"},
-  "JUNK_chunk.chunk_id": {"type":"string","values":{"enum":["JUNK"]},"immutable":true},
-  "JUNK_chunk.chunk_size": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "JUNK_chunk.data": {"type":"bytes","values":{"discrete":[0]}},
-  "acid_chunk.chunk_id": {"type":"string","values":{"enum":["acid"]},"immutable":true},
-  "acid_chunk.chunk_size": {"type":"uint32","values":{"discrete":[24]}},
-  "acid_chunk.type_flags": {"type":"uint32","values":{"range":[0,4294967295],"bit_flags":{"0":"one-shot","1":"root-note valid","2":"stretch","3":"disk-based","4":"8-bit padding"}}},
-  "acid_chunk.root_note": {"type":"uint16","values":{"range":[0,127]}},
-  "acid_chunk.unknown1": {"type":"uint16","values":{"range":[0,65535]}},
-  "acid_chunk.unknown2": {"type":"float32","values":{"range":[0,1000]}},
-  "acid_chunk.num_beats": {"type":"uint32","values":{"range":[0,4294967295]}},
-  "acid_chunk.meter_denominator": {"type":"uint16","values":{"discrete":[2,4,8,16]}},
-  "acid_chunk.meter_numerator": {"type":"uint16","values":{"discrete":[2,3,4,5,6,7]}},
-  "acid_chunk.tempo": {"type":"float32","values":{"range":[1,999]},"description":"BPM"}
+  "RIFF_header.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "RIFF"
+      ]
+    },
+    "immutable": true
+  },
+  "RIFF_header.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        4,
+        4294967295
+      ]
+    }
+  },
+  "RIFF_header.form_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "WAVE"
+      ]
+    },
+    "immutable": true
+  },
+  "fmt_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "fmt "
+      ]
+    },
+    "immutable": true
+  },
+  "fmt_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        16,
+        18,
+        40
+      ]
+    }
+  },
+  "fmt_chunk.audio_format": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        17,
+        85,
+        254,
+        255,
+        65534
+      ]
+    }
+  },
+  "fmt_chunk.num_channels": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        4,
+        6,
+        8
+      ]
+    }
+  },
+  "fmt_chunk.sample_rate": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        8000,
+        11025,
+        16000,
+        22050,
+        32000,
+        44100,
+        48000,
+        88200,
+        96000,
+        176400,
+        192000
+      ]
+    }
+  },
+  "fmt_chunk.byte_rate": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ]
+    },
+    "description": "sample_rate * num_channels * bits_per_sample/8"
+  },
+  "fmt_chunk.block_align": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    },
+    "description": "num_channels * bits_per_sample/8"
+  },
+  "fmt_chunk.bits_per_sample": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        8,
+        16,
+        24,
+        32,
+        64
+      ]
+    }
+  },
+  "fmt_extension.cb_size": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        22
+      ]
+    }
+  },
+  "fmt_extension.valid_bits_per_sample": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        8,
+        16,
+        20,
+        24,
+        32
+      ]
+    }
+  },
+  "fmt_extension.channel_mask": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        262143
+      ],
+      "discrete": [
+        0,
+        4,
+        3,
+        63,
+        1551,
+        1599
+      ]
+    },
+    "description": "Bitmask: FL=1,FR=2,FC=4,LFE=8,BL=16,BR=32,FLC=64,FRC=128,BC=256,SL=512,SR=1024"
+  },
+  "fmt_extension.sub_format": {
+    "type": "bytes",
+    "values": {
+      "discrete": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        16,
+        0,
+        128,
+        0,
+        0,
+        170,
+        0,
+        56,
+        155,
+        113
+      ]
+    },
+    "description": "16-byte GUID; PCM={00000001-0000-0010-8000-00AA00389B71}"
+  },
+  "data_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "data"
+      ]
+    },
+    "immutable": true
+  },
+  "data_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "data_chunk.audio_data": {
+    "type": "bytes",
+    "values": {
+      "description": "PCM or compressed audio samples"
+    }
+  },
+  "fact_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "fact"
+      ]
+    },
+    "immutable": true
+  },
+  "fact_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        4
+      ]
+    }
+  },
+  "fact_chunk.num_samples": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cue_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "cue "
+      ]
+    },
+    "immutable": true
+  },
+  "cue_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        4,
+        4294967295
+      ]
+    }
+  },
+  "cue_chunk.num_cue_points": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "cue_point.id": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cue_point.position": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cue_point.data_chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "data"
+      ]
+    }
+  },
+  "cue_point.chunk_start": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cue_point.block_start": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cue_point.sample_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "plst_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "plst"
+      ]
+    },
+    "immutable": true
+  },
+  "plst_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        4,
+        4294967295
+      ]
+    }
+  },
+  "plst_chunk.num_segments": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "plst_segment.cue_point_id": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "plst_segment.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "plst_segment.repeats": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "list_adtl.list_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "LIST"
+      ]
+    },
+    "immutable": true
+  },
+  "list_adtl.list_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        4,
+        4294967295
+      ]
+    }
+  },
+  "list_adtl.list_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "adtl"
+      ]
+    },
+    "immutable": true
+  },
+  "labl_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "labl"
+      ]
+    },
+    "immutable": true
+  },
+  "labl_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        4,
+        4294967295
+      ]
+    }
+  },
+  "labl_chunk.cue_point_id": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "labl_chunk.text": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 256
+      }
+    }
+  },
+  "note_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "note"
+      ]
+    },
+    "immutable": true
+  },
+  "note_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        4,
+        4294967295
+      ]
+    }
+  },
+  "note_chunk.cue_point_id": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "note_chunk.text": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 256
+      }
+    }
+  },
+  "ltxt_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "ltxt"
+      ]
+    },
+    "immutable": true
+  },
+  "ltxt_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        20,
+        4294967295
+      ]
+    }
+  },
+  "ltxt_chunk.cue_point_id": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "ltxt_chunk.sample_length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "ltxt_chunk.purpose": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "scrp",
+        "capt",
+        "mark"
+      ],
+      "constraints": {
+        "max_length": 4
+      }
+    }
+  },
+  "ltxt_chunk.country": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "ltxt_chunk.language": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "ltxt_chunk.dialect": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "ltxt_chunk.code_page": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "ltxt_chunk.text": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 65535
+      }
+    }
+  },
+  "list_INFO.list_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "LIST"
+      ]
+    },
+    "immutable": true
+  },
+  "list_INFO.list_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        4,
+        4294967295
+      ]
+    }
+  },
+  "list_INFO.list_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "INFO"
+      ]
+    },
+    "immutable": true
+  },
+  "INAM.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "INAM"
+      ]
+    },
+    "immutable": true
+  },
+  "INAM.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        256
+      ]
+    }
+  },
+  "INAM.data": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 256
+      }
+    },
+    "description": "Title"
+  },
+  "IART.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "IART"
+      ]
+    },
+    "immutable": true
+  },
+  "IART.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        256
+      ]
+    }
+  },
+  "IART.data": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 256
+      }
+    },
+    "description": "Artist"
+  },
+  "ICMT.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "ICMT"
+      ]
+    },
+    "immutable": true
+  },
+  "ICMT.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        256
+      ]
+    }
+  },
+  "ICMT.data": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 256
+      }
+    },
+    "description": "Comment"
+  },
+  "ICOP.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "ICOP"
+      ]
+    },
+    "immutable": true
+  },
+  "ICOP.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        256
+      ]
+    }
+  },
+  "ICOP.data": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 256
+      }
+    },
+    "description": "Copyright"
+  },
+  "ICRD.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "ICRD"
+      ]
+    },
+    "immutable": true
+  },
+  "ICRD.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        256
+      ]
+    }
+  },
+  "ICRD.data": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 256
+      }
+    },
+    "description": "Creation date"
+  },
+  "IGNR.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "IGNR"
+      ]
+    },
+    "immutable": true
+  },
+  "IGNR.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        256
+      ]
+    }
+  },
+  "IGNR.data": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 256
+      }
+    },
+    "description": "Genre"
+  },
+  "ISFT.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "ISFT"
+      ]
+    },
+    "immutable": true
+  },
+  "ISFT.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        256
+      ]
+    }
+  },
+  "ISFT.data": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 256
+      }
+    },
+    "description": "Software"
+  },
+  "smpl_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "smpl"
+      ]
+    },
+    "immutable": true
+  },
+  "smpl_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        36,
+        4294967295
+      ]
+    }
+  },
+  "smpl_chunk.manufacturer": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "smpl_chunk.product": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "smpl_chunk.sample_period": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ]
+    },
+    "description": "Nanoseconds per sample (1/sample_rate * 1e9)"
+  },
+  "smpl_chunk.midi_unity_note": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "smpl_chunk.midi_pitch_fraction": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "smpl_chunk.smpte_format": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        0,
+        24,
+        25,
+        29,
+        30
+      ]
+    }
+  },
+  "smpl_chunk.smpte_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "smpl_chunk.num_sample_loops": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        16
+      ]
+    }
+  },
+  "smpl_chunk.sampler_data_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "smpl_loop.id": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "smpl_loop.type": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "smpl_loop.start": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "smpl_loop.end": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "smpl_loop.fraction": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "smpl_loop.play_count": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    },
+    "description": "0 = infinite"
+  },
+  "inst_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "inst"
+      ]
+    },
+    "immutable": true
+  },
+  "inst_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        7
+      ]
+    }
+  },
+  "inst_chunk.unshifted_note": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "inst_chunk.fine_tune": {
+    "type": "int8",
+    "values": {
+      "range": [
+        -50,
+        50
+      ]
+    }
+  },
+  "inst_chunk.gain": {
+    "type": "int8",
+    "values": {
+      "range": [
+        -64,
+        64
+      ]
+    }
+  },
+  "inst_chunk.low_note": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "inst_chunk.high_note": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "inst_chunk.low_velocity": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "inst_chunk.high_velocity": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "bext_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "bext"
+      ]
+    },
+    "immutable": true
+  },
+  "bext_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        602,
+        65535
+      ]
+    }
+  },
+  "bext_chunk.description": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 256
+      }
+    }
+  },
+  "bext_chunk.originator": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 32
+      }
+    }
+  },
+  "bext_chunk.originator_reference": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 32
+      }
+    }
+  },
+  "bext_chunk.origination_date": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 10
+      }
+    },
+    "description": "yyyy-mm-dd"
+  },
+  "bext_chunk.origination_time": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 8
+      }
+    },
+    "description": "hh:mm:ss"
+  },
+  "bext_chunk.time_reference_low": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "bext_chunk.time_reference_high": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "bext_chunk.version": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "bext_chunk.umid": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "length": 64
+      }
+    }
+  },
+  "bext_chunk.loudness_value": {
+    "type": "int16",
+    "values": {
+      "range": [
+        -32768,
+        32767
+      ]
+    }
+  },
+  "bext_chunk.loudness_range": {
+    "type": "int16",
+    "values": {
+      "range": [
+        -32768,
+        32767
+      ]
+    }
+  },
+  "bext_chunk.max_true_peak_level": {
+    "type": "int16",
+    "values": {
+      "range": [
+        -32768,
+        32767
+      ]
+    }
+  },
+  "bext_chunk.max_momentary_loudness": {
+    "type": "int16",
+    "values": {
+      "range": [
+        -32768,
+        32767
+      ]
+    }
+  },
+  "bext_chunk.max_short_term_loudness": {
+    "type": "int16",
+    "values": {
+      "range": [
+        -32768,
+        32767
+      ]
+    }
+  },
+  "bext_chunk.reserved": {
+    "type": "bytes",
+    "values": {
+      "discrete": [
+        0
+      ],
+      "constraints": {
+        "length": 180
+      }
+    }
+  },
+  "bext_chunk.coding_history": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 65535
+      }
+    }
+  },
+  "iXML_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "iXML"
+      ]
+    },
+    "immutable": true
+  },
+  "iXML_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "iXML_chunk.xml_data": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 65535
+      }
+    },
+    "description": "iXML metadata"
+  },
+  "JUNK_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "JUNK"
+      ]
+    },
+    "immutable": true
+  },
+  "JUNK_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "JUNK_chunk.data": {
+    "type": "bytes",
+    "values": {
+      "discrete": [
+        0
+      ]
+    }
+  },
+  "acid_chunk.chunk_id": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "acid"
+      ]
+    },
+    "immutable": true
+  },
+  "acid_chunk.chunk_size": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        24
+      ]
+    }
+  },
+  "acid_chunk.type_flags": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ],
+      "bit_flags": {
+        "0": "one-shot",
+        "1": "root-note valid",
+        "2": "stretch",
+        "3": "disk-based",
+        "4": "8-bit padding"
+      }
+    }
+  },
+  "acid_chunk.root_note": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "acid_chunk.unknown1": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "acid_chunk.unknown2": {
+    "type": "float32",
+    "values": {
+      "range": [
+        0,
+        1000
+      ]
+    }
+  },
+  "acid_chunk.num_beats": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "acid_chunk.meter_denominator": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        2,
+        4,
+        8,
+        16
+      ]
+    }
+  },
+  "acid_chunk.meter_numerator": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    }
+  },
+  "acid_chunk.tempo": {
+    "type": "float32",
+    "values": {
+      "range": [
+        1,
+        999
+      ]
+    },
+    "description": "BPM"
+  },
+  "file.riff_id": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.riff_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.wave_id": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "smpl.num_loops": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.info_list_id": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.info_list_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.info_list_type": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "file.data_id": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.data_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  }
 }

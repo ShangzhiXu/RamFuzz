@@ -1,258 +1,157 @@
 {
-  "PDF_header.version": {
-    "type": "string",
+  "pdf_file.h07": {
+    "type": "uint8",
     "values": {
-      "enum": ["1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "2.0"]
-    },
-    "description": "PDF version number in header line %PDF-x.y"
+      "discrete": [
+        52,
+        53,
+        54,
+        55
+      ]
+    }
   },
-  "body_object.obj_number": {
+  "file.h00": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.h01": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.h02": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.h03": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.h04": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.h05": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.h06": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.h08": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.h09": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.h10": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.h11": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.h12": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.h13": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.h14": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.xoff": {
     "type": "uint32",
-    "values": { "range": [1, 65535] },
-    "description": "Object number, positive integer"
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
   },
-  "body_object.gen_number": {
-    "type": "uint32",
-    "values": { "range": [0, 65535] },
-    "description": "Generation number, typically 0"
-  },
-  "body_object.content": {
-    "type": "bytes",
-    "values": { "description": "Serialized PDF object content (dict, array, stream, etc.)" }
-  },
-  "indirect_object.obj_number": {
-    "type": "uint32",
-    "values": { "range": [1, 65535] },
-    "description": "Object number for indirect reference"
-  },
-  "indirect_object.gen_number": {
-    "type": "uint32",
-    "values": { "range": [0, 65535] },
-    "description": "Generation number for indirect reference"
-  },
-  "indirect_object.content": {
-    "type": "bytes",
-    "values": { "description": "Content of the indirect object between obj and endobj keywords" }
-  },
-  "catalog.Type": {
-    "type": "string",
-    "values": { "enum": ["Catalog"] },
-    "immutable": true,
-    "description": "Must be /Catalog"
-  },
-  "catalog.Pages": {
-    "type": "reference",
-    "values": { "description": "Indirect reference to the root Pages object" }
-  },
-  "catalog.Outlines": {
-    "type": "reference",
-    "values": { "description": "Indirect reference to the outline (bookmarks) dictionary" }
-  },
-  "catalog.Names": {
-    "type": "reference",
-    "values": { "description": "Indirect reference to the names dictionary" }
-  },
-  "catalog.OpenAction": {
-    "type": "reference",
-    "values": { "description": "Action or destination to perform when document is opened" }
-  },
-  "catalog.AcroForm": {
-    "type": "reference",
-    "values": { "description": "Indirect reference to the interactive form dictionary" }
-  },
-  "catalog.Metadata": {
-    "type": "reference",
-    "values": { "description": "Indirect reference to the metadata stream (XMP)" }
-  },
-  "catalog.MarkInfo": {
-    "type": "dictionary",
-    "values": { "description": "Mark information dictionary for tagged PDF" }
-  },
-  "catalog.Lang": {
-    "type": "string",
-    "values": { "enum": ["en", "en-US", "en-GB", "de", "fr", "es", "ja", "zh", "ko"], "description": "Language identifier (RFC 3066)" }
-  },
-  "catalog.ViewerPreferences": {
-    "type": "dictionary",
-    "values": { "description": "Viewer preferences dictionary" }
-  },
-  "pages.Type": { "type": "string", "values": { "enum": ["Pages"] }, "immutable": true },
-  "pages.Kids": { "type": "array", "values": { "description": "Array of indirect references to child Page or Pages objects" } },
-  "pages.Count": { "type": "uint32", "values": { "range": [1, 65535] } },
-  "pages.MediaBox": { "type": "array", "values": { "discrete": [[0, 0, 612, 792], [0, 0, 595.28, 841.89], [0, 0, 842, 595]] } },
-  "pages.Resources": { "type": "dictionary", "values": { "description": "Resource dictionary inherited by child pages" } },
-  "page.Type": { "type": "string", "values": { "enum": ["Page"] }, "immutable": true },
-  "page.Parent": { "type": "reference", "values": { "description": "Indirect reference to parent Pages node" } },
-  "page.MediaBox": { "type": "array", "values": { "discrete": [[0, 0, 612, 792], [0, 0, 595.28, 841.89]] } },
-  "page.CropBox": { "type": "array", "values": { "description": "Crop box rectangle [llx lly urx ury]" } },
-  "page.BleedBox": { "type": "array", "values": { "description": "Bleed box rectangle" } },
-  "page.TrimBox": { "type": "array", "values": { "description": "Trim box rectangle" } },
-  "page.ArtBox": { "type": "array", "values": { "description": "Art box rectangle" } },
-  "page.Contents": { "type": "reference", "values": { "description": "Indirect reference to content stream" } },
-  "page.Resources": { "type": "dictionary", "values": { "description": "Resource dictionary for this page" } },
-  "page.Rotate": { "type": "int32", "values": { "discrete": [0, 90, 180, 270] } },
-  "page.Annotations": { "type": "array", "values": { "description": "Array of indirect references to annotation dictionaries" } },
-  "page.Tabs": { "type": "string", "values": { "enum": ["R", "C", "S"] } },
-  "page.StructParents": { "type": "int32", "values": { "range": [0, 65535] } },
-  "font.Type": { "type": "string", "values": { "enum": ["Font"] }, "immutable": true },
-  "font.Subtype": { "type": "string", "values": { "enum": ["Type1", "TrueType", "Type0", "Type3", "MMType1", "CIDFontType0", "CIDFontType2"] } },
-  "font.BaseFont": { "type": "string", "values": { "enum": ["Helvetica", "Times-Roman", "Courier", "Symbol", "ZapfDingbats", "Helvetica-Bold", "Helvetica-Oblique", "Times-Bold", "Times-Italic", "Courier-Bold", "Courier-Oblique", "Helvetica-BoldOblique", "Times-BoldItalic", "Courier-BoldOblique"] } },
-  "font.Encoding": { "type": "string", "values": { "enum": ["WinAnsiEncoding", "MacRomanEncoding", "MacExpertEncoding", "StandardEncoding", "Identity-H", "Identity-V"] } },
-  "font.FirstChar": { "type": "uint32", "values": { "range": [0, 255] } },
-  "font.LastChar": { "type": "uint32", "values": { "range": [0, 255] } },
-  "font.Widths": { "type": "array", "values": { "range": [0, 3000] } },
-  "font.FontDescriptor": { "type": "reference", "values": { "description": "Indirect reference to font descriptor" } },
-  "font.ToUnicode": { "type": "reference", "values": { "description": "Indirect reference to CMap stream" } },
-  "font_descriptor.Type": { "type": "string", "values": { "enum": ["FontDescriptor"] }, "immutable": true },
-  "font_descriptor.FontName": { "type": "string", "values": { "enum": ["Helvetica", "Times-Roman", "Courier", "Symbol", "ZapfDingbats", "Helvetica-Bold", "Times-Bold", "Courier-Bold"] } },
-  "font_descriptor.Flags": { "type": "uint32", "values": { "discrete": [4, 32, 34, 36, 64, 96, 262176] } },
-  "font_descriptor.FontBBox": { "type": "array", "values": { "description": "Bounding box [llx lly urx ury] in glyph units" } },
-  "font_descriptor.ItalicAngle": { "type": "float", "values": { "discrete": [0, -12, -15, -11.5] } },
-  "font_descriptor.Ascent": { "type": "float", "values": { "range": [0, 2000] } },
-  "font_descriptor.Descent": { "type": "float", "values": { "range": [-1000, 0] } },
-  "font_descriptor.CapHeight": { "type": "float", "values": { "range": [0, 2000] } },
-  "font_descriptor.StemV": { "type": "float", "values": { "range": [0, 500] } },
-  "font_descriptor.FontFile": { "type": "reference", "values": { "description": "Indirect reference to Type1 font file stream" } },
-  "font_descriptor.FontFile2": { "type": "reference", "values": { "description": "Indirect reference to TrueType font file stream" } },
-  "font_descriptor.FontFile3": { "type": "reference", "values": { "description": "Indirect reference to CFF/OpenType font file stream" } },
-  "image.Type": { "type": "string", "values": { "enum": ["XObject"] }, "immutable": true },
-  "image.Subtype": { "type": "string", "values": { "enum": ["Image"] }, "immutable": true },
-  "image.Width": { "type": "uint32", "values": { "range": [1, 65535] } },
-  "image.Height": { "type": "uint32", "values": { "range": [1, 65535] } },
-  "image.ColorSpace": { "type": "string", "values": { "enum": ["DeviceRGB", "DeviceCMYK", "DeviceGray", "CalRGB", "CalGray", "ICCBased", "Indexed", "Separation", "DeviceN", "Lab"] } },
-  "image.BitsPerComponent": { "type": "uint32", "values": { "discrete": [1, 2, 4, 8, 16] } },
-  "image.Filter": { "type": "string", "values": { "enum": ["FlateDecode", "DCTDecode", "JPXDecode", "CCITTFaxDecode", "JBIG2Decode", "RunLengthDecode", "ASCIIHexDecode", "ASCII85Decode", "LZWDecode"] } },
-  "image.DecodeParms": { "type": "dictionary", "values": { "description": "Parameters for the decoding filter" } },
-  "image.SMask": { "type": "reference", "values": { "description": "Indirect reference to soft mask image XObject" } },
-  "image.Intent": { "type": "string", "values": { "enum": ["AbsoluteColorimetric", "RelativeColorimetric", "Saturation", "Perceptual"] } },
-  "image.Interpolate": { "type": "boolean", "values": { "enum": [true, false] } },
-  "stream.Length": { "type": "uint32", "values": { "range": [0, 2147483647] } },
-  "stream.Filter": { "type": "string", "values": { "enum": ["FlateDecode", "ASCIIHexDecode", "ASCII85Decode", "LZWDecode", "RunLengthDecode", "CCITTFaxDecode", "DCTDecode", "JPXDecode", "Crypt"] } },
-  "stream.DecodeParms": { "type": "dictionary", "values": { "description": "Dictionary or array of dictionaries of decode parameters" } },
-  "stream.data": { "type": "bytes", "values": { "description": "Raw stream data between stream and endstream keywords" } },
-  "xref_table.offset": { "type": "uint64", "values": { "range": [0, 9999999999] } },
-  "xref_table.gen": { "type": "uint32", "values": { "range": [0, 65535] } },
-  "xref_table.in_use": { "type": "string", "values": { "enum": ["n", "f"] } },
-  "xref_stream.Type": { "type": "string", "values": { "enum": ["XRef"] }, "immutable": true },
-  "xref_stream.Size": { "type": "uint32", "values": { "range": [1, 65535] } },
-  "xref_stream.Index": { "type": "array", "values": { "description": "Array of pairs [start count]" } },
-  "xref_stream.W": { "type": "array", "values": { "discrete": [[1, 2, 1], [1, 3, 1], [1, 4, 2]] } },
-  "xref_stream.Filter": { "type": "string", "values": { "enum": ["FlateDecode", "ASCIIHexDecode", "LZWDecode"] } },
-  "xref_stream.DecodeParms": { "type": "dictionary", "values": { "description": "Decode parameters for the xref stream filter" } },
-  "trailer.Size": { "type": "uint32", "values": { "range": [1, 65535] } },
-  "trailer.Root": { "type": "reference", "values": { "description": "Indirect reference to the document catalog" } },
-  "trailer.Info": { "type": "reference", "values": { "description": "Indirect reference to the document information dictionary" } },
-  "trailer.ID": { "type": "array", "values": { "description": "Array of two byte strings: [permanent-ID update-ID]" } },
-  "trailer.Prev": { "type": "uint64", "values": { "range": [0, 9999999999] } },
-  "trailer.Encrypt": { "type": "reference", "values": { "description": "Indirect reference to the encryption dictionary" } },
-  "info_dict.Title": { "type": "string", "values": { "constraints": { "max_length": 1024 } } },
-  "info_dict.Author": { "type": "string", "values": { "constraints": { "max_length": 1024 } } },
-  "info_dict.Subject": { "type": "string", "values": { "constraints": { "max_length": 1024 } } },
-  "info_dict.Keywords": { "type": "string", "values": { "constraints": { "max_length": 1024 } } },
-  "info_dict.Creator": { "type": "string", "values": { "constraints": { "max_length": 1024 } } },
-  "info_dict.Producer": { "type": "string", "values": { "constraints": { "max_length": 1024 } } },
-  "info_dict.CreationDate": { "type": "string", "values": { "description": "PDF date format: D:YYYYMMDDHHmmSSOHH'mm'" } },
-  "info_dict.ModDate": { "type": "string", "values": { "description": "PDF date format: D:YYYYMMDDHHmmSSOHH'mm'" } },
-  "info_dict.Trapped": { "type": "string", "values": { "enum": ["True", "False", "Unknown"] } },
-  "encryption_dict.Filter": { "type": "string", "values": { "enum": ["Standard"] } },
-  "encryption_dict.V": { "type": "uint32", "values": { "discrete": [1, 2, 3, 4, 5] } },
-  "encryption_dict.Length": { "type": "uint32", "values": { "discrete": [40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 256] } },
-  "encryption_dict.R": { "type": "uint32", "values": { "discrete": [2, 3, 4, 5, 6] } },
-  "encryption_dict.O": { "type": "bytes", "values": { "constraints": { "length": 32 } } },
-  "encryption_dict.U": { "type": "bytes", "values": { "constraints": { "length": 32 } } },
-  "encryption_dict.P": { "type": "int32", "values": { "range": [-2147483648, 2147483647] } },
-  "encryption_dict.CF": { "type": "dictionary", "values": { "description": "Crypt filter dictionary" } },
-  "encryption_dict.StmF": { "type": "string", "values": { "enum": ["Identity", "StdCF", "V2", "AESV2", "AESV3"] } },
-  "encryption_dict.StrF": { "type": "string", "values": { "enum": ["Identity", "StdCF", "V2", "AESV2", "AESV3"] } },
-  "annotation.Type": { "type": "string", "values": { "enum": ["Annot"] }, "immutable": true },
-  "annotation.Subtype": { "type": "string", "values": { "enum": ["Text", "Link", "FreeText", "Line", "Square", "Circle", "Polygon", "PolyLine", "Highlight", "Underline", "Squiggly", "StrikeOut", "Stamp", "Caret", "Ink", "Popup", "FileAttachment", "Sound", "Movie", "Widget", "Screen", "PrinterMark", "TrapNet", "Watermark", "3D", "Redact"] } },
-  "annotation.Rect": { "type": "array", "values": { "description": "Rectangle [llx lly urx ury]" } },
-  "annotation.Contents": { "type": "string", "values": { "constraints": { "max_length": 4096 } } },
-  "annotation.P": { "type": "reference", "values": { "description": "Indirect reference to the page object" } },
-  "annotation.NM": { "type": "string", "values": { "constraints": { "max_length": 255 } } },
-  "annotation.M": { "type": "string", "values": { "description": "Modification date in PDF date format" } },
-  "annotation.F": { "type": "uint32", "values": { "range": [0, 65535] } },
-  "annotation.AP": { "type": "dictionary", "values": { "description": "Appearance dictionary" } },
-  "annotation.AS": { "type": "string", "values": { "description": "Appearance state name" } },
-  "annotation.Border": { "type": "array", "values": { "discrete": [[0, 0, 0], [0, 0, 1], [1, 1, 1]] } },
-  "annotation.C": { "type": "array", "values": { "description": "Color array" } },
-  "annotation.StructParent": { "type": "int32", "values": { "range": [0, 65535] } },
-  "action.Type": { "type": "string", "values": { "enum": ["Action"] }, "immutable": true },
-  "action.S": { "type": "string", "values": { "enum": ["GoTo", "GoToR", "GoToE", "Launch", "Thread", "URI", "Sound", "Movie", "Hide", "Named", "SubmitForm", "ResetForm", "ImportData", "JavaScript", "SetOCGState", "Rendition", "Trans", "GoTo3DView"] } },
-  "action.URI": { "type": "string", "values": { "constraints": { "max_length": 2048 } } },
-  "action.D": { "type": "array", "values": { "description": "Destination array" } },
-  "action.Next": { "type": "reference", "values": { "description": "Next action or array of actions" } },
-  "outline.Type": { "type": "string", "values": { "enum": ["Outlines"] }, "immutable": true },
-  "outline.First": { "type": "reference", "values": { "description": "First outline item child" } },
-  "outline.Last": { "type": "reference", "values": { "description": "Last outline item child" } },
-  "outline.Count": { "type": "int32", "values": { "range": [-65535, 65535] } },
-  "outline.Dest": { "type": "array", "values": { "description": "Destination array" } },
-  "outline.Title": { "type": "string", "values": { "constraints": { "max_length": 1024 } } },
-  "outline.Parent": { "type": "reference", "values": { "description": "Parent outline item" } },
-  "outline.Prev": { "type": "reference", "values": { "description": "Previous sibling outline item" } },
-  "outline.Next": { "type": "reference", "values": { "description": "Next sibling outline item" } },
-  "names_dict.Dests": { "type": "reference", "values": { "description": "Name tree for destinations" } },
-  "names_dict.AP": { "type": "reference", "values": { "description": "Name tree for appearances" } },
-  "names_dict.JavaScript": { "type": "reference", "values": { "description": "Name tree for JavaScript actions" } },
-  "names_dict.Pages": { "type": "reference", "values": { "description": "Name tree for pages" } },
-  "names_dict.Templates": { "type": "reference", "values": { "description": "Name tree for templates" } },
-  "names_dict.IDS": { "type": "reference", "values": { "description": "Name tree for digital identifiers" } },
-  "names_dict.URLS": { "type": "reference", "values": { "description": "Name tree for URLs" } },
-  "names_dict.EmbeddedFiles": { "type": "reference", "values": { "description": "Name tree for embedded files" } },
-  "form_field.FT": { "type": "string", "values": { "enum": ["Btn", "Tx", "Ch", "Sig"] } },
-  "form_field.T": { "type": "string", "values": { "constraints": { "max_length": 255 } } },
-  "form_field.V": { "type": "string", "values": { "description": "Field value" } },
-  "form_field.DV": { "type": "string", "values": { "description": "Default field value" } },
-  "form_field.Ff": { "type": "uint32", "values": { "range": [0, 4294967295] } },
-  "form_field.Kids": { "type": "array", "values": { "description": "Array of child field references" } },
-  "content_stream.BT": { "type": "operator", "values": { "enum": ["BT"] }, "immutable": true },
-  "content_stream.ET": { "type": "operator", "values": { "enum": ["ET"] }, "immutable": true },
-  "content_stream.Tf": { "type": "operator", "values": { "enum": ["Tf"] }, "immutable": true },
-  "content_stream.Td": { "type": "operator", "values": { "enum": ["Td"] }, "immutable": true },
-  "content_stream.Tm": { "type": "operator", "values": { "enum": ["Tm"] }, "immutable": true },
-  "content_stream.T*": { "type": "operator", "values": { "enum": ["T*"] }, "immutable": true },
-  "content_stream.Tj": { "type": "operator", "values": { "enum": ["Tj"] }, "immutable": true },
-  "content_stream.TJ": { "type": "operator", "values": { "enum": ["TJ"] }, "immutable": true },
-  "content_stream.cm": { "type": "operator", "values": { "enum": ["cm"] }, "immutable": true },
-  "content_stream.re": { "type": "operator", "values": { "enum": ["re"] }, "immutable": true },
-  "content_stream.m": { "type": "operator", "values": { "enum": ["m"] }, "immutable": true },
-  "content_stream.l": { "type": "operator", "values": { "enum": ["l"] }, "immutable": true },
-  "content_stream.c": { "type": "operator", "values": { "enum": ["c"] }, "immutable": true },
-  "content_stream.h": { "type": "operator", "values": { "enum": ["h"] }, "immutable": true },
-  "content_stream.f": { "type": "operator", "values": { "enum": ["f"] }, "immutable": true },
-  "content_stream.S": { "type": "operator", "values": { "enum": ["S"] }, "immutable": true },
-  "content_stream.W": { "type": "operator", "values": { "enum": ["W"] }, "immutable": true },
-  "content_stream.q": { "type": "operator", "values": { "enum": ["q"] }, "immutable": true },
-  "content_stream.Q": { "type": "operator", "values": { "enum": ["Q"] }, "immutable": true },
-  "content_stream.gs": { "type": "operator", "values": { "enum": ["gs"] }, "immutable": true },
-  "content_stream.Do": { "type": "operator", "values": { "enum": ["Do"] }, "immutable": true },
-  "content_stream.CS": { "type": "operator", "values": { "enum": ["CS"] }, "immutable": true },
-  "content_stream.cs": { "type": "operator", "values": { "enum": ["cs"] }, "immutable": true },
-  "content_stream.SC": { "type": "operator", "values": { "enum": ["SC"] }, "immutable": true },
-  "content_stream.sc": { "type": "operator", "values": { "enum": ["sc"] }, "immutable": true },
-  "content_stream.rg": { "type": "operator", "values": { "enum": ["rg"] }, "immutable": true },
-  "content_stream.RG": { "type": "operator", "values": { "enum": ["RG"] }, "immutable": true },
-  "content_stream.k": { "type": "operator", "values": { "enum": ["k"] }, "immutable": true },
-  "content_stream.K": { "type": "operator", "values": { "enum": ["K"] }, "immutable": true },
-  "content_stream.BI": { "type": "operator", "values": { "enum": ["BI"] }, "immutable": true },
-  "content_stream.ID": { "type": "operator", "values": { "enum": ["ID"] }, "immutable": true },
-  "content_stream.EI": { "type": "operator", "values": { "enum": ["EI"] }, "immutable": true },
-  "linearization.Linearized": { "type": "float", "values": { "discrete": [1.0] }, "immutable": true },
-  "linearization.L": { "type": "uint64", "values": { "range": [0, 9999999999] } },
-  "linearization.H": { "type": "array", "values": { "description": "[offset length] of primary hint stream" } },
-  "linearization.O": { "type": "uint32", "values": { "range": [1, 65535] } },
-  "linearization.E": { "type": "uint64", "values": { "range": [0, 9999999999] } },
-  "linearization.N": { "type": "uint32", "values": { "range": [1, 65535] } },
-  "linearization.T": { "type": "uint64", "values": { "range": [0, 9999999999] } },
-  "cross_reference_stream.Type": { "type": "string", "values": { "enum": ["XRef"] }, "immutable": true },
-  "cross_reference_stream.Size": { "type": "uint32", "values": { "range": [1, 65535] } },
-  "cross_reference_stream.Index": { "type": "array", "values": { "description": "Array of pairs [first_obj_num count]" } },
-  "cross_reference_stream.W": { "type": "array", "values": { "discrete": [[1, 2, 1], [1, 3, 1], [1, 4, 2]] } },
-  "cross_reference_stream.Filter": { "type": "string", "values": { "enum": ["FlateDecode", "ASCIIHexDecode", "LZWDecode"] } },
-  "cross_reference_stream.DecodeParms": { "type": "dictionary", "values": { "description": "Decode parameters dictionary" } },
-  "object_stream.Type": { "type": "string", "values": { "enum": ["ObjStm"] }, "immutable": true },
-  "object_stream.N": { "type": "uint32", "values": { "range": [1, 65535] } },
-  "object_stream.First": { "type": "uint32", "values": { "range": [0, 2147483647] } },
-  "startxref.offset": { "type": "uint64", "values": { "range": [0, 9999999999] } },
-  "%%EOF.marker": { "type": "string", "values": { "enum": ["%%EOF"] }, "immutable": true }
+  "file.eofm": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  }
 }
