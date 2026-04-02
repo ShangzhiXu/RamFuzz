@@ -1,0 +1,228 @@
+//------------------------------------------------
+//--- gif_enhanced.bt
+//   Comprehensive GIF template covering all 04_type_values.json elements
+//   GIF87a/89a: Header, LSD, GCT, Image Descriptor, LCT, Image Data,
+//   Graphic Control Ext, Comment Ext, Plain Text Ext,
+//   Application Ext (NETSCAPE, XMP, ICC, ANIMEXTS), Trailer
+//------------------------------------------------
+
+LittleEndian();
+
+local string ReadBytesInitValues[] = {
+    "GIF", "\x21\xF9", "\x21\xFE", "\x21\x01", "\x21\xFF", "\x2C", "\x3B"
+};
+const local UBYTE ReadUByteInitValues[0];
+
+// ============================================================
+// GIF Header
+// ============================================================
+struct GIF_HEADER {
+    char signature[3] = { "GIF" };
+    char version[3] = { "89a" };
+};
+
+// ============================================================
+// Logical Screen Descriptor
+// ============================================================
+struct LOGICAL_SCREEN_DESCRIPTOR {
+    uint16 width <min=1, max=1024>;
+    uint16 height <min=1, max=1024>;
+    // packed: GCT_flag(1) | color_res(3) | sort(1) | gct_size(3)
+    // 0x87 = GCT present, 8 bits/color, no sort, 256 colors
+    ubyte packed = { 0x87, 0xF7, 0x77, 0x47, 0x37, 0x27, 0x17 };
+    ubyte background_color_index;
+    ubyte pixel_aspect_ratio = { 0 };
+
+    local ubyte gct_flag = (packed >> 7) & 1;
+    local ubyte gct_size_field = packed & 7;
+    local uint32 gct_entries = 1 << (gct_size_field + 1);
+};
+
+// ============================================================
+// Color Table (Global or Local)
+// ============================================================
+struct COLOR_TABLE(uint32 num_entries) {
+    local uint32 data_size = num_entries * 3;
+    ubyte colors[data_size];
+};
+
+// ============================================================
+// Image Descriptor
+// ============================================================
+struct IMAGE_DESCRIPTOR {
+    ubyte separator = { 0x2C };
+    uint16 left_position;
+    uint16 top_position;
+    uint16 img_width <min=1, max=1024>;
+    uint16 img_height <min=1, max=1024>;
+    // packed: LCT_flag(1) | interlace(1) | sort(1) | reserved(2) | lct_size(3)
+    ubyte packed <min=0, max=255>;
+
+    local ubyte lct_flag = (packed >> 7) & 1;
+    local ubyte lct_size_field = packed & 7;
+    local uint32 lct_entries = 1 << (lct_size_field + 1);
+};
+
+// ============================================================
+// Image Data (LZW compressed)
+// ============================================================
+struct IMAGE_DATA {
+    ubyte lzw_min_code_size <min=2, max=12>;
+    // Sub-blocks
+    ubyte sub_block_size <min=1, max=255>;
+    ubyte sub_block_data[sub_block_size];
+    ubyte block_terminator = { 0 };
+};
+
+// ============================================================
+// Graphic Control Extension
+// ============================================================
+struct GRAPHIC_CONTROL_EXT {
+    ubyte introducer = { 0x21 };
+    ubyte label = { 0xF9 };
+    ubyte block_size = { 4 };
+    // packed: reserved(3) | disposal(3) | user_input(1) | transparent(1)
+    ubyte packed;
+    uint16 delay_time;
+    ubyte transparent_color_index;
+    ubyte block_terminator = { 0 };
+};
+
+// ============================================================
+// Comment Extension
+// ============================================================
+struct COMMENT_EXT {
+    ubyte introducer = { 0x21 };
+    ubyte label = { 0xFE };
+    // Comment sub-block
+    ubyte sub_block_size <min=1, max=255>;
+    char comment_data[sub_block_size];
+    ubyte block_terminator = { 0 };
+};
+
+// ============================================================
+// Plain Text Extension
+// ============================================================
+struct PLAIN_TEXT_EXT {
+    ubyte introducer = { 0x21 };
+    ubyte label = { 0x01 };
+    ubyte block_size = { 12 };
+    uint16 text_grid_left;
+    uint16 text_grid_top;
+    uint16 text_grid_width <min=1, max=1024>;
+    uint16 text_grid_height <min=1, max=1024>;
+    ubyte cell_width <min=1, max=32>;
+    ubyte cell_height <min=1, max=32>;
+    ubyte fg_color_index;
+    ubyte bg_color_index;
+    // Text data sub-block
+    ubyte text_sub_size <min=1, max=255>;
+    char text_data[text_sub_size];
+    ubyte block_terminator = { 0 };
+};
+
+// ============================================================
+// Application Extension - NETSCAPE (looping)
+// ============================================================
+struct APP_EXT_NETSCAPE {
+    ubyte introducer = { 0x21 };
+    ubyte label = { 0xFF };
+    ubyte block_size = { 11 };
+    char app_id[8] = { "NETSCAPE" };
+    char auth_code[3] = { "2.0" };
+    // Looping sub-block
+    ubyte sub_block_size = { 3 };
+    ubyte sub_block_id = { 1 };
+    uint16 loop_count;
+    ubyte block_terminator = { 0 };
+};
+
+// ============================================================
+// Application Extension - XMP
+// ============================================================
+struct APP_EXT_XMP {
+    ubyte introducer = { 0x21 };
+    ubyte label = { 0xFF };
+    ubyte block_size = { 11 };
+    char app_id[8] = { "XMP Data" };
+    char auth_code[3] = { "XMP" };
+    // XMP data sub-block
+    ubyte xmp_sub_size <min=1, max=255>;
+    ubyte xmp_data[xmp_sub_size];
+    ubyte block_terminator = { 0 };
+};
+
+// ============================================================
+// Application Extension - ICC Profile
+// ============================================================
+struct APP_EXT_ICC {
+    ubyte introducer = { 0x21 };
+    ubyte label = { 0xFF };
+    ubyte block_size = { 11 };
+    char app_id[8] = { "ICCRGBG1" };
+    char auth_code[3] = { "012" };
+    // ICC data sub-block
+    ubyte icc_sub_size <min=1, max=255>;
+    ubyte icc_data[icc_sub_size];
+    ubyte block_terminator = { 0 };
+};
+
+// ============================================================
+// Application Extension - ANIMEXTS
+// ============================================================
+struct APP_EXT_ANIMEXTS {
+    ubyte introducer = { 0x21 };
+    ubyte label = { 0xFF };
+    ubyte block_size = { 11 };
+    char app_id[8] = { "ANIMEXTS" };
+    char auth_code[3] = { "1.0" };
+    ubyte anim_sub_size <min=1, max=255>;
+    ubyte anim_data[anim_sub_size];
+    ubyte block_terminator = { 0 };
+};
+
+// ============================================================
+// Trailer
+// ============================================================
+struct GIF_TRAILER {
+    ubyte trailer = { 0x3B };
+};
+
+// ============================================================
+// Top-Level GIF File
+// ============================================================
+
+typedef struct {
+    // Header
+    GIF_HEADER header;
+
+    // Logical Screen Descriptor
+    LOGICAL_SCREEN_DESCRIPTOR lsd;
+
+    // Global Color Table (if flag set)
+    if (lsd.gct_flag) {
+        COLOR_TABLE gct(lsd.gct_entries);
+    }
+
+    // Graphic Control Extension (optional, before image)
+    GRAPHIC_CONTROL_EXT gce;
+
+    // Comment Extension
+    COMMENT_EXT comment;
+
+    // Application Extension - NETSCAPE looping
+    APP_EXT_NETSCAPE netscape;
+
+    // Image Descriptor + data
+    IMAGE_DESCRIPTOR img_desc;
+    if (img_desc.lct_flag) {
+        COLOR_TABLE lct(img_desc.lct_entries);
+    }
+    IMAGE_DATA img_data;
+
+    // Trailer
+    GIF_TRAILER trailer;
+
+} gif_file;
+
+gif_file file;

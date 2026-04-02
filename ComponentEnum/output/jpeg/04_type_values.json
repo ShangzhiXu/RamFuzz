@@ -1,0 +1,3112 @@
+{
+  "SOI.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65496
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFD8 - Start of Image marker"
+  },
+  "EOI.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65497
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFD9 - End of Image marker"
+  },
+  "APP0_JFIF.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65504
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFE0"
+  },
+  "JPEG_APP0_JFIF.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65504
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFE0"
+  },
+  "APP0_JFIF.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        16,
+        65535
+      ]
+    }
+  },
+  "JPEG_APP0_JFIF.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        16,
+        65535
+      ]
+    }
+  },
+  "APP0_JFIF.identifier": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "JFIF\u0000"
+      ],
+      "constraints": {
+        "max_length": 5
+      }
+    },
+    "immutable": true
+  },
+  "JPEG_APP0_JFIF.identifier": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "JFIF\u0000"
+      ],
+      "constraints": {
+        "max_length": 5
+      }
+    },
+    "immutable": true
+  },
+  "APP0_JFIF.version_major": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "JPEG_APP0_JFIF.version_major": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "APP0_JFIF.version_minor": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "JPEG_APP0_JFIF.version_minor": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "APP0_JFIF.density_units": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "JPEG_APP0_JFIF.density_units": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "APP0_JFIF.x_density": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "JPEG_APP0_JFIF.x_density": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "APP0_JFIF.y_density": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "JPEG_APP0_JFIF.y_density": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "APP0_JFIF.x_thumbnail": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "JPEG_APP0_JFIF.x_thumbnail": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "APP0_JFIF.y_thumbnail": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "JPEG_APP0_JFIF.y_thumbnail": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "APP0_JFXX.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65504
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFE0"
+  },
+  "APP0_JFXX.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        8,
+        65535
+      ]
+    }
+  },
+  "APP0_JFXX.identifier": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "JFXX\u0000"
+      ],
+      "constraints": {
+        "max_length": 5
+      }
+    },
+    "immutable": true
+  },
+  "APP0_JFXX.thumbnail_format": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        16,
+        17,
+        19
+      ]
+    }
+  },
+  "APP1_Exif.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65505
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFE1"
+  },
+  "JPEG_APP1_EXIF.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65505
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFE1"
+  },
+  "APP1_Exif.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        8,
+        65535
+      ]
+    }
+  },
+  "JPEG_APP1_EXIF.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        8,
+        65535
+      ]
+    }
+  },
+  "APP1_Exif.identifier": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Exif\u0000\u0000"
+      ],
+      "constraints": {
+        "max_length": 6
+      }
+    },
+    "immutable": true
+  },
+  "JPEG_APP1_EXIF.identifier": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Exif\u0000\u0000"
+      ],
+      "constraints": {
+        "max_length": 6
+      }
+    },
+    "immutable": true
+  },
+  "APP1_Exif.byte_order": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "MM",
+        "II"
+      ],
+      "constraints": {
+        "max_length": 2
+      }
+    }
+  },
+  "JPEG_APP1_EXIF.byte_order": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "MM",
+        "II"
+      ],
+      "constraints": {
+        "max_length": 2
+      }
+    }
+  },
+  "APP1_Exif.magic_number": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        42
+      ]
+    },
+    "immutable": true,
+    "description": "TIFF magic number 0x002A"
+  },
+  "JPEG_APP1_EXIF.magic_number": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        42
+      ]
+    },
+    "immutable": true,
+    "description": "TIFF magic number 0x002A"
+  },
+  "APP1_Exif.ifd0_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        8,
+        65535
+      ]
+    },
+    "description": "Offset to first IFD, typically 8"
+  },
+  "JPEG_APP1_EXIF.ifd0_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        8,
+        65535
+      ]
+    },
+    "description": "Offset to first IFD, typically 8"
+  },
+  "APP1_XMP.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65505
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFE1"
+  },
+  "APP1_XMP.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        31,
+        65535
+      ]
+    }
+  },
+  "APP1_XMP.identifier": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "http://ns.adobe.com/xap/1.0/\u0000"
+      ],
+      "constraints": {
+        "max_length": 29
+      }
+    },
+    "immutable": true
+  },
+  "APP2_ICC.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65506
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFE2"
+  },
+  "APP2_ICC.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        16,
+        65535
+      ]
+    }
+  },
+  "APP2_ICC.identifier": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "ICC_PROFILE\u0000"
+      ],
+      "constraints": {
+        "max_length": 12
+      }
+    },
+    "immutable": true
+  },
+  "APP2_ICC.chunk_number": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        1,
+        255
+      ]
+    }
+  },
+  "APP2_ICC.total_chunks": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        1,
+        255
+      ]
+    }
+  },
+  "APP13_Photoshop.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65517
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFED"
+  },
+  "APP13_Photoshop.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        16,
+        65535
+      ]
+    }
+  },
+  "APP13_Photoshop.identifier": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Photoshop 3.0\u0000"
+      ],
+      "constraints": {
+        "max_length": 14
+      }
+    },
+    "immutable": true
+  },
+  "APP13_Photoshop.resource_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "8BIM"
+      ],
+      "constraints": {
+        "max_length": 4
+      }
+    },
+    "immutable": true
+  },
+  "APP13_Photoshop.resource_id": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1000,
+        2999
+      ],
+      "discrete": [
+        1028,
+        1029,
+        1030,
+        1032,
+        1033,
+        1034,
+        1035,
+        1036,
+        1037,
+        1038,
+        1039,
+        1040,
+        1041,
+        1042,
+        1043,
+        1044,
+        1045,
+        1046,
+        1049,
+        1050,
+        1053,
+        1054,
+        1057,
+        1058,
+        1059,
+        1060,
+        1061,
+        1062,
+        1064,
+        1065,
+        1066,
+        1067,
+        1068,
+        1069,
+        1070,
+        1071,
+        1072,
+        1073,
+        1074,
+        1075,
+        1076,
+        1077,
+        1080,
+        1082,
+        1083,
+        1084,
+        1085,
+        1086,
+        1087,
+        1088,
+        1089,
+        1090,
+        1091,
+        1092
+      ]
+    },
+    "description": "Photoshop resource IDs (1028=IPTC-NAA, 1058=EXIF, etc.)"
+  },
+  "APP13_Photoshop.resource_name": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 255
+      }
+    },
+    "description": "Pascal string (length-prefixed)"
+  },
+  "APP13_Photoshop.resource_data_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "APP14_Adobe.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65518
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFEE"
+  },
+  "APP14_Adobe.length": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        14
+      ]
+    }
+  },
+  "APP14_Adobe.identifier": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Adobe"
+      ],
+      "constraints": {
+        "max_length": 5
+      }
+    },
+    "immutable": true
+  },
+  "APP14_Adobe.version": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        100,
+        101
+      ]
+    }
+  },
+  "APP14_Adobe.flags0": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "APP14_Adobe.flags1": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "APP14_Adobe.color_transform": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "DQT.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65499
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFDB"
+  },
+  "DQT.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        67,
+        388
+      ]
+    },
+    "description": "2 + (65 or 129) per table; 67 for one 8-bit table, 132 for two"
+  },
+  "DQT.precision": {
+    "type": "uint4",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "DQT.table_id": {
+    "type": "uint4",
+    "values": {
+      "range": [
+        0,
+        3
+      ]
+    }
+  },
+  "DQT.table_data": {
+    "type": "array",
+    "values": {
+      "range": [
+        1,
+        255
+      ],
+      "constraints": {
+        "length_8bit": 64,
+        "length_16bit": 128
+      }
+    },
+    "description": "64 quantization values in zigzag order (8-bit: 1 byte each, 16-bit: 2 bytes each)"
+  },
+  "DHT.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65476
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFC4"
+  },
+  "DHT.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        19,
+        65535
+      ]
+    }
+  },
+  "DHT.table_class": {
+    "type": "uint4",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "DHT.table_id": {
+    "type": "uint4",
+    "values": {
+      "range": [
+        0,
+        3
+      ]
+    }
+  },
+  "DHT.num_codes": {
+    "type": "array",
+    "values": {
+      "range": [
+        0,
+        255
+      ],
+      "constraints": {
+        "length": 16
+      }
+    },
+    "description": "Number of codes of each length 1-16"
+  },
+  "DHT.values": {
+    "type": "array",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    },
+    "description": "Huffman values, total count = sum of num_codes"
+  },
+  "DAC.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65484
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFCC"
+  },
+  "DAC.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        4,
+        65535
+      ]
+    }
+  },
+  "DAC.table_class": {
+    "type": "uint4",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "DAC.table_id": {
+    "type": "uint4",
+    "values": {
+      "range": [
+        0,
+        3
+      ]
+    }
+  },
+  "DAC.conditioning_value": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    },
+    "description": "DC: conditioning table value (0-255); AC: Kx value"
+  },
+  "SOF0.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65472
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFC0 - Baseline DCT"
+  },
+  "SOF0.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        8,
+        65535
+      ]
+    },
+    "description": "8 + 3 * num_components"
+  },
+  "SOF0.precision": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        8
+      ],
+      "description": "Baseline JPEG always 8 bits"
+    }
+  },
+  "SOF0.image_height": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "SOF0.image_width": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "SOF0.num_components": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF0.component_id": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4,
+        67,
+        77,
+        89,
+        75
+      ]
+    }
+  },
+  "SOF0.h_sampling_factor": {
+    "type": "uint4",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF0.v_sampling_factor": {
+    "type": "uint4",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF0.quant_table_id": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        3
+      ]
+    }
+  },
+  "SOF1.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65473
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFC1 - Extended sequential DCT"
+  },
+  "SOF1.precision": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        8,
+        12
+      ]
+    }
+  },
+  "SOF2.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65474
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFC2 - Progressive DCT"
+  },
+  "SOF2.precision": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        8,
+        12
+      ]
+    }
+  },
+  "SOF2.image_height": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "SOF2.image_width": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "SOF2.num_components": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF3.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65475
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFC3 - Lossless (sequential)"
+  },
+  "SOF3.precision": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        2,
+        16
+      ]
+    }
+  },
+  "SOS.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65498
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFDA"
+  },
+  "SOS.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        6,
+        12
+      ]
+    },
+    "description": "6 + 2 * num_components"
+  },
+  "SOS.num_components": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        1,
+        4
+      ]
+    }
+  },
+  "SOS.component_selector": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "description": "Component ID matching a SOF component"
+  },
+  "SOS.dc_table_selector": {
+    "type": "uint4",
+    "values": {
+      "range": [
+        0,
+        3
+      ]
+    }
+  },
+  "SOS.ac_table_selector": {
+    "type": "uint4",
+    "values": {
+      "range": [
+        0,
+        3
+      ]
+    }
+  },
+  "SOS.start_spectral": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        63
+      ]
+    },
+    "description": "Start of spectral selection (0 for baseline, 0-63 for progressive)"
+  },
+  "SOS.end_spectral": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        63
+      ]
+    },
+    "description": "End of spectral selection (63 for baseline)"
+  },
+  "SOS.approx_high": {
+    "type": "uint4",
+    "values": {
+      "range": [
+        0,
+        13
+      ]
+    },
+    "description": "Successive approximation bit position high"
+  },
+  "SOS.approx_low": {
+    "type": "uint4",
+    "values": {
+      "range": [
+        0,
+        13
+      ]
+    },
+    "description": "Successive approximation bit position low"
+  },
+  "DRI.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65501
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFDD"
+  },
+  "DRI.length": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        4
+      ]
+    }
+  },
+  "DRI.restart_interval": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "Number of MCUs between restart markers (0 = disabled)"
+  },
+  "RST0.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65488
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFD0"
+  },
+  "RST1.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65489
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFD1"
+  },
+  "RST2.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65490
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFD2"
+  },
+  "RST3.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65491
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFD3"
+  },
+  "RST4.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65492
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFD4"
+  },
+  "RST5.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65493
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFD5"
+  },
+  "RST6.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65494
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFD6"
+  },
+  "RST7.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65495
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFD7"
+  },
+  "COM.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65534
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFFE"
+  },
+  "COM.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        2,
+        65535
+      ]
+    }
+  },
+  "COM.comment_data": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 65533
+      }
+    }
+  },
+  "DNL.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65500
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFDC"
+  },
+  "DNL.length": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        4
+      ]
+    }
+  },
+  "DNL.num_lines": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "Exif_IFD0.entry_count": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "Exif_IFD0.tag_id": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        256,
+        257,
+        258,
+        259,
+        262,
+        270,
+        271,
+        272,
+        273,
+        274,
+        277,
+        278,
+        279,
+        282,
+        283,
+        284,
+        296,
+        301,
+        305,
+        306,
+        315,
+        316,
+        318,
+        319,
+        320,
+        330,
+        338,
+        513,
+        514,
+        529,
+        530,
+        531,
+        532,
+        34665,
+        34853,
+        40965
+      ]
+    }
+  },
+  "Exif_IFD0.data_format": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    }
+  },
+  "Exif_IFD0.num_components": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ]
+    }
+  },
+  "Exif_IFD0.data_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    },
+    "description": "Value or offset to value if data > 4 bytes"
+  },
+  "Exif_IFD0.next_ifd_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    },
+    "description": "Offset to next IFD, 0 if none"
+  },
+  "Exif_IFD0.Orientation": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  },
+  "Exif_IFD0.ResolutionUnit": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "Exif_IFD0.YCbCrPositioning": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        2
+      ]
+    }
+  },
+  "Exif_IFD0.Compression": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        6,
+        7
+      ]
+    }
+  },
+  "Exif_ExifIFD.tag_id": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        33434,
+        33437,
+        34850,
+        34852,
+        34855,
+        34856,
+        34864,
+        34866,
+        36864,
+        36867,
+        36868,
+        37121,
+        37122,
+        37377,
+        37378,
+        37379,
+        37380,
+        37381,
+        37383,
+        37384,
+        37385,
+        37386,
+        37396,
+        37500,
+        37510,
+        37520,
+        37521,
+        37522,
+        40960,
+        40961,
+        40962,
+        40963,
+        41483,
+        41484,
+        41486,
+        41487,
+        41488,
+        41492,
+        41493,
+        41495,
+        41728,
+        41729,
+        41730,
+        41985,
+        41986,
+        41987,
+        41988,
+        41989,
+        41990,
+        41991,
+        41992,
+        41993,
+        41994,
+        41995,
+        41996,
+        42016,
+        42032,
+        42033,
+        42034,
+        42035,
+        42036,
+        42037,
+        42240
+      ]
+    }
+  },
+  "Exif_ExifIFD.ExposureProgram": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  },
+  "Exif_ExifIFD.MeteringMode": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        255
+      ]
+    }
+  },
+  "Exif_ExifIFD.LightSource": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        255
+      ]
+    }
+  },
+  "Exif_ExifIFD.Flash": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        5,
+        7,
+        9,
+        13,
+        15,
+        16,
+        24,
+        25,
+        29,
+        31,
+        32,
+        65,
+        69,
+        71,
+        73,
+        77,
+        79,
+        89,
+        93,
+        95
+      ],
+      "description": "Bit field: bit0=fired, bit1-2=return, bit3-4=mode, bit5=function, bit6=red-eye"
+    }
+  },
+  "Exif_ExifIFD.ColorSpace": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        65535
+      ]
+    }
+  },
+  "Exif_ExifIFD.SensingMethod": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8
+      ]
+    }
+  },
+  "Exif_ExifIFD.FileSource": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "Exif_ExifIFD.SceneType": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "Exif_ExifIFD.CustomRendered": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "Exif_ExifIFD.ExposureMode": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "Exif_ExifIFD.WhiteBalance": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "Exif_ExifIFD.SceneCaptureType": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "Exif_ExifIFD.GainControl": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "Exif_ExifIFD.Contrast": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "Exif_ExifIFD.Saturation": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "Exif_ExifIFD.Sharpness": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "Exif_ExifIFD.SubjectDistanceRange": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "Exif_GPSIFD.tag_id": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        24,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31
+      ]
+    }
+  },
+  "Exif_GPSIFD.GPSLatitudeRef": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "N",
+        "S"
+      ],
+      "constraints": {
+        "max_length": 2
+      }
+    }
+  },
+  "Exif_GPSIFD.GPSLongitudeRef": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "E",
+        "W"
+      ],
+      "constraints": {
+        "max_length": 2
+      }
+    }
+  },
+  "Exif_GPSIFD.GPSAltitudeRef": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "Exif_GPSIFD.GPSStatus": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "A",
+        "V"
+      ],
+      "constraints": {
+        "max_length": 2
+      }
+    }
+  },
+  "Exif_GPSIFD.GPSMeasureMode": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "2",
+        "3"
+      ],
+      "constraints": {
+        "max_length": 2
+      }
+    }
+  },
+  "Exif_GPSIFD.GPSSpeedRef": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "K",
+        "M",
+        "N"
+      ],
+      "constraints": {
+        "max_length": 2
+      }
+    }
+  },
+  "Exif_GPSIFD.GPSDifferential": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "Exif_InteropIFD.tag_id": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        4096,
+        4097
+      ]
+    }
+  },
+  "Exif_InteropIFD.InteroperabilityIndex": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "R98",
+        "THM",
+        "R03"
+      ],
+      "constraints": {
+        "max_length": 4
+      }
+    }
+  },
+  "IPTC_record.tag_marker": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        28
+      ]
+    },
+    "immutable": true,
+    "description": "0x1C"
+  },
+  "IPTC_record.record_number": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        7
+      ]
+    }
+  },
+  "IPTC_record.dataset_number": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        12,
+        15,
+        20,
+        22,
+        25,
+        30,
+        35,
+        37,
+        40,
+        45,
+        47,
+        50,
+        55,
+        60,
+        62,
+        63,
+        65,
+        70,
+        72,
+        75,
+        76,
+        80,
+        85,
+        90,
+        92,
+        95,
+        100,
+        101,
+        103,
+        105,
+        110,
+        115,
+        116,
+        118,
+        120,
+        121,
+        122,
+        125,
+        130,
+        131,
+        135,
+        150,
+        199,
+        200,
+        201
+      ]
+    }
+  },
+  "IPTC_record.data_size": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        32767
+      ]
+    },
+    "description": "If bit 15 is set, extended dataset (size in following bytes)"
+  },
+  "ICC_header.profile_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        128,
+        16777216
+      ]
+    }
+  },
+  "ICC_header.preferred_cmm": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "APPL",
+        "ADBE",
+        "MSFT",
+        "SUNW",
+        "SGI ",
+        "KODK",
+        "\u0000\u0000\u0000\u0000"
+      ],
+      "constraints": {
+        "max_length": 4
+      }
+    }
+  },
+  "ICC_header.profile_version": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        33554432,
+        50331648,
+        67108864
+      ]
+    },
+    "description": "Major.Minor.Bugfix packed in 4 bytes"
+  },
+  "ICC_header.device_class": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "scnr",
+        "mntr",
+        "prtr",
+        "link",
+        "spac",
+        "abst",
+        "nmcl"
+      ],
+      "constraints": {
+        "max_length": 4
+      }
+    }
+  },
+  "ICC_header.color_space": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "XYZ ",
+        "Lab ",
+        "Luv ",
+        "YCbr",
+        "Yxy ",
+        "RGB ",
+        "GRAY",
+        "HSV ",
+        "HLS ",
+        "CMYK",
+        "CMY "
+      ],
+      "constraints": {
+        "max_length": 4
+      }
+    }
+  },
+  "ICC_header.pcs": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "XYZ ",
+        "Lab "
+      ],
+      "constraints": {
+        "max_length": 4
+      }
+    },
+    "description": "Profile Connection Space"
+  },
+  "ICC_header.signature": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "acsp"
+      ],
+      "constraints": {
+        "max_length": 4
+      }
+    },
+    "immutable": true
+  },
+  "ICC_header.primary_platform": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "APPL",
+        "MSFT",
+        "SUNW",
+        "SGI ",
+        "\u0000\u0000\u0000\u0000"
+      ],
+      "constraints": {
+        "max_length": 4
+      }
+    }
+  },
+  "ICC_header.rendering_intent": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "ICC_header.pcs_illuminant": {
+    "type": "bytes",
+    "values": {
+      "discrete": [
+        0,
+        0,
+        246,
+        214,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        211,
+        45
+      ]
+    },
+    "description": "D50 illuminant: X=0.9642, Y=1.0000, Z=0.8249 in s15Fixed16Number"
+  },
+  "ICC_tag_table.tag_count": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        100
+      ]
+    }
+  },
+  "ICC_tag_table.tag_signature": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "rXYZ",
+        "gXYZ",
+        "bXYZ",
+        "rTRC",
+        "gTRC",
+        "bTRC",
+        "kTRC",
+        "wtpt",
+        "bkpt",
+        "dmnd",
+        "dmdd",
+        "desc",
+        "cprt",
+        "chad",
+        "A2B0",
+        "A2B1",
+        "A2B2",
+        "B2A0",
+        "B2A1",
+        "B2A2",
+        "gamt",
+        "arts",
+        "ncl2",
+        "vcgt",
+        "ndin",
+        "meta",
+        "chrm",
+        "clrt",
+        "ciis"
+      ],
+      "constraints": {
+        "max_length": 4
+      }
+    }
+  },
+  "ICC_tag_table.tag_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        128,
+        16777216
+      ]
+    }
+  },
+  "ICC_tag_table.tag_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        8,
+        16777216
+      ]
+    }
+  },
+  "ICC_tag_data.type_signature": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "desc",
+        "text",
+        "XYZ ",
+        "curv",
+        "para",
+        "sf32",
+        "mluc",
+        "mft1",
+        "mft2",
+        "mAB ",
+        "mBA ",
+        "sig ",
+        "dtim",
+        "data",
+        "chrm",
+        "vcgt",
+        "ncl2"
+      ],
+      "constraints": {
+        "max_length": 4
+      }
+    }
+  },
+  "XMP_packet.xpacket_begin": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "<?xpacket begin="
+      ],
+      "constraints": {
+        "max_length": 64
+      }
+    }
+  },
+  "XMP_packet.xpacket_end": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "<?xpacket end=\"w\"?>",
+        "<?xpacket end=\"r\"?>"
+      ],
+      "constraints": {
+        "max_length": 64
+      }
+    }
+  },
+  "APP0_JFIF.thumbnail_data": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 65519
+      }
+    }
+  },
+  "JPEG_APP0_JFIF.thumbnail_data": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 65519
+      }
+    }
+  },
+  "APP0_JFXX.thumbnail_data": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 65519
+      }
+    }
+  },
+  "APP12_PictureInfo.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65516
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFEC"
+  },
+  "APP12_PictureInfo.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        2,
+        65535
+      ]
+    }
+  },
+  "APP12_PictureInfo.data": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 65533
+      }
+    }
+  },
+  "APP13_IPTC.marker": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65517
+      ]
+    },
+    "immutable": true,
+    "description": "0xFFED"
+  },
+  "APP13_IPTC.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        2,
+        65535
+      ]
+    }
+  },
+  "APP13_IPTC.identifier": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Photoshop 3.0\u0000"
+      ],
+      "constraints": {
+        "max_length": 14
+      }
+    },
+    "immutable": true
+  },
+  "APP13_IPTC.iptc_datasets": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 65519
+      }
+    },
+    "description": "Sequence of IPTC dataset records"
+  },
+  "APP13_Photoshop.resource_blocks": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 65519
+      }
+    },
+    "description": "Sequence of 8BIM resource blocks"
+  },
+  "APP1_Exif.ifd0": {
+    "type": "bytes",
+    "values": {
+      "description": "IFD0 directory entries"
+    }
+  },
+  "JPEG_APP1_EXIF.ifd0": {
+    "type": "bytes",
+    "values": {
+      "description": "IFD0 directory entries"
+    }
+  },
+  "APP1_Exif.ifd1": {
+    "type": "bytes",
+    "values": {
+      "description": "IFD1 (thumbnail) directory entries"
+    }
+  },
+  "JPEG_APP1_EXIF.ifd1": {
+    "type": "bytes",
+    "values": {
+      "description": "IFD1 (thumbnail) directory entries"
+    }
+  },
+  "APP1_Exif.exif_ifd": {
+    "type": "bytes",
+    "values": {
+      "description": "Exif sub-IFD entries"
+    }
+  },
+  "JPEG_APP1_EXIF.exif_ifd": {
+    "type": "bytes",
+    "values": {
+      "description": "Exif sub-IFD entries"
+    }
+  },
+  "APP1_Exif.gps_ifd": {
+    "type": "bytes",
+    "values": {
+      "description": "GPS sub-IFD entries"
+    }
+  },
+  "JPEG_APP1_EXIF.gps_ifd": {
+    "type": "bytes",
+    "values": {
+      "description": "GPS sub-IFD entries"
+    }
+  },
+  "APP1_Exif.interop_ifd": {
+    "type": "bytes",
+    "values": {
+      "description": "Interoperability sub-IFD entries"
+    }
+  },
+  "JPEG_APP1_EXIF.interop_ifd": {
+    "type": "bytes",
+    "values": {
+      "description": "Interoperability sub-IFD entries"
+    }
+  },
+  "APP1_Exif.thumbnail_data": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 65535
+      }
+    }
+  },
+  "JPEG_APP1_EXIF.thumbnail_data": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 65535
+      }
+    }
+  },
+  "APP1_XMP.xmp_data": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 65504
+      }
+    },
+    "description": "XMP/RDF XML data"
+  },
+  "APP2_ICC.icc_profile_data": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 65521
+      }
+    },
+    "description": "ICC profile data chunk"
+  },
+  "Exif_IFD1.entry_count": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "Exif_IFD1.tag_id": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        256,
+        257,
+        259,
+        262,
+        273,
+        274,
+        277,
+        278,
+        279,
+        282,
+        283,
+        296,
+        513,
+        514,
+        529,
+        530,
+        531,
+        532
+      ]
+    }
+  },
+  "Exif_IFD1.data_format": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    }
+  },
+  "Exif_IFD1.num_components": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ]
+    }
+  },
+  "Exif_IFD1.data_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "Exif_IFD1.next_ifd_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "Exif_ExifIFD.entry_count": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "Exif_ExifIFD.data_format": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    }
+  },
+  "Exif_ExifIFD.num_components": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ]
+    }
+  },
+  "Exif_ExifIFD.data_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "Exif_GPSIFD.entry_count": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "Exif_GPSIFD.data_format": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    }
+  },
+  "Exif_GPSIFD.num_components": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ]
+    }
+  },
+  "Exif_GPSIFD.data_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "Exif_InteropIFD.entry_count": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "Exif_InteropIFD.data_format": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    }
+  },
+  "Exif_InteropIFD.num_components": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ]
+    }
+  },
+  "Exif_InteropIFD.data_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "Exif_MakerNote.maker_data": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 65535
+      }
+    },
+    "description": "Vendor-specific binary data"
+  },
+  "ICC_header.creation_date": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "length": 12
+      }
+    },
+    "description": "Date/time: uint16 year, month, day, hour, minute, second"
+  },
+  "ICC_header.profile_flags": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    },
+    "description": "Bit 0: embedded profile, Bit 1: profile cannot be used independently"
+  },
+  "ICC_header.device_manufacturer": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 4
+      }
+    }
+  },
+  "ICC_header.device_model": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 4
+      }
+    }
+  },
+  "ICC_header.device_attributes": {
+    "type": "uint64",
+    "values": {
+      "range": [
+        0,
+        18446744073709551615
+      ]
+    },
+    "description": "Bit flags: reflective/transparency, glossy/matte, positive/negative, colour/bw"
+  },
+  "ICC_header.profile_creator": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 4
+      }
+    }
+  },
+  "ICC_header.profile_id": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "length": 16
+      }
+    },
+    "description": "MD5 fingerprint"
+  },
+  "ICC_header.reserved": {
+    "type": "bytes",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "description": "28 bytes reserved, must be zero"
+  },
+  "ICC_tag_data.reserved": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        0
+      ]
+    }
+  },
+  "ICC_tag_data.data": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 16777216
+      }
+    }
+  },
+  "IPTC_record.data": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 32767
+      }
+    }
+  },
+  "SOF1.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        8,
+        65535
+      ]
+    }
+  },
+  "SOF1.image_height": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "SOF1.image_width": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "SOF1.num_components": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF1.component_id": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF1.h_sampling_factor": {
+    "type": "uint4",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF1.v_sampling_factor": {
+    "type": "uint4",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF1.quant_table_id": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        3
+      ]
+    }
+  },
+  "SOF2.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        8,
+        65535
+      ]
+    }
+  },
+  "SOF2.component_id": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF2.h_sampling_factor": {
+    "type": "uint4",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF2.v_sampling_factor": {
+    "type": "uint4",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF2.quant_table_id": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        3
+      ]
+    }
+  },
+  "SOF3.length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        8,
+        65535
+      ]
+    }
+  },
+  "SOF3.image_height": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "SOF3.image_width": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        65535
+      ]
+    }
+  },
+  "SOF3.num_components": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF3.component_id": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF3.h_sampling_factor": {
+    "type": "uint4",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF3.v_sampling_factor": {
+    "type": "uint4",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "SOF3.quant_table_id": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        3
+      ]
+    }
+  },
+  "XMP_packet.rdf_data": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 65535
+      }
+    },
+    "description": "RDF/XML metadata"
+  },
+  "scan_data.entropy_coded_segments": {
+    "type": "bytes",
+    "values": {
+      "description": "Huffman-coded MCU data between SOS and next marker"
+    }
+  },
+  "scan_data.restart_markers": {
+    "type": "bytes",
+    "values": {
+      "description": "RST markers interleaved in scan data"
+    }
+  },
+  "entropy_coded_data.mcu_data": {
+    "type": "bytes",
+    "values": {
+      "description": "Minimum Coded Unit data blocks"
+    }
+  },
+  "thumbnail_data.pixel_data": {
+    "type": "bytes",
+    "values": {
+      "constraints": {
+        "max_length": 65535
+      }
+    }
+  },
+  "dqt.prec_and_id": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        31
+      ]
+    }
+  },
+  "comp.sampling_factors": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        63
+      ]
+    }
+  },
+  "sof0.comp": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        63
+      ]
+    }
+  },
+  "comp.table_selectors": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        63
+      ]
+    }
+  },
+  "sos.comp": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        1024
+      ]
+    }
+  },
+  "sos.approx_bits": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        63
+      ]
+    }
+  },
+  "soi.marker1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        255
+      ]
+    }
+  },
+  "soi.marker2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        216
+      ]
+    }
+  },
+  "file.soi": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65496
+      ]
+    }
+  },
+  "app0.marker1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        255
+      ]
+    }
+  },
+  "app0.marker2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        224
+      ]
+    }
+  },
+  "dqt.marker1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        255
+      ]
+    }
+  },
+  "dqt.marker2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        219
+      ]
+    }
+  },
+  "sof0.marker1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        255
+      ]
+    }
+  },
+  "sof0.marker2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        192
+      ]
+    }
+  },
+  "sos.marker1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        255
+      ]
+    }
+  },
+  "sos.marker2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        218
+      ]
+    }
+  },
+  "eoi.marker1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        255
+      ]
+    }
+  },
+  "eoi.marker2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        217
+      ]
+    }
+  },
+  "file.eoi": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        65497
+      ]
+    }
+  }
+}

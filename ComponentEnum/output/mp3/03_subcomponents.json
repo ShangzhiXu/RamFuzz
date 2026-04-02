@@ -1,0 +1,770 @@
+{
+  "frame_header": {
+    "sync_word": "",
+    "mpeg_version": "",
+    "layer": "",
+    "protection_bit": "",
+    "bitrate_index": "",
+    "sample_rate_index": "",
+    "padding_bit": "",
+    "private_bit": "",
+    "channel_mode": "",
+    "mode_extension": "",
+    "copyright": "",
+    "original": "",
+    "emphasis": "",
+    "crc16": ""
+  },
+  "frame_side_info": {
+    "main_data_begin": "",
+    "private_bits": "",
+    "scfsi": "",
+    "part2_3_length": "",
+    "big_values": "",
+    "global_gain": "",
+    "scalefac_compress": "",
+    "windows_switching_flag": "",
+    "block_type": "",
+    "mixed_block_flag": "",
+    "table_select": "",
+    "subblock_gain": "",
+    "region0_count": "",
+    "region1_count": "",
+    "preflag": "",
+    "scalefac_scale": "",
+    "count1table_select": ""
+  },
+  "frame_main_data": {
+    "scalefactors": "",
+    "huffman_data": ""
+  },
+  "id3v2_header": {
+    "identifier": "",
+    "version_major": "",
+    "version_minor": "",
+    "flags": "",
+    "size": ""
+  },
+  "id3v2_extended_header": {
+    "size": "",
+    "flags": "",
+    "padding_size": "",
+    "crc_data": ""
+  },
+  "id3v2_frame_TIT2": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TIT3": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TPE1": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TPE2": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TPE3": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TPE4": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TALB": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TYER": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TDRC": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TRCK": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TPOS": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TCON": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TCOM": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TPUB": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TEXT": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TENC": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TSSE": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TLEN": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TBPM": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TKEY": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TLAN": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TFLT": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TMED": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TSRC": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TOAL": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TOFN": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TOLY": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TOPE": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TOWN": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TRSN": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TRSO": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TSIZ": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TDRL": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TDTG": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TDEN": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TDOR": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TMOO": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TPRO": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TSOA": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TSOP": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TSOT": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_TSST": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "text": ""
+  },
+  "id3v2_frame_COMM": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "language": "",
+    "short_description": "",
+    "text": ""
+  },
+  "id3v2_frame_APIC": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "mime_type": "",
+    "picture_type": "",
+    "description": "",
+    "picture_data": ""
+  },
+  "id3v2_frame_USLT": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "language": "",
+    "content_descriptor": "",
+    "lyrics_text": ""
+  },
+  "id3v2_frame_SYLT": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "language": "",
+    "timestamp_format": "",
+    "content_type": "",
+    "content_descriptor": ""
+  },
+  "id3v2_frame_TXXX": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "description": "",
+    "value": ""
+  },
+  "id3v2_frame_WXXX": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "description": "",
+    "url": ""
+  },
+  "id3v2_frame_WOAR": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "url": ""
+  },
+  "id3v2_frame_WOAF": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "url": ""
+  },
+  "id3v2_frame_WOAS": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "url": ""
+  },
+  "id3v2_frame_WORS": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "url": ""
+  },
+  "id3v2_frame_WPAY": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "url": ""
+  },
+  "id3v2_frame_WPUB": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "url": ""
+  },
+  "id3v2_frame_MCDI": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "cd_toc": ""
+  },
+  "id3v2_frame_PRIV": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "owner_identifier": "",
+    "private_data": ""
+  },
+  "id3v2_frame_UFID": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "owner_identifier": "",
+    "identifier": ""
+  },
+  "id3v2_frame_PCNT": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "counter": ""
+  },
+  "id3v2_frame_POPM": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "email": "",
+    "rating": "",
+    "counter": ""
+  },
+  "id3v2_frame_GEOB": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "mime_type": "",
+    "filename": "",
+    "content_description": "",
+    "encapsulated_object": ""
+  },
+  "id3v2_frame_ENCR": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "owner_identifier": "",
+    "method_symbol": "",
+    "encryption_data": ""
+  },
+  "id3v2_frame_GRID": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "owner_identifier": "",
+    "group_symbol": "",
+    "group_dependent_data": ""
+  },
+  "id3v2_frame_LINK": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "frame_identifier": "",
+    "url": "",
+    "additional_data": ""
+  },
+  "id3v2_frame_USER": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "language": "",
+    "text": ""
+  },
+  "id3v2_frame_OWNE": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "price_paid": "",
+    "date_of_purchase": "",
+    "seller": ""
+  },
+  "id3v2_frame_COMR": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "encoding": "",
+    "price_string": "",
+    "valid_until": "",
+    "contact_url": "",
+    "received_as": "",
+    "name_of_seller": "",
+    "description": "",
+    "picture_mime_type": "",
+    "seller_logo": ""
+  },
+  "id3v2_frame_AENC": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "owner_identifier": "",
+    "preview_start": "",
+    "preview_length": "",
+    "encryption_info": ""
+  },
+  "id3v2_frame_ETCO": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "timestamp_format": "",
+    "event_type": "",
+    "timestamp": ""
+  },
+  "id3v2_frame_MLLT": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "frames_between_reference": "",
+    "bytes_between_reference": "",
+    "ms_between_reference": "",
+    "bits_for_bytes_deviation": "",
+    "bits_for_ms_deviation": ""
+  },
+  "id3v2_frame_SYTC": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "timestamp_format": "",
+    "tempo_data": ""
+  },
+  "id3v2_frame_RVRB": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "reverb_left": "",
+    "reverb_right": "",
+    "reverb_bounces_left": "",
+    "reverb_bounces_right": "",
+    "reverb_feedback_left_to_left": "",
+    "reverb_feedback_left_to_right": "",
+    "reverb_feedback_right_to_right": "",
+    "reverb_feedback_right_to_left": "",
+    "premix_left_to_right": "",
+    "premix_right_to_left": ""
+  },
+  "id3v2_frame_EQU2": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "interpolation_method": "",
+    "identification": "",
+    "frequency": "",
+    "volume_adjustment": ""
+  },
+  "id3v2_frame_RVA2": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "identification": "",
+    "channel_type": "",
+    "volume_adjustment": "",
+    "bits_representing_peak": ""
+  },
+  "id3v2_frame_RBUF": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "buffer_size": "",
+    "embedded_info_flag": "",
+    "offset_to_next_tag": ""
+  },
+  "id3v2_frame_SEEK": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "minimum_offset_to_next_tag": ""
+  },
+  "id3v2_frame_SIGN": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "group_symbol": "",
+    "signature": ""
+  },
+  "id3v2_frame_ASPI": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "indexed_data_start": "",
+    "indexed_data_length": "",
+    "number_of_index_points": "",
+    "bits_per_index_point": ""
+  },
+  "id3v2_frame_RGAD": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "peak_signal_amplitude": "",
+    "radio_replay_gain_adjustment": "",
+    "audiophile_replay_gain_adjustment": ""
+  },
+  "id3v2_frame_CHAP": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "element_id": "",
+    "start_time": "",
+    "end_time": "",
+    "start_offset": "",
+    "end_offset": ""
+  },
+  "id3v2_frame_CTOC": {
+    "id": "",
+    "size": "",
+    "flags": "",
+    "element_id": "",
+    "ctoc_flags": "",
+    "entry_count": ""
+  },
+  "id3v2_footer": {
+    "identifier": "",
+    "version_major": "",
+    "version_minor": "",
+    "flags": "",
+    "size": ""
+  },
+  "id3v2_padding": {
+    "data": ""
+  },
+  "xing_header": {
+    "header_id": "",
+    "flags": "",
+    "num_frames": "",
+    "num_bytes": "",
+    "toc": "",
+    "quality_indicator": ""
+  },
+  "lame_header": {
+    "encoder_version": "",
+    "info_tag_revision": "",
+    "vbr_method": "",
+    "lowpass_frequency": "",
+    "replay_gain_peak_signal_amplitude": "",
+    "replay_gain_radio": "",
+    "replay_gain_audiophile": "",
+    "encoding_flags": "",
+    "ath_type": "",
+    "bitrate": "",
+    "encoder_delay_start": "",
+    "encoder_delay_end": "",
+    "source_sample_frequency": "",
+    "noise_shaping": "",
+    "stereo_mode": "",
+    "unwise_settings": "",
+    "mp3_gain": "",
+    "preset": "",
+    "music_length": "",
+    "music_crc": "",
+    "info_tag_crc": ""
+  },
+  "vbri_header": {
+    "header_id": "",
+    "version": "",
+    "delay": "",
+    "quality_indicator": "",
+    "num_bytes": "",
+    "num_frames": "",
+    "num_toc_entries": "",
+    "toc_scale_factor": "",
+    "toc_entry_size": "",
+    "toc_entry_frames": "",
+    "toc": ""
+  },
+  "id3v1": {
+    "header": "",
+    "title": "",
+    "artist": "",
+    "album": "",
+    "year": "",
+    "comment": "",
+    "zero_byte": "",
+    "track": "",
+    "genre": ""
+  },
+  "id3v1_enhanced": {
+    "header": "",
+    "title": "",
+    "artist": "",
+    "album": "",
+    "speed": "",
+    "genre": "",
+    "start_time": "",
+    "end_time": ""
+  },
+  "ape_header": {
+    "preamble": "",
+    "version": "",
+    "tag_size": "",
+    "item_count": "",
+    "flags": "",
+    "reserved": ""
+  },
+  "ape_footer": {
+    "preamble": "",
+    "version": "",
+    "tag_size": "",
+    "item_count": "",
+    "flags": "",
+    "reserved": ""
+  },
+  "ape_item": {
+    "value_size": "",
+    "flags": "",
+    "key": "",
+    "value": ""
+  },
+  "lyrics3v2": {
+    "header": "",
+    "footer_size": "",
+    "footer_identifier": ""
+  },
+  "lyrics3v2_field": {
+    "id": "",
+    "size": "",
+    "content": ""
+  },
+  "audio_data": {
+    "frames": ""
+  }
+}

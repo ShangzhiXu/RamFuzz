@@ -2,6 +2,15 @@
 out.*
 output.*
 
+# AFL
+afl_out*
+
+# ComponentEnum editors (auto-generated)
+ComponentEnum/output/*/editors/
+*.queue
+*.cur_input
+
+
 # editors
 .idea
 .vscode
@@ -18,19 +27,21 @@ __pycache__
 .cache
 .coverage
 
-# compilation
-*.o
-*.so
-*.dSYM
-midi*.cpp
-pcap*.cpp
-zip*.cpp
-avi*.cpp
-*-generator
-*-parser
-*-fuzzer
+# compilation (root level)
+/*.o
+/*.so
+/*.dSYM
+/*-generator
+/*-parser
+/*-fuzzer
 lextab.py
 yacctab.py
+
+# build/ directory: track enhanced .so/.cpp/-fuzzer only
+build/*
+!build/*_enhanced*.so
+!build/*_enhanced*.cpp
+!build/*_enhanced*-fuzzer
 
 # Automake etc.
 # Note: While "*.in" files ARE derived,

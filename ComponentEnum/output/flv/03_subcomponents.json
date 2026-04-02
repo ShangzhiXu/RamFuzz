@@ -1,0 +1,18 @@
+{
+  "FLV_header": {"signature":"","version":"","flags":"","header_size":""},
+  "previous_tag_size": {"size":""},
+  "audio_tag": {"tag_type":"","data_size":"","timestamp":"","timestamp_extended":"","stream_id":"","audio_data":""},
+  "video_tag": {"tag_type":"","data_size":"","timestamp":"","timestamp_extended":"","stream_id":"","video_data":""},
+  "script_tag": {"tag_type":"","data_size":"","timestamp":"","timestamp_extended":"","stream_id":"","script_data":""},
+  "audio_tag_header": {"sound_format":"","sound_rate":"","sound_size":"","sound_type":""},
+  "video_tag_header": {"frame_type":"","codec_id":""},
+  "AAC_audio_data": {"aac_packet_type":"","aac_data":""},
+  "AVC_video_data": {"avc_packet_type":"","composition_time":"","avc_data":""},
+  "script_data_object": {"object_name":"","object_data":"","object_end_marker":""},
+  "script_data_value": {"type":"","value":""},
+  "script_data_string": {"length":"","data":""},
+  "script_data_ecma_array": {"count":"","variables":"","end_marker":""},
+  "script_data_date": {"date_time":"","local_date_time_offset":""},
+  "onMetaData": {"duration":"","width":"","height":"","videodatarate":"","framerate":"","videocodecid":"","audiodatarate":"","audiosamplerate":"","audiosamplesize":"","stereo":"","audiocodecid":"","filesize":"","encoder":"","creationdate":""},
+  "FLV_tag": {"tag_type":"","data_size":"","timestamp":"","timestamp_extended":"","stream_id":"","data":""}
+}

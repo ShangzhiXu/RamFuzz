@@ -1,0 +1,132 @@
+{
+  "GIF_header": {
+    "signature": "",
+    "version": ""
+  },
+  "logical_screen_descriptor": {
+    "width": "",
+    "height": "",
+    "packed_fields": "",
+    "global_color_table_flag": "",
+    "color_resolution": "",
+    "sort_flag": "",
+    "global_color_table_size": "",
+    "background_color_index": "",
+    "pixel_aspect_ratio": ""
+  },
+  "global_color_table": {
+    "entries": "",
+    "red": "",
+    "green": "",
+    "blue": ""
+  },
+  "image_descriptor": {
+    "separator": "",
+    "left_position": "",
+    "top_position": "",
+    "width": "",
+    "height": "",
+    "packed_fields": "",
+    "local_color_table_flag": "",
+    "interlace_flag": "",
+    "sort_flag": "",
+    "local_color_table_size": ""
+  },
+  "local_color_table": {
+    "entries": "",
+    "red": "",
+    "green": "",
+    "blue": ""
+  },
+  "image_data": {
+    "lzw_minimum_code_size": "",
+    "sub_blocks": ""
+  },
+  "graphic_control_extension": {
+    "introducer": "",
+    "label": "",
+    "block_size": "",
+    "packed_fields": "",
+    "disposal_method": "",
+    "user_input_flag": "",
+    "transparent_color_flag": "",
+    "delay_time": "",
+    "transparent_color_index": "",
+    "block_terminator": ""
+  },
+  "comment_extension": {
+    "introducer": "",
+    "label": "",
+    "comment_data": "",
+    "block_terminator": ""
+  },
+  "plain_text_extension": {
+    "introducer": "",
+    "label": "",
+    "block_size": "",
+    "text_grid_left": "",
+    "text_grid_top": "",
+    "text_grid_width": "",
+    "text_grid_height": "",
+    "cell_width": "",
+    "cell_height": "",
+    "foreground_color_index": "",
+    "background_color_index": "",
+    "plain_text_data": "",
+    "block_terminator": ""
+  },
+  "application_extension": {
+    "introducer": "",
+    "label": "",
+    "block_size": "",
+    "application_identifier": "",
+    "authentication_code": "",
+    "application_data": "",
+    "block_terminator": ""
+  },
+  "application_extension_NETSCAPE": {
+    "introducer": "",
+    "label": "",
+    "block_size": "",
+    "application_identifier": "",
+    "authentication_code": "",
+    "sub_block_size": "",
+    "sub_block_id": "",
+    "loop_count": "",
+    "block_terminator": ""
+  },
+  "application_extension_XMP": {
+    "introducer": "",
+    "label": "",
+    "block_size": "",
+    "application_identifier": "",
+    "authentication_code": "",
+    "xmp_data": "",
+    "block_terminator": ""
+  },
+  "application_extension_ICCRGBG1012": {
+    "introducer": "",
+    "label": "",
+    "block_size": "",
+    "application_identifier": "",
+    "authentication_code": "",
+    "icc_profile_data": "",
+    "block_terminator": ""
+  },
+  "application_extension_ANIMEXTS": {
+    "introducer": "",
+    "label": "",
+    "block_size": "",
+    "application_identifier": "",
+    "authentication_code": "",
+    "animation_data": "",
+    "block_terminator": ""
+  },
+  "data_sub_block": {
+    "size": "",
+    "data": ""
+  },
+  "trailer": {
+    "trailer_byte": ""
+  }
+}

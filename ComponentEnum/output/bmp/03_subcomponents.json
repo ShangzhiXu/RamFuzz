@@ -1,0 +1,111 @@
+{
+  "file_header": {
+    "signature": "",
+    "file_size": "",
+    "reserved1": "",
+    "reserved2": "",
+    "pixel_data_offset": ""
+  },
+  "DIB_header_BITMAPINFOHEADER": {
+    "header_size": "",
+    "width": "",
+    "height": "",
+    "color_planes": "",
+    "bits_per_pixel": "",
+    "compression": "",
+    "image_size": "",
+    "x_pixels_per_meter": "",
+    "y_pixels_per_meter": "",
+    "colors_used": "",
+    "colors_important": ""
+  },
+  "DIB_header_BITMAPV4HEADER": {
+    "header_size": "",
+    "width": "",
+    "height": "",
+    "color_planes": "",
+    "bits_per_pixel": "",
+    "compression": "",
+    "image_size": "",
+    "x_pixels_per_meter": "",
+    "y_pixels_per_meter": "",
+    "colors_used": "",
+    "colors_important": "",
+    "red_mask": "",
+    "green_mask": "",
+    "blue_mask": "",
+    "alpha_mask": "",
+    "cs_type": "",
+    "red_x": "",
+    "red_y": "",
+    "red_z": "",
+    "green_x": "",
+    "green_y": "",
+    "green_z": "",
+    "blue_x": "",
+    "blue_y": "",
+    "blue_z": "",
+    "gamma_red": "",
+    "gamma_green": "",
+    "gamma_blue": ""
+  },
+  "DIB_header_BITMAPV5HEADER": {
+    "header_size": "",
+    "width": "",
+    "height": "",
+    "color_planes": "",
+    "bits_per_pixel": "",
+    "compression": "",
+    "image_size": "",
+    "x_pixels_per_meter": "",
+    "y_pixels_per_meter": "",
+    "colors_used": "",
+    "colors_important": "",
+    "red_mask": "",
+    "green_mask": "",
+    "blue_mask": "",
+    "alpha_mask": "",
+    "cs_type": "",
+    "red_x": "",
+    "red_y": "",
+    "red_z": "",
+    "green_x": "",
+    "green_y": "",
+    "green_z": "",
+    "blue_x": "",
+    "blue_y": "",
+    "blue_z": "",
+    "gamma_red": "",
+    "gamma_green": "",
+    "gamma_blue": "",
+    "intent": "",
+    "profile_data": "",
+    "profile_size": "",
+    "reserved": ""
+  },
+  "DIB_header_BITMAPCOREHEADER": {
+    "header_size": "",
+    "width": "",
+    "height": "",
+    "color_planes": "",
+    "bits_per_pixel": ""
+  },
+  "color_table": {
+    "red": "",
+    "green": "",
+    "blue": "",
+    "reserved": ""
+  },
+  "pixel_data": {
+    "data": "",
+    "row_padding": ""
+  },
+  "color_mask": {
+    "red_mask": "",
+    "green_mask": "",
+    "blue_mask": ""
+  },
+  "ICC_profile_data": {
+    "profile_data": ""
+  }
+}

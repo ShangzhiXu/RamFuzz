@@ -1,0 +1,137 @@
+{
+  "global_header": {
+    "magic_number": "",
+    "version_major": "",
+    "version_minor": "",
+    "thiszone": "",
+    "sigfigs": "",
+    "snaplen": "",
+    "network": ""
+  },
+  "packet_header": {
+    "ts_sec": "",
+    "ts_usec": "",
+    "incl_len": "",
+    "orig_len": ""
+  },
+  "packet_data": {
+    "raw_data": ""
+  },
+  "ethernet_header": {
+    "dst_mac": "",
+    "src_mac": "",
+    "ether_type": ""
+  },
+  "ipv4_header": {
+    "version": "",
+    "ihl": "",
+    "dscp": "",
+    "ecn": "",
+    "total_length": "",
+    "identification": "",
+    "flags": "",
+    "fragment_offset": "",
+    "ttl": "",
+    "protocol": "",
+    "header_checksum": "",
+    "src_ip": "",
+    "dst_ip": "",
+    "options": ""
+  },
+  "ipv6_header": {
+    "version": "",
+    "traffic_class": "",
+    "flow_label": "",
+    "payload_length": "",
+    "next_header": "",
+    "hop_limit": "",
+    "src_ip": "",
+    "dst_ip": ""
+  },
+  "tcp_header": {
+    "src_port": "",
+    "dst_port": "",
+    "sequence_number": "",
+    "ack_number": "",
+    "data_offset": "",
+    "reserved": "",
+    "flags": "",
+    "window_size": "",
+    "checksum": "",
+    "urgent_pointer": "",
+    "options": ""
+  },
+  "udp_header": {
+    "src_port": "",
+    "dst_port": "",
+    "length": "",
+    "checksum": ""
+  },
+  "icmp_header": {
+    "type": "",
+    "code": "",
+    "checksum": "",
+    "rest_of_header": ""
+  },
+  "arp_header": {
+    "hardware_type": "",
+    "protocol_type": "",
+    "hardware_size": "",
+    "protocol_size": "",
+    "opcode": "",
+    "sender_mac": "",
+    "sender_ip": "",
+    "target_mac": "",
+    "target_ip": ""
+  },
+  "dns_header": {
+    "transaction_id": "",
+    "flags": "",
+    "questions": "",
+    "answer_rrs": "",
+    "authority_rrs": "",
+    "additional_rrs": ""
+  },
+  "dns_question": {
+    "qname": "",
+    "qtype": "",
+    "qclass": ""
+  },
+  "dns_answer": {
+    "name": "",
+    "type": "",
+    "class": "",
+    "ttl": "",
+    "data_length": "",
+    "rdata": ""
+  },
+  "pcapng_section_header": {
+    "block_type": "",
+    "block_total_length": "",
+    "byte_order_magic": "",
+    "major_version": "",
+    "minor_version": "",
+    "section_length": ""
+  },
+  "pcapng_interface_desc": {
+    "block_type": "",
+    "block_total_length": "",
+    "link_type": "",
+    "snap_len": ""
+  },
+  "pcapng_enhanced_packet": {
+    "block_type": "",
+    "block_total_length": "",
+    "interface_id": "",
+    "timestamp_high": "",
+    "timestamp_low": "",
+    "captured_len": "",
+    "original_len": "",
+    "packet_data": ""
+  },
+  "pcapng_option": {
+    "option_code": "",
+    "option_length": "",
+    "option_value": ""
+  }
+}

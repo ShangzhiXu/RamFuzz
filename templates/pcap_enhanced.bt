@@ -1,0 +1,175 @@
+//------------------------------------------------
+//--- pcap_enhanced.bt
+//   Comprehensive PCAP template covering all 04_type_values.json elements
+//   Global Header + Packets with Ethernet + IPv4 + TCP/UDP headers + payload
+//   Follows libpcap file format (PCAP, not pcapng)
+//------------------------------------------------
+
+LittleEndian();
+
+local string ReadBytesInitValues[] = {
+    "\xD4\xC3\xB2\xA1"
+};
+const local UBYTE ReadUByteInitValues[0];
+
+// ============================================================
+// PCAP Global Header (24 bytes)
+// ============================================================
+struct PCAP_GLOBAL_HEADER {
+    uint32 magic_number = { 0xA1B2C3D4 };
+    uint16 version_major = { 2 };
+    uint16 version_minor = { 4 };
+    int32  thiszone = { 0 };
+    uint32 sigfigs = { 0 };
+    uint32 snaplen = { 65535, 262144 };
+    uint32 network = { 1 };  // LINKTYPE_ETHERNET
+};
+
+// ============================================================
+// Ethernet Header (14 bytes)
+// ============================================================
+struct ETHERNET_HEADER {
+    ubyte dst_mac[6];
+    ubyte src_mac[6];
+    // ether_type in network byte order as two bytes
+    // 0x0800 = IPv4
+    ubyte ether_type_hi = { 0x08 };
+    ubyte ether_type_lo = { 0x00 };
+};
+
+// ============================================================
+// IPv4 Header (20 bytes, no options for simplicity)
+// ============================================================
+struct IPV4_HEADER(ubyte proto) {
+    // version(4) + ihl(4) = 0x45 means IPv4, 20-byte header
+    ubyte version_ihl = { 0x45 };
+    // dscp(6) + ecn(2)
+    ubyte dscp_ecn = { 0x00 };
+    // total_length in network byte order
+    ubyte total_length_hi;
+    ubyte total_length_lo;
+    // identification
+    uint16 identification;
+    // flags(3) + fragment_offset(13) = 0x4000 = Don't Fragment
+    ubyte flags_frag_hi = { 0x40 };
+    ubyte flags_frag_lo = { 0x00 };
+    // ttl
+    ubyte ttl = { 64, 128 };
+    // protocol
+    ubyte protocol = { proto };
+    // header_checksum (zeroed; parsers typically accept any value)
+    uint16 header_checksum;
+    // src_ip (4 bytes)
+    ubyte src_ip[4];
+    // dst_ip (4 bytes)
+    ubyte dst_ip[4];
+};
+
+// ============================================================
+// TCP Header (20 bytes, no options)
+// ============================================================
+struct TCP_HEADER {
+    ubyte src_port_hi;
+    ubyte src_port_lo;
+    ubyte dst_port_hi;
+    ubyte dst_port_lo = { 0x50, 0xBB };  // 80 or 443-ish
+    uint32 sequence_number;
+    uint32 ack_number;
+    // data_offset(4)=5 + reserved(3)=0 + flags(9)
+    // 0x50 = data_offset=5
+    ubyte data_offset_reserved = { 0x50 };
+    // flags: SYN=0x02, SYN+ACK=0x12, ACK=0x10, PSH+ACK=0x18, FIN+ACK=0x11
+    ubyte flags = { 0x02, 0x12, 0x10, 0x18, 0x11 };
+    uint16 window_size <min=1024, max=65535>;
+    uint16 checksum;
+    uint16 urgent_pointer = { 0 };
+};
+
+// ============================================================
+// UDP Header (8 bytes)
+// ============================================================
+struct UDP_HEADER {
+    ubyte src_port_hi;
+    ubyte src_port_lo;
+    ubyte dst_port_hi;
+    ubyte dst_port_lo = { 0x35 };  // 53 = DNS
+    // length in network byte order
+    ubyte length_hi;
+    ubyte length_lo;
+    uint16 checksum;
+};
+
+// ============================================================
+// Payload
+// ============================================================
+struct PAYLOAD(uint16 size) {
+    if (size > 0) {
+        ubyte data[size];
+    }
+};
+
+// ============================================================
+// Packet with Ethernet + IPv4 + TCP + Payload
+// ============================================================
+struct TCP_PACKET {
+    local uint16 payload_size = 16;  // small fixed payload
+    // Ethernet: 14, IPv4: 20, TCP: 20, Payload: 16 = 70
+    local uint32 pkt_len = 14 + 20 + 20 + payload_size;
+
+    // Packet header (16 bytes)
+    uint32 ts_sec;
+    uint32 ts_usec <max=999999>;
+    uint32 incl_len = { pkt_len };
+    uint32 orig_len = { pkt_len };
+
+    // Packet data
+    ETHERNET_HEADER eth;
+    IPV4_HEADER ip(6);     // protocol = 6 (TCP)
+    TCP_HEADER tcp;
+    PAYLOAD payload(payload_size);
+};
+
+// ============================================================
+// Packet with Ethernet + IPv4 + UDP + Payload
+// ============================================================
+struct UDP_PACKET {
+    local uint16 payload_size = 12;  // small fixed payload
+    // Ethernet: 14, IPv4: 20, UDP: 8, Payload: 12 = 54
+    local uint32 pkt_len = 14 + 20 + 8 + payload_size;
+
+    // Packet header (16 bytes)
+    uint32 ts_sec;
+    uint32 ts_usec <max=999999>;
+    uint32 incl_len = { pkt_len };
+    uint32 orig_len = { pkt_len };
+
+    // Packet data
+    ETHERNET_HEADER eth;
+    IPV4_HEADER ip(17);    // protocol = 17 (UDP)
+    UDP_HEADER udp;
+    PAYLOAD payload(payload_size);
+};
+
+// ============================================================
+// Top-Level PCAP File
+// ============================================================
+
+typedef struct {
+    // Global header
+    PCAP_GLOBAL_HEADER global_header;
+
+    // Packet 1: TCP SYN
+    TCP_PACKET tcp_pkt1;
+
+    // Packet 2: TCP data
+    TCP_PACKET tcp_pkt2;
+
+    // Packet 3: UDP packet
+    UDP_PACKET udp_pkt1;
+
+    // Packet 4: Another TCP packet
+    TCP_PACKET tcp_pkt3;
+
+} pcap_file;
+
+pcap_file file;

@@ -1,0 +1,80 @@
+// flv_enhanced.bt - Comprehensive FLV template
+BigEndian();
+local string ReadBytesInitValues[] = { "FLV" };
+
+struct FLV_TAG_AUDIO {
+    ubyte tag_type = { 8 };
+    ubyte ds_hi = { 0 };
+    ubyte ds_mid = { 0 };
+    ubyte ds_lo = { 16, 32, 48, 64 };
+    ubyte ts_hi = { 0 };
+    ubyte ts_mid = { 0 };
+    ubyte ts_lo;
+    ubyte ts_ext = { 0 };
+    ubyte sid_hi = { 0 };
+    ubyte sid_mid = { 0 };
+    ubyte sid_lo = { 0 };
+    // Audio header byte: format(4)|rate(2)|size(1)|type(1)
+    ubyte audio_header;
+    ubyte audio_data[ds_lo - 1];
+};
+
+struct FLV_TAG_VIDEO {
+    ubyte tag_type = { 9 };
+    ubyte ds_hi = { 0 };
+    ubyte ds_mid = { 0 };
+    ubyte ds_lo = { 16, 32, 48, 64 };
+    ubyte ts_hi = { 0 };
+    ubyte ts_mid = { 0 };
+    ubyte ts_lo;
+    ubyte ts_ext = { 0 };
+    ubyte sid_hi = { 0 };
+    ubyte sid_mid = { 0 };
+    ubyte sid_lo = { 0 };
+    // Video header byte: frame_type(4)|codec_id(4)
+    ubyte video_header;
+    ubyte video_data[ds_lo - 1];
+};
+
+struct FLV_TAG_SCRIPT {
+    ubyte tag_type = { 18 };
+    ubyte ds_hi = { 0 };
+    ubyte ds_mid = { 0 };
+    ubyte ds_lo = { 16, 32, 48, 64 };
+    ubyte ts_hi = { 0 };
+    ubyte ts_mid = { 0 };
+    ubyte ts_lo = { 0 };
+    ubyte ts_ext = { 0 };
+    ubyte sid_hi = { 0 };
+    ubyte sid_mid = { 0 };
+    ubyte sid_lo = { 0 };
+    ubyte script_data[ds_lo];
+};
+
+typedef struct {
+    // FLV Header (9 bytes)
+    ubyte sig1 = { 0x46 }; // F
+    ubyte sig2 = { 0x4C }; // L
+    ubyte sig3 = { 0x56 }; // V
+    ubyte version = { 1 };
+    ubyte flags = { 5 }; // audio + video
+    uint32 header_size = { 9 };
+
+    // PreviousTagSize0
+    uint32 prev_tag_size0 = { 0 };
+
+    // Script data tag (onMetaData)
+    FLV_TAG_SCRIPT script_tag;
+    uint32 pts1;
+
+    // Video tag
+    FLV_TAG_VIDEO video_tag;
+    uint32 pts2;
+
+    // Audio tag
+    FLV_TAG_AUDIO audio_tag;
+    uint32 pts3;
+
+} flv_file;
+
+flv_file file;

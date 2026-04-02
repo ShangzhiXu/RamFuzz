@@ -8,6 +8,7 @@
 #include <vector>
 #include <unordered_set>
 #include <stdarg.h>
+#include "field_collector.h"
 
 #include <boost/crc.hpp>
 
@@ -259,6 +260,24 @@ void end_generation() {
 			else
 				printf("\n");
 		}
+	}
+
+	/* Field collection for violation post-processing (opt-in) */
+	if (g_num_collected != -1 && back.min <= back.max) {
+		char path_buf[MAX_FIELD_PATH_LEN];
+		int pos = 0;
+		bool pfirst = true;
+		for (auto& cell : generator_stack) {
+			if (!pfirst && pos < MAX_FIELD_PATH_LEN - 2) path_buf[pos++] = '~';
+			int slen = strlen(cell.name);
+			if (pos + slen < MAX_FIELD_PATH_LEN - 1) {
+				memcpy(path_buf + pos, cell.name, slen);
+				pos += slen;
+			}
+			pfirst = false;
+		}
+		path_buf[pos] = '\0';
+		collector_record(back.min, back.max, path_buf);
 	}
 
 	if (get_chunk && back.min == chunk_start && back.max == chunk_end) {

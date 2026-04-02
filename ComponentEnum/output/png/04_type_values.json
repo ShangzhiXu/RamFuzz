@@ -1,0 +1,3688 @@
+{
+  "PNG_signature.signature": {
+    "type": "bytes",
+    "values": {
+      "discrete": [
+        137,
+        80,
+        78,
+        71,
+        13,
+        10,
+        26,
+        10
+      ]
+    },
+    "immutable": true,
+    "description": "8-byte PNG signature: 0x89504E470D0A1A0A"
+  },
+  "IHDR.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        13
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_IHDR.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        13
+      ]
+    },
+    "immutable": true
+  },
+  "IHDR.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "IHDR"
+      ],
+      "constraints": {
+        "max_length": 4
+      }
+    },
+    "immutable": true
+  },
+  "CHUNK_IHDR.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "IHDR"
+      ],
+      "constraints": {
+        "max_length": 4
+      }
+    },
+    "immutable": true
+  },
+  "IHDR.width": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_IHDR.width": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        2147483647
+      ]
+    }
+  },
+  "IHDR.height": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_IHDR.height": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        2147483647
+      ]
+    }
+  },
+  "IHDR.bit_depth": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "constraints": {
+        "color_type_0": [
+          1,
+          2,
+          4,
+          8,
+          16
+        ],
+        "color_type_2": [
+          8,
+          16
+        ],
+        "color_type_3": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "color_type_4": [
+          8,
+          16
+        ],
+        "color_type_6": [
+          8,
+          16
+        ]
+      }
+    }
+  },
+  "CHUNK_IHDR.bit_depth": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "constraints": {
+        "color_type_0": [
+          1,
+          2,
+          4,
+          8,
+          16
+        ],
+        "color_type_2": [
+          8,
+          16
+        ],
+        "color_type_3": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "color_type_4": [
+          8,
+          16
+        ],
+        "color_type_6": [
+          8,
+          16
+        ]
+      }
+    }
+  },
+  "IHDR.color_type": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        2,
+        3,
+        4,
+        6
+      ]
+    }
+  },
+  "CHUNK_IHDR.color_type": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        2,
+        3,
+        4,
+        6
+      ]
+    }
+  },
+  "IHDR.compression_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true,
+    "description": "Only deflate/inflate (method 0) is defined"
+  },
+  "CHUNK_IHDR.compression_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true,
+    "description": "Only deflate/inflate (method 0) is defined"
+  },
+  "IHDR.filter_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true,
+    "description": "Only adaptive filtering (method 0) is defined"
+  },
+  "CHUNK_IHDR.filter_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true,
+    "description": "Only adaptive filtering (method 0) is defined"
+  },
+  "IHDR.interlace_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "CHUNK_IHDR.interlace_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "IHDR.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    },
+    "description": "CRC-32 over chunk_type + chunk_data"
+  },
+  "CHUNK_IHDR.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    },
+    "description": "CRC-32 over chunk_type + chunk_data"
+  },
+  "PLTE.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        3,
+        768
+      ]
+    },
+    "description": "Must be divisible by 3, max 256 entries"
+  },
+  "CHUNK_PLTE.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        3,
+        768
+      ]
+    },
+    "description": "Must be divisible by 3, max 256 entries"
+  },
+  "PLTE.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "PLTE"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_PLTE.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "PLTE"
+      ]
+    },
+    "immutable": true
+  },
+  "PLTE.entries": {
+    "type": "array",
+    "values": {
+      "constraints": {
+        "min_entries": 1,
+        "max_entries": 256
+      }
+    },
+    "description": "Array of RGB triplets"
+  },
+  "CHUNK_PLTE.entries": {
+    "type": "array",
+    "values": {
+      "constraints": {
+        "min_entries": 1,
+        "max_entries": 256
+      }
+    },
+    "description": "Array of RGB triplets"
+  },
+  "PLTE.red": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "CHUNK_PLTE.red": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "PLTE.green": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "CHUNK_PLTE.green": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "PLTE.blue": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "CHUNK_PLTE.blue": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "PLTE.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_PLTE.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "IDAT.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_IDAT.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        2147483647
+      ]
+    }
+  },
+  "IDAT.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "IDAT"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_IDAT.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "IDAT"
+      ]
+    },
+    "immutable": true
+  },
+  "IDAT.compressed_data": {
+    "type": "bytes",
+    "values": {
+      "description": "Deflate-compressed filtered image data"
+    }
+  },
+  "CHUNK_IDAT.compressed_data": {
+    "type": "bytes",
+    "values": {
+      "description": "Deflate-compressed filtered image data"
+    }
+  },
+  "IDAT.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_IDAT.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "IEND.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_IEND.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "IEND.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "IEND"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_IEND.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "IEND"
+      ]
+    },
+    "immutable": true
+  },
+  "IEND.crc": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        2923585666
+      ]
+    },
+    "immutable": true,
+    "description": "CRC of 'IEND' = 0xAE426082"
+  },
+  "CHUNK_IEND.crc": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        2923585666
+      ]
+    },
+    "immutable": true,
+    "description": "CRC of 'IEND' = 0xAE426082"
+  },
+  "tRNS.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        256
+      ]
+    }
+  },
+  "CHUNK_tRNS.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        256
+      ]
+    }
+  },
+  "tRNS.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "tRNS"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_tRNS.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "tRNS"
+      ]
+    },
+    "immutable": true
+  },
+  "tRNS.gray_sample_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "For color type 0 (grayscale)"
+  },
+  "CHUNK_tRNS.gray_sample_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "For color type 0 (grayscale)"
+  },
+  "tRNS.red_sample_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "For color type 2 (truecolor)"
+  },
+  "CHUNK_tRNS.red_sample_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "For color type 2 (truecolor)"
+  },
+  "tRNS.green_sample_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "CHUNK_tRNS.green_sample_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "tRNS.blue_sample_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "CHUNK_tRNS.blue_sample_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "tRNS.alpha_entries": {
+    "type": "array",
+    "values": {
+      "range": [
+        0,
+        255
+      ],
+      "constraints": {
+        "max_entries": 256
+      }
+    },
+    "description": "For color type 3 (indexed), one alpha per palette entry"
+  },
+  "CHUNK_tRNS.alpha_entries": {
+    "type": "array",
+    "values": {
+      "range": [
+        0,
+        255
+      ],
+      "constraints": {
+        "max_entries": 256
+      }
+    },
+    "description": "For color type 3 (indexed), one alpha per palette entry"
+  },
+  "tRNS.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_tRNS.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cHRM.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        32
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_cHRM.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        32
+      ]
+    },
+    "immutable": true
+  },
+  "cHRM.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "cHRM"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_cHRM.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "cHRM"
+      ]
+    },
+    "immutable": true
+  },
+  "cHRM.white_point_x": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    },
+    "description": "Fixed-point, divide by 100000 to get value"
+  },
+  "CHUNK_cHRM.white_point_x": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    },
+    "description": "Fixed-point, divide by 100000 to get value"
+  },
+  "cHRM.white_point_y": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_cHRM.white_point_y": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cHRM.red_x": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_cHRM.red_x": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cHRM.red_y": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_cHRM.red_y": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cHRM.green_x": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_cHRM.green_x": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cHRM.green_y": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_cHRM.green_y": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cHRM.blue_x": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_cHRM.blue_x": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cHRM.blue_y": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_cHRM.blue_y": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cHRM.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_cHRM.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "gAMA.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        4
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_gAMA.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        4
+      ]
+    },
+    "immutable": true
+  },
+  "gAMA.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "gAMA"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_gAMA.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "gAMA"
+      ]
+    },
+    "immutable": true
+  },
+  "gAMA.gamma": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ],
+      "discrete": [
+        45455,
+        100000,
+        220000
+      ]
+    },
+    "description": "Gamma * 100000; 45455 = 1/2.2 (sRGB), 100000 = 1.0"
+  },
+  "CHUNK_gAMA.gamma": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ],
+      "discrete": [
+        45455,
+        100000,
+        220000
+      ]
+    },
+    "description": "Gamma * 100000; 45455 = 1/2.2 (sRGB), 100000 = 1.0"
+  },
+  "gAMA.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_gAMA.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "iCCP.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        3,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_iCCP.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        3,
+        2147483647
+      ]
+    }
+  },
+  "iCCP.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "iCCP"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_iCCP.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "iCCP"
+      ]
+    },
+    "immutable": true
+  },
+  "iCCP.profile_name": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "min_length": 1,
+        "max_length": 79
+      }
+    },
+    "description": "Latin-1 string, 1-79 bytes"
+  },
+  "CHUNK_iCCP.profile_name": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "min_length": 1,
+        "max_length": 79
+      }
+    },
+    "description": "Latin-1 string, 1-79 bytes"
+  },
+  "iCCP.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_iCCP.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "iCCP.compression_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true,
+    "description": "Only deflate (0) is defined"
+  },
+  "CHUNK_iCCP.compression_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true,
+    "description": "Only deflate (0) is defined"
+  },
+  "iCCP.compressed_profile": {
+    "type": "bytes",
+    "values": {
+      "description": "Deflate-compressed ICC profile"
+    }
+  },
+  "CHUNK_iCCP.compressed_profile": {
+    "type": "bytes",
+    "values": {
+      "description": "Deflate-compressed ICC profile"
+    }
+  },
+  "iCCP.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_iCCP.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "sBIT.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4
+      ]
+    }
+  },
+  "CHUNK_sBIT.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4
+      ]
+    }
+  },
+  "sBIT.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "sBIT"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_sBIT.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "sBIT"
+      ]
+    },
+    "immutable": true
+  },
+  "sBIT.significant_bits": {
+    "type": "array",
+    "values": {
+      "range": [
+        1,
+        16
+      ],
+      "constraints": {
+        "length_grayscale": 1,
+        "length_rgb": 3,
+        "length_palette": 3,
+        "length_grayscale_alpha": 2,
+        "length_rgba": 4
+      }
+    }
+  },
+  "CHUNK_sBIT.significant_bits": {
+    "type": "array",
+    "values": {
+      "range": [
+        1,
+        16
+      ],
+      "constraints": {
+        "length_grayscale": 1,
+        "length_rgb": 3,
+        "length_palette": 3,
+        "length_grayscale_alpha": 2,
+        "length_rgba": 4
+      }
+    }
+  },
+  "sBIT.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_sBIT.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "sRGB.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_sRGB.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    },
+    "immutable": true
+  },
+  "sRGB.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "sRGB"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_sRGB.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "sRGB"
+      ]
+    },
+    "immutable": true
+  },
+  "sRGB.rendering_intent": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "CHUNK_sRGB.rendering_intent": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "sRGB.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_sRGB.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "cICP.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        4
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_cICP.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        4
+      ]
+    },
+    "immutable": true
+  },
+  "cICP.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "cICP"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_cICP.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "cICP"
+      ]
+    },
+    "immutable": true
+  },
+  "cICP.color_primaries": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        22
+      ]
+    }
+  },
+  "CHUNK_cICP.color_primaries": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        22
+      ]
+    }
+  },
+  "cICP.transfer_function": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ]
+    }
+  },
+  "CHUNK_cICP.transfer_function": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ]
+    }
+  },
+  "cICP.matrix_coefficients": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ],
+      "description": "Must be 0 for PNG (identity matrix, RGB)"
+    }
+  },
+  "CHUNK_cICP.matrix_coefficients": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ],
+      "description": "Must be 0 for PNG (identity matrix, RGB)"
+    }
+  },
+  "cICP.video_full_range_flag": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1
+      ],
+      "description": "Must be 1 for PNG (full range)"
+    }
+  },
+  "CHUNK_cICP.video_full_range_flag": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1
+      ],
+      "description": "Must be 1 for PNG (full range)"
+    }
+  },
+  "cICP.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_cICP.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "tEXt.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        2,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_tEXt.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        2,
+        2147483647
+      ]
+    }
+  },
+  "tEXt.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "tEXt"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_tEXt.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "tEXt"
+      ]
+    },
+    "immutable": true
+  },
+  "tEXt.keyword": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Title",
+        "Author",
+        "Description",
+        "Copyright",
+        "Creation Time",
+        "Software",
+        "Disclaimer",
+        "Warning",
+        "Source",
+        "Comment"
+      ],
+      "constraints": {
+        "min_length": 1,
+        "max_length": 79
+      }
+    }
+  },
+  "CHUNK_tEXt.keyword": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Title",
+        "Author",
+        "Description",
+        "Copyright",
+        "Creation Time",
+        "Software",
+        "Disclaimer",
+        "Warning",
+        "Source",
+        "Comment"
+      ],
+      "constraints": {
+        "min_length": 1,
+        "max_length": 79
+      }
+    }
+  },
+  "tEXt.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_tEXt.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "tEXt.text_string": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 2147483647
+      }
+    },
+    "description": "Latin-1 text"
+  },
+  "CHUNK_tEXt.text_string": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 2147483647
+      }
+    },
+    "description": "Latin-1 text"
+  },
+  "tEXt.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_tEXt.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "zTXt.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        3,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_zTXt.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        3,
+        2147483647
+      ]
+    }
+  },
+  "zTXt.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "zTXt"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_zTXt.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "zTXt"
+      ]
+    },
+    "immutable": true
+  },
+  "zTXt.keyword": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Title",
+        "Author",
+        "Description",
+        "Copyright",
+        "Creation Time",
+        "Software",
+        "Disclaimer",
+        "Warning",
+        "Source",
+        "Comment"
+      ],
+      "constraints": {
+        "min_length": 1,
+        "max_length": 79
+      }
+    }
+  },
+  "CHUNK_zTXt.keyword": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Title",
+        "Author",
+        "Description",
+        "Copyright",
+        "Creation Time",
+        "Software",
+        "Disclaimer",
+        "Warning",
+        "Source",
+        "Comment"
+      ],
+      "constraints": {
+        "min_length": 1,
+        "max_length": 79
+      }
+    }
+  },
+  "zTXt.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_zTXt.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "zTXt.compression_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_zTXt.compression_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "zTXt.compressed_text": {
+    "type": "bytes",
+    "values": {
+      "description": "Deflate-compressed Latin-1 text"
+    }
+  },
+  "CHUNK_zTXt.compressed_text": {
+    "type": "bytes",
+    "values": {
+      "description": "Deflate-compressed Latin-1 text"
+    }
+  },
+  "zTXt.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_zTXt.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "iTXt.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        6,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_iTXt.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        6,
+        2147483647
+      ]
+    }
+  },
+  "iTXt.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "iTXt"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_iTXt.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "iTXt"
+      ]
+    },
+    "immutable": true
+  },
+  "iTXt.keyword": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Title",
+        "Author",
+        "Description",
+        "Copyright",
+        "Creation Time",
+        "Software",
+        "Disclaimer",
+        "Warning",
+        "Source",
+        "Comment",
+        "XML:com.adobe.xmp"
+      ],
+      "constraints": {
+        "min_length": 1,
+        "max_length": 79
+      }
+    }
+  },
+  "CHUNK_iTXt.keyword": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "Title",
+        "Author",
+        "Description",
+        "Copyright",
+        "Creation Time",
+        "Software",
+        "Disclaimer",
+        "Warning",
+        "Source",
+        "Comment",
+        "XML:com.adobe.xmp"
+      ],
+      "constraints": {
+        "min_length": 1,
+        "max_length": 79
+      }
+    }
+  },
+  "iTXt.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_iTXt.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "iTXt.compression_flag": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "CHUNK_iTXt.compression_flag": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "iTXt.compression_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    }
+  },
+  "CHUNK_iTXt.compression_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    }
+  },
+  "iTXt.language_tag": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 255
+      }
+    },
+    "description": "RFC 3066 language tag, e.g. 'en', 'zh-Hans'"
+  },
+  "CHUNK_iTXt.language_tag": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 255
+      }
+    },
+    "description": "RFC 3066 language tag, e.g. 'en', 'zh-Hans'"
+  },
+  "iTXt.null_separator2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_iTXt.null_separator2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "iTXt.translated_keyword": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 255
+      }
+    }
+  },
+  "CHUNK_iTXt.translated_keyword": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 255
+      }
+    }
+  },
+  "iTXt.null_separator3": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_iTXt.null_separator3": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "iTXt.text": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 2147483647
+      }
+    },
+    "description": "UTF-8 text (or compressed UTF-8)"
+  },
+  "CHUNK_iTXt.text": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 2147483647
+      }
+    },
+    "description": "UTF-8 text (or compressed UTF-8)"
+  },
+  "iTXt.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_iTXt.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "bKGD.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        6
+      ]
+    }
+  },
+  "CHUNK_bKGD.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        6
+      ]
+    }
+  },
+  "bKGD.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "bKGD"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_bKGD.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "bKGD"
+      ]
+    },
+    "immutable": true
+  },
+  "bKGD.gray_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "For color type 0, 4"
+  },
+  "CHUNK_bKGD.gray_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "For color type 0, 4"
+  },
+  "bKGD.red_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "For color type 2, 6"
+  },
+  "CHUNK_bKGD.red_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "For color type 2, 6"
+  },
+  "bKGD.green_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "CHUNK_bKGD.green_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "bKGD.blue_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "CHUNK_bKGD.blue_value": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "bKGD.palette_index": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    },
+    "description": "For color type 3"
+  },
+  "CHUNK_bKGD.palette_index": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    },
+    "description": "For color type 3"
+  },
+  "bKGD.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_bKGD.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "hIST.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        2,
+        512
+      ]
+    }
+  },
+  "CHUNK_hIST.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        2,
+        512
+      ]
+    }
+  },
+  "hIST.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "hIST"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_hIST.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "hIST"
+      ]
+    },
+    "immutable": true
+  },
+  "hIST.frequencies": {
+    "type": "array",
+    "values": {
+      "range": [
+        0,
+        65535
+      ],
+      "constraints": {
+        "max_entries": 256
+      }
+    },
+    "description": "One uint16 per PLTE entry"
+  },
+  "CHUNK_hIST.frequencies": {
+    "type": "array",
+    "values": {
+      "range": [
+        0,
+        65535
+      ],
+      "constraints": {
+        "max_entries": 256
+      }
+    },
+    "description": "One uint16 per PLTE entry"
+  },
+  "hIST.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_hIST.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "pHYs.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        9
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_pHYs.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        9
+      ]
+    },
+    "immutable": true
+  },
+  "pHYs.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "pHYs"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_pHYs.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "pHYs"
+      ]
+    },
+    "immutable": true
+  },
+  "pHYs.pixels_per_unit_x": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ],
+      "discrete": [
+        2835,
+        3780,
+        7087,
+        11811
+      ]
+    },
+    "description": "Common: 2835=72dpi, 3780=96dpi, 7087=180dpi, 11811=300dpi"
+  },
+  "CHUNK_pHYs.pixels_per_unit_x": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ],
+      "discrete": [
+        2835,
+        3780,
+        7087,
+        11811
+      ]
+    },
+    "description": "Common: 2835=72dpi, 3780=96dpi, 7087=180dpi, 11811=300dpi"
+  },
+  "pHYs.pixels_per_unit_y": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ],
+      "discrete": [
+        2835,
+        3780,
+        7087,
+        11811
+      ]
+    }
+  },
+  "CHUNK_pHYs.pixels_per_unit_y": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ],
+      "discrete": [
+        2835,
+        3780,
+        7087,
+        11811
+      ]
+    }
+  },
+  "pHYs.unit_specifier": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "CHUNK_pHYs.unit_specifier": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "pHYs.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_pHYs.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "sPLT.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        3,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_sPLT.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        3,
+        2147483647
+      ]
+    }
+  },
+  "sPLT.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "sPLT"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_sPLT.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "sPLT"
+      ]
+    },
+    "immutable": true
+  },
+  "sPLT.palette_name": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "min_length": 1,
+        "max_length": 79
+      }
+    }
+  },
+  "CHUNK_sPLT.palette_name": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "min_length": 1,
+        "max_length": 79
+      }
+    }
+  },
+  "sPLT.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_sPLT.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "sPLT.sample_depth": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        8,
+        16
+      ]
+    }
+  },
+  "CHUNK_sPLT.sample_depth": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        8,
+        16
+      ]
+    }
+  },
+  "sPLT.entries": {
+    "type": "array",
+    "values": {
+      "description": "Each entry: 4 or 8 bytes RGBA + 2 bytes frequency"
+    }
+  },
+  "CHUNK_sPLT.entries": {
+    "type": "array",
+    "values": {
+      "description": "Each entry: 4 or 8 bytes RGBA + 2 bytes frequency"
+    }
+  },
+  "sPLT.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_sPLT.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "eXIf.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        2,
+        65535
+      ]
+    }
+  },
+  "CHUNK_eXIf.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        2,
+        65535
+      ]
+    }
+  },
+  "eXIf.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "eXIf"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_eXIf.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "eXIf"
+      ]
+    },
+    "immutable": true
+  },
+  "eXIf.exif_data": {
+    "type": "bytes",
+    "values": {
+      "description": "Raw Exif data (TIFF structure, same as JPEG APP1 Exif without the 'Exif\\0\\0' prefix)"
+    }
+  },
+  "CHUNK_eXIf.exif_data": {
+    "type": "bytes",
+    "values": {
+      "description": "Raw Exif data (TIFF structure, same as JPEG APP1 Exif without the 'Exif\\0\\0' prefix)"
+    }
+  },
+  "eXIf.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_eXIf.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "tIME.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        7
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_tIME.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        7
+      ]
+    },
+    "immutable": true
+  },
+  "tIME.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "tIME"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_tIME.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "tIME"
+      ]
+    },
+    "immutable": true
+  },
+  "tIME.year": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "CHUNK_tIME.year": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "tIME.month": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        1,
+        12
+      ]
+    }
+  },
+  "CHUNK_tIME.month": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        1,
+        12
+      ]
+    }
+  },
+  "tIME.day": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        1,
+        31
+      ]
+    }
+  },
+  "CHUNK_tIME.day": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        1,
+        31
+      ]
+    }
+  },
+  "tIME.hour": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        23
+      ]
+    }
+  },
+  "CHUNK_tIME.hour": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        23
+      ]
+    }
+  },
+  "tIME.minute": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        59
+      ]
+    }
+  },
+  "CHUNK_tIME.minute": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        59
+      ]
+    }
+  },
+  "tIME.second": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        60
+      ]
+    },
+    "description": "60 for leap second"
+  },
+  "CHUNK_tIME.second": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        60
+      ]
+    },
+    "description": "60 for leap second"
+  },
+  "tIME.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_tIME.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "acTL.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        8
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_acTL.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        8
+      ]
+    },
+    "immutable": true
+  },
+  "acTL.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "acTL"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_acTL.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "acTL"
+      ]
+    },
+    "immutable": true
+  },
+  "acTL.num_frames": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_acTL.num_frames": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        4294967295
+      ]
+    }
+  },
+  "acTL.num_plays": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    },
+    "description": "0 = infinite loop"
+  },
+  "CHUNK_acTL.num_plays": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    },
+    "description": "0 = infinite loop"
+  },
+  "acTL.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_acTL.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "fcTL.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        26
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_fcTL.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        26
+      ]
+    },
+    "immutable": true
+  },
+  "fcTL.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "fcTL"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_fcTL.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "fcTL"
+      ]
+    },
+    "immutable": true
+  },
+  "fcTL.sequence_number": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_fcTL.sequence_number": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "fcTL.width": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_fcTL.width": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        2147483647
+      ]
+    }
+  },
+  "fcTL.height": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_fcTL.height": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        2147483647
+      ]
+    }
+  },
+  "fcTL.x_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_fcTL.x_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        2147483647
+      ]
+    }
+  },
+  "fcTL.y_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_fcTL.y_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        2147483647
+      ]
+    }
+  },
+  "fcTL.delay_num": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "Frame delay fraction numerator"
+  },
+  "CHUNK_fcTL.delay_num": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "Frame delay fraction numerator"
+  },
+  "fcTL.delay_den": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "Frame delay fraction denominator; 0 = 100"
+  },
+  "CHUNK_fcTL.delay_den": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    },
+    "description": "Frame delay fraction denominator; 0 = 100"
+  },
+  "fcTL.dispose_op": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "CHUNK_fcTL.dispose_op": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "fcTL.blend_op": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "CHUNK_fcTL.blend_op": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "fcTL.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_fcTL.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "fdAT.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        5,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_fdAT.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        5,
+        2147483647
+      ]
+    }
+  },
+  "fdAT.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "fdAT"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_fdAT.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "fdAT"
+      ]
+    },
+    "immutable": true
+  },
+  "fdAT.sequence_number": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_fdAT.sequence_number": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "fdAT.frame_data": {
+    "type": "bytes",
+    "values": {
+      "description": "Deflate-compressed frame image data"
+    }
+  },
+  "CHUNK_fdAT.frame_data": {
+    "type": "bytes",
+    "values": {
+      "description": "Deflate-compressed frame image data"
+    }
+  },
+  "fdAT.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_fdAT.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "oFFs.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        9
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_oFFs.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        9
+      ]
+    },
+    "immutable": true
+  },
+  "oFFs.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "oFFs"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_oFFs.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "oFFs"
+      ]
+    },
+    "immutable": true
+  },
+  "oFFs.x_position": {
+    "type": "int32",
+    "values": {
+      "range": [
+        -2147483648,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_oFFs.x_position": {
+    "type": "int32",
+    "values": {
+      "range": [
+        -2147483648,
+        2147483647
+      ]
+    }
+  },
+  "oFFs.y_position": {
+    "type": "int32",
+    "values": {
+      "range": [
+        -2147483648,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_oFFs.y_position": {
+    "type": "int32",
+    "values": {
+      "range": [
+        -2147483648,
+        2147483647
+      ]
+    }
+  },
+  "oFFs.unit_specifier": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "CHUNK_oFFs.unit_specifier": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "oFFs.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_oFFs.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "pCAL.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        12,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_pCAL.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        12,
+        2147483647
+      ]
+    }
+  },
+  "pCAL.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "pCAL"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_pCAL.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "pCAL"
+      ]
+    },
+    "immutable": true
+  },
+  "pCAL.calibration_name": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "min_length": 1,
+        "max_length": 79
+      }
+    }
+  },
+  "CHUNK_pCAL.calibration_name": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "min_length": 1,
+        "max_length": 79
+      }
+    }
+  },
+  "pCAL.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_pCAL.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "pCAL.original_zero": {
+    "type": "int32",
+    "values": {
+      "range": [
+        -2147483648,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_pCAL.original_zero": {
+    "type": "int32",
+    "values": {
+      "range": [
+        -2147483648,
+        2147483647
+      ]
+    }
+  },
+  "pCAL.original_max": {
+    "type": "int32",
+    "values": {
+      "range": [
+        -2147483648,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_pCAL.original_max": {
+    "type": "int32",
+    "values": {
+      "range": [
+        -2147483648,
+        2147483647
+      ]
+    }
+  },
+  "pCAL.equation_type": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "CHUNK_pCAL.equation_type": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "pCAL.num_parameters": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        1,
+        255
+      ]
+    }
+  },
+  "CHUNK_pCAL.num_parameters": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        1,
+        255
+      ]
+    }
+  },
+  "pCAL.unit_name": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 79
+      }
+    }
+  },
+  "CHUNK_pCAL.unit_name": {
+    "type": "string",
+    "values": {
+      "constraints": {
+        "max_length": 79
+      }
+    }
+  },
+  "pCAL.parameters": {
+    "type": "array",
+    "values": {
+      "description": "Null-separated ASCII float strings"
+    }
+  },
+  "CHUNK_pCAL.parameters": {
+    "type": "array",
+    "values": {
+      "description": "Null-separated ASCII float strings"
+    }
+  },
+  "pCAL.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_pCAL.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "sCAL.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        4,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_sCAL.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        4,
+        2147483647
+      ]
+    }
+  },
+  "sCAL.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "sCAL"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_sCAL.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "sCAL"
+      ]
+    },
+    "immutable": true
+  },
+  "sCAL.unit_specifier": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        2
+      ]
+    }
+  },
+  "CHUNK_sCAL.unit_specifier": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        2
+      ]
+    }
+  },
+  "sCAL.pixel_width": {
+    "type": "string",
+    "values": {
+      "description": "ASCII float, pixel width in physical units"
+    }
+  },
+  "CHUNK_sCAL.pixel_width": {
+    "type": "string",
+    "values": {
+      "description": "ASCII float, pixel width in physical units"
+    }
+  },
+  "sCAL.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_sCAL.null_separator": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    },
+    "immutable": true
+  },
+  "sCAL.pixel_height": {
+    "type": "string",
+    "values": {
+      "description": "ASCII float, pixel height in physical units"
+    }
+  },
+  "CHUNK_sCAL.pixel_height": {
+    "type": "string",
+    "values": {
+      "description": "ASCII float, pixel height in physical units"
+    }
+  },
+  "sCAL.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_sCAL.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "sTER.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_sTER.length": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    },
+    "immutable": true
+  },
+  "sTER.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "sTER"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_sTER.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "sTER"
+      ]
+    },
+    "immutable": true
+  },
+  "sTER.mode": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "CHUNK_sTER.mode": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "sTER.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_sTER.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "dSIG.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        2147483647
+      ]
+    }
+  },
+  "CHUNK_dSIG.length": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        2147483647
+      ]
+    }
+  },
+  "dSIG.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "dSIG"
+      ]
+    },
+    "immutable": true
+  },
+  "CHUNK_dSIG.chunk_type": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "dSIG"
+      ]
+    },
+    "immutable": true
+  },
+  "dSIG.signature_data": {
+    "type": "bytes",
+    "values": {
+      "description": "Digital signature data"
+    }
+  },
+  "CHUNK_dSIG.signature_data": {
+    "type": "bytes",
+    "values": {
+      "description": "Digital signature data"
+    }
+  },
+  "dSIG.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "CHUNK_dSIG.crc": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        4294967295
+      ]
+    }
+  },
+  "signature.s0": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "signature.s1": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "signature.s2": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "signature.s3": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "signature.s4": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "signature.s5": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "signature.s6": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "signature.s7": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "text.text_data": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  }
+}

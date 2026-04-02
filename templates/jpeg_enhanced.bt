@@ -1,0 +1,471 @@
+#define MAX_MARKERS 20
+
+//------------------------------------------------
+//--- 010 Editor Binary Template
+//
+//      File: jpeg_enhanced.bt
+//   Authors: Extended for comprehensive JPEG coverage
+//   Version: 2.0
+//   Purpose: Comprehensive JPEG template covering all elements from 04_type_values.json:
+//            SOI, APP0 (JFIF), APP1 (Exif), APP2 (ICC), APP13 (IPTC/Photoshop),
+//            APP14 (Adobe), DQT, DHT, SOF0/SOF2, SOS, DRI, COM, EOI.
+//  Category: Image
+// File Mask: *.jpg,*.jpeg
+//  ID Bytes: FF D8
+//   History:
+//   2.0   2025-03-14 Full coverage of JPEG type values from JSON spec.
+//------------------------------------------------
+
+BigEndian();
+
+// ============================================================
+// ReadBytesInitValues for FormatFuzzer
+// ============================================================
+local string ReadBytesInitValues[] = {
+    "\xFF\xD8",  // SOI
+    "\xFF\xE0",  // APP0
+    "\xFF\xE1",  // APP1
+    "\xFF\xE2",  // APP2
+    "\xFF\xED",  // APP13
+    "\xFF\xEE",  // APP14
+    "\xFF\xDB",  // DQT
+    "\xFF\xC4",  // DHT
+    "\xFF\xC0",  // SOF0
+    "\xFF\xC2",  // SOF2
+    "\xFF\xDA",  // SOS
+    "\xFF\xDD",  // DRI
+    "\xFF\xFE",  // COM
+    "\xFF\xD9"   // EOI
+};
+
+// ============================================================
+// SOI - Start of Image
+// ============================================================
+struct JPEG_SOI {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xD8 };
+};
+
+// ============================================================
+// APP0 - JFIF
+// ============================================================
+struct JPEG_APP0_JFIF {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xE0 };
+    uint16 length <min=16, max=64>;
+    char identifier[5] = { "JFIF\x00" };
+    ubyte version_major = { 1 };
+    ubyte version_minor = { 0, 1, 2 };
+    ubyte density_units <min=0, max=2>;
+    uint16 x_density <min=1, max=300>;
+    uint16 y_density <min=1, max=300>;
+    ubyte x_thumbnail = { 0 };
+    ubyte y_thumbnail = { 0 };
+    // No thumbnail data when dimensions are 0
+};
+
+// ============================================================
+// APP1 - Exif
+// ============================================================
+
+struct TIFF_IFD_ENTRY {
+    uint16 tag_id;
+    uint16 data_format <min=1, max=12>;
+    uint32 num_components <min=1, max=256>;
+    uint32 data_value;
+};
+
+struct EXIF_IFD {
+    uint16 entry_count <min=1, max=12>;
+    local int i;
+    local int real_count = entry_count;
+    if (real_count > 12) real_count = 12;
+    for (i = 0; i < real_count; i++) {
+        TIFF_IFD_ENTRY entry;
+    }
+    uint32 next_ifd_offset = { 0 };
+};
+
+struct JPEG_APP1_EXIF {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xE1 };
+    uint16 length <min=26, max=4096>;
+    char identifier[6] = { "Exif\x00\x00" };
+
+    // TIFF header
+    char byte_order[2] = { "MM" };  // Big-endian
+    uint16 magic = { 42 };
+    uint32 ifd0_offset = { 8 };
+
+    // IFD0
+    EXIF_IFD ifd0;
+};
+
+// ============================================================
+// APP1 - XMP
+// ============================================================
+struct JPEG_APP1_XMP {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xE1 };
+    uint16 length <min=40, max=2048>;
+    // XMP namespace identifier (29 bytes)
+    char identifier[29] = { "http://ns.adobe.com/xap/1.0/" };
+    ubyte null_term = { 0 };
+    // XMP data
+    local uint32 xmp_size = length - 2 - 30;
+    if (xmp_size > 0 && xmp_size < 4096) {
+        ubyte xmp_data[xmp_size];
+    }
+};
+
+// ============================================================
+// APP2 - ICC Profile
+// ============================================================
+struct JPEG_APP2_ICC {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xE2 };
+    uint16 length <min=18, max=4096>;
+    char identifier[12] = { "ICC_PROFILE\x00" };
+    ubyte chunk_number = { 1 };
+    ubyte total_chunks = { 1 };
+
+    // ICC profile header (simplified - 128 bytes min)
+    local uint32 icc_data_size = length - 2 - 14;
+    if (icc_data_size > 0 && icc_data_size < 65536) {
+        // Profile size
+        uint32 profile_size;
+        // Preferred CMM
+        char preferred_cmm[4];
+        // Version
+        uint32 profile_version;
+        // Device class
+        char device_class[4] = { "mntr", "scnr", "prtr" };
+        // Color space
+        char color_space[4] = { "RGB ", "GRAY", "CMYK" };
+        // PCS
+        char pcs[4] = { "XYZ " };
+        // Creation date (12 bytes)
+        ubyte creation_date[12];
+        // Signature
+        char icc_signature[4] = { "acsp" };
+        // Primary platform
+        char primary_platform[4] = { "APPL", "MSFT" };
+        // Profile flags
+        uint32 profile_flags;
+        // Device manufacturer
+        char device_manufacturer[4];
+        // Device model
+        char device_model[4];
+        // Device attributes (8 bytes)
+        ubyte device_attributes[8];
+        // Rendering intent
+        uint32 rendering_intent <min=0, max=3>;
+        // PCS illuminant (D50: 12 bytes)
+        ubyte pcs_illuminant[12];
+        // Profile creator
+        char profile_creator[4];
+        // Profile ID (16 bytes)
+        ubyte profile_id[16];
+        // Reserved (28 bytes)
+        ubyte icc_reserved[28];
+        // Remaining data
+        local int remaining = icc_data_size - 128;
+        if (remaining > 0 && remaining < 65536) {
+            ubyte icc_tag_data[remaining];
+        }
+    }
+};
+
+// ============================================================
+// APP13 - Photoshop / IPTC
+// ============================================================
+struct IPTC_DATASET {
+    ubyte tag_marker = { 0x1C };
+    ubyte record_number = { 2 };  // Application record
+    ubyte dataset_number;
+    uint16 data_size <min=1, max=256>;
+    if (data_size > 0 && data_size < 4096) {
+        ubyte data[data_size];
+    }
+};
+
+struct JPEG_APP13 {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xED };
+    uint16 length <min=20, max=2048>;
+    char identifier[14] = { "Photoshop 3.0\x00" };
+
+    // 8BIM resource block with IPTC
+    char resource_type[4] = { "8BIM" };
+    uint16 resource_id = { 1028 };  // IPTC-NAA
+    ubyte name_length = { 0 };
+    ubyte name_pad = { 0 };  // Even padding
+
+    // IPTC data size
+    local uint32 iptc_block_size = length - 2 - 14 - 4 - 2 - 2;
+    if (iptc_block_size > 6 && iptc_block_size < 4096) {
+        uint32 iptc_data_size;
+        // A few IPTC datasets
+        IPTC_DATASET iptc1;
+        IPTC_DATASET iptc2;
+    }
+};
+
+// ============================================================
+// APP14 - Adobe
+// ============================================================
+struct JPEG_APP14_ADOBE {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xEE };
+    uint16 length = { 14 };
+    char identifier[5] = { "Adobe" };
+    uint16 version = { 100 };
+    uint16 flags0 = { 0 };
+    uint16 flags1 = { 0 };
+    ubyte color_transform <min=0, max=2>;
+};
+
+// ============================================================
+// DQT - Define Quantization Table
+// ============================================================
+struct JPEG_DQT {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xDB };
+    uint16 length = { 67 };  // 2 + 1 + 64 for one 8-bit table
+    // precision (4 bits, high) | table_id (4 bits, low)
+    // 0x00 = 8-bit precision, table 0
+    // 0x01 = 8-bit precision, table 1
+    ubyte prec_and_id <min=0, max=3>;
+    // 64 quantization values in zigzag order
+    ubyte qt_values[64];
+};
+
+// ============================================================
+// DHT - Define Huffman Table
+// ============================================================
+struct JPEG_DHT {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xC4 };
+    uint16 length <min=19, max=512>;
+    // class (4 bits, high) | table_id (4 bits, low)
+    // 0x00 = DC table 0, 0x01 = DC table 1
+    // 0x10 = AC table 0, 0x11 = AC table 1
+    ubyte class_and_id = { 0x00, 0x01, 0x10, 0x11 };
+    // 16 bytes: number of codes for each length 1-16
+    ubyte num_codes[16];
+    // Huffman values
+    local uint32 total_codes = 0;
+    local int ci;
+    for (ci = 0; ci < 16; ci++) {
+        total_codes += num_codes[ci];
+    }
+    if (total_codes > 0 && total_codes < 256) {
+        ubyte huff_values[total_codes];
+    }
+};
+
+// ============================================================
+// SOF0 - Start of Frame (Baseline DCT)
+// ============================================================
+struct SOF_COMPONENT {
+    ubyte component_id;
+    // h_sampling (4 bits, high) | v_sampling (4 bits, low)
+    ubyte sampling_factors;
+    ubyte quant_table_id <min=0, max=3>;
+};
+
+struct JPEG_SOF0 {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xC0 };
+    uint16 length <min=11, max=20>;
+    ubyte precision = { 8 };
+    uint16 image_height <min=1, max=4096>;
+    uint16 image_width <min=1, max=4096>;
+    ubyte num_components = { 1, 3 };
+    local int i;
+    local int nc = num_components;
+    if (nc > 4) nc = 4;
+    for (i = 0; i < nc; i++) {
+        SOF_COMPONENT comp;
+    }
+};
+
+// ============================================================
+// SOF2 - Start of Frame (Progressive DCT)
+// ============================================================
+struct JPEG_SOF2 {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xC2 };
+    uint16 length <min=11, max=20>;
+    ubyte precision = { 8, 12 };
+    uint16 image_height <min=1, max=4096>;
+    uint16 image_width <min=1, max=4096>;
+    ubyte num_components = { 1, 3 };
+    local int i;
+    local int nc = num_components;
+    if (nc > 4) nc = 4;
+    for (i = 0; i < nc; i++) {
+        SOF_COMPONENT comp;
+    }
+};
+
+// ============================================================
+// SOS - Start of Scan
+// ============================================================
+struct SOS_COMPONENT {
+    ubyte component_selector;
+    // dc_table (4 bits, high) | ac_table (4 bits, low)
+    ubyte table_selectors;
+};
+
+struct JPEG_SOS {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xDA };
+    uint16 length <min=8, max=12>;
+    ubyte num_components <min=1, max=4>;
+    local int i;
+    local int nc = num_components;
+    if (nc > 4) nc = 4;
+    for (i = 0; i < nc; i++) {
+        SOS_COMPONENT comp;
+    }
+    ubyte start_spectral = { 0 };
+    ubyte end_spectral = { 63 };
+    // approx_high (4 bits) | approx_low (4 bits)
+    ubyte approx_bits = { 0 };
+};
+
+// ============================================================
+// DRI - Define Restart Interval
+// ============================================================
+struct JPEG_DRI {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xDD };
+    uint16 length = { 4 };
+    uint16 restart_interval;
+};
+
+// ============================================================
+// COM - Comment
+// ============================================================
+struct JPEG_COM {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xFE };
+    uint16 length <min=3, max=256>;
+    local uint32 comment_size = length - 2;
+    if (comment_size > 0 && comment_size < 65534) {
+        char comment_data[comment_size];
+    }
+};
+
+// ============================================================
+// Entropy-coded data (scan data between SOS and next marker)
+// ============================================================
+struct JPEG_SCAN_DATA {
+    // Generate some scan data bytes, avoiding 0xFF (or using byte stuffing)
+    ubyte scan_data[64];
+};
+
+// ============================================================
+// EOI - End of Image
+// ============================================================
+struct JPEG_EOI {
+    ubyte marker1 = { 0xFF };
+    ubyte marker2 = { 0xD9 };
+};
+
+// ============================================================
+// Top-Level JPEG File Structure
+// ============================================================
+
+typedef struct {
+    // SOI is always first
+    JPEG_SOI soi;
+
+    // Markers before SOS
+    local char tag[2];
+    local string all_choices[] = {
+        "\xFF\xE0",  // APP0
+        "\xFF\xE1",  // APP1 Exif
+        "\xFF\xE2",  // APP2 ICC
+        "\xFF\xED",  // APP13
+        "\xFF\xEE",  // APP14
+        "\xFF\xDB",  // DQT
+        "\xFF\xC4",  // DHT
+        "\xFF\xC0",  // SOF0
+        "\xFF\xDD",  // DRI
+        "\xFF\xFE"   // COM
+    };
+    local string preferred[] = {
+        "\xFF\xE0",  // APP0 first
+        "\xFF\xDB",  // then DQT
+        "\xFF\xC0"   // then SOF0
+    };
+
+    while (ReadBytes(tag, FTell(), 2, preferred, all_choices)) {
+        switch (tag) {
+            case "\xFF\xE0":
+                JPEG_APP0_JFIF app0;
+                all_choices -= "\xFF\xE0";
+                preferred -= "\xFF\xE0";
+                break;
+            case "\xFF\xE1":
+                JPEG_APP1_EXIF app1_exif;
+                all_choices -= "\xFF\xE1";
+                preferred -= "\xFF\xE1";
+                break;
+            case "\xFF\xE2":
+                JPEG_APP2_ICC app2_icc;
+                all_choices -= "\xFF\xE2";
+                preferred -= "\xFF\xE2";
+                break;
+            case "\xFF\xED":
+                JPEG_APP13 app13;
+                all_choices -= "\xFF\xED";
+                preferred -= "\xFF\xED";
+                break;
+            case "\xFF\xEE":
+                JPEG_APP14_ADOBE app14;
+                all_choices -= "\xFF\xEE";
+                preferred -= "\xFF\xEE";
+                break;
+            case "\xFF\xDB":
+                JPEG_DQT dqt;
+                all_choices -= "\xFF\xDB";
+                preferred -= "\xFF\xDB";
+                break;
+            case "\xFF\xC4":
+                JPEG_DHT dht;
+                all_choices -= "\xFF\xC4";
+                preferred -= "\xFF\xC4";
+                break;
+            case "\xFF\xC0":
+                JPEG_SOF0 sof0;
+                all_choices -= "\xFF\xC0";
+                preferred -= "\xFF\xC0";
+                break;
+            case "\xFF\xDD":
+                JPEG_DRI dri;
+                all_choices -= "\xFF\xDD";
+                preferred -= "\xFF\xDD";
+                break;
+            case "\xFF\xFE":
+                JPEG_COM com;
+                all_choices -= "\xFF\xFE";
+                preferred -= "\xFF\xFE";
+                break;
+            default:
+                break;
+        }
+    }
+
+    // SOS + scan data
+    JPEG_SOS sos;
+    JPEG_SCAN_DATA scan;
+
+    // EOI
+    JPEG_EOI eoi;
+
+} jpeg_file;
+
+jpeg_file file;

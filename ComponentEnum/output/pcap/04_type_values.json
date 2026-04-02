@@ -1,0 +1,423 @@
+{
+  "PCAP_GLOBAL_HEADER.snaplen": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        65535,
+        262144
+      ]
+    }
+  },
+  "PCAP_GLOBAL_HEADER.network": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "IPV4_HEADER.ttl": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        64,
+        128
+      ]
+    }
+  },
+  "TCP_HEADER.flags": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        2,
+        18,
+        16,
+        24,
+        17
+      ]
+    }
+  },
+  "TCP_HEADER.window_size": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1024,
+        65535
+      ]
+    }
+  },
+  "TCP_PACKET.ts_usec": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        999999
+      ]
+    }
+  },
+  "UDP_PACKET.ts_usec": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        999999
+      ]
+    }
+  },
+  "ETHERNET_HEADER.ether_type_hi": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        8
+      ]
+    }
+  },
+  "ETHERNET_HEADER.ether_type_lo": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    }
+  },
+  "IPV4_HEADER.version_ihl": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        69
+      ]
+    }
+  },
+  "IPV4_HEADER.flags_frag_hi": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        64
+      ]
+    }
+  },
+  "global_hdr.version_major": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "global_hdr.version_minor": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "global_hdr.thiszone": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "pkt1.ts_sec": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "pkt1.incl_len": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "pkt1.orig_len": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "eth.dst_mac": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "eth.src_mac": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "eth.ether_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        2048,
+        2054,
+        34525
+      ]
+    }
+  },
+  "ip.ver_ihl": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "ip.dscp_ecn": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "ip.total_length": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        4096
+      ]
+    }
+  },
+  "ip.identification": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        4096
+      ]
+    }
+  },
+  "ip.flags_fragoff": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "ip.protocol": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        20
+      ]
+    }
+  },
+  "ip.header_checksum": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        1024
+      ]
+    }
+  },
+  "ip.src_ip": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "ip.dst_ip": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "tcp.src_port": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        80,
+        443,
+        8080,
+        22,
+        53,
+        21,
+        25,
+        110,
+        143
+      ]
+    }
+  },
+  "tcp.dst_port": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        80,
+        443,
+        8080,
+        22,
+        53,
+        21,
+        25,
+        110,
+        143
+      ]
+    }
+  },
+  "tcp.seq_number": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "tcp.ack_number": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "tcp.data_off_reserved": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "tcp.tcp_flags": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        15
+      ]
+    }
+  },
+  "tcp.checksum": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        1024
+      ]
+    }
+  },
+  "tcp.urgent_ptr": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        4096
+      ]
+    }
+  },
+  "pkt2.ts_sec": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "pkt2.incl_len": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "pkt2.orig_len": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "pkt3.ts_sec": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "pkt3.incl_len": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "pkt3.orig_len": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "global_hdr.magic_number": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        2712847316
+      ]
+    }
+  },
+  "global_hdr.sigfigs": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        0
+      ]
+    }
+  }
+}

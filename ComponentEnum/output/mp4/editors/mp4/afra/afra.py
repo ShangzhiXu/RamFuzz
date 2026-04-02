@@ -1,0 +1,98 @@
+import struct
+import os
+
+
+def afra(fp, values, fields, debug=False):
+    """Edit afra box fields in an MP4 file.
+
+    Args:
+        fp: Path to the MP4 file
+        values: List of values to set, corresponding to fields
+        fields: List of field names to modify
+        debug: If True, print debug information
+    """
+    FIELD_MAP = {
+        "afraOffset": (36, 4, ">I"),
+        "entries": (24, 4, "raw"),
+        "entryCount": (16, 4, ">I"),
+        "first_fragment": (32, 4, ">I"),
+        "flags": (9, 3, "raw"),
+        "fragment": (32, 4, ">I"),
+        "fragments": (32, 4, "raw"),
+        "globalEntryFlag": (20, 1, ">B"),
+        "localEntryFlag": (21, 1, ">B"),
+        "long_IDs": (22, 1, ">B"),
+        "numOffsetEntries": (20, 4, ">I"),
+        "numTimingEntries": (16, 4, ">I"),
+        "reserved": (24, 4, "raw"),
+        "segment": (28, 4, ">I"),
+        "size": (0, 4, ">I"),
+        "time": (24, 4, ">I"),
+        "timeScale": (12, 4, ">I"),
+        "time_scale": (12, 4, ">I"),
+        "type": (4, 4, "4s"),
+        "use_offset": (23, 1, ">B"),
+        "version": (8, 1, ">B"),
+    }
+
+    try:
+        with open(fp, 'r+b') as f:
+            data = f.read()
+            tag = b'afra'
+            pos = data.find(tag)
+            if pos == -1:
+                if debug:
+                    print("[DEBUG] afra box not found")
+                return
+            box_start = pos - 4
+
+            for i, field in enumerate(fields):
+                if field not in FIELD_MAP:
+                    if debug:
+                        print(f"[DEBUG] afra.{field}: unknown field, skipping")
+                    continue
+
+                offset, size, fmt = FIELD_MAP[field]
+                abs_pos = box_start + offset
+                value = values[i] if i < len(values) else None
+                if value is None:
+                    continue
+
+                # Read old value
+                try:
+                    if fmt in ("4s", "str"):
+                        old_val = data[abs_pos:abs_pos+size]
+                        old_val = old_val.decode('utf-8', errors='replace')
+                    elif fmt == "raw":
+                        old_val = data[abs_pos:abs_pos+size].hex()
+                    else:
+                        old_val = struct.unpack_from(fmt, data, abs_pos)[0]
+                except Exception:
+                    old_val = "N/A"
+
+                if debug:
+                    print(f"[DEBUG] afra.{field} before: {old_val}")
+
+                # Write new value
+                f.seek(abs_pos)
+                if fmt in ("4s", "str"):
+                    if isinstance(value, str):
+                        encoded = value.encode('utf-8')
+                    else:
+                        encoded = bytes(value)
+                    f.write(encoded[:size].ljust(size, b'\x00'))
+                elif fmt == "raw":
+                    if isinstance(value, bytes):
+                        f.write(value[:size].ljust(size, b'\x00'))
+                    elif isinstance(value, int):
+                        f.write(value.to_bytes(size, 'big'))
+                    else:
+                        f.write(bytes(value)[:size].ljust(size, b'\x00'))
+                else:
+                    f.write(struct.pack(fmt, value))
+
+                if debug:
+                    print(f"[DEBUG] afra.{field} after: {value}")
+    except Exception as e:
+        if debug:
+            print(f"[DEBUG] Error: {e}")

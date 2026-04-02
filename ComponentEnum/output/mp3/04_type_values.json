@@ -1,0 +1,499 @@
+{
+  "mp3_id3v2_tag.version_major": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        3,
+        4
+      ]
+    }
+  },
+  "mp3_id3v2_tag.version_minor": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0
+      ]
+    }
+  },
+  "mp3_mpeg_header.sync_byte2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        251,
+        250,
+        243,
+        242,
+        255,
+        254,
+        253,
+        252
+      ]
+    }
+  },
+  "mp3_mpeg_header.header_byte3": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        16,
+        253
+      ]
+    }
+  },
+  "mp3_id3v1_tag.track": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        1,
+        255
+      ]
+    }
+  },
+  "mp3_id3v1_tag.genre": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        191
+      ]
+    }
+  },
+  "ID3V2_TEXT_FRAME.encoding": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "ID3V2_APIC_FRAME.encoding": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "ID3V2_APIC_FRAME.picture_type": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        20
+      ]
+    }
+  },
+  "ID3V2_COMM_FRAME.encoding": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "ID3V2_USLT_FRAME.encoding": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "ID3V2_SYLT_FRAME.encoding": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "ID3V2_SYLT_FRAME.timestamp_format": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        2
+      ]
+    }
+  },
+  "ID3V2_SYLT_FRAME.content_type": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        8
+      ]
+    }
+  },
+  "ID3V2_ETCO_FRAME.timestamp_format": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        2
+      ]
+    }
+  },
+  "ID3V2_EQU2_FRAME.interpolation_method": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "ID3V2_RBUF_FRAME.embedded_info_flag": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1
+      ]
+    }
+  },
+  "ID3V2_RVRB_FRAME.reverb_left": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "ID3V2_RVRB_FRAME.reverb_right": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        65535
+      ]
+    }
+  },
+  "mp3_xing_header.xing_flags": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        15
+      ]
+    }
+  },
+  "mp3_xing_header.quality": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        100
+      ]
+    }
+  },
+  "mp3_vbri_header.quality": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        100
+      ]
+    }
+  },
+  "mp3_vbri_header.num_toc_entries": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        512
+      ]
+    }
+  },
+  "mp3_vbri_header.toc_scale_factor": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        100
+      ]
+    }
+  },
+  "mp3_vbri_header.toc_entry_size": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "mp3_vbri_header.toc_entry_frames": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        1,
+        256
+      ]
+    }
+  },
+  "ID3V2_ASPI_FRAME.bits_per_index": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        8,
+        16
+      ]
+    }
+  },
+  "ID3V2_SYTC_FRAME.timestamp_format": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        2
+      ]
+    }
+  },
+  "mp3_id3v1_enhanced.speed": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "ape_item.item_flags": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        7
+      ]
+    }
+  },
+  "mp3_ape_tag.item_count": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        16
+      ]
+    }
+  },
+  "id3v2.header_id": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "id3v2.header_flags": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        15
+      ]
+    }
+  },
+  "id3v2.raw_size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "id3v2.ss_b0": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "id3v2.ss_b1": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "id3v2.ss_b2": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "id3v2.ss_b3": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "text_frame.id": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "text_frame.size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "flags.flags1": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        15
+      ]
+    }
+  },
+  "flags.flags2": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        15
+      ]
+    }
+  },
+  "text_frame.flags": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "text_frame.text_data": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "comm_frame.id": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "comm_frame.size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "comm_frame.flags": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "comm_frame.language": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "apic_frame.id": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "apic_frame.size": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "apic_frame.flags": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        0,
+        255
+      ]
+    }
+  },
+  "apic_frame.null_term1": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "apic_frame.null_term2": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  }
+}

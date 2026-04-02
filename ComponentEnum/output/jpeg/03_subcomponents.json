@@ -1,0 +1,296 @@
+{
+  "SOI": {
+    "marker": ""
+  },
+  "APP0_JFIF": {
+    "marker": "",
+    "length": "",
+    "identifier": "",
+    "version_major": "",
+    "version_minor": "",
+    "density_units": "",
+    "x_density": "",
+    "y_density": "",
+    "x_thumbnail": "",
+    "y_thumbnail": "",
+    "thumbnail_data": ""
+  },
+  "APP0_JFXX": {
+    "marker": "",
+    "length": "",
+    "identifier": "",
+    "thumbnail_format": "",
+    "thumbnail_data": ""
+  },
+  "APP1_Exif": {
+    "marker": "",
+    "length": "",
+    "identifier": "",
+    "byte_order": "",
+    "magic_number": "",
+    "ifd0_offset": "",
+    "ifd0": "",
+    "ifd1": "",
+    "exif_ifd": "",
+    "gps_ifd": "",
+    "interop_ifd": "",
+    "thumbnail_data": ""
+  },
+  "APP1_XMP": {
+    "marker": "",
+    "length": "",
+    "identifier": "",
+    "xmp_data": ""
+  },
+  "APP2_ICC": {
+    "marker": "",
+    "length": "",
+    "identifier": "",
+    "chunk_number": "",
+    "total_chunks": "",
+    "icc_profile_data": ""
+  },
+  "APP12_PictureInfo": {
+    "marker": "",
+    "length": "",
+    "data": ""
+  },
+  "APP13_Photoshop": {
+    "marker": "",
+    "length": "",
+    "identifier": "",
+    "resource_blocks": ""
+  },
+  "APP13_IPTC": {
+    "marker": "",
+    "length": "",
+    "identifier": "",
+    "iptc_datasets": ""
+  },
+  "APP14_Adobe": {
+    "marker": "",
+    "length": "",
+    "identifier": "",
+    "version": "",
+    "flags0": "",
+    "flags1": "",
+    "color_transform": ""
+  },
+  "DQT": {
+    "marker": "",
+    "length": "",
+    "precision": "",
+    "table_id": "",
+    "table_data": ""
+  },
+  "DHT": {
+    "marker": "",
+    "length": "",
+    "table_class": "",
+    "table_id": "",
+    "num_codes": "",
+    "values": ""
+  },
+  "DAC": {
+    "marker": "",
+    "length": "",
+    "table_class": "",
+    "table_id": "",
+    "conditioning_value": ""
+  },
+  "SOF0": {
+    "marker": "",
+    "length": "",
+    "precision": "",
+    "image_height": "",
+    "image_width": "",
+    "num_components": "",
+    "component_id": "",
+    "h_sampling_factor": "",
+    "v_sampling_factor": "",
+    "quant_table_id": ""
+  },
+  "SOF1": {
+    "marker": "",
+    "length": "",
+    "precision": "",
+    "image_height": "",
+    "image_width": "",
+    "num_components": "",
+    "component_id": "",
+    "h_sampling_factor": "",
+    "v_sampling_factor": "",
+    "quant_table_id": ""
+  },
+  "SOF2": {
+    "marker": "",
+    "length": "",
+    "precision": "",
+    "image_height": "",
+    "image_width": "",
+    "num_components": "",
+    "component_id": "",
+    "h_sampling_factor": "",
+    "v_sampling_factor": "",
+    "quant_table_id": ""
+  },
+  "SOF3": {
+    "marker": "",
+    "length": "",
+    "precision": "",
+    "image_height": "",
+    "image_width": "",
+    "num_components": "",
+    "component_id": "",
+    "h_sampling_factor": "",
+    "v_sampling_factor": "",
+    "quant_table_id": ""
+  },
+  "SOS": {
+    "marker": "",
+    "length": "",
+    "num_components": "",
+    "component_selector": "",
+    "dc_table_selector": "",
+    "ac_table_selector": "",
+    "start_spectral": "",
+    "end_spectral": "",
+    "approx_high": "",
+    "approx_low": ""
+  },
+  "DRI": {
+    "marker": "",
+    "length": "",
+    "restart_interval": ""
+  },
+  "RST0": {
+    "marker": ""
+  },
+  "RST1": {
+    "marker": ""
+  },
+  "RST2": {
+    "marker": ""
+  },
+  "RST3": {
+    "marker": ""
+  },
+  "RST4": {
+    "marker": ""
+  },
+  "RST5": {
+    "marker": ""
+  },
+  "RST6": {
+    "marker": ""
+  },
+  "RST7": {
+    "marker": ""
+  },
+  "COM": {
+    "marker": "",
+    "length": "",
+    "comment_data": ""
+  },
+  "DNL": {
+    "marker": "",
+    "length": "",
+    "num_lines": ""
+  },
+  "EOI": {
+    "marker": ""
+  },
+  "Exif_IFD0": {
+    "entry_count": "",
+    "tag_id": "",
+    "data_format": "",
+    "num_components": "",
+    "data_value": "",
+    "next_ifd_offset": ""
+  },
+  "Exif_IFD1": {
+    "entry_count": "",
+    "tag_id": "",
+    "data_format": "",
+    "num_components": "",
+    "data_value": "",
+    "next_ifd_offset": ""
+  },
+  "Exif_ExifIFD": {
+    "entry_count": "",
+    "tag_id": "",
+    "data_format": "",
+    "num_components": "",
+    "data_value": ""
+  },
+  "Exif_GPSIFD": {
+    "entry_count": "",
+    "tag_id": "",
+    "data_format": "",
+    "num_components": "",
+    "data_value": ""
+  },
+  "Exif_InteropIFD": {
+    "entry_count": "",
+    "tag_id": "",
+    "data_format": "",
+    "num_components": "",
+    "data_value": ""
+  },
+  "Exif_MakerNote": {
+    "maker_data": ""
+  },
+  "IPTC_record": {
+    "tag_marker": "",
+    "record_number": "",
+    "dataset_number": "",
+    "data_size": "",
+    "data": ""
+  },
+  "ICC_header": {
+    "profile_size": "",
+    "preferred_cmm": "",
+    "profile_version": "",
+    "device_class": "",
+    "color_space": "",
+    "pcs": "",
+    "creation_date": "",
+    "signature": "",
+    "primary_platform": "",
+    "profile_flags": "",
+    "device_manufacturer": "",
+    "device_model": "",
+    "device_attributes": "",
+    "rendering_intent": "",
+    "pcs_illuminant": "",
+    "profile_creator": "",
+    "profile_id": "",
+    "reserved": ""
+  },
+  "ICC_tag_table": {
+    "tag_count": "",
+    "tag_signature": "",
+    "tag_offset": "",
+    "tag_size": ""
+  },
+  "ICC_tag_data": {
+    "type_signature": "",
+    "reserved": "",
+    "data": ""
+  },
+  "XMP_packet": {
+    "xpacket_begin": "",
+    "rdf_data": "",
+    "xpacket_end": ""
+  },
+  "scan_data": {
+    "entropy_coded_segments": "",
+    "restart_markers": ""
+  },
+  "entropy_coded_data": {
+    "mcu_data": ""
+  },
+  "thumbnail_data": {
+    "pixel_data": ""
+  }
+}

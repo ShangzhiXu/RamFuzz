@@ -1,0 +1,120 @@
+{
+  "elf_header": {
+    "ei_mag": "",
+    "ei_class": "",
+    "ei_data": "",
+    "ei_version": "",
+    "ei_osabi": "",
+    "ei_abiversion": "",
+    "ei_pad": "",
+    "e_type": "",
+    "e_machine": "",
+    "e_version": "",
+    "e_entry": "",
+    "e_phoff": "",
+    "e_shoff": "",
+    "e_flags": "",
+    "e_ehsize": "",
+    "e_phentsize": "",
+    "e_phnum": "",
+    "e_shentsize": "",
+    "e_shnum": "",
+    "e_shstrndx": ""
+  },
+  "program_header": {
+    "p_type": "",
+    "p_flags": "",
+    "p_offset": "",
+    "p_vaddr": "",
+    "p_paddr": "",
+    "p_filesz": "",
+    "p_memsz": "",
+    "p_align": ""
+  },
+  "section_header": {
+    "sh_name": "",
+    "sh_type": "",
+    "sh_flags": "",
+    "sh_addr": "",
+    "sh_offset": "",
+    "sh_size": "",
+    "sh_link": "",
+    "sh_info": "",
+    "sh_addralign": "",
+    "sh_entsize": ""
+  },
+  "symbol_table_entry": {
+    "st_name": "",
+    "st_value": "",
+    "st_size": "",
+    "st_info": "",
+    "st_other": "",
+    "st_shndx": ""
+  },
+  "relocation_entry": {
+    "r_offset": "",
+    "r_info": "",
+    "r_addend": ""
+  },
+  "dynamic_entry": {
+    "d_tag": "",
+    "d_val": ""
+  },
+  "note_header": {
+    "n_namesz": "",
+    "n_descsz": "",
+    "n_type": "",
+    "name": "",
+    "desc": ""
+  },
+  "string_table": {
+    "strings": ""
+  },
+  "hash_section": {
+    "nbucket": "",
+    "nchain": "",
+    "bucket": "",
+    "chain": ""
+  },
+  "gnu_hash_section": {
+    "nbuckets": "",
+    "symoffset": "",
+    "bloom_size": "",
+    "bloom_shift": "",
+    "bloom": "",
+    "buckets": "",
+    "chain": ""
+  },
+  "interp_section": {
+    "path": ""
+  },
+  "got_section": {
+    "entries": ""
+  },
+  "plt_section": {
+    "entries": ""
+  },
+  "init_array": {
+    "function_pointers": ""
+  },
+  "fini_array": {
+    "function_pointers": ""
+  },
+  "eh_frame": {
+    "version": "",
+    "augmentation": "",
+    "code_alignment": "",
+    "data_alignment": "",
+    "return_address_register": "",
+    "augmentation_data": ""
+  },
+  "gnu_version": {
+    "entries": ""
+  },
+  "gnu_version_r": {
+    "version": "",
+    "cnt": "",
+    "filename": "",
+    "aux": ""
+  }
+}

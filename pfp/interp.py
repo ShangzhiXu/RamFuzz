@@ -3247,6 +3247,8 @@ class PfpInterp(object):
                 res._pfp__set_value(0)
         except AttributeError:
             res._pfp__set_value(0)
+        expr_cpp = getattr(node.expr, 'cpp', getattr(node.expr, 'name', '0'))
+        node.cpp = "exists(" + str(expr_cpp) + ")"
 
         if node.expr.__class__ == AST.StructRef:
             node.cpp = node.expr.name.cpp + "." + node.expr.field.name + "_exists"

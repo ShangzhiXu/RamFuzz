@@ -1,0 +1,406 @@
+{
+  "flv_file.version": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "flv_file.flags": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        1,
+        4,
+        5
+      ]
+    }
+  },
+  "flv_file.header_size": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        9
+      ]
+    }
+  },
+  "FLV_TAG_AUDIO.tag_type": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        8
+      ]
+    }
+  },
+  "FLV_TAG_AUDIO.ds_lo": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        16,
+        32,
+        48,
+        64
+      ]
+    }
+  },
+  "FLV_TAG_VIDEO.tag_type": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        9
+      ]
+    }
+  },
+  "FLV_TAG_VIDEO.ds_lo": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        16,
+        32,
+        48,
+        64
+      ]
+    }
+  },
+  "FLV_TAG_SCRIPT.tag_type": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        18
+      ]
+    }
+  },
+  "FLV_TAG_SCRIPT.ds_lo": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        16,
+        32,
+        48,
+        64
+      ]
+    }
+  },
+  "file.prev_tag_size0": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "script_tag.ds_hi": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "script_tag.ds_mid": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "script_tag.ts_hi": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "script_tag.ts_mid": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "script_tag.ts_lo": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "script_tag.ts_ext": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "script_tag.sid_hi": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "script_tag.sid_mid": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "script_tag.sid_lo": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.pts1": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "video_tag.ds_hi": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "video_tag.ds_mid": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "video_tag.ts_hi": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "video_tag.ts_mid": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "video_tag.ts_lo": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "video_tag.ts_ext": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "video_tag.sid_hi": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "video_tag.sid_mid": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "video_tag.sid_lo": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "video_tag.video_header": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.pts2": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "audio_tag.ds_hi": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "audio_tag.ds_mid": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "audio_tag.ts_hi": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "audio_tag.ts_mid": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "audio_tag.ts_lo": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "audio_tag.ts_ext": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "audio_tag.sid_hi": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "audio_tag.sid_mid": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "audio_tag.sid_lo": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "audio_tag.audio_header": {
+    "type": "uint8",
+    "values": {
+      "range": [
+        0,
+        127
+      ]
+    }
+  },
+  "file.pts3": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.sig1": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        70
+      ]
+    }
+  },
+  "file.sig2": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        76
+      ]
+    }
+  },
+  "file.sig3": {
+    "type": "uint8",
+    "values": {
+      "discrete": [
+        86
+      ]
+    }
+  }
+}

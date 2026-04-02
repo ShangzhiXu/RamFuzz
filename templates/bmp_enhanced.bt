@@ -1,0 +1,54 @@
+// bmp_enhanced.bt - Comprehensive BMP template
+LittleEndian();
+local string ReadBytesInitValues[] = { "BM" };
+
+struct BMP_FILE_HEADER {
+    char signature[2] = { "BM" };
+    uint32 file_size;
+    uint16 reserved1 = { 0 };
+    uint16 reserved2 = { 0 };
+    uint32 pixel_data_offset;
+};
+
+struct BITMAPINFOHEADER {
+    uint32 header_size = { 40 };
+    int32 width <min=1, max=512>;
+    int32 height <min=1, max=512>;
+    uint16 color_planes = { 1 };
+    uint16 bits_per_pixel = { 1, 4, 8, 24, 32 };
+    uint32 compression = { 0 };
+    uint32 image_size;
+    int32 x_ppm;
+    int32 y_ppm;
+    uint32 colors_used;
+    uint32 colors_important;
+};
+
+typedef struct {
+    // File Header
+    BMP_FILE_HEADER file_hdr;
+
+    // DIB Header (BITMAPINFOHEADER)
+    BITMAPINFOHEADER dib_hdr;
+
+    // Color table for <= 8bpp
+    local uint32 ct_size = 0;
+    if (dib_hdr.bits_per_pixel <= 8) {
+        ct_size = (dib_hdr.colors_used > 0) ? dib_hdr.colors_used : (1 << dib_hdr.bits_per_pixel);
+        if (ct_size > 256) ct_size = 256;
+        ubyte color_table[ct_size * 4];
+    }
+
+    // Pixel data
+    local int32 abs_h = dib_hdr.height;
+    if (abs_h < 0) abs_h = -abs_h;
+    local uint32 row_size = ((dib_hdr.bits_per_pixel * dib_hdr.width + 31) / 32) * 4;
+    local uint32 pixel_size = row_size * abs_h;
+    if (pixel_size > 0 && pixel_size < 1048576) {
+        ubyte pixel_data[pixel_size];
+    } else {
+        ubyte pixel_data[64];
+    }
+} bmp_file;
+
+bmp_file file;

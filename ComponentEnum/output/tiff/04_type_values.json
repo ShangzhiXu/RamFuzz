@@ -1,0 +1,486 @@
+{
+  "file.byte_order": {
+    "type": "string",
+    "values": {
+      "enum": [
+        "II",
+        "MM"
+      ]
+    }
+  },
+  "file.magic": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        42
+      ]
+    }
+  },
+  "file.ifd_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        8,
+        8
+      ]
+    }
+  },
+  "file.entry_count": {
+    "type": "uint16",
+    "values": {
+      "range": [
+        4,
+        16
+      ]
+    }
+  },
+  "file.next_ifd": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        0
+      ]
+    }
+  },
+  "file.t_width_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        256
+      ]
+    }
+  },
+  "file.t_width_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_width_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_width_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        1024
+      ]
+    }
+  },
+  "file.t_height_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        257
+      ]
+    }
+  },
+  "file.t_height_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_height_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_height_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        1,
+        1024
+      ]
+    }
+  },
+  "file.t_bps_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        258
+      ]
+    }
+  },
+  "file.t_bps_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_bps_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_bps_value": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1,
+        4,
+        8,
+        16
+      ]
+    }
+  },
+  "file.t_comp_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        259
+      ]
+    }
+  },
+  "file.t_comp_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_comp_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_comp_value": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1,
+        5,
+        6,
+        7,
+        8,
+        32773
+      ]
+    }
+  },
+  "file.t_photo_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        262
+      ]
+    }
+  },
+  "file.t_photo_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_photo_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_photo_value": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        8
+      ]
+    }
+  },
+  "file.t_soff_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        273
+      ]
+    }
+  },
+  "file.t_soff_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        4
+      ]
+    }
+  },
+  "file.t_soff_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_spp_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        277
+      ]
+    }
+  },
+  "file.t_spp_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_spp_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_spp_value": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1,
+        3,
+        4
+      ]
+    }
+  },
+  "file.t_rps_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        278
+      ]
+    }
+  },
+  "file.t_rps_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_rps_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_sbc_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        279
+      ]
+    }
+  },
+  "file.t_sbc_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        4
+      ]
+    }
+  },
+  "file.t_sbc_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_xres_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        282
+      ]
+    }
+  },
+  "file.t_xres_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        5
+      ]
+    }
+  },
+  "file.t_xres_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_yres_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        283
+      ]
+    }
+  },
+  "file.t_yres_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        5
+      ]
+    }
+  },
+  "file.t_yres_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_ru_tag": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        296
+      ]
+    }
+  },
+  "file.t_ru_type": {
+    "type": "uint16",
+    "values": {
+      "discrete": [
+        3
+      ]
+    }
+  },
+  "file.t_ru_count": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_ru_value": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "file.xres_num": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        72
+      ]
+    }
+  },
+  "file.xres_den": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.yres_num": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        72
+      ]
+    }
+  },
+  "file.yres_den": {
+    "type": "uint32",
+    "values": {
+      "discrete": [
+        1
+      ]
+    }
+  },
+  "file.t_soff_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.t_rps_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.t_sbc_value": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.t_xres_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  },
+  "file.t_yres_offset": {
+    "type": "uint32",
+    "values": {
+      "range": [
+        0,
+        65536
+      ]
+    }
+  }
+}

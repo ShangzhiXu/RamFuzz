@@ -1,0 +1,174 @@
+// wav_enhanced.bt - Comprehensive WAV template
+LittleEndian();
+local string ReadBytesInitValues[] = { "RIFF", "WAVE", "fmt ", "data", "fact", "cue ", "smpl", "inst", "LIST", "JUNK", "bext", "iXML", "acid" };
+
+struct FMT_CHUNK {
+    char chunk_id[4] = { "fmt " };
+    uint32 chunk_size = { 16 };
+    uint16 audio_format = { 1 };  // PCM
+    uint16 num_channels = { 1, 2 };
+    uint32 sample_rate = { 44100, 48000, 22050, 8000, 96000 };
+    uint32 byte_rate;
+    uint16 block_align;
+    uint16 bits_per_sample = { 8, 16, 24, 32 };
+};
+
+struct FACT_CHUNK {
+    char chunk_id[4] = { "fact" };
+    uint32 chunk_size = { 4 };
+    uint32 num_samples;
+};
+
+struct SMPL_LOOP {
+    uint32 id;
+    uint32 loop_type <min=0, max=2>;
+    uint32 start;
+    uint32 end;
+    uint32 fraction;
+    uint32 play_count;
+};
+
+struct SMPL_CHUNK {
+    char chunk_id[4] = { "smpl" };
+    uint32 chunk_size <min=36, max=128>;
+    uint32 manufacturer;
+    uint32 product;
+    uint32 sample_period;
+    uint32 midi_unity_note <min=0, max=127>;
+    uint32 midi_pitch_fraction;
+    uint32 smpte_format = { 0, 24, 25, 30 };
+    uint32 smpte_offset;
+    uint32 num_loops = { 0, 1 };
+    uint32 sampler_data_size = { 0 };
+    if (num_loops > 0) {
+        SMPL_LOOP loop;
+    }
+};
+
+struct INST_CHUNK {
+    char chunk_id[4] = { "inst" };
+    uint32 chunk_size = { 7 };
+    ubyte unshifted_note <min=0, max=127>;
+    byte fine_tune;
+    byte gain;
+    ubyte low_note <min=0, max=127>;
+    ubyte high_note <min=0, max=127>;
+    ubyte low_velocity <min=0, max=127>;
+    ubyte high_velocity <min=0, max=127>;
+};
+
+struct CUE_POINT {
+    uint32 id;
+    uint32 position;
+    char data_chunk_id[4] = { "data" };
+    uint32 chunk_start;
+    uint32 block_start;
+    uint32 sample_offset;
+};
+
+struct CUE_CHUNK {
+    char chunk_id[4] = { "cue " };
+    uint32 chunk_size;
+    uint32 num_cue_points = { 1 };
+    CUE_POINT cue_pt;
+};
+
+struct INFO_CHUNK {
+    char chunk_id[4] = { "INAM", "IART", "ICMT", "ICOP", "ICRD", "IGNR", "ISFT" };
+    uint32 chunk_size <min=1, max=64>;
+    char data[chunk_size];
+};
+
+struct BEXT_CHUNK {
+    char chunk_id[4] = { "bext" };
+    uint32 chunk_size <min=602, max=1024>;
+    char description[256];
+    char originator[32];
+    char originator_ref[32];
+    char orig_date[10];
+    char orig_time[8];
+    uint32 time_ref_low;
+    uint32 time_ref_high;
+    uint16 version = { 0, 1, 2 };
+    ubyte umid[64];
+    int16 loudness_value;
+    int16 loudness_range;
+    int16 max_true_peak;
+    int16 max_momentary;
+    int16 max_short_term;
+    ubyte reserved[180];
+};
+
+struct IXML_CHUNK {
+    char chunk_id[4] = { "iXML" };
+    uint32 chunk_size <min=4, max=256>;
+    ubyte xml_data[chunk_size];
+};
+
+struct JUNK_CHUNK {
+    char chunk_id[4] = { "JUNK" };
+    uint32 chunk_size <min=4, max=64>;
+    ubyte data[chunk_size];
+};
+
+struct ACID_CHUNK {
+    char chunk_id[4] = { "acid" };
+    uint32 chunk_size = { 24 };
+    uint32 type_flags;
+    uint16 root_note <min=0, max=127>;
+    uint16 unknown1;
+    uint32 unknown2;
+    uint32 num_beats;
+    uint16 meter_denom = { 4 };
+    uint16 meter_numer = { 4 };
+    uint32 tempo;
+};
+
+typedef struct {
+    // RIFF header
+    char riff_id[4] = { "RIFF" };
+    uint32 riff_size;
+    char wave_id[4] = { "WAVE" };
+
+    // fmt chunk
+    FMT_CHUNK fmt;
+
+    // fact chunk (optional)
+    FACT_CHUNK fact;
+
+    // Optional metadata chunks - generate a selection
+    local char tag[4];
+    local string all_choices[] = { "smpl", "inst", "cue ", "bext", "iXML", "acid", "JUNK", "LIST" };
+    local string preferred[] = { "smpl", "LIST" };
+
+    while (ReadBytes(tag, FTell(), 4, preferred, all_choices)) {
+        switch (tag) {
+            case "smpl": SMPL_CHUNK smpl; all_choices -= "smpl"; preferred -= "smpl"; break;
+            case "inst": INST_CHUNK inst; all_choices -= "inst"; break;
+            case "cue ": CUE_CHUNK cue;  all_choices -= "cue "; break;
+            case "bext": BEXT_CHUNK bext; all_choices -= "bext"; break;
+            case "iXML": IXML_CHUNK ixml; all_choices -= "iXML"; break;
+            case "acid": ACID_CHUNK acid; all_choices -= "acid"; break;
+            case "JUNK": JUNK_CHUNK junk; all_choices -= "JUNK"; break;
+            case "LIST":
+                // INFO list
+                char info_list_id[4] = { "LIST" };
+                uint32 info_list_size;
+                char info_list_type[4] = { "INFO" };
+                INFO_CHUNK info1;
+                INFO_CHUNK info2;
+                all_choices -= "LIST";
+                preferred -= "LIST";
+                break;
+            default: break;
+        }
+    }
+
+    // data chunk
+    char data_id[4] = { "data" };
+    uint32 data_size <min=4, max=4096>;
+    ubyte audio_data[data_size];
+
+} wav_file;
+
+wav_file file;

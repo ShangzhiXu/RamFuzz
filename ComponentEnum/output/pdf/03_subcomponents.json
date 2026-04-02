@@ -1,0 +1,250 @@
+{
+  "PDF_header": {
+    "version": ""
+  },
+  "body_object": {
+    "obj_number": "",
+    "gen_number": "",
+    "content": ""
+  },
+  "indirect_object": {
+    "obj_number": "",
+    "gen_number": "",
+    "content": ""
+  },
+  "catalog": {
+    "Type": "",
+    "Pages": "",
+    "Outlines": "",
+    "Names": "",
+    "OpenAction": "",
+    "AcroForm": "",
+    "Metadata": "",
+    "MarkInfo": "",
+    "Lang": "",
+    "ViewerPreferences": ""
+  },
+  "pages": {
+    "Type": "",
+    "Kids": "",
+    "Count": "",
+    "MediaBox": "",
+    "Resources": ""
+  },
+  "page": {
+    "Type": "",
+    "Parent": "",
+    "MediaBox": "",
+    "CropBox": "",
+    "BleedBox": "",
+    "TrimBox": "",
+    "ArtBox": "",
+    "Contents": "",
+    "Resources": "",
+    "Rotate": "",
+    "Annotations": "",
+    "Tabs": "",
+    "StructParents": ""
+  },
+  "font": {
+    "Type": "",
+    "Subtype": "",
+    "BaseFont": "",
+    "Encoding": "",
+    "FirstChar": "",
+    "LastChar": "",
+    "Widths": "",
+    "FontDescriptor": "",
+    "ToUnicode": ""
+  },
+  "font_descriptor": {
+    "Type": "",
+    "FontName": "",
+    "Flags": "",
+    "FontBBox": "",
+    "ItalicAngle": "",
+    "Ascent": "",
+    "Descent": "",
+    "CapHeight": "",
+    "StemV": "",
+    "FontFile": "",
+    "FontFile2": "",
+    "FontFile3": ""
+  },
+  "image": {
+    "Type": "",
+    "Subtype": "",
+    "Width": "",
+    "Height": "",
+    "ColorSpace": "",
+    "BitsPerComponent": "",
+    "Filter": "",
+    "DecodeParms": "",
+    "SMask": "",
+    "Intent": "",
+    "Interpolate": ""
+  },
+  "stream": {
+    "Length": "",
+    "Filter": "",
+    "DecodeParms": "",
+    "data": ""
+  },
+  "xref_table": {
+    "offset": "",
+    "gen": "",
+    "in_use": ""
+  },
+  "xref_stream": {
+    "Type": "",
+    "Size": "",
+    "Index": "",
+    "W": "",
+    "Filter": "",
+    "DecodeParms": ""
+  },
+  "trailer": {
+    "Size": "",
+    "Root": "",
+    "Info": "",
+    "ID": "",
+    "Prev": "",
+    "Encrypt": ""
+  },
+  "info_dict": {
+    "Title": "",
+    "Author": "",
+    "Subject": "",
+    "Keywords": "",
+    "Creator": "",
+    "Producer": "",
+    "CreationDate": "",
+    "ModDate": "",
+    "Trapped": ""
+  },
+  "encryption_dict": {
+    "Filter": "",
+    "V": "",
+    "Length": "",
+    "R": "",
+    "O": "",
+    "U": "",
+    "P": "",
+    "CF": "",
+    "StmF": "",
+    "StrF": ""
+  },
+  "annotation": {
+    "Type": "",
+    "Subtype": "",
+    "Rect": "",
+    "Contents": "",
+    "P": "",
+    "NM": "",
+    "M": "",
+    "F": "",
+    "AP": "",
+    "AS": "",
+    "Border": "",
+    "C": "",
+    "StructParent": ""
+  },
+  "action": {
+    "Type": "",
+    "S": "",
+    "URI": "",
+    "D": "",
+    "Next": ""
+  },
+  "outline": {
+    "Type": "",
+    "First": "",
+    "Last": "",
+    "Count": "",
+    "Dest": "",
+    "Title": "",
+    "Parent": "",
+    "Prev": "",
+    "Next": ""
+  },
+  "names_dict": {
+    "Dests": "",
+    "AP": "",
+    "JavaScript": "",
+    "Pages": "",
+    "Templates": "",
+    "IDS": "",
+    "URLS": "",
+    "EmbeddedFiles": ""
+  },
+  "form_field": {
+    "FT": "",
+    "T": "",
+    "V": "",
+    "DV": "",
+    "Ff": "",
+    "Kids": ""
+  },
+  "content_stream": {
+    "BT": "",
+    "ET": "",
+    "Tf": "",
+    "Td": "",
+    "Tm": "",
+    "T*": "",
+    "Tj": "",
+    "TJ": "",
+    "cm": "",
+    "re": "",
+    "m": "",
+    "l": "",
+    "c": "",
+    "h": "",
+    "f": "",
+    "S": "",
+    "W": "",
+    "q": "",
+    "Q": "",
+    "gs": "",
+    "Do": "",
+    "CS": "",
+    "cs": "",
+    "SC": "",
+    "sc": "",
+    "rg": "",
+    "RG": "",
+    "k": "",
+    "K": "",
+    "BI": "",
+    "ID": "",
+    "EI": ""
+  },
+  "linearization": {
+    "Linearized": "",
+    "L": "",
+    "H": "",
+    "O": "",
+    "E": "",
+    "N": "",
+    "T": ""
+  },
+  "cross_reference_stream": {
+    "Type": "",
+    "Size": "",
+    "Index": "",
+    "W": "",
+    "Filter": "",
+    "DecodeParms": ""
+  },
+  "object_stream": {
+    "Type": "",
+    "N": "",
+    "First": ""
+  },
+  "startxref": {
+    "offset": ""
+  },
+  "%%EOF": {
+    "marker": ""
+  }
+}
